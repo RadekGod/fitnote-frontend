@@ -1,0 +1,7 @@
+{
+  "name": "fitnote-frontend",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
