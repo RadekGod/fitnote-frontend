@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from "../../../services/auth/auth.service";
+import {OAuthService} from "angular-oauth2-oidc";
 
 @Component({
   selector: 'app-plans',
@@ -9,16 +10,11 @@ import {AuthService} from "../../../services/auth/auth.service";
 export class PlansPage implements OnInit {
 
   userProfile: any;
-  realmRoles: any;
   hasValidAccessToken: boolean;
 
-  constructor(private authService: AuthService) {
-    this.userProfile = this.authService.userProfile;
-    this.realmRoles = this.authService.realmRoles;
-    this.hasValidAccessToken = this.authService.hasValidAccessToken;
-    console.log(this.userProfile);
-    console.log(this.realmRoles);
-    console.log(this.hasValidAccessToken);
+  constructor(private oauthService: OAuthService) {
+    this.userProfile = this.oauthService.loadUserProfile();
+    this.hasValidAccessToken = this.oauthService.hasValidAccessToken();
   }
 
   ngOnInit(): void {
@@ -27,7 +23,14 @@ export class PlansPage implements OnInit {
 
 
   logout() {
-    this.authService.logout();
+    this.oauthService.revokeTokenAndLogout()
+      .then(revokeTokenAndLogoutResult => {
+        console.log("revokeTokenAndLogout", revokeTokenAndLogoutResult);
+        this.userProfile = null;
+      })
+      .catch(error => {
+        console.error("revokeTokenAndLogout", error);
+      });
   }
 
 }

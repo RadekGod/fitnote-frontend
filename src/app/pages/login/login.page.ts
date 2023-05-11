@@ -11,19 +11,19 @@ export class LoginPage implements OnInit {
 
   hasValidAccessToken: boolean;
 
-  constructor(private authService: AuthService, private oauth: OAuthService) {
-    this.hasValidAccessToken = this.authService.hasValidAccessToken;
+  constructor(private oauthService: OAuthService) {
+    this.hasValidAccessToken = this.oauthService.hasValidAccessToken();
   }
 
   ngOnInit(): void {
-    this.authService.loadUserProfile();
+    // this.authService.loadUserProfile();
     // console.log()
-    console.log(this.authService.hasValidAccessToken);
+    // console.log(this.authService.hasValidAccessToken);
   }
 
   login() {
-    // this.oauth.initImplicitFlow();
-    this.authService.login();
+    this.oauthService.loadDiscoveryDocumentAndLogin()
+    // this.authService.login();
   }
 
 }
