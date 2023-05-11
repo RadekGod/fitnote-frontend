@@ -11,19 +11,18 @@ export class LoginPage implements OnInit {
 
   hasValidAccessToken: boolean;
 
-  constructor(private oauthService: OAuthService) {
-    this.hasValidAccessToken = this.oauthService.hasValidAccessToken();
+  constructor(private authService: AuthService) {
+    this.hasValidAccessToken = this.authService.isLoggedIn();
+    console.log('this.hasValidAccessToken', this.hasValidAccessToken);
   }
 
   ngOnInit(): void {
-    // this.authService.loadUserProfile();
-    // console.log()
-    // console.log(this.authService.hasValidAccessToken);
+    console.log('realmRoles', this.authService.realmRoles);
+    console.log(this.authService.isLoggedIn());
   }
 
   login() {
-    this.oauthService.loadDiscoveryDocumentAndLogin()
-    // this.authService.login();
+    this.authService.login();
   }
 
 }

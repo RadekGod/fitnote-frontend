@@ -7,30 +7,31 @@ import {OAuthService} from "angular-oauth2-oidc";
   templateUrl: './plans.page.html',
   styleUrls: ['./plans.page.scss'],
 })
-export class PlansPage implements OnInit {
+export class PlansPage implements OnInit  {
 
   userProfile: any;
   hasValidAccessToken: boolean;
+  accessToken: string;
 
-  constructor(private oauthService: OAuthService) {
-    this.userProfile = this.oauthService.loadUserProfile();
-    this.hasValidAccessToken = this.oauthService.hasValidAccessToken();
+  constructor(private authService: AuthService) {
+    this.userProfile = this.authService._userProfile;
+    this.hasValidAccessToken = this.authService.isLoggedIn();
+    this.accessToken = this.authService.accessToken;
   }
 
   ngOnInit(): void {
+    console.log('Plans realmRoles', this.authService.realmRoles);
+    console.log('Plans hasValidAccessToken', this.hasValidAccessToken);
+  }
 
+  ionViewWillEnter() {
+    console.log('Plans ionViewWillEnter realmRoles', this.authService.realmRoles);
+    console.log('Plans ionViewWillEnter hasValidAccessToken', this.hasValidAccessToken);
   }
 
 
   logout() {
-    this.oauthService.revokeTokenAndLogout()
-      .then(revokeTokenAndLogoutResult => {
-        console.log("revokeTokenAndLogout", revokeTokenAndLogoutResult);
-        this.userProfile = null;
-      })
-      .catch(error => {
-        console.error("revokeTokenAndLogout", error);
-      });
+    this.authService.logout();
   }
 
 }

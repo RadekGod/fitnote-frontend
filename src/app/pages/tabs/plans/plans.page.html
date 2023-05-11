@@ -17,7 +17,7 @@
   <ion-header [translucent]="true">
     <ion-toolbar>
       <ion-title>
-        Keycloak Example App
+        Plans
       </ion-title>
     </ion-toolbar>
   </ion-header>
@@ -29,6 +29,11 @@
       <div class="keycloak-data" *ngIf="userProfile">
         <p>UserProfile</p>
         <span>{{userProfile | json}}</span>
+      </div>
+
+      <div class="keycloak-data" *ngIf="accessToken">
+        <p>AccessToken</p>
+        <span>{{accessToken | json}}</span>
       </div>
 
     </div>

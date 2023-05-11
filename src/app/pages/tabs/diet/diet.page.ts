@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {AuthService} from "../../../services/auth/auth.service";
 
 @Component({
   selector: 'app-diet',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DietPage implements OnInit {
 
-  constructor() { }
+  userProfile: any;
+  hasValidAccessToken: boolean;
 
-  ngOnInit() {
+  constructor(private authService: AuthService) {
+    this.userProfile = this.authService._userProfile;
+    this.hasValidAccessToken = this.authService.isLoggedIn();
+  }
+
+  ngOnInit(): void {
+    console.log('Diet realmRoles', this.authService.realmRoles);
+    console.log('Diet hasValidAccessToken', this.hasValidAccessToken);
   }
 
 }
