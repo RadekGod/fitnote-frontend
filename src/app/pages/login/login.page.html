@@ -1,0 +1,16 @@
+<ion-app>
+  <ion-header [translucent]="true">
+    <ion-toolbar>
+      <ion-title>
+        Login Page
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content [fullscreen]="true">
+    <div id="container">
+      <ion-button (click)="login()" [disabled]="hasValidAccessToken">Login</ion-button>
+    </div>
+  </ion-content>
+
+</ion-app>

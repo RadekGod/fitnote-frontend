@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {AuthService} from "../../../services/auth/auth.service";
 
 @Component({
   selector: 'app-plans',
@@ -7,9 +8,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PlansPage implements OnInit {
 
-  constructor() { }
+  userProfile: any;
+  realmRoles: any;
+  hasValidAccessToken: boolean;
 
-  ngOnInit() {
+  constructor(private authService: AuthService) {
+    this.userProfile = this.authService.userProfile;
+    this.realmRoles = this.authService.realmRoles;
+    this.hasValidAccessToken = this.authService.hasValidAccessToken;
+    console.log(this.userProfile);
+    console.log(this.realmRoles);
+    console.log(this.hasValidAccessToken);
+  }
+
+  ngOnInit(): void {
+
+  }
+
+
+  logout() {
+    this.authService.logout();
   }
 
 }
