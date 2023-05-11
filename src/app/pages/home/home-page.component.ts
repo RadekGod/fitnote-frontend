@@ -4,10 +4,10 @@ import {OAuthService} from "angular-oauth2-oidc";
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.page.html',
-  styleUrls: ['./login.page.scss'],
+  templateUrl: './home-page.component.html',
+  styleUrls: ['./home-page.component.scss'],
 })
-export class LoginPage implements OnInit {
+export class HomePage implements OnInit {
 
   hasValidAccessToken: boolean;
 

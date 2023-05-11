@@ -18,31 +18,75 @@ export class AuthService {
   ngOnInit(): void {
 
   }
+//poniższy kod przenosi od razu do keycloaka
+  // initializeAuth() {
+  //     this.oauthService.configure(authConfig);
+  //     this.oauthService.setupAutomaticSilentRefresh();
+  //     this.oauthService.setStorage(sessionStorage);
+  //     this.oauthService.loadDiscoveryDocumentAndLogin().then(tryLoginResult => {
+  //       console.log("AuthService tryLogin", tryLoginResult);
+  //       console.log("AuthService hasValidAccessToken", this.oauthService.hasValidAccessToken());
+  //       if (this.oauthService.hasValidAccessToken()) {
+  //         return Promise.resolve();
+  //         // this.loadUserProfile();
+  //         // this._realmRoles = this.getRealmRoles();
+  //         // console.log("realmRoles", this._realmRoles);
+  //         // console.log("AccessToken", this.oauthService.getAccessToken());
+  //       } else {
+  //         //Do usunięcia jeśli chcę widzieć własną stronę logowania
+  //         this.oauthService.initCodeFlow();
+  //         return Promise.resolve();
+  //       }
+  //     }).catch(error => {
+  //         console.error("loadDiscoveryDocument", error);
+  //       });
+  //
+  // }
 
+  //poniższy kod pozwala wyświetlić stronę home
   initializeAuth() {
-      this.oauthService.configure(authConfig);
-      this.oauthService.setupAutomaticSilentRefresh();
-      this.oauthService.setStorage(sessionStorage);
-      this.oauthService.loadDiscoveryDocumentAndLogin().then(tryLoginResult => {
-        console.log("AuthService tryLogin", tryLoginResult);
-        console.log("AuthService hasValidAccessToken", this.oauthService.hasValidAccessToken());
-        if (this.oauthService.hasValidAccessToken()) {
-          return Promise.resolve();
-          // this.loadUserProfile();
-          // this._realmRoles = this.getRealmRoles();
-          // console.log("realmRoles", this._realmRoles);
-          // console.log("AccessToken", this.oauthService.getAccessToken());
-        } else {
-          //Do usunięcia jeśli chcę widzieć własną stronę logowania
-          this.oauthService.initCodeFlow();
-          return Promise.resolve();
-        }
-      }).catch(error => {
-          console.error("loadDiscoveryDocument", error);
+        this.oauthService.configure(authConfig);
+        this.oauthService.setupAutomaticSilentRefresh();
+        this.oauthService.setStorage(sessionStorage);
+    /**
+     * Load discovery document when the app inits
+     */
+    this.oauthService.loadDiscoveryDocument()
+      .then(loadDiscoveryDocumentResult => {
+        console.log("loadDiscoveryDocument", loadDiscoveryDocumentResult);
+
+        /**
+         * Do we have a valid access token? -> User does not need to log in
+         */
+
+
+        /**
+         * Always call tryLogin after the app and discovery document loaded, because we could come back from Keycloak login page.
+         * The library needs this as a trigger to parse the query parameters we got from Keycloak.
+         */
+        this.oauthService.tryLogin().then(tryLoginResult => {
+          console.log("tryLogin", tryLoginResult);
+          if (this.oauthService.hasValidAccessToken()){
+            this.loadUserProfile();
+            this._realmRoles = this.getRealmRoles();
+            console.log("realmRoles", this.realmRoles);
+            console.log("AccessToken", this.oauthService.getAccessToken());
+          }
         });
 
-  }
+      })
+      .catch(error => {
+        console.error("loadDiscoveryDocument", error);
+      });
 
+    /**
+     * The library offers a bunch of events.
+     * It would be better to filter out the events which are unrelated to access token - trying to keep this example small.
+     */
+    this.oauthService.events.subscribe(eventResult => {
+      console.debug("LibEvent", eventResult);
+    })
+  }
 
   /**
    * Calls the library loadDiscoveryDocumentAndLogin() method.
