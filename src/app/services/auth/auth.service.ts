@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {OAuthService} from "angular-oauth2-oidc";
 import {Router} from "@angular/router";
 import {authConfig} from "../../parameters/auth-config";
+import jwt_decode from "jwt-decode";
 
 @Injectable({
   providedIn: 'root'
@@ -137,18 +138,13 @@ export class AuthService {
    *  Parses realm roles from identity claims.
    */
   public getRealmRoles(): string[] {
-    let idClaims = this.oauthService.getIdentityClaims()
-    // console.log('idClaims', idClaims);
-    if (!idClaims) {
-      console.error("Couldn't get identity claims, make sure the user is signed in.")
-      return [];
-    }
-    if (!idClaims.hasOwnProperty("realm_access")) {
-      console.error("Keycloak didn't provide realm_roles in the token. Have you configured the predefined mapper realm roles correct?")
-      return [];
-    }
+    const accessToken = jwt_decode<any>(this.oauthService.getAccessToken());
+    console.log('decoded accessToken', accessToken);
+    let idClaims = this.oauthService.getIdentityClaims();
 
-    let realmRoles = idClaims['realm_access']['roles'];
+    let realmRoles = accessToken['realm_access']['roles'];
+    // console.log('accessTokenRoles', accessTokenRoles);
+    // let realmRoles = idClaims['realm_access']['roles'];
     return realmRoles ?? [];
   }
 

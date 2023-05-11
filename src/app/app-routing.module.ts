@@ -1,6 +1,8 @@
-import { NgModule } from '@angular/core';
-import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import {AuthGuard} from "./services/auth/auth-guard";
+import {inject, NgModule} from '@angular/core';
+import {ActivatedRouteSnapshot, PreloadAllModules, RouterModule, RouterStateSnapshot, Routes} from '@angular/router';
+import {canMatch, FitNoteAuthGuard} from "./services/auth/fit-note-auth-guard.service";
+
+export type UserRole = 'ADMIN' | 'STANDARD_USER';
 
 const routes: Routes = [
   {
@@ -10,7 +12,7 @@ const routes: Routes = [
   },
   {
     path: 'tabs',
-    canActivate: [AuthGuard],
+    // canMatch: [() => canMatch(['ADMIN'])],
     loadChildren: () => import('./pages/tabs/tabs.module').then( m => m.TabsPageModule)
   },
   {
