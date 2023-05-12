@@ -17,7 +17,7 @@ export class HomePage implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('realmRoles', this.authService.realmRoles);
+    console.log('realmRoles', this.authService.userRoles);
     console.log(this.authService.isLoggedIn());
   }
 

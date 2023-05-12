@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../../../services/auth/auth.service";
-import {OAuthService} from "angular-oauth2-oidc";
 
 @Component({
   selector: 'app-plans',
@@ -14,18 +13,19 @@ export class PlansPage implements OnInit  {
   accessToken: string;
 
   constructor(private authService: AuthService) {
-    this.userProfile = this.authService._userProfile;
+    this.userProfile = this.authService.userProfile;
     this.hasValidAccessToken = this.authService.isLoggedIn();
     this.accessToken = this.authService.accessToken;
   }
 
   ngOnInit(): void {
-    console.log('Plans realmRoles', this.authService.realmRoles);
+    console.log('Plans realmRoles', this.authService.userRoles);
     console.log('Plans hasValidAccessToken', this.hasValidAccessToken);
   }
 
   ionViewWillEnter() {
-    console.log('Plans ionViewWillEnter realmRoles', this.authService.realmRoles);
+    console.log('Plans ionViewWillEnter realmRoles', this.authService.userRoles);
+    console.log('Plans ionViewWillEnter typeOf realmRoles', this.authService.userRoles);
     console.log('Plans ionViewWillEnter hasValidAccessToken', this.hasValidAccessToken);
   }
 

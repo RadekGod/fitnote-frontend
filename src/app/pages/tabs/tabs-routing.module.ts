@@ -3,6 +3,7 @@ import {RouterModule, Routes} from '@angular/router';
 
 import {TabsPage} from './tabs.page';
 import {authenticationGuard} from "../../services/auth/fit-note-auth-guard.service";
+import {FitNoteUserRole} from "../../models/user-roles";
 
 const routes: Routes = [
   {
@@ -24,7 +25,7 @@ const routes: Routes = [
       },
       {
         path: 'history',
-        canMatch: [authenticationGuard(['ADMIN'])],
+        canMatch: [authenticationGuard([FitNoteUserRole.ADMIN])],
         loadChildren: () => import('./history/history.module').then( m => m.HistoryPageModule)
       },
       {

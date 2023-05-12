@@ -17,7 +17,7 @@ export class DietPage implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('Diet realmRoles', this.authService.realmRoles);
+    console.log('Diet realmRoles', this.authService.userRoles);
     console.log('Diet hasValidAccessToken', this.hasValidAccessToken);
   }
 

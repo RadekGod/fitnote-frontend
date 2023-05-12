@@ -3,13 +3,14 @@ import {OAuthService} from "angular-oauth2-oidc";
 import {Router} from "@angular/router";
 import {authConfig} from "../../parameters/auth-config";
 import jwt_decode from "jwt-decode";
+import {FitNoteUserRole} from "../../models/user-roles";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   public _userProfile: any;
-  public _realmRoles: string[] = [];
+  public _userRoles: FitNoteUserRole[] = [];
 
   constructor(private oauthService: OAuthService, private router: Router) {
     // this.configureAuthForWeb();
@@ -46,47 +47,54 @@ export class AuthService {
 
   //poniższy kod pozwala wyświetlić stronę home
   initializeAuth() {
-        this.oauthService.configure(authConfig);
-        this.oauthService.setupAutomaticSilentRefresh();
-        this.oauthService.setStorage(sessionStorage);
-    /**
-     * Load discovery document when the app inits
-     */
-    this.oauthService.loadDiscoveryDocument()
-      .then(loadDiscoveryDocumentResult => {
-        console.log("loadDiscoveryDocument", loadDiscoveryDocumentResult);
+    this.oauthService.configure(authConfig);
+    this.oauthService.setupAutomaticSilentRefresh();
+    this.oauthService.setStorage(sessionStorage);
 
-        /**
-         * Do we have a valid access token? -> User does not need to log in
-         */
+      /**
+       * Load discovery document when the app inits
+       */
+      this.oauthService.loadDiscoveryDocument()
+        .then(loadDiscoveryDocumentResult => {
+          console.log("loadDiscoveryDocument", loadDiscoveryDocumentResult);
+          if (!this.oauthService.hasValidAccessToken()) {
+            /**
+             * Do we have a valid access token? -> User does not need to log in
+             */
 
 
-        /**
-         * Always call tryLogin after the app and discovery document loaded, because we could come back from Keycloak login page.
-         * The library needs this as a trigger to parse the query parameters we got from Keycloak.
-         */
-        this.oauthService.tryLogin().then(tryLoginResult => {
-          console.log("tryLogin", tryLoginResult);
-          if (this.oauthService.hasValidAccessToken()){
+            /**
+             * Always call tryLogin after the app and discovery document loaded, because we could come back from Keycloak login page.
+             * The library needs this as a trigger to parse the query parameters we got from Keycloak.
+             */
+            console.log('LOAD DISCOVERY DOCUMENT this.oauthService.hasValidAccessToken()', this.oauthService.hasValidAccessToken());
+            this.oauthService.tryLogin().then(tryLoginResult => {
+              console.log("tryLogin", tryLoginResult);
+              if (this.oauthService.hasValidAccessToken()) {
+                this.loadUserProfile();
+                this.loadUserRoles();
+                console.log("realmRoles", this.userRoles);
+                console.log("AccessToken", this.oauthService.getAccessToken());
+              }
+            }).catch(error => {
+              console.log('USER IS ALREADY LOGGED IN');
+            });
+          } else {
             this.loadUserProfile();
-            this._realmRoles = this.getRealmRoles();
-            console.log("realmRoles", this.realmRoles);
-            console.log("AccessToken", this.oauthService.getAccessToken());
+            this.loadUserRoles();
           }
+        })
+        .catch(error => {
+          console.error("loadDiscoveryDocument", error);
         });
 
+      /**
+       * The library offers a bunch of events.
+       * It would be better to filter out the events which are unrelated to access token - trying to keep this example small.
+       */
+      this.oauthService.events.subscribe(eventResult => {
+        console.debug("LibEvent", eventResult);
       })
-      .catch(error => {
-        console.error("loadDiscoveryDocument", error);
-      });
-
-    /**
-     * The library offers a bunch of events.
-     * It would be better to filter out the events which are unrelated to access token - trying to keep this example small.
-     */
-    this.oauthService.events.subscribe(eventResult => {
-      console.debug("LibEvent", eventResult);
-    })
   }
 
   /**
@@ -96,6 +104,10 @@ export class AuthService {
     this.oauthService.loadDiscoveryDocumentAndLogin()
       .then(loadDiscoveryDocumentAndLoginResult => {
         console.log("loadDiscoveryDocumentAndLogin", loadDiscoveryDocumentAndLoginResult);
+        if (this.oauthService.hasValidAccessToken()) {
+          this.loadUserProfile();
+          this.loadUserRoles();
+        }
       })
       .catch(error => {
         console.error("loadDiscoveryDocumentAndLogin", error);
@@ -110,7 +122,7 @@ export class AuthService {
       .then(revokeTokenAndLogoutResult => {
         // console.log("revokeTokenAndLogout", revokeTokenAndLogoutResult);
         this._userProfile = null;
-        this._realmRoles = [];
+        this._userRoles = [];
       })
       .catch(error => {
         console.error("revokeTokenAndLogout", error);
@@ -137,27 +149,30 @@ export class AuthService {
    *
    *  Parses realm roles from identity claims.
    */
-  public getRealmRoles(): string[] {
+  public loadUserRoles(): void {
     const accessToken = jwt_decode<any>(this.oauthService.getAccessToken());
     console.log('decoded accessToken', accessToken);
-    let idClaims = this.oauthService.getIdentityClaims();
-
-    let realmRoles = accessToken['realm_access']['roles'];
-    // console.log('accessTokenRoles', accessTokenRoles);
-    // let realmRoles = idClaims['realm_access']['roles'];
-    return realmRoles ?? [];
+    this._userRoles = accessToken['realm_access']['roles'];
   }
 
   isLoggedIn(): boolean {
     return this.oauthService.hasValidAccessToken();
   }
 
+  isAdmin(): boolean {
+    return this.userRoles.includes(FitNoteUserRole.ADMIN);
+  }
+
+  isStandardUser(): boolean {
+    return this.userRoles.includes(FitNoteUserRole.STANDARD_USER);
+  }
+
   get userProfile() {
     return this._userProfile;
   }
 
-  get realmRoles() {
-    return this._realmRoles;
+  get userRoles() {
+    return this._userRoles;
   }
 
   get accessToken() {
