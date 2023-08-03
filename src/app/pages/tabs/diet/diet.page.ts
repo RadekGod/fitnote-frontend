@@ -12,7 +12,6 @@ export class DietPage implements OnInit {
   hasValidAccessToken: boolean;
 
   constructor(private authService: AuthService) {
-    this.userProfile = this.authService._userProfile;
     this.hasValidAccessToken = this.authService.isLoggedIn();
   }
 

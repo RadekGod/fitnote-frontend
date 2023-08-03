@@ -8,12 +8,12 @@ import {AuthService} from "../../../services/auth/auth.service";
 })
 export class PlansPage implements OnInit  {
 
-  userProfile: any;
+  idToken: string;
   hasValidAccessToken: boolean;
   accessToken: string;
 
   constructor(private authService: AuthService) {
-    this.userProfile = this.authService.userProfile;
+    this.idToken = this.authService.idToken;
     this.hasValidAccessToken = this.authService.isLoggedIn();
     this.accessToken = this.authService.accessToken;
   }

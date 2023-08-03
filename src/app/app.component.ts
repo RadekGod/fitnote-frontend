@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {AuthService} from "./services/auth/auth.service";
-import {Router} from "@angular/router";
+import {OAuthService} from "angular-oauth2-oidc";
+import {authConfig} from "./parameters/auth-config";
 
 @Component({
   selector: 'app-root',
@@ -13,8 +14,23 @@ export class AppComponent {
   public realmRoles: string[] = [];
 
 
-  constructor(private authService: AuthService, private router: Router) {
-    this.authService.initializeAuth();
+  constructor(private authService: AuthService, private oauthService: OAuthService) {
+    this.oauthService.configure(authConfig);
+    this.oauthService.setupAutomaticSilentRefresh();
+
+
+    this.oauthService.loadDiscoveryDocument()
+      .then(() => {
+        if (this.oauthService.hasValidAccessToken() && this.oauthService.hasValidIdToken()) {
+          this.authService.loadUserRoles();
+        } else {
+          this.oauthService.tryLoginCodeFlow().then(() => {
+            if (this.oauthService.hasValidAccessToken() && this.oauthService.hasValidIdToken()) {
+              this.authService.loadUserRoles();
+            }
+          });
+        }
+      });
   }
 
   ngOnInit(): void {

@@ -1,0 +1,68 @@
+<!--<ion-header [translucent]="true">-->
+<!--  <ion-toolbar>-->
+<!--    <ion-title>fill-user-data</ion-title>-->
+<!--  </ion-toolbar>-->
+<!--</ion-header>-->
+
+<!--<ion-content [fullscreen]="true">-->
+<!--  <ion-header collapse="condense">-->
+<!--    <ion-toolbar>-->
+<!--      <ion-title size="large">fill-user-data</ion-title>-->
+<!--    </ion-toolbar>-->
+<!--  </ion-header>-->
+
+<!--  <ion-button (click)="sendData()">-->
+<!--    Wyślij-->
+<!--  </ion-button>-->
+<!--</ion-content>-->
+
+
+<ion-content>
+  <form [formGroup] = "userForm" (ngSubmit)="submitForm()">
+    <ion-item lines="full">
+      <ion-label position="floating">Username</ion-label>
+      <ion-input type="text" required="true"></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating">Email</ion-label>
+      <ion-input type="email" required="true"></ion-input>
+    </ion-item>
+    <!-- Gender -->
+    <ion-radio-group formControlName="gender" lines="full">
+      <ion-list-header>
+        <ion-label>Gender</ion-label>
+      </ion-list-header>
+      <ion-item>
+        <ion-radio value="male" checked>Male</ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-radio value="female">Female</ion-radio>
+      </ion-item>
+    </ion-radio-group>
+    <!-- Date -->
+
+
+<!--    <ion-list lines="full">-->
+<!--      <ion-list-header>-->
+<!--        <ion-label>Birth date</ion-label>-->
+<!--      </ion-list-header>-->
+<!--      <ion-datetime></ion-datetime>-->
+<!--    </ion-list>-->
+
+    <ion-item>
+      <ion-label position="stacked">Date of birth</ion-label>
+      <ion-input value="{{ date | date: 'dd MMM yyyy' }}" id="date"></ion-input>
+      <ion-popover trigger="date" >
+        <ng-template>
+          <ion-datetime presentation="date" [(ngModel)]="date" locale="en-US"></ion-datetime>
+        </ng-template>
+      </ion-popover>
+    </ion-item>
+
+    <ion-row>
+      <ion-col>
+        <ion-button type="submit" color="danger" expand="block">Submit</ion-button>
+      </ion-col>
+    </ion-row>
+  </form>
+</ion-content>

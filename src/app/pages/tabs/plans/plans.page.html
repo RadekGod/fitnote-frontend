@@ -26,9 +26,9 @@
     <div id="container">
       <ion-button (click)="logout()" [disabled]="!hasValidAccessToken">Logout</ion-button>
 
-      <div class="keycloak-data" *ngIf="userProfile">
-        <p>UserProfile</p>
-        <span>{{userProfile | json}}</span>
+      <div class="keycloak-data" *ngIf="idToken">
+        <p>idToken</p>
+        <span>{{idToken | json}}</span>
       </div>
 
       <div class="keycloak-data" *ngIf="accessToken">
