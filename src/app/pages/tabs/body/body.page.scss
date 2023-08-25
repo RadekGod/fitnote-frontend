@@ -1,0 +1,70 @@
+* {
+  font-weight: bold;
+  --ion-background-color: var(--ion-color-primary);
+}
+
+ion-header {
+  box-shadow: 0 1px 0 0 var(--ion-color-secondary);
+}
+
+ion-header ion-toolbar {
+  --color: var(--ion-color-secondary);
+}
+
+ion-segment-button {
+  --indicator-color: var(--ion-color-tertiary);
+}
+
+ion-segment-button.md {
+  --color: var(--ion-color-secondary);
+  --color-checked: var(--ion-color-tertiary);
+}
+
+ion-segment-button.ios {
+  --color: var(--ion-color-tertiary);
+  --color-checked: var(--ion-color-secondary);
+}
+
+ion-card {
+  margin-top: 3vh;
+  border-radius: 20px;
+  border: 1.5px solid var(--ion-color-secondary);
+  color: var(--ion-color-primary);
+  box-shadow: none !important;
+}
+
+ion-card-header {
+  border: 1px solid var(--ion-color-secondary);
+  padding: 0;
+}
+
+ion-card-header ion-toolbar {
+  padding: 8px 12px;
+  --background: var(--ion-color-secondary);
+  --color: var(--ion-color-primary);
+}
+
+ion-item {
+  --border-color: var(--ion-color-secondary);
+  --border-width: 3px;
+  //TODO poprawić czcionkę i grubość linii pomidzy itemami
+  --color: var(--ion-color-secondary);
+}
+
+ion-item:last-child {
+  --border-width: 0;
+  --border-color: transparent;
+}
+
+ion-item ion-text {
+  padding: 0 16px 0 0;
+}
+
+ion-list {
+  padding: 0;
+}
+
+ion-card-content {
+  padding: 0;
+  border: 1px solid var(--ion-color-secondary);
+}

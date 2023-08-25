@@ -1,13 +1,137 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>body</ion-title>
+    <ion-title>Ciało</ion-title>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon slot="icon-only" name="calendar-outline"></ion-icon>
+      </ion-button>
+      <ion-button>
+        <ion-icon slot="icon-only" name="stats-chart-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
+
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">body</ion-title>
+      <ion-segment value="measurements">
+        <ion-segment-button value="measurements">
+          <ion-label>Pomiary</ion-label>
+        </ion-segment-button>
+
+        <ion-segment-button value="photo-gallery">
+          <ion-label>Fotogaleria</ion-label>
+        </ion-segment-button>
+      </ion-segment>
     </ion-toolbar>
-  </ion-header>
+
+
+  <ion-card>
+    <ion-card-header>
+      <ion-toolbar>
+        <ion-card-title>Dane ogólne</ion-card-title>
+        <ion-card-subtitle>Data pomiaru: 21.08.2023</ion-card-subtitle>
+        <ion-buttons slot="end">
+          <ion-button>
+            <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+          </ion-button>
+          <ion-button>
+            <ion-icon slot="icon-only" name="add-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-list lines="full">
+        <ion-item>
+          <ion-label>Waga</ion-label>
+          <ion-text>73 kg</ion-text>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Wzrost</ion-label>
+          <ion-text>185 cm</ion-text>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>BMI</ion-label>
+          <ion-text>21,3</ion-text>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Zawartość mięśni</ion-label>
+          <ion-text>40% (32 kg)</ion-text>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Zawartość tłuszczu</ion-label>
+          <ion-text>19% (15 kg)</ion-text>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+
+
+  <ion-card>
+    <ion-card-header>
+      <ion-toolbar>
+        <ion-card-title>Dane ogólne</ion-card-title>
+        <ion-card-subtitle>Data pomiaru: 21.08.2023</ion-card-subtitle>
+        <ion-buttons slot="end">
+          <ion-button>
+            <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+          </ion-button>
+          <ion-button>
+            <ion-icon slot="icon-only" name="add-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-list lines="full">
+        <ion-item>
+          <ion-label>Klatka piersiowa</ion-label>
+          <ion-text>99 cm</ion-text>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Biceps</ion-label>
+            <ion-text>L: 35 cm</ion-text>
+            <ion-text>P: 34,8 cm</ion-text>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Przedramię</ion-label>
+            <ion-text>L: 33,2 cm</ion-text>
+            <ion-text>P: 34,8 cm</ion-text>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Talia</ion-label>
+          <ion-text>90 cm</ion-text>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Biodra</ion-label>
+            <ion-text>-</ion-text>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Udo</ion-label>
+            <ion-text>L: 33,2 cm</ion-text>
+            <ion-text>P: 34,8 cm</ion-text>
+        </ion-item>
+
+        <ion-item slot="end">
+          <ion-label>Łydka</ion-label>
+            <ion-text>L: 33,2 cm</ion-text>
+            <ion-text>P: 34,8 cm</ion-text>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
