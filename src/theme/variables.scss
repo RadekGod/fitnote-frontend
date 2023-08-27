@@ -1,6 +1,10 @@
 // Ionic Variables and Theming. For more info, please see:
 // http://ionicframework.com/docs/theming/
 
+html {
+  font-size: 62.5%;
+}
+
 /** Ionic CSS Variables **/
 :root {
   --ion-color-primary: #2b2525;

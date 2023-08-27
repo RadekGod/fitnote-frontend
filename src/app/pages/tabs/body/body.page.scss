@@ -1,18 +1,35 @@
 * {
-  font-weight: bold;
   --ion-background-color: var(--ion-color-primary);
 }
 
 ion-header {
-  box-shadow: 0 1px 0 0 var(--ion-color-secondary);
+  box-shadow: 0 1.5px 0 0 var(--ion-color-secondary);
+}
+
+ion-button {
+  width: 100% !important;
+  height: 100% !important;
 }
 
 ion-header ion-toolbar {
+  height: 100%;
   --color: var(--ion-color-secondary);
+}
+
+ion-toolbar ion-title {
+  padding-left: 3rem;
+  font-size: 3.2rem;
+  height: 7vh;
+}
+
+ion-segment ion-label {
+  font-size: 1.8rem;
+  font-weight: 600;
 }
 
 ion-segment-button {
   --indicator-color: var(--ion-color-tertiary);
+  width: 50%;
 }
 
 ion-segment-button.md {
@@ -27,7 +44,7 @@ ion-segment-button.ios {
 
 ion-card {
   margin-top: 3vh;
-  border-radius: 20px;
+  border-radius: 2rem;
   border: 1.5px solid var(--ion-color-secondary);
   color: var(--ion-color-primary);
   box-shadow: none !important;
@@ -39,15 +56,24 @@ ion-card-header {
 }
 
 ion-card-header ion-toolbar {
-  padding: 8px 12px;
+  padding: 0.8rem 1.2rem;
   --background: var(--ion-color-secondary);
   --color: var(--ion-color-primary);
+}
+
+ion-card-title {
+  font-size: 2.4rem;
+  font-weight: bold;
+}
+
+ion-card-subtitle {
+  font-size: 1.6rem;
+  font-weight: 600;
 }
 
 ion-item {
   --border-color: var(--ion-color-secondary);
   --border-width: 3px;
-  //TODO poprawić czcionkę i grubość linii pomidzy itemami
   --color: var(--ion-color-secondary);
 }
 
@@ -56,8 +82,15 @@ ion-item:last-child {
   --border-color: transparent;
 }
 
+ion-item ion-label {
+  font-size: 2rem;
+  letter-spacing: 0.12rem;
+  font-weight: 500;
+}
+
 ion-item ion-text {
-  padding: 0 16px 0 0;
+  padding: 0 1.6rem 0 0;
+  font-size: 2rem;
 }
 
 ion-list {
