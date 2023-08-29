@@ -1,0 +1,45 @@
+ion-header ion-toolbar ion-title {
+  padding-left: 2rem;
+}
+
+ion-item {
+  --border-color: var(--ion-color-secondary);
+  --border-width: 3px;
+  --color: var(--ion-color-secondary);
+}
+
+ion-item:last-child {
+  --border-width: 0;
+  --border-color: transparent;
+}
+
+ion-item ion-label {
+  font-size: 2rem;
+  letter-spacing: 0.12rem;
+  font-weight: 500;
+}
+
+ion-item ion-text {
+  padding: 0 1.6rem 0 0;
+  font-size: 2rem;
+}
+
+ion-list {
+  padding: 0;
+}
+
+ion-row {
+  margin-top: 32rem;
+}
+
+ion-row ion-button {
+  --border-radius: 3rem;
+  margin: auto;
+  width: 34rem;
+  height: 6rem;
+  --background: var(--ion-color-secondary);
+  --color: var(--ion-color-primary);
+  font-weight: 600;
+  font-size: 2.4rem;
+
+}

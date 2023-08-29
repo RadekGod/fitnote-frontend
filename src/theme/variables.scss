@@ -1,9 +1,13 @@
 // Ionic Variables and Theming. For more info, please see:
 // http://ionicframework.com/docs/theming/
 
-html {
-  font-size: 62.5%;
-}
+
+//:root,
+//:root[mode='ios'],
+//:root[mode='md'] {
+//  --ion-font-family: 'Lato-Light', sans-serif !important;
+//  font-family: 'Lato-Light', sans-serif !important;
+//}
 
 /** Ionic CSS Variables **/
 :root {

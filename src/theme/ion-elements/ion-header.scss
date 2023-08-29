@@ -1,0 +1,14 @@
+ion-header ion-toolbar ion-title {
+  padding-left: 3rem;
+  font-size: 3.2rem;
+  height: 7vh;
+}
+
+ion-header {
+  box-shadow: 0 1.5px 0 0 var(--ion-color-secondary);
+}
+
+ion-header ion-toolbar {
+  height: 100%;
+  --color: var(--ion-color-secondary);
+}

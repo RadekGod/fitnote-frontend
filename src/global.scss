@@ -24,3 +24,11 @@
 @import "@ionic/angular/css/text-alignment.css";
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
+
+
+
+/* Local CSS files*/
+@import "theme/general";
+@import "theme/ion-elements/ion-header";
+@import "theme/ion-elements/ion-segment";
+@import "theme/ion-elements/ion-card";
