@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthService} from "../../services/auth/auth.service";
 
 @Component({
   selector: 'app-tabs',
@@ -8,7 +7,7 @@ import {AuthService} from "../../services/auth/auth.service";
 })
 export class TabsPage implements OnInit {
 
-  constructor(public authService: AuthService) { }
+  constructor() { }
 
   ngOnInit() {
   }

@@ -7,14 +7,17 @@ import { IonicModule } from '@ionic/angular';
 import { BodyPageRoutingModule } from './body-routing.module';
 
 import { BodyPage } from './body.page';
+import {NoDataComponent} from "../../../components/no-data/no-data.component";
+import {TranslateModule} from "@ngx-translate/core";
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    BodyPageRoutingModule
-  ],
-  declarations: [BodyPage]
+    imports: [
+        CommonModule,
+        FormsModule,
+        IonicModule,
+        BodyPageRoutingModule,
+        TranslateModule
+    ],
+  declarations: [BodyPage, NoDataComponent]
 })
 export class BodyPageModule {}

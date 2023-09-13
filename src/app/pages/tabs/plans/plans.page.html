@@ -23,19 +23,7 @@
   </ion-header>
 
   <ion-content [fullscreen]="true">
-    <div id="container">
-      <ion-button (click)="logout()" [disabled]="!hasValidAccessToken">Logout</ion-button>
+      <ion-button (click)="logout()" [disabled]="false">Logout</ion-button>
 
-      <div class="keycloak-data" *ngIf="idToken">
-        <p>idToken</p>
-        <span>{{idToken | json}}</span>
-      </div>
-
-      <div class="keycloak-data" *ngIf="accessToken">
-        <p>AccessToken</p>
-        <span>{{accessToken | json}}</span>
-      </div>
-
-    </div>
   </ion-content>
 

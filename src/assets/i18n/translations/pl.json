@@ -1,0 +1,112 @@
+{
+  "LOGIN": {
+    "TITLE": {
+      "HELLO": "Cześć,",
+      "SIGN_IN": "zaloguj się do",
+      "APPLICATION": "aplikacji"
+    },
+
+    "INPUTS": {
+      "LABEL": {
+      "E-MAIL": "E-mail",
+      "PASSWORD": "Hasło"
+      }
+    },
+
+    "BUTTONS": {
+      "LOGIN": "Zaloguj się",
+      "REGISTER": "Zarejestruj się"
+    },
+
+    "PARAGRAPHS": {
+      "OTHER_LOGIN_OPTIONS": "lub kontynuuj za pomocą",
+      "NO_ACCOUNT": "Nie masz konta?"
+    }
+  },
+
+
+
+
+
+  "REGISTER": {
+    "TITLE": {
+      "CREATE_ACCOUNT": "Załóż konto",
+      "IN_APPLICATION": "w aplikacji"
+    },
+    "INPUTS": {
+      "LABEL": {
+        "E-MAIL": "E-mail",
+        "PASSWORD": "Hasło",
+        "REPEAT_PASSWORD": "Powtórz hasło"
+      }
+    },
+    "BUTTONS": {
+      "LOGIN": "Zaloguj się",
+      "REGISTER": "Zarejestruj się"
+    },
+    "PARAGRAPHS": {
+      "OTHER_LOGIN_OPTIONS": "lub kontynuuj za pomocą",
+      "ACCOUNT_ALREADY_CREATED": "Masz już konto?"
+    }
+  },
+
+
+
+
+
+  "TABS": {
+    "HISTORY": "Historia",
+    "PLANS": "Plany",
+    "DIET": "Dieta",
+    "BODY": "Ciało",
+    "MORE": "Więcej"
+  },
+
+
+
+
+
+  "BODY": {
+    "TITLES": {
+      "BODY":"Ciało",
+      "ADD_MEASUREMENT": "Dodaj pomiar",
+      "EDIT_MEASUREMENT": "Edytuj pomiar"
+    },
+    "BUTTONS": {
+      "SAVE": "Zapisz"
+    },
+    "ERRORS": {
+      "NO_MEASUREMENTS": "Brak zapisanych pomiarów"
+    },
+    "SEGMENT_BUTTONS": {
+      "MEASUREMENTS": "Pomiary",
+      "PHOTO_GALLERY": "Fotogaleria"
+    },
+    "GENERAL_MEASUREMENTS": {
+      "TITLE": "Dane ogólne",
+      "MEASUREMENT_DATE": "Data pomiaru:",
+      "HEIGHT": "Wzrost",
+      "WEIGHT": "Waga",
+      "BMI": "BMI",
+      "LEAN_MUSCLE_MASS": "Masa mięśni",
+      "BODY_FAT": "Tkanka tłuszczowa"
+    },
+    "BODY_MEASUREMENTS": {
+      "SIDES": {
+        "SHORTCUTS": {
+          "LEFT": "L:",
+          "RIGHT": "P:"
+        }
+      },
+      "TITLE": "Pomiary ciała",
+      "MEASUREMENT_DATE": "Data pomiaru:",
+      "CHEST": "Klatka piersiowa",
+      "BICEPS": "Biceps",
+      "FOREARM": "Przedramię",
+      "WAIST": "Talia",
+      "HIP": "Biodra",
+      "THIGH": "Udo",
+      "CALF": "Łydka"
+    }
+  }
+}

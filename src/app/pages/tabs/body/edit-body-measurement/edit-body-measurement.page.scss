@@ -1,0 +1,18 @@
+ion-header ion-toolbar ion-title {
+  padding-left: 1rem;
+}
+
+.measurement-date-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  p {
+    font-size: 1.6rem;
+  }
+}
+
+input[type=number] {
+  width: 6rem;
+  text-align: center;
+}

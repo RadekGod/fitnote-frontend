@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { AddGeneralMeasurementsPage } from './add-general-measurements.page';
+import { AddGeneralMeasurementPage } from './add-general-measurement-page.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: AddGeneralMeasurementsPage
+    component: AddGeneralMeasurementPage
   }
 ];
 
@@ -14,4 +14,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class AddGeneralMeasurementsPageRoutingModule {}
+export class AddGeneralMeasurementPageRoutingModule {}

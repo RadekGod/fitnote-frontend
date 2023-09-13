@@ -2,8 +2,40 @@ html {
   font-size: 62.5%;
 }
 
-* {
+*,
+*::before,
+*::after {
   --ion-background-color: var(--ion-color-primary);
+    box-sizing: border-box;
+}
+
+.vertical-spacer-15vh {
+  margin-top: 15vh;
+}
+
+.vertical-spacer-10vh {
+  margin-top: 10vh;
+}
+
+.vertical-spacer-5vh {
+  margin-top: 5vh;
+}
+
+.vertical-spacer-3vh {
+  margin-top: 3vh;
+}
+
+.vertical-spacer-1vh {
+  margin-top: 1vh;
+}
+
+.vertical-spacer-2vh {
+  margin-top: 2vh;
+}
+
+.horizontal-center {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 

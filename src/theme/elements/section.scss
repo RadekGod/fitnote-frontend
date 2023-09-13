@@ -1,0 +1,78 @@
+
+.section-container {
+  width: 90%;
+  border: 1px solid var(--ion-color-secondary);
+  border-radius: 2rem;
+  overflow: hidden;
+
+  .section-header {
+    padding: 1rem 2rem;
+    background-color: var(--ion-color-secondary);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .title-container {
+      h3 {
+        margin: 0;
+        color: var(--ion-color-primary);
+        font-size: 2rem;
+        font-weight: 600;
+      }
+
+      p {
+        margin: 0;
+        font-size: 1.4rem;
+        font-weight: 600;
+        color: var(--ion-color-primary-tint);
+      }
+    }
+
+    .section-header-options {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+
+      button {
+        padding: 0.3rem;
+        border-radius: 2rem;
+        background-color: var(--ion-color-secondary);
+        transition: all 0.2s ease-out;
+        &:active {
+          background-color: var(--ion-color-secondary-shade);
+        }
+
+        ion-icon {
+          color: var(--ion-color-primary);
+          font-size: 3.2rem;
+        }
+      }
+    }
+  }
+
+  .section-content {
+    .item {
+      font-size: 1.6rem;
+      padding: 1.2rem 2rem;
+      color: var(--ion-color-secondary);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--ion-color-secondary);
+      p {
+        margin: 0;
+        min-width: 2rem;
+      }
+
+      &:last-child {
+        border-bottom: 0;
+      }
+
+      .measurement {
+        display: flex;
+        gap: 1.6rem;
+      }
+    }
+  }
+
+}

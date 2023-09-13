@@ -1,6 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Ciało</ion-title>
+    <ion-title>{{ 'BODY.TITLES.BODY' | translate }}</ion-title>
     <ion-buttons slot="end">
       <ion-button>
         <ion-icon size="large" slot="icon-only" name="calendar-outline"></ion-icon>
@@ -14,124 +14,164 @@
 
 
 <ion-content [fullscreen]="true">
-    <ion-toolbar>
-      <ion-segment value="measurements">
-        <ion-segment-button value="measurements">
-          <ion-label>Pomiary</ion-label>
-        </ion-segment-button>
+  <ion-toolbar>
+    <ion-segment value="measurements">
+      <ion-segment-button (click)="changeSegmentValue('measurements')" value="measurements">
+        <ion-label>{{ 'BODY.SEGMENT_BUTTONS.MEASUREMENTS' | translate }}</ion-label>
+      </ion-segment-button>
 
-        <ion-segment-button value="photo-gallery">
-          <ion-label>Fotogaleria</ion-label>
-        </ion-segment-button>
-      </ion-segment>
-    </ion-toolbar>
+      <ion-segment-button (click)="changeSegmentValue('photoGallery')" value="photo-gallery">
+        <ion-label>{{ 'BODY.SEGMENT_BUTTONS.PHOTO_GALLERY' | translate }}</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
 
+  <div *ngIf="segmentValue === 'measurements'" class="measurements-container">
 
-  <ion-card>
-    <ion-card-header>
-      <ion-toolbar>
-        <ion-card-title>Dane ogólne</ion-card-title>
-        <ion-card-subtitle>Data pomiaru: 21.08.2023</ion-card-subtitle>
-        <ion-buttons slot="end">
-          <ion-button>
-            <ion-icon size="large" slot="icon-only" name="create-outline"></ion-icon>
-          </ion-button>
-          <ion-button [routerLink]="['/', 'tabs', 'body', 'add-general-measurements']">
-            <ion-icon size="large" slot="icon-only" name="add-outline"></ion-icon>
-          </ion-button>
-        </ion-buttons>
-      </ion-toolbar>
-    </ion-card-header>
+    <div class="section-container horizontal-center vertical-spacer-3vh">
+      <div class="section-header">
+        <div class="title-container">
+          <h3>{{ 'BODY.GENERAL_MEASUREMENTS.TITLE' | translate }}</h3>
+          <p *ngIf="generalMeasurement?.measurementDate">{{ 'BODY.GENERAL_MEASUREMENTS.MEASUREMENT_DATE' | translate }}
+             {{ generalMeasurement?.measurementDate ? (generalMeasurement?.measurementDate | date:'dd.MM.yyyy HH:mm') : ''}}</p>
+        </div>
+        <div class="section-header-options">
+          <button *ngIf="generalMeasurement" [routerLink]="['/', 'tabs', 'body', 'edit-general-measurement', generalMeasurement.id]">
+            <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+          </button>
+          <button [routerLink]="['/', 'tabs', 'body', 'add-general-measurement']">
+            <ion-icon slot="icon-only" name="add-outline"></ion-icon>
+          </button>
+        </div>
+      </div>
 
-    <ion-card-content>
-      <ion-list lines="full">
-        <ion-item>
-          <ion-label>Waga</ion-label>
-          <ion-text>73 kg</ion-text>
-        </ion-item>
-
-        <ion-item>
-          <ion-label>Wzrost</ion-label>
-          <ion-text>185 cm</ion-text>
-        </ion-item>
-
-        <ion-item>
-          <ion-label>BMI</ion-label>
-          <ion-text>21,3</ion-text>
-        </ion-item>
-
-        <ion-item>
-          <ion-label>Zawartość mięśni</ion-label>
-          <ion-text>40% (32 kg)</ion-text>
-        </ion-item>
-
-        <ion-item>
-          <ion-label>Zawartość tłuszczu</ion-label>
-          <ion-text>19% (15 kg)</ion-text>
-        </ion-item>
-      </ion-list>
-    </ion-card-content>
-  </ion-card>
+      <app-no-data [message]="'BODY.ERRORS.NO_MEASUREMENTS'" *ngIf="!generalMeasurement"></app-no-data>
 
 
+      <div *ngIf="generalMeasurement" class="section-content">
+        <div class="item">
+          <p>{{ 'BODY.GENERAL_MEASUREMENTS.HEIGHT' | translate }}</p>
+          <div class="measurement">
+            <p>{{generalMeasurement.height ? generalMeasurement.height : '-' }}</p>
+          </div>
+        </div>
 
-  <ion-card>
-    <ion-card-header>
-      <ion-toolbar>
-        <ion-card-title>Pomiary ciała</ion-card-title>
-        <ion-card-subtitle>Data pomiaru: 21.08.2023</ion-card-subtitle>
-        <ion-buttons slot="end">
-          <ion-button>
-            <ion-icon size="large" slot="icon-only" name="create-outline"></ion-icon>
-          </ion-button>
-          <ion-button>
-            <ion-icon size="large" slot="icon-only" name="add-outline"></ion-icon>
-          </ion-button>
-        </ion-buttons>
-      </ion-toolbar>
-    </ion-card-header>
+        <div class="item">
+          <p>{{ 'BODY.GENERAL_MEASUREMENTS.WEIGHT' | translate }}</p>
+          <div class="measurement">
+            <p>{{generalMeasurement.weight ? generalMeasurement.weight : '-' }}</p>
+          </div>
+        </div>
 
-    <ion-card-content>
-      <ion-list lines="full">
-        <ion-item>
-          <ion-label>Klatka piersiowa</ion-label>
-          <ion-text>99 cm</ion-text>
-        </ion-item>
+        <div class="item">
+          <p>{{ 'BODY.GENERAL_MEASUREMENTS.BMI' | translate }}</p>
+          <div class="measurement">
+            <p>{{ generalMeasurement.bmi ? (generalMeasurement.bmi | number : '1.2-2') : '-'}}</p>
+          </div>
+        </div>
 
-        <ion-item>
-          <ion-label>Biceps</ion-label>
-            <ion-text>L: 35 cm</ion-text>
-            <ion-text>P: 34,8 cm</ion-text>
-        </ion-item>
+        <div class="item">
+          <p>{{ 'BODY.GENERAL_MEASUREMENTS.LEAN_MUSCLE_MASS' | translate }}</p>
+          <div class="measurement">
+            <p>{{generalMeasurement.muscleContent ? generalMeasurement.muscleContent : '-' }}</p>
+          </div>
+        </div>
 
-        <ion-item>
-          <ion-label>Przedramię</ion-label>
-            <ion-text>L: 33,2 cm</ion-text>
-            <ion-text>P: 34,8 cm</ion-text>
-        </ion-item>
+        <div class="item">
+          <p>{{ 'BODY.GENERAL_MEASUREMENTS.BODY_FAT' | translate }}</p>
+          <div class="measurement">
+            <p>{{generalMeasurement.fatContent ? generalMeasurement.fatContent : '-' }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
 
-        <ion-item>
-          <ion-label>Talia</ion-label>
-          <ion-text>90 cm</ion-text>
-        </ion-item>
+    <div class="section-container horizontal-center vertical-spacer-3vh">
+      <div class="section-header">
+        <div class="title-container">
+          <h3>{{ 'BODY.BODY_MEASUREMENTS.TITLE' | translate }}</h3>
+          <p *ngIf="bodyMeasurement?.measurementDate">{{ 'BODY.BODY_MEASUREMENTS.MEASUREMENT_DATE' | translate }}
+            {{ bodyMeasurement?.measurementDate ? (bodyMeasurement?.measurementDate | date:'dd.MM.yyyy HH:mm') : ''}}</p>
+        </div>
+        <div class="section-header-options">
+          <button *ngIf="bodyMeasurement" [routerLink]="['/', 'tabs', 'body', 'edit-body-measurement', bodyMeasurement.id]">
+            <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+          </button>
+          <button [routerLink]="['/', 'tabs', 'body', 'add-body-measurement']">
+            <ion-icon slot="icon-only" name="add-outline"></ion-icon>
+          </button>
+        </div>
+      </div>
 
-        <ion-item>
-          <ion-label>Biodra</ion-label>
-            <ion-text>-</ion-text>
-        </ion-item>
+      <app-no-data [message]="'BODY.ERRORS.NO_MEASUREMENTS'" *ngIf="!bodyMeasurement"></app-no-data>
 
-        <ion-item>
-          <ion-label>Udo</ion-label>
-            <ion-text>L: 33,2 cm</ion-text>
-            <ion-text>P: 34,8 cm</ion-text>
-        </ion-item>
+      <div *ngIf="bodyMeasurement" class="section-content">
+        <div class="item">
+          <p>{{ 'BODY.BODY_MEASUREMENTS.CHEST' | translate }}</p>
+          <div class="measurement">
+            <p>{{bodyMeasurement.chest ? bodyMeasurement.chest : '-' }}</p>
+          </div>
+        </div>
 
-        <ion-item slot="end">
-          <ion-label>Łydka</ion-label>
-            <ion-text>L: 33,2 cm</ion-text>
-            <ion-text>P: 34,8 cm</ion-text>
-        </ion-item>
-      </ion-list>
-    </ion-card-content>
-  </ion-card>
+        <div class="item">
+          <p>{{ 'BODY.BODY_MEASUREMENTS.BICEPS' | translate }}</p>
+          <div class="measurement">
+            <p>
+              {{ 'BODY.BODY_MEASUREMENTS.SIDES.SHORTCUTS.LEFT' | translate }}
+              {{bodyMeasurement.bicepsLeft ? bodyMeasurement.bicepsLeft : '-'}}</p>
+            <p>{{ 'BODY.BODY_MEASUREMENTS.SIDES.SHORTCUTS.RIGHT' | translate }}
+              {{bodyMeasurement.bicepsRight ? bodyMeasurement.bicepsRight : '-'}}</p>
+          </div>
+        </div>
+
+        <div class="item">
+          <p>{{ 'BODY.BODY_MEASUREMENTS.FOREARM' | translate }}</p>
+          <div class="measurement">
+            <p>{{ 'BODY.BODY_MEASUREMENTS.SIDES.SHORTCUTS.LEFT' | translate }}
+              {{bodyMeasurement.forearmLeft ? bodyMeasurement.forearmLeft : '-'}}</p>
+            <p>{{ 'BODY.BODY_MEASUREMENTS.SIDES.SHORTCUTS.RIGHT' | translate }}
+              {{bodyMeasurement.forearmRight ? bodyMeasurement.forearmRight : '-'}}</p>
+          </div>
+        </div>
+
+        <div class="item">
+          <p>{{ 'BODY.BODY_MEASUREMENTS.WAIST' | translate }}</p>
+          <div class="measurement">
+            <p>{{bodyMeasurement.waist ? bodyMeasurement.waist : '-'}}</p>
+          </div>
+        </div>
+
+        <div class="item">
+          <p>{{ 'BODY.BODY_MEASUREMENTS.HIP' | translate }}</p>
+          <div class="measurement">
+            <p>{{bodyMeasurement.hip ? bodyMeasurement.hip : '-'}}</p>
+          </div>
+        </div>
+
+        <div class="item">
+          <p>{{ 'BODY.BODY_MEASUREMENTS.THIGH' | translate }}</p>
+          <div class="measurement">
+            <p>{{ 'BODY.BODY_MEASUREMENTS.SIDES.SHORTCUTS.LEFT' | translate }}
+              {{bodyMeasurement.thighLeft ? bodyMeasurement.thighLeft : '-'}}</p>
+            <p>{{ 'BODY.BODY_MEASUREMENTS.SIDES.SHORTCUTS.RIGHT' | translate }}
+              {{bodyMeasurement.thighRight ? bodyMeasurement.thighRight : '-'}}</p>
+          </div>
+        </div>
+
+        <div class="item">
+          <p>{{ 'BODY.BODY_MEASUREMENTS.CALF' | translate }}</p>
+          <div class="measurement">
+            <p>{{ 'BODY.BODY_MEASUREMENTS.SIDES.SHORTCUTS.LEFT' | translate }}
+              {{bodyMeasurement.calfLeft ? bodyMeasurement.calfLeft : '-'}}</p>
+            <p>{{ 'BODY.BODY_MEASUREMENTS.SIDES.SHORTCUTS.RIGHT' | translate }}
+              {{bodyMeasurement.calfRight ? bodyMeasurement.calfRight : '-'}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div *ngIf="segmentValue === 'photoGallery'" class="measurements-container">
+  </div>
 </ion-content>

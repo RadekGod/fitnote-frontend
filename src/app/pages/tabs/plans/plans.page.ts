@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthService} from "../../../services/auth/auth.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-plans',
@@ -8,30 +8,19 @@ import {AuthService} from "../../../services/auth/auth.service";
 })
 export class PlansPage implements OnInit  {
 
-  idToken: string;
-  hasValidAccessToken: boolean;
-  accessToken: string;
 
-  constructor(private authService: AuthService) {
-    this.idToken = this.authService.idToken;
-    this.hasValidAccessToken = this.authService.isLoggedIn();
-    this.accessToken = this.authService.accessToken;
+
+  constructor(private router : Router) {
   }
 
   ngOnInit(): void {
-    console.log('Plans realmRoles', this.authService.userRoles);
-    console.log('Plans hasValidAccessToken', this.hasValidAccessToken);
-  }
-
-  ionViewWillEnter() {
-    console.log('Plans ionViewWillEnter realmRoles', this.authService.userRoles);
-    console.log('Plans ionViewWillEnter typeOf realmRoles', this.authService.userRoles);
-    console.log('Plans ionViewWillEnter hasValidAccessToken', this.hasValidAccessToken);
   }
 
 
   logout() {
-    this.authService.logout();
+    window.sessionStorage.setItem("userDetails","");
+    window.sessionStorage.setItem("Authorization","");
+    this.router.navigate(['/login']);
   }
 
 }

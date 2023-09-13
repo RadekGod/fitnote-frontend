@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {AuthService} from "../../services/auth/auth.service";
+import {Component, OnInit} from '@angular/core';
 import {UserRequestService} from "./services/user-request.service";
-import {FormBuilder, Validators} from "@angular/forms";
+import {Language} from "../../configuration/translations/language";
+import {TranslationConfiguration} from "../../configuration/translations/translation-configuration";
+import {TranslateService} from "@ngx-translate/core";
 
 interface UserFormDto {
   birthDate: number;
@@ -16,30 +16,26 @@ interface UserFormDto {
   styleUrls: ['./user-management.page.scss'],
 })
 export class UserManagementPage implements OnInit {
+  constructor(private translationConfiguration: TranslationConfiguration, private userRequestService: UserRequestService,
+              private translateService: TranslateService) { }
 
-  date: any;
-  userForm: any;
 
-  constructor(private formBuilder: FormBuilder, private userRequestService: UserRequestService) { }
 
   ngOnInit() {
-    this.buildForm();
-  }
-
-  buildForm() {
-    this.userForm = this.formBuilder.group({
-      username: ['', [Validators.required]],
-      gender: [''],
-      birthDate: ['']
+    this.translateService.get('SETTINGS').subscribe((res: string) => {
+      console.log(res);
     });
   }
 
-  submitForm() {
+  changeLanguage(language: string) {
+    this.translationConfiguration.changeLanguage(language as Language);
+    console.log('Current language: ', this.translationConfiguration.getCurrentLanguage());
+
+    this.translateService.get('SETTINGS').subscribe((res: string) => {
+      console.log(res);
+    });
 
   }
 
-  sendData() {
-    this.userRequestService.saveUser().subscribe();
-  }
-
+  protected readonly Language = Language;
 }

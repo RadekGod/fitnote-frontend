@@ -1,0 +1,73 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/body"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ 'BODY.TITLES.EDIT_MEASUREMENT' | translate }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon size="large" name="ellipsis-vertical-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <form (ngSubmit)="validateAndSendMeasurementForm(editGeneralMeasurementsForm)"
+        [formGroup]="editGeneralMeasurementsForm">
+    <div class="section-container horizontal-center vertical-spacer-3vh">
+      <div class="section-header">
+        <div class="title-container">
+          <h3>{{ 'BODY.GENERAL_MEASUREMENTS.TITLE' | translate }}</h3>
+          <div class="measurement-date-container">
+            <p>{{ 'BODY.GENERAL_MEASUREMENTS.MEASUREMENT_DATE' | translate }}</p>
+            <div class="date-input-container">
+              <input class="date-input" type="datetime-local" formControlName="measurementDate">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-content">
+
+        <div class="item">
+          <p>{{ 'BODY.GENERAL_MEASUREMENTS.HEIGHT' | translate }} {{'(cm)'}}</p>
+          <div class="measurement">
+            <input type="number" id="height" formControlName="height" placeholder="&nbsp;">
+          </div>
+        </div>
+
+        <div class="item">
+          <p>{{ 'BODY.GENERAL_MEASUREMENTS.WEIGHT' | translate }} {{'(kg)'}}</p>
+          <div class="measurement">
+            <input type="number" id="weight" formControlName="weight" placeholder="&nbsp;">
+          </div>
+        </div>
+
+        <div class="item">
+          <p>{{ 'BODY.GENERAL_MEASUREMENTS.LEAN_MUSCLE_MASS' | translate }} {{'(%)'}}</p>
+          <div class="measurement">
+            <input type="number" id="muscleContent" formControlName="muscleContent" placeholder="&nbsp;">
+          </div>
+        </div>
+
+        <div class="item">
+          <p>{{ 'BODY.GENERAL_MEASUREMENTS.BODY_FAT' | translate }} {{'(%)'}}</p>
+          <div class="measurement">
+            <input type="number" id="fatContent" formControlName="fatContent" placeholder="&nbsp;">
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="button-container vertical-spacer-5vh horizontal-center">
+      <button class="button button-fill" type="submit">
+        <div class="button-content-container horizontal-center">
+          <ion-icon name="checkmark-outline"></ion-icon>
+          <p>{{ 'BODY.BUTTONS.SAVE' | translate }}</p>
+        </div>
+      </button>
+    </div>
+  </form>
+</ion-content>
