@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
+import {UserService} from "../../../commons/services/user/user.service";
 
 @Component({
   selector: 'app-plans',
@@ -10,7 +11,7 @@ export class PlansPage implements OnInit  {
 
 
 
-  constructor(private router : Router) {
+  constructor(private router : Router, private userService: UserService) {
   }
 
   ngOnInit(): void {
@@ -18,8 +19,7 @@ export class PlansPage implements OnInit  {
 
 
   logout() {
-    window.sessionStorage.setItem("userDetails","");
-    window.sessionStorage.setItem("Authorization","");
+    this.userService.deleteUserDetailsAndJWTFromSession();
     this.router.navigate(['/login']);
   }
 

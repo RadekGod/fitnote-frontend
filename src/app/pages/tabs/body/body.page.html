@@ -52,14 +52,14 @@
         <div class="item">
           <p>{{ 'BODY.GENERAL_MEASUREMENTS.HEIGHT' | translate }}</p>
           <div class="measurement">
-            <p>{{generalMeasurement.height ? generalMeasurement.height : '-' }}</p>
+            <p>{{generalMeasurement.height ? generalMeasurement.height + ' ' + lengthUnitShortcut : '-' }}</p>
           </div>
         </div>
 
         <div class="item">
           <p>{{ 'BODY.GENERAL_MEASUREMENTS.WEIGHT' | translate }}</p>
           <div class="measurement">
-            <p>{{generalMeasurement.weight ? generalMeasurement.weight : '-' }}</p>
+            <p>{{generalMeasurement.weight ? generalMeasurement.weight + ' ' + weightUnitShortcut : '-' }}</p>
           </div>
         </div>
 
@@ -73,14 +73,14 @@
         <div class="item">
           <p>{{ 'BODY.GENERAL_MEASUREMENTS.LEAN_MUSCLE_MASS' | translate }}</p>
           <div class="measurement">
-            <p>{{generalMeasurement.muscleContent ? generalMeasurement.muscleContent : '-' }}</p>
+            <p>{{generalMeasurement.muscleContent ? generalMeasurement.muscleContent + ' %' : '-' }}</p>
           </div>
         </div>
 
         <div class="item">
           <p>{{ 'BODY.GENERAL_MEASUREMENTS.BODY_FAT' | translate }}</p>
           <div class="measurement">
-            <p>{{generalMeasurement.fatContent ? generalMeasurement.fatContent : '-' }}</p>
+            <p>{{generalMeasurement.bodyFat ? generalMeasurement.bodyFat + ' %' : '-' }}</p>
           </div>
         </div>
       </div>
@@ -109,7 +109,7 @@
         <div class="item">
           <p>{{ 'BODY.BODY_MEASUREMENTS.CHEST' | translate }}</p>
           <div class="measurement">
-            <p>{{bodyMeasurement.chest ? bodyMeasurement.chest : '-' }}</p>
+            <p>{{bodyMeasurement.chest ? bodyMeasurement.chest + ' ' + lengthUnitShortcut : '-' }}</p>
           </div>
         </div>
 
@@ -118,9 +118,9 @@
           <div class="measurement">
             <p>
               {{ 'BODY.BODY_MEASUREMENTS.SIDES.SHORTCUTS.LEFT' | translate }}
-              {{bodyMeasurement.bicepsLeft ? bodyMeasurement.bicepsLeft : '-'}}</p>
+              {{bodyMeasurement.bicepsLeft ? bodyMeasurement.bicepsLeft + ' ' + lengthUnitShortcut : '-'}}</p>
             <p>{{ 'BODY.BODY_MEASUREMENTS.SIDES.SHORTCUTS.RIGHT' | translate }}
-              {{bodyMeasurement.bicepsRight ? bodyMeasurement.bicepsRight : '-'}}</p>
+              {{bodyMeasurement.bicepsRight ? bodyMeasurement.bicepsRight + ' ' + lengthUnitShortcut : '-'}}</p>
           </div>
         </div>
 
@@ -128,23 +128,23 @@
           <p>{{ 'BODY.BODY_MEASUREMENTS.FOREARM' | translate }}</p>
           <div class="measurement">
             <p>{{ 'BODY.BODY_MEASUREMENTS.SIDES.SHORTCUTS.LEFT' | translate }}
-              {{bodyMeasurement.forearmLeft ? bodyMeasurement.forearmLeft : '-'}}</p>
+              {{bodyMeasurement.forearmLeft ? bodyMeasurement.forearmLeft + ' ' + lengthUnitShortcut : '-'}}</p>
             <p>{{ 'BODY.BODY_MEASUREMENTS.SIDES.SHORTCUTS.RIGHT' | translate }}
-              {{bodyMeasurement.forearmRight ? bodyMeasurement.forearmRight : '-'}}</p>
+              {{bodyMeasurement.forearmRight ? bodyMeasurement.forearmRight + ' ' + lengthUnitShortcut : '-'}}</p>
           </div>
         </div>
 
         <div class="item">
           <p>{{ 'BODY.BODY_MEASUREMENTS.WAIST' | translate }}</p>
           <div class="measurement">
-            <p>{{bodyMeasurement.waist ? bodyMeasurement.waist : '-'}}</p>
+            <p>{{bodyMeasurement.waist ? bodyMeasurement.waist + ' ' + lengthUnitShortcut : '-'}}</p>
           </div>
         </div>
 
         <div class="item">
           <p>{{ 'BODY.BODY_MEASUREMENTS.HIP' | translate }}</p>
           <div class="measurement">
-            <p>{{bodyMeasurement.hip ? bodyMeasurement.hip : '-'}}</p>
+            <p>{{bodyMeasurement.hip ? bodyMeasurement.hip + ' ' + lengthUnitShortcut : '-'}}</p>
           </div>
         </div>
 
@@ -152,9 +152,9 @@
           <p>{{ 'BODY.BODY_MEASUREMENTS.THIGH' | translate }}</p>
           <div class="measurement">
             <p>{{ 'BODY.BODY_MEASUREMENTS.SIDES.SHORTCUTS.LEFT' | translate }}
-              {{bodyMeasurement.thighLeft ? bodyMeasurement.thighLeft : '-'}}</p>
+              {{bodyMeasurement.thighLeft ? bodyMeasurement.thighLeft + ' ' + lengthUnitShortcut : '-'}}</p>
             <p>{{ 'BODY.BODY_MEASUREMENTS.SIDES.SHORTCUTS.RIGHT' | translate }}
-              {{bodyMeasurement.thighRight ? bodyMeasurement.thighRight : '-'}}</p>
+              {{bodyMeasurement.thighRight ? bodyMeasurement.thighRight + ' ' + lengthUnitShortcut : '-'}}</p>
           </div>
         </div>
 
@@ -162,9 +162,9 @@
           <p>{{ 'BODY.BODY_MEASUREMENTS.CALF' | translate }}</p>
           <div class="measurement">
             <p>{{ 'BODY.BODY_MEASUREMENTS.SIDES.SHORTCUTS.LEFT' | translate }}
-              {{bodyMeasurement.calfLeft ? bodyMeasurement.calfLeft : '-'}}</p>
+              {{bodyMeasurement.calfLeft ? bodyMeasurement.calfLeft + ' ' + lengthUnitShortcut : '-'}}</p>
             <p>{{ 'BODY.BODY_MEASUREMENTS.SIDES.SHORTCUTS.RIGHT' | translate }}
-              {{bodyMeasurement.calfRight ? bodyMeasurement.calfRight : '-'}}</p>
+              {{bodyMeasurement.calfRight ? bodyMeasurement.calfRight + ' ' + lengthUnitShortcut : '-'}}</p>
           </div>
         </div>
       </div>

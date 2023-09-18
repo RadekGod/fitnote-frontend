@@ -1,3 +1,6 @@
+import {LengthUnit} from "../../../../commons/models/length-units";
+import {WeightUnit} from "../../../../commons/models/weight-units";
+
 export interface BodyMeasurementDto {
   id: number,
   chest: number,
@@ -11,5 +14,6 @@ export interface BodyMeasurementDto {
   thighRight: number,
   calfLeft: number,
   calfRight: number,
+  lengthUnit: LengthUnit,
   measurementDate: Date
 }

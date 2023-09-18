@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {User} from "../../commons/models/user.model";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
-import {RegisterService} from "../../services/register/register.service";
+import {RegisterService} from "./register.service";
 
 @Component({
   selector: 'app-register',
@@ -10,9 +10,6 @@ import {RegisterService} from "../../services/register/register.service";
   styleUrls: ['./register.page.scss'],
 })
 export class RegisterPage implements OnInit {
-
-  authStatus: string = "";
-  model = new User();
 
   registerForm = this.formBuilder.group({
     email: ['', Validators.email],

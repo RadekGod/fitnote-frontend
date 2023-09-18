@@ -1,10 +1,10 @@
 import {Injectable} from '@angular/core';
 import {environment} from "../../../../environments/environment";
-import {AppConstants} from "../../../parameters/app.constants";
 import {HttpClient} from "@angular/common/http";
 import {Observable, Subject} from "rxjs";
 import {BodyMeasurementDto} from "./model/body-measurement-dto.model";
 import {GeneralMeasurementDto} from "./model/general-measurement-dto.model";
+import {AppConstants} from "../../../configuration/app.constants";
 
 @Injectable({
   providedIn: 'root'

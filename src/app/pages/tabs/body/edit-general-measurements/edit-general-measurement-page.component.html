@@ -32,14 +32,14 @@
       <div class="section-content">
 
         <div class="item">
-          <p>{{ 'BODY.GENERAL_MEASUREMENTS.HEIGHT' | translate }} {{'(cm)'}}</p>
+          <p>{{ 'BODY.GENERAL_MEASUREMENTS.HEIGHT' | translate }} {{'(' + lengthUnitShortcut + ')'}}</p>
           <div class="measurement">
             <input type="number" id="height" formControlName="height" placeholder="&nbsp;">
           </div>
         </div>
 
         <div class="item">
-          <p>{{ 'BODY.GENERAL_MEASUREMENTS.WEIGHT' | translate }} {{'(kg)'}}</p>
+          <p>{{ 'BODY.GENERAL_MEASUREMENTS.WEIGHT' | translate }} {{'(' + weightUnitShortcut + ')'}}</p>
           <div class="measurement">
             <input type="number" id="weight" formControlName="weight" placeholder="&nbsp;">
           </div>
@@ -55,7 +55,7 @@
         <div class="item">
           <p>{{ 'BODY.GENERAL_MEASUREMENTS.BODY_FAT' | translate }} {{'(%)'}}</p>
           <div class="measurement">
-            <input type="number" id="fatContent" formControlName="fatContent" placeholder="&nbsp;">
+            <input type="number" id="bodyFat" formControlName="bodyFat" placeholder="&nbsp;">
           </div>
         </div>
       </div>

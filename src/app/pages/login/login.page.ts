@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {LoginService} from "../../services/login/login.service";
+import {LoginService} from "./login.service";
 import {Router} from "@angular/router";
 import {User} from "../../commons/models/user.model";
+import {UserService} from "../../commons/services/user/user.service";
 
 @Component({
   selector: 'app-login',
@@ -11,14 +12,13 @@ import {User} from "../../commons/models/user.model";
 })
 export class LoginPage implements OnInit {
 
-  userDetails = new User();
-
   loginForm = this.formBuilder.group({
     email: ['', Validators.email],
     password: ['', Validators.required],
   });
 
-  constructor(private loginService: LoginService, private router: Router, private formBuilder: FormBuilder) {
+  constructor(private loginService: LoginService,
+              private router: Router, private formBuilder: FormBuilder) {
 
   }
 
@@ -29,14 +29,20 @@ export class LoginPage implements OnInit {
   validateUser(loginForm: FormGroup) {
     console.log(loginForm);
       // this.router.navigate(['tabs', 'body']);
-    this.loginService.validateLoginDetails(loginForm.value).subscribe(responseData => {
-      console.log('responseData', responseData);
-      window.sessionStorage.setItem("Authorization", responseData.headers.get('Authorization')!);
-      this.userDetails = <any>responseData.body;
-      this.userDetails.authenticated = true;
-      window.sessionStorage.setItem("userDetails", JSON.stringify(this.userDetails));
-      this.router.navigate(['tabs', 'plans']);
-    });
+    //TODO przeanalizować  i poprawić sposob zapisywania userDetails
+    this.loginService.loginUser(loginForm.value);
+      // .subscribe(() => {
+      // let userDetails: User;
+      // window.sessionStorage.setItem("Authorization", responseData.headers.get('Authorization')!);
+      //
+      //
+      // userDetails = <User>responseData.body;
+      // userDetails.authenticated = true;
+      // this.userService.saveUserDetailsInSession(userDetails);
+
+      // window.sessionStorage.setItem("userDetails", JSON.stringify(userDetails));
+      // this.router.navigate(['tabs', 'plans']);
+    // });
   }
 
 }

@@ -18,6 +18,8 @@ import {TranslateModule} from "@ngx-translate/core";
         BodyPageRoutingModule,
         TranslateModule
     ],
-  declarations: [BodyPage, NoDataComponent]
+  declarations: [BodyPage, NoDataComponent],
+  providers: [
+  ]
 })
 export class BodyPageModule {}

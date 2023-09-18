@@ -7,7 +7,7 @@ import {tap} from "rxjs";
 @Injectable()
 export class XhrInterceptor implements HttpInterceptor {
 
-  user = new User();
+  user!: User;
 
   constructor(private router: Router) {
   }

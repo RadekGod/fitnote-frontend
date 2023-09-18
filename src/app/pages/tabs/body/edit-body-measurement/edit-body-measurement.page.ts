@@ -3,6 +3,9 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {BodyService} from "../body.service";
 import {DatePipe} from "@angular/common";
+import {Subscription} from "rxjs";
+import {BodyMeasurementDto} from "../model/body-measurement-dto.model";
+import {MeasurementUnitsService} from "../../../../commons/services/mesurement-units/measurement-units.service";
 
 @Component({
   selector: 'app-edit-body-measurement',
@@ -10,6 +13,9 @@ import {DatePipe} from "@angular/common";
   styleUrls: ['./edit-body-measurement.page.scss'],
 })
 export class EditBodyMeasurementPage implements OnInit {
+
+  private measurementUnitsSubscription!: Subscription;
+  lengthUnitShortcut!: string;
 
   editBodyMeasurementForm = this.formBuilder.group({
     chest: [''],
@@ -27,26 +33,47 @@ export class EditBodyMeasurementPage implements OnInit {
   });
 
   constructor( private router: Router, private formBuilder: FormBuilder, private bodyService: BodyService,
-               private datePipe: DatePipe, private route: ActivatedRoute) {
+               private datePipe: DatePipe, private route: ActivatedRoute,
+               private measurementUnitsService: MeasurementUnitsService) {
   }
 
   ngOnInit() {
     this.bodyService.getLatestBodyMeasurement().subscribe(response => {
-      this.editBodyMeasurementForm.patchValue({
-        chest: response?.chest?.toString() ?? '',
-        bicepsLeft: response?.bicepsLeft?.toString() ?? '',
-        bicepsRight: response?.bicepsRight?.toString() ?? '',
-        forearmLeft: response?.forearmLeft?.toString() ?? '',
-        forearmRight: response?.forearmRight?.toString() ?? '',
-        waist: response?.waist?.toString() ?? '',
-        hip: response?.hip?.toString() ?? '',
-        thighLeft: response?.thighLeft?.toString() ?? '',
-        thighRight: response?.thighRight?.toString() ?? '',
-        calfLeft: response?.calfLeft?.toString() ?? '',
-        calfRight: response?.calfRight?.toString() ?? '',
-        measurementDate: this.datePipe.transform(response?.measurementDate, 'yyyy-MM-ddTHH:mm')
-      });
+      this.fillFormFields(response)
     });
+    this.initializeMeasurementUnitsShortcuts();
+  }
+
+  private fillFormFields(bodyMeasurementDto: BodyMeasurementDto) {
+    this.editBodyMeasurementForm.patchValue({
+      chest: bodyMeasurementDto?.chest?.toString() ?? '',
+      bicepsLeft: bodyMeasurementDto?.bicepsLeft?.toString() ?? '',
+      bicepsRight: bodyMeasurementDto?.bicepsRight?.toString() ?? '',
+      forearmLeft: bodyMeasurementDto?.forearmLeft?.toString() ?? '',
+      forearmRight: bodyMeasurementDto?.forearmRight?.toString() ?? '',
+      waist: bodyMeasurementDto?.waist?.toString() ?? '',
+      hip: bodyMeasurementDto?.hip?.toString() ?? '',
+      thighLeft: bodyMeasurementDto?.thighLeft?.toString() ?? '',
+      thighRight: bodyMeasurementDto?.thighRight?.toString() ?? '',
+      calfLeft: bodyMeasurementDto?.calfLeft?.toString() ?? '',
+      calfRight: bodyMeasurementDto?.calfRight?.toString() ?? '',
+      measurementDate: this.datePipe.transform(bodyMeasurementDto?.measurementDate, 'yyyy-MM-ddTHH:mm')
+    });
+  }
+
+  initializeMeasurementUnitsShortcuts() {
+    this.getMeasurementUnitsShortcuts();
+    this.measurementUnitsSubscription = this.listenForMeasurementUnitChange();
+  }
+
+  listenForMeasurementUnitChange() {
+    return this.measurementUnitsService.measurementUnitsChange.subscribe(() => {
+      this.getMeasurementUnitsShortcuts();
+    });
+  }
+
+  getMeasurementUnitsShortcuts() {
+    this.lengthUnitShortcut = this.measurementUnitsService.lengthUnitShortcut;
   }
 
   validateAndSendMeasurementForm(editBodyMeasurementForm: FormGroup) {

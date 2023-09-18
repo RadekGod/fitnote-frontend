@@ -3,7 +3,8 @@ import {BodyService} from "./body.service";
 import {BodyMeasurementDto} from "./model/body-measurement-dto.model";
 import {GeneralMeasurementDto} from "./model/general-measurement-dto.model";
 import {Subscription} from "rxjs";
-import {TranslateService} from "@ngx-translate/core";
+import {UserService} from "../../../commons/services/user/user.service";
+import {MeasurementUnitsService} from "../../../commons/services/mesurement-units/measurement-units.service";
 
 @Component({
   selector: 'app-body',
@@ -17,33 +18,53 @@ export class BodyPage implements OnInit {
   generalMeasurement: GeneralMeasurementDto | null = null;
   private generalMeasurementSubscription!: Subscription;
   private bodyMeasurementSubscription!: Subscription;
+  private measurementUnitsSubscription!: Subscription;
+  lengthUnitShortcut!: string;
+  weightUnitShortcut!: string;
 
-
-  constructor(private bodyService: BodyService, private translateService: TranslateService) {
+  constructor(private bodyService: BodyService,
+              private userService: UserService,
+              private measurementUnitsService: MeasurementUnitsService) {
   }
 
   ngOnInit() {
+    this.initializeMeasurementUnitsShortcuts();
+    this.initializeGeneralMeasurements();
+    this.initializeBodyMeasurements();
+  }
+
+
+  initializeMeasurementUnitsShortcuts() {
+    this.getMeasurementUnitsShortcuts();
+    this.measurementUnitsSubscription = this.listenForMeasurementUnitChange();
+  }
+
+  listenForMeasurementUnitChange() {
+    return this.measurementUnitsService.measurementUnitsChange.subscribe(() => {
+        this.getMeasurementUnitsShortcuts();
+      });
+  }
+
+  initializeGeneralMeasurements() {
     this.fetchLatestGeneralMeasurement();
-    this.fetchLatestBodyMeasurement();
     this.generalMeasurementSubscription = this.listenForGeneralMeasurementChange();
+  }
+
+  listenForGeneralMeasurementChange() {
+    return this.bodyService.generalMeasurementChange.subscribe(() => {
+        this.fetchLatestGeneralMeasurement();
+      });
+  }
+
+  initializeBodyMeasurements() {
+    this.fetchLatestBodyMeasurement();
     this.bodyMeasurementSubscription = this.listenForBodyMeasurementChange();
   }
 
-
-  listenForGeneralMeasurementChange() {
-    return this.bodyService.generalMeasurementChange.subscribe(
-      () => {
-        this.fetchLatestGeneralMeasurement();
-      }
-    );
-  }
-
   listenForBodyMeasurementChange() {
-    return this.bodyService.bodyMeasurementChange.subscribe(
-      () => {
+    return this.bodyService.bodyMeasurementChange.subscribe(() => {
         this.fetchLatestBodyMeasurement();
-      }
-    );
+      });
   }
 
   fetchLatestBodyMeasurement() {
@@ -58,9 +79,12 @@ export class BodyPage implements OnInit {
     });
   }
 
-
   changeSegmentValue(value: string) {
     this.segmentValue = value;
   }
 
+  getMeasurementUnitsShortcuts() {
+    this.lengthUnitShortcut = this.measurementUnitsService.lengthUnitShortcut;
+    this.weightUnitShortcut = this.measurementUnitsService.weightUnitShortcut;
+  }
 }
