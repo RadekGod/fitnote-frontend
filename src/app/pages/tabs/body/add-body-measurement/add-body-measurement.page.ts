@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {BodyService} from "../body.service";
-import {DatePipe} from "@angular/common";
-import {GeneralMeasurementDto} from "../model/general-measurement-dto.model";
+import {DatePipe, DecimalPipe} from "@angular/common";
 import {BodyMeasurementDto} from "../model/body-measurement-dto.model";
 import {Subscription} from "rxjs";
 import {MeasurementUnitsService} from "../../../../commons/services/mesurement-units/measurement-units.service";
@@ -35,7 +34,8 @@ export class AddBodyMeasurementPage implements OnInit {
 
   constructor( private router: Router, private formBuilder: FormBuilder,
                private bodyService: BodyService, private datePipe: DatePipe,
-               private measurementUnitsService: MeasurementUnitsService) {
+               private measurementUnitsService: MeasurementUnitsService,
+               private decimalPipe: DecimalPipe) {
   }
 
   ngOnInit() {
@@ -47,17 +47,17 @@ export class AddBodyMeasurementPage implements OnInit {
 
   private fillFormFields(bodyMeasurementDto: BodyMeasurementDto) {
     this.addBodyMeasurementsForm.patchValue({
-      chest: bodyMeasurementDto?.chest?.toString() ?? '',
-      bicepsLeft: bodyMeasurementDto?.bicepsLeft?.toString() ?? '',
-      bicepsRight: bodyMeasurementDto?.bicepsRight?.toString() ?? '',
-      forearmLeft: bodyMeasurementDto?.forearmLeft?.toString() ?? '',
-      forearmRight: bodyMeasurementDto?.forearmRight?.toString() ?? '',
-      waist: bodyMeasurementDto?.waist?.toString() ?? '',
-      hip: bodyMeasurementDto?.hip?.toString() ?? '',
-      thighLeft: bodyMeasurementDto?.thighLeft?.toString() ?? '',
-      thighRight: bodyMeasurementDto?.thighRight?.toString() ?? '',
-      calfLeft: bodyMeasurementDto?.calfLeft?.toString() ?? '',
-      calfRight: bodyMeasurementDto?.calfRight?.toString() ?? '',
+      chest: this.decimalPipe.transform(bodyMeasurementDto?.chest?.toString(), '1.0-2') ?? '',
+      bicepsLeft: this.decimalPipe.transform(bodyMeasurementDto?.bicepsLeft?.toString(), '1.0-2') ?? '',
+      bicepsRight: this.decimalPipe.transform(bodyMeasurementDto?.bicepsRight?.toString(), '1.0-2') ?? '',
+      forearmLeft: this.decimalPipe.transform(bodyMeasurementDto?.forearmLeft?.toString(), '1.0-2') ?? '',
+      forearmRight: this.decimalPipe.transform(bodyMeasurementDto?.forearmRight?.toString(), '1.0-2') ?? '',
+      waist: this.decimalPipe.transform(bodyMeasurementDto?.waist?.toString(), '1.0-2') ?? '',
+      hip: this.decimalPipe.transform(bodyMeasurementDto?.hip?.toString(), '1.0-2') ?? '',
+      thighLeft: this.decimalPipe.transform(bodyMeasurementDto?.thighLeft?.toString(), '1.0-2') ?? '',
+      thighRight: this.decimalPipe.transform(bodyMeasurementDto?.thighRight?.toString(), '1.0-2') ?? '',
+      calfLeft: this.decimalPipe.transform(bodyMeasurementDto?.calfLeft?.toString(), '1.0-2') ?? '',
+      calfRight: this.decimalPipe.transform(bodyMeasurementDto?.calfRight?.toString(), '1.0-2') ?? ''
     });
   }
 
@@ -77,7 +77,9 @@ export class AddBodyMeasurementPage implements OnInit {
   }
 
   validateAndSendMeasurementForm(addBodyMeasurementForm: FormGroup) {
-    this.bodyService.addNewBodyMeasurement(addBodyMeasurementForm.value).subscribe(responseData => {
+    let bodyMeasurement: BodyMeasurementDto = addBodyMeasurementForm.value;
+    bodyMeasurement.lengthUnit = this.measurementUnitsService.lengthUnit;
+    this.bodyService.addNewBodyMeasurement(bodyMeasurement).subscribe(responseData => {
       this.bodyService.notifyAboutBodyMeasurementChange();
       this.router.navigate(['tabs', 'body']);
     });

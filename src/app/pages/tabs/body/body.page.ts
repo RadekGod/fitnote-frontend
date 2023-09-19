@@ -5,6 +5,7 @@ import {GeneralMeasurementDto} from "./model/general-measurement-dto.model";
 import {Subscription} from "rxjs";
 import {UserService} from "../../../commons/services/user/user.service";
 import {MeasurementUnitsService} from "../../../commons/services/mesurement-units/measurement-units.service";
+import {User} from "../../../commons/models/user.model";
 
 @Component({
   selector: 'app-body',

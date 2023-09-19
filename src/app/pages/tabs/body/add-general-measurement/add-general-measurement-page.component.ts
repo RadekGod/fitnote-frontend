@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {Router} from "@angular/router";
 import {BodyService} from "../body.service";
-import {DatePipe} from "@angular/common";
+import {DatePipe, DecimalPipe} from "@angular/common";
 import {Subscription} from "rxjs";
 import {MeasurementUnitsService} from "../../../../commons/services/mesurement-units/measurement-units.service";
 import {GeneralMeasurementDto} from "../model/general-measurement-dto.model";
@@ -27,7 +27,8 @@ export class AddGeneralMeasurementPage implements OnInit {
   });
 
   constructor( private router: Router, private formBuilder: FormBuilder, private bodyService: BodyService,
-               private datePipe: DatePipe, private measurementUnitsService: MeasurementUnitsService) {
+               private datePipe: DatePipe, private measurementUnitsService: MeasurementUnitsService,
+               private decimalPipe: DecimalPipe) {
   }
 
   ngOnInit() {
@@ -39,8 +40,8 @@ export class AddGeneralMeasurementPage implements OnInit {
 
   private fillFormFields(generalMeasurementDto: GeneralMeasurementDto) {
     this.addGeneralMeasurementsForm.patchValue({
-      weight: generalMeasurementDto?.weight?.toString() ?? '',
-      height: generalMeasurementDto?.height?.toString() ?? '',
+      height: this.decimalPipe.transform(generalMeasurementDto?.height?.toString(), '1.0-2') ?? '',
+      weight: this.decimalPipe.transform(generalMeasurementDto?.weight?.toString(), '1.0-2') ?? '',
       muscleContent: generalMeasurementDto?.muscleContent?.toString() ?? '',
       bodyFat: generalMeasurementDto?.bodyFat?.toString() ?? ''
     });
@@ -60,9 +61,11 @@ export class AddGeneralMeasurementPage implements OnInit {
     this.lengthUnitShortcut = this.measurementUnitsService.lengthUnitShortcut;
     this.weightUnitShortcut = this.measurementUnitsService.weightUnitShortcut;
   }
-  validateAndSendMeasurementForm(addGeneralMeasurementsForm: FormGroup) {
-    console.log(addGeneralMeasurementsForm.value);
-    this.bodyService.addNewGeneralMeasurement(addGeneralMeasurementsForm.value).subscribe(responseData => {
+  validateAndSendMeasurementForm(addGeneralMeasurementForm: FormGroup) {
+    let generalMeasurement: GeneralMeasurementDto = addGeneralMeasurementForm.value;
+    generalMeasurement.lengthUnit = this.measurementUnitsService.lengthUnit;
+    generalMeasurement.weightUnit = this.measurementUnitsService.weightUnit;
+    this.bodyService.addNewGeneralMeasurement(generalMeasurement).subscribe(responseData => {
       this.bodyService.notifyAboutGeneralMeasurementChange();
       this.router.navigate(['tabs', 'body']);
     });

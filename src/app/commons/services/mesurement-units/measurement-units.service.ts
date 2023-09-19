@@ -13,18 +13,20 @@ export class MeasurementUnitsService {
   private userDetails!: User;
   private userDetailsSubscription!: Subscription;
   public measurementUnitsChange = new Subject<void>();
+  private _weightUnit!: WeightUnit;
+  private _lengthUnit!: LengthUnit;
   private _lengthUnitShortcut!: string;
   private _weightUnitShortcut!: string;
 
   constructor(private userService: UserService) {
     this.initializeUserDetails();
+    this.setMeasurementUnits();
     this.setLengthUnitShortcut();
     this.setWeightUnitShortcut();
   }
 
   private initializeUserDetails() {
     this.fetchUserDetails();
-    console.log('initializeUserDetails', this.userDetails);
     this.userDetailsSubscription = this.listenForUserDetailsChange();
   }
 
@@ -40,15 +42,19 @@ export class MeasurementUnitsService {
   }
 
   private reassignMeasurementUnits() {
+    this.setMeasurementUnits();
     this.setLengthUnitShortcut();
     this.setWeightUnitShortcut();
-    console.log('reassignMeasurementUnits', this._lengthUnitShortcut);
-    console.log('reassignMeasurementUnits', this._weightUnitShortcut);
     this.notifyAboutMeasurementUnitsChange();
   }
 
   private notifyAboutMeasurementUnitsChange(): void {
     this.measurementUnitsChange.next();
+  }
+
+  setMeasurementUnits(): void {
+    this._lengthUnit = this.userDetails.userSettings.lengthUnit;
+    this._weightUnit = this.userDetails.userSettings.weightUnit;
   }
 
   setLengthUnitShortcut(): void {
@@ -59,14 +65,6 @@ export class MeasurementUnitsService {
       case LengthUnit.INCH:
         this._lengthUnitShortcut = '″';
     }
-  }
-
-  recalculateLengthFromCentimeterToInch() {
-
-}
-
-  recalculateLengthFromInchToCentimeter() {
-
   }
 
   setWeightUnitShortcut(): void {
@@ -85,5 +83,13 @@ export class MeasurementUnitsService {
 
   get weightUnitShortcut() {
     return this._weightUnitShortcut;
+  }
+
+  get lengthUnit() {
+    return this._lengthUnit;
+  }
+
+  get weightUnit() {
+    return this._weightUnit;
   }
 }
