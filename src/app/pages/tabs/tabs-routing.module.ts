@@ -6,7 +6,7 @@ import {TabsPage} from './tabs.page';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/tabs/plans',
+    redirectTo: '/tabs/training-plans',
     pathMatch: 'full'
   },
   {
@@ -27,19 +27,21 @@ const routes: Routes = [
         loadChildren: () => import('./history/history.module').then( m => m.HistoryPageModule)
       },
       {
-        path: 'plans',
-        loadChildren: () => import('./plans/plans.module').then( m => m.PlansPageModule)
+        path: 'training-plans',
+        loadChildren: () => import('./training-plans/training-plans.module').then(m => m.TrainingPlansPageModule)
       },
       {
         path: 'statistics',
         loadChildren: () => import('./statistics/statistics.module').then( m => m.StatisticsPageModule)
       },
       {
-        path: 'user-data',
-        loadChildren: () => import('../user-management/user-management.module').then(m => m.UserManagementPageModule)
+        path: 'more',
+        loadChildren: () => import('./more/more.module').then( m => m.MorePageModule)
       }
     ]
-  }
+  },
+
+
 ];
 
 @NgModule({

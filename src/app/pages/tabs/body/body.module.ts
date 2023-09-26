@@ -11,14 +11,17 @@ import {NoDataComponent} from "../../../components/no-data/no-data.component";
 import {TranslateModule} from "@ngx-translate/core";
 
 @NgModule({
-    imports: [
-        CommonModule,
-        FormsModule,
-        IonicModule,
-        BodyPageRoutingModule,
-        TranslateModule
-    ],
+  imports: [
+    CommonModule,
+    FormsModule,
+    IonicModule,
+    BodyPageRoutingModule,
+    TranslateModule
+  ],
   declarations: [BodyPage, NoDataComponent],
+  exports: [
+    NoDataComponent
+  ],
   providers: [
     DecimalPipe
   ]

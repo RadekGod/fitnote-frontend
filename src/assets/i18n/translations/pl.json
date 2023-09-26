@@ -56,7 +56,7 @@
 
   "TABS": {
     "HISTORY": "Historia",
-    "PLANS": "Plany",
+    "TRAINING_PLANS": "Plany",
     "DIET": "Dieta",
     "BODY": "Ciało",
     "MORE": "Więcej"
@@ -107,6 +107,21 @@
       "HIP": "Biodra",
       "THIGH": "Udo",
       "CALF": "Łydka"
+    }
+  },
+
+
+
+
+
+  "TRAINING_PLANS": {
+    "TITLES": {
+      "TRAINING_PLANS": "Plany treningowe",
+      "ADD_MEASUREMENT": "Dodaj pomiar",
+      "EDIT_MEASUREMENT": "Edytuj pomiar"
+    },
+    "BUTTONS": {
+      "SAVE": "Zapisz"
     }
   }
 }

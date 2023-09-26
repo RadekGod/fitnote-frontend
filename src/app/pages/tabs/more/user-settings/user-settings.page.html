@@ -1,0 +1,28 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/more"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{'SETTINGS' | translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <div class="button-container vertical-spacer-5vh horizontal-center">
+    <button (click)="changeLanguage(Language.PL)" class="button button-fill" type="submit">
+      <div class="button-content-container horizontal-center">
+        <p>Polski</p>
+      </div>
+    </button>
+  </div>
+
+  <div class="button-container vertical-spacer-5vh horizontal-center">
+    <button (click)="changeLanguage(Language.EN)" class="button button-fill" type="submit">
+      <div class="button-content-container horizontal-center">
+        <p>Angielski</p>
+      </div>
+    </button>
+  </div>
+
+</ion-content>

@@ -2,7 +2,7 @@ import {AuthConfig} from "angular-oauth2-oidc";
 
 export const authConfig: AuthConfig = {
   issuer: "http://localhost:8180/realms/fitnote-realm",
-  redirectUri: "http://localhost:8100/tabs/plans",
+  redirectUri: "http://localhost:8100/tabs/training-plans",
   postLogoutRedirectUri: 'http://localhost:8100/home',
   clientId: 'fitnote-public-client',
   responseType: 'code',

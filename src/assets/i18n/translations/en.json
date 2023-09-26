@@ -20,12 +20,6 @@
       "NO_ACCOUNT": "Don't have an account?"
     }
   },
-
-
-
-
-
-
   "REGISTER": {
     "TITLE": {
       "CREATE_ACCOUNT": "Create an ",
@@ -47,26 +41,16 @@
       "ACCOUNT_ALREADY_CREATED": "Already have an account?"
     }
   },
-
-
-
-
-
   "TABS": {
     "HISTORY": "History",
-    "PLANS": "Plans",
+    "TRAINING_PLANS": "Plans",
     "DIET": "Diet",
     "BODY": "Body",
     "MORE": "More"
   },
-
-
-
-
-
   "BODY": {
     "TITLES": {
-      "BODY":"Body",
+      "BODY": "Body",
       "ADD_MEASUREMENT": "Add measurement",
       "EDIT_MEASUREMENT": "Edit measurement"
     },
@@ -105,6 +89,21 @@
       "HIP": "Hip",
       "THIGH": "Thigh",
       "CALF": "Calf"
+    }
+  },
+
+
+
+
+
+  "TRAINING_PLANS": {
+    "TITLES": {
+      "TRAINING_PLANS": "Training Plans",
+      "ADD_MEASUREMENT": "Dodaj pomiar",
+      "EDIT_MEASUREMENT": "Edytuj pomiar"
+    },
+    "BUTTONS": {
+      "SAVE": "Zapisz"
     }
   }
 }

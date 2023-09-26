@@ -1,0 +1,44 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button [defaultHref]="previousUrl"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ 'Stwórz ćwiczenie' }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="description-container vertical-spacer-2vh horizontal-center">
+    <div class="image-input-container">
+      <ion-icon name="camera-outline"></ion-icon>
+    </div>
+
+    <div class="instruction-container vertical-spacer-2vh">
+      <h3>Instrukcja</h3>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vel imperdiet nisi.
+      Vivamus sollicitudin ultrices hendrerit. Duis sem augue, dignissim in est id,
+      vulputate interdum elit. Vestibulum mi augue, consequat a interdum id, efficitur efficitur odio.
+      Aenean dignissim ullamcorper justo, sit amet accumsan nulla tempus at.
+    </div>
+
+    <div class="engaged-muscles-container vertical-spacer-1vh">
+      <h3>Zaangażowane mięśnie</h3>
+      Klatka piersiowa, biceps, triceps, barki
+    </div>
+    <div class="exercise-categories-container vertical-spacer-1vh">
+      <h3>Grupa ćwiczeń</h3>
+      Klatka piersiowa
+    </div>
+  </div>
+
+
+  <div class="button-container vertical-spacer-3vh horizontal-center"
+       [routerLink]="['/', 'tabs', 'more', 'exercise-groups', 'exercises', 'add-custom-exercise']">
+    <button class="button button-fill" type="submit">
+      <div class="button-content-container horizontal-center">
+        <p>Zapisz</p>
+      </div>
+    </button>
+  </div>
+
+</ion-content>

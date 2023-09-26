@@ -1,0 +1,65 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/training-plans/training-plan/exercise-groups"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ 'Wybierz ćwiczenie' }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <div class="simple-items-container vertical-spacer-3vh">
+    <div class="simple-item-container horizontal-center"
+         [routerLink]="['/', 'tabs', 'more', 'exercise-groups', 'exercises', 'exercise']">
+      <div class="thumbnail-container">
+        <ion-thumbnail>
+          <img alt="Silhouette of mountains" src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/51ce2b54933123.596f84ed7befe.gif"/>
+        </ion-thumbnail>
+      </div>
+      <div class="title-container">
+        <h3>Wyciskanie sztangi na ławce płaskiej Wyciskanie sztangi na ławce płaskiej</h3>
+      </div>
+
+      <div class="simple-item-options">
+        <button [routerLink]="['/', 'tabs', 'body', 'add-general-measurement']">
+          <ion-icon name="ellipsis-vertical"></ion-icon>
+        </button>
+      </div>
+    </div>
+
+    <div class="simple-item-container horizontal-center"
+         [routerLink]="['/', 'tabs', 'training-plans', 'training-plan', 'exercise-groups', 'exercises']">
+      <div class="thumbnail-container">
+        <ion-thumbnail>
+          <img alt="Silhouette of mountains" src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/51ce2b54933123.596f84ed7befe.gif"/>
+        </ion-thumbnail>
+      </div>
+      <div class="title-container">
+        <h3>Wyciskanie sztangi na ławce płaskiej</h3>
+      </div>
+    </div>
+
+    <div class="simple-item-container horizontal-center"
+         [routerLink]="['/', 'tabs', 'training-plans', 'training-plan', 'exercise-groups', 'exercises']">
+      <div class="thumbnail-container">
+        <ion-thumbnail>
+          <img alt="Silhouette of mountains" src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/51ce2b54933123.596f84ed7befe.gif"/>
+        </ion-thumbnail>
+      </div>
+      <div class="title-container">
+        <h3>Wyciskanie sztangi na ławce płaskiej</h3>
+      </div>
+    </div>
+  </div>
+
+  <div class="button-container vertical-spacer-3vh horizontal-center"
+       [routerLink]="['/', 'tabs', 'more', 'exercise-groups', 'exercises', 'add-custom-exercise']">
+    <button class="button button-fill" type="submit">
+      <div class="button-content-container horizontal-center">
+        <p>Dodaj własne ćwiczenie</p>
+      </div>
+    </button>
+  </div>
+
+</ion-content>

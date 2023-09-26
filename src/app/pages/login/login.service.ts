@@ -27,7 +27,7 @@ export class LoginService {
         userDetails = <User>responseData.body;
         userDetails.authenticated = true;
         this.userService.saveUserDetailsInSession(userDetails);
-        this.router.navigate(['tabs', 'plans']);
+        this.router.navigate(['tabs', 'training-plans']);
       });
   }
 }

@@ -1,0 +1,91 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>{{ 'TRAINING_PLANS.TITLES.TRAINING_PLANS' | translate }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon size="large" slot="icon-only" name="add-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="true">
+
+  <div class="vertical-spacer-5vh">
+    <ion-reorder-group [disabled]="false" (ionItemReorder)="handleReorder($any($event))">
+      <div class="training-plan-reorder-container horizontal-center vertical-spacer-3vh">
+        <ion-reorder></ion-reorder>
+        <div class="training-plan-container horizontal-center">
+          <div class="title-container horizontal-center"
+               [routerLink]="['/', 'tabs', 'training-plans', 'training-plan']">
+            <h3>Push</h3>
+            <p>Dzień treningu: Poniedziałek</p>
+            <p>Liczba ćwiczeń: 7</p>
+          </div>
+          <div class="training-plan-options">
+            <button [routerLink]="['/', 'tabs', 'body', 'add-general-measurement']">
+              <ion-icon name="ellipsis-vertical"></ion-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="training-plan-reorder-container horizontal-center vertical-spacer-3vh">
+        <ion-reorder></ion-reorder>
+        <div class="training-plan-container horizontal-center">
+          <div class="title-container horizontal-center">
+            <h3>Push</h3>
+            <p>Dzień treningu: Poniedziałek</p>
+            <p>Liczba ćwiczeń: 7</p>
+          </div>
+          <div class="training-plan-options">
+            <button [routerLink]="['/', 'tabs', 'body', 'add-general-measurement']">
+              <ion-icon name="ellipsis-vertical"></ion-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="training-plan-reorder-container horizontal-center vertical-spacer-3vh">
+        <ion-reorder></ion-reorder>
+        <div class="training-plan-container horizontal-center">
+          <div class="title-container horizontal-center">
+            <h3>Push</h3>
+            <p>Dzień treningu: Poniedziałek</p>
+            <p>Liczba ćwiczeń: 7</p>
+          </div>
+          <div class="training-plan-options">
+            <button [routerLink]="['/', 'tabs', 'body', 'add-general-measurement']">
+              <ion-icon name="ellipsis-vertical"></ion-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="training-plan-reorder-container horizontal-center vertical-spacer-3vh">
+        <ion-reorder></ion-reorder>
+        <div class="training-plan-container horizontal-center">
+          <div class="title-container horizontal-center">
+            <h3>Push</h3>
+            <p>Dzień treningu: Poniedziałek</p>
+            <p>Liczba ćwiczeń: 7</p>
+          </div>
+          <div class="training-plan-options">
+            <button [routerLink]="['/', 'tabs', 'body', 'add-general-measurement']">
+              <ion-icon name="ellipsis-vertical"></ion-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </ion-reorder-group>
+  </div>
+
+  <div class="button-container vertical-spacer-5vh horizontal-center">
+    <button class="button button-fill" type="submit">
+      <div class="button-content-container horizontal-center">
+        <p>Rozpocznij trening</p>
+      </div>
+    </button>
+  </div>
+</ion-content>

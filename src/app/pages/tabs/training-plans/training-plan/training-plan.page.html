@@ -1,0 +1,151 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/training-plans"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ 'Push' }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon size="large" slot="icon-only" name="ellipsis-vertical"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="true">
+
+  <div class="button-container vertical-spacer-3vh horizontal-center"
+       [routerLink]="['/', 'tabs', 'more', 'exercise-groups']">
+    <button class="button button-outline" type="submit">
+      <div class="button-content-container horizontal-center">
+        <ion-icon name="add-outline"></ion-icon>
+        <p>Dodaj ćwiczenie</p>
+      </div>
+    </button>
+  </div>
+
+  <div class="exercises-container vertical-spacer-2vh">
+
+    <ion-reorder-group [disabled]="false" (ionItemReorder)="handleReorder($any($event))">
+      <div class="exercise-reorder-container horizontal-center vertical-spacer-3vh">
+        <ion-reorder></ion-reorder>
+        <div class="exercise-container horizontal-center">
+          <div class="thumbnail-container">
+            <ion-thumbnail>
+              <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg"/>
+            </ion-thumbnail>
+          </div>
+          <div class="title-container">
+            <h3>Krzyżowanie linek wyciągu (stojąc)</h3>
+            <p>Powtórzenia: 12/10/8</p>
+            <p>Obciążenie: 50/50/50</p>
+          </div>
+          <div class="exercise-options">
+            <button [routerLink]="['/', 'tabs', 'body', 'add-general-measurement']">
+              <ion-icon name="ellipsis-vertical"></ion-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="exercise-reorder-container horizontal-center vertical-spacer-3vh">
+        <ion-reorder></ion-reorder>
+        <div class="exercise-container horizontal-center">
+          <div class="thumbnail-container">
+            <ion-thumbnail>
+              <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg"/>
+            </ion-thumbnail>
+          </div>
+          <div class="title-container">
+            <h3>Krzyżowanie linek wyciągu (stojąc)</h3>
+            <p>Powtórzenia: 12/10/8</p>
+            <p>Obciążenie: 50/50/50</p>
+          </div>
+          <div class="exercise-options">
+            <button [routerLink]="['/', 'tabs', 'body', 'add-general-measurement']">
+              <ion-icon name="ellipsis-vertical"></ion-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="exercise-reorder-container horizontal-center vertical-spacer-3vh">
+        <ion-reorder></ion-reorder>
+        <div class="exercise-container horizontal-center">
+          <div class="thumbnail-container">
+            <ion-thumbnail>
+              <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg"/>
+            </ion-thumbnail>
+          </div>
+          <div class="title-container">
+            <h3>Krzyżowanie linek wyciągu (stojąc)</h3>
+            <p>Powtórzenia: 12/10/8</p>
+            <p>Obciążenie: 50/50/50</p>
+          </div>
+          <div class="exercise-options">
+            <button [routerLink]="['/', 'tabs', 'body', 'add-general-measurement']">
+              <ion-icon name="ellipsis-vertical"></ion-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="exercise-reorder-container horizontal-center vertical-spacer-3vh">
+        <ion-reorder></ion-reorder>
+        <div class="exercise-container horizontal-center">
+          <div class="thumbnail-container">
+            <ion-thumbnail>
+              <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg"/>
+            </ion-thumbnail>
+          </div>
+          <div class="title-container">
+            <h3>Krzyżowanie linek wyciągu (stojąc)</h3>
+            <p>Powtórzenia: 12/10/8</p>
+            <p>Obciążenie: 50/50/50</p>
+          </div>
+          <div class="exercise-options">
+            <button [routerLink]="['/', 'tabs', 'body', 'add-general-measurement']">
+              <ion-icon name="ellipsis-vertical"></ion-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="exercise-reorder-container horizontal-center vertical-spacer-3vh">
+        <ion-reorder></ion-reorder>
+        <div class="exercise-container horizontal-center">
+          <div class="thumbnail-container">
+            <ion-thumbnail>
+              <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg"/>
+            </ion-thumbnail>
+          </div>
+          <div class="title-container">
+            <h3>Krzyżowanie linek wyciągu (stojąc)</h3>
+            <p>Powtórzenia: 12/10/8</p>
+            <p>Obciążenie: 50/50/50</p>
+          </div>
+          <div class="exercise-options">
+            <button [routerLink]="['/', 'tabs', 'body', 'add-general-measurement']">
+              <ion-icon name="ellipsis-vertical"></ion-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </ion-reorder-group>
+  </div>
+
+  <div class="button-container vertical-spacer-3vh horizontal-center">
+    <button class="button button-fill" type="submit">
+      <div class="button-content-container horizontal-center">
+        <p>Rozpocznij trening</p>
+      </div>
+    </button>
+  </div>
+
+  <div class="vertical-spacer-1vh"></div>
+</ion-content>
