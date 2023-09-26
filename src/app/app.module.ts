@@ -7,7 +7,6 @@ import {IonicModule, IonicRouteStrategy} from '@ionic/angular';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {HTTP_INTERCEPTORS, HttpBackend, HttpClientModule, HttpClientXsrfModule} from "@angular/common/http";
-import {OAuthModule} from "angular-oauth2-oidc";
 import {XhrInterceptor} from "./commons/interceptors/app.request.interceptor";
 import {AuthActivateRouteGuard} from "./commons/services/auth/fit-note-auth-guard.service";
 import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
@@ -19,7 +18,6 @@ import {httpLoaderFactory} from "./configuration/translations/http-loader-factor
     IonicModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
-    OAuthModule.forRoot(),
     HttpClientXsrfModule.withOptions({
       cookieName: 'XSRF-TOKEN',
       headerName: 'X-XSRF-TOKEN',

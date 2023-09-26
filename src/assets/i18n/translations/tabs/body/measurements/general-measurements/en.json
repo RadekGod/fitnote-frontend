@@ -1,0 +1,22 @@
+{
+  "BODY": {
+    "MEASUREMENTS": {
+      "GENERAL_MEASUREMENTS": {
+        "PAGE_TITLES": {
+          "ADD_MEASUREMENT": "Add measurement",
+          "EDIT_MEASUREMENT": "Edit measurement"
+        },
+        "SECTION_TITLE": "General data",
+        "MEASUREMENT_DATE": "Measured on:",
+        "HEIGHT": "Height",
+        "WEIGHT": "Weight",
+        "BMI": "BMI",
+        "LEAN_MUSCLE_MASS": "Lean muscle mass",
+        "BODY_FAT": "Body fat",
+        "BUTTONS": {
+          "SAVE": "Save"
+        }
+      }
+    }
+  }
+}

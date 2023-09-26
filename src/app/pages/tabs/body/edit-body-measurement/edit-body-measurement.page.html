@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/tabs/body"></ion-back-button>
     </ion-buttons>
-    <ion-title>{{ 'BODY.TITLES.EDIT_MEASUREMENT' | translate }}</ion-title>
+    <ion-title>{{ 'BODY.MEASUREMENTS.BODY_MEASUREMENTS.PAGE_TITLES.EDIT_MEASUREMENT' | translate }}</ion-title>
     <ion-buttons slot="end">
       <ion-button>
         <ion-icon size="large" name="ellipsis-vertical"></ion-icon>
@@ -19,9 +19,9 @@
     <div class="section-container horizontal-center vertical-spacer-3vh">
       <div class="section-header">
         <div class="title-container">
-          <h3>{{ 'BODY.BODY_MEASUREMENTS.TITLE' | translate }}</h3>
+          <h3>{{ 'BODY.MEASUREMENTS.BODY_MEASUREMENTS.SECTION_TITLE' | translate }}</h3>
           <div class="measurement-date-container">
-            <p>{{ 'BODY.BODY_MEASUREMENTS.MEASUREMENT_DATE' | translate }}</p>
+            <p>{{ 'BODY.MEASUREMENTS.BODY_MEASUREMENTS.MEASUREMENT_DATE' | translate }}</p>
             <div class="date-input-container">
               <input class="date-input" type="datetime-local" formControlName="measurementDate">
             </div>
@@ -32,62 +32,62 @@
       <div class="section-content">
 
         <div class="item">
-          <p>{{ 'BODY.BODY_MEASUREMENTS.CHEST' | translate }} {{'(' + lengthUnitShortcut + ')'}}</p>
+          <p>{{ 'BODY.MEASUREMENTS.BODY_MEASUREMENTS.CHEST' | translate }} {{'(' + lengthUnitShortcut + ')'}}</p>
           <div class="measurement">
             <input type="number" id="chest" formControlName="chest" placeholder="&nbsp;">
           </div>
         </div>
 
         <div class="item">
-          <p>{{ 'BODY.BODY_MEASUREMENTS.BICEPS' | translate }} {{'(' + lengthUnitShortcut + ')'}}</p>
+          <p>{{ 'BODY.MEASUREMENTS.BODY_MEASUREMENTS.BICEPS' | translate }} {{'(' + lengthUnitShortcut + ')'}}</p>
           <div class="measurement">
-            {{ 'BODY.BODY_MEASUREMENTS.SIDES.SHORTCUTS.LEFT' | translate }}
+            {{ 'BODY.MEASUREMENTS.BODY_MEASUREMENTS.SIDES.SHORTCUTS.LEFT' | translate }}
             <input type="number" id="bicepsLeft" formControlName="bicepsLeft" placeholder="&nbsp;">
-            {{ 'BODY.BODY_MEASUREMENTS.SIDES.SHORTCUTS.RIGHT' | translate }}
+            {{ 'BODY.MEASUREMENTS.BODY_MEASUREMENTS.SIDES.SHORTCUTS.RIGHT' | translate }}
             <input type="number" id="bicepsRight" formControlName="bicepsRight" placeholder="&nbsp;">
           </div>
         </div>
 
         <div class="item">
-          <p>{{ 'BODY.BODY_MEASUREMENTS.FOREARM' | translate }} {{'(' + lengthUnitShortcut + ')'}}</p>
+          <p>{{ 'BODY.MEASUREMENTS.BODY_MEASUREMENTS.FOREARM' | translate }} {{'(' + lengthUnitShortcut + ')'}}</p>
           <div class="measurement">
-            {{ 'BODY.BODY_MEASUREMENTS.SIDES.SHORTCUTS.LEFT' | translate }}
+            {{ 'BODY.MEASUREMENTS.BODY_MEASUREMENTS.SIDES.SHORTCUTS.LEFT' | translate }}
             <input type="number" id="forearmLeft" formControlName="forearmLeft" placeholder="&nbsp;">
-            {{ 'BODY.BODY_MEASUREMENTS.SIDES.SHORTCUTS.RIGHT' | translate }}
+            {{ 'BODY.MEASUREMENTS.BODY_MEASUREMENTS.SIDES.SHORTCUTS.RIGHT' | translate }}
             <input type="number" id="forearmRight" formControlName="forearmRight" placeholder="&nbsp;">
           </div>
         </div>
 
         <div class="item">
-          <p>{{ 'BODY.BODY_MEASUREMENTS.WAIST' | translate }} {{'(' + lengthUnitShortcut + ')'}}</p>
+          <p>{{ 'BODY.MEASUREMENTS.BODY_MEASUREMENTS.WAIST' | translate }} {{'(' + lengthUnitShortcut + ')'}}</p>
           <div class="measurement">
             <input type="number" id="waist" formControlName="waist" placeholder="&nbsp;">
           </div>
         </div>
 
         <div class="item">
-          <p>{{ 'BODY.BODY_MEASUREMENTS.HIP' | translate }} {{'(' + lengthUnitShortcut + ')'}}</p>
+          <p>{{ 'BODY.MEASUREMENTS.BODY_MEASUREMENTS.HIP' | translate }} {{'(' + lengthUnitShortcut + ')'}}</p>
           <div class="measurement">
             <input type="number" id="hip" formControlName="hip" placeholder="&nbsp;">
           </div>
         </div>
 
         <div class="item">
-          <p>{{ 'BODY.BODY_MEASUREMENTS.THIGH' | translate }} {{'(' + lengthUnitShortcut + ')'}}</p>
+          <p>{{ 'BODY.MEASUREMENTS.BODY_MEASUREMENTS.THIGH' | translate }} {{'(' + lengthUnitShortcut + ')'}}</p>
           <div class="measurement">
-            {{ 'BODY.BODY_MEASUREMENTS.SIDES.SHORTCUTS.LEFT' | translate }}
+            {{ 'BODY.MEASUREMENTS.BODY_MEASUREMENTS.SIDES.SHORTCUTS.LEFT' | translate }}
             <input type="number" id="thighLeft" formControlName="thighLeft" placeholder="&nbsp;">
-            {{ 'BODY.BODY_MEASUREMENTS.SIDES.SHORTCUTS.RIGHT' | translate }}
+            {{ 'BODY.MEASUREMENTS.BODY_MEASUREMENTS.SIDES.SHORTCUTS.RIGHT' | translate }}
             <input type="number" id="thighRight" formControlName="thighRight" placeholder="&nbsp;">
           </div>
         </div>
 
         <div class="item">
-          <p>{{ 'BODY.BODY_MEASUREMENTS.CALF' | translate }} {{'(' + lengthUnitShortcut + ')'}}</p>
+          <p>{{ 'BODY.MEASUREMENTS.BODY_MEASUREMENTS.CALF' | translate }} {{'(' + lengthUnitShortcut + ')'}}</p>
           <div class="measurement">
-            {{ 'BODY.BODY_MEASUREMENTS.SIDES.SHORTCUTS.LEFT' | translate }}
+            {{ 'BODY.MEASUREMENTS.BODY_MEASUREMENTS.SIDES.SHORTCUTS.LEFT' | translate }}
             <input type="number" id="calfLeft" formControlName="calfLeft" placeholder="&nbsp;">
-            {{ 'BODY.BODY_MEASUREMENTS.SIDES.SHORTCUTS.RIGHT' | translate }}
+            {{ 'BODY.MEASUREMENTS.BODY_MEASUREMENTS.SIDES.SHORTCUTS.RIGHT' | translate }}
             <input type="number" id="calfRight" formControlName="calfRight" placeholder="&nbsp;">
           </div>
         </div>
@@ -98,7 +98,7 @@
       <button class="button button-fill" type="submit">
         <div class="button-content-container horizontal-center">
           <ion-icon name="checkmark-outline"></ion-icon>
-          <p>{{ 'BODY.BUTTONS.SAVE' | translate }}</p>
+          <p>{{ 'BODY.MEASUREMENTS.BODY_MEASUREMENTS.BUTTONS.SAVE' | translate }}</p>
         </div>
       </button>
     </div>

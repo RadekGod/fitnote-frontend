@@ -1,0 +1,23 @@
+{
+  "LOGIN": {
+    "TITLE": {
+      "HELLO": "Cześć,",
+      "SIGN_IN": "zaloguj się do",
+      "APPLICATION": "aplikacji"
+    },
+    "INPUTS": {
+      "LABEL": {
+        "E-MAIL": "E-mail",
+        "PASSWORD": "Hasło"
+      }
+    },
+    "BUTTONS": {
+      "LOGIN": "Zaloguj się",
+      "REGISTER": "Zarejestruj się"
+    },
+    "PARAGRAPHS": {
+      "OTHER_LOGIN_OPTIONS": "lub kontynuuj za pomocą",
+      "NO_ACCOUNT": "Nie masz konta?"
+    }
+  }
+}

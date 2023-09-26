@@ -19,7 +19,7 @@ export class LoginService {
   loginUser(loginForm: User) {
     console.log('loginForm: ', loginForm);
     window.sessionStorage.setItem('userDetails',JSON.stringify(loginForm));
-    return this.http.get<User>(environment.rooturl + AppConstants.LOGIN_API_URL, { observe: 'response', withCredentials: true })
+    return this.http.get<User>(environment.rootUrl + AppConstants.LOGIN_API_URL, { observe: 'response', withCredentials: true })
       .subscribe(responseData => {
         window.sessionStorage.setItem('Authorization', responseData.headers.get('Authorization')!);
 

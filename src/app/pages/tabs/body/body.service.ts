@@ -27,29 +27,29 @@ export class BodyService {
   }
 
   getLatestGeneralMeasurement(): Observable<GeneralMeasurementDto> {
-    return this.httpClient.get<GeneralMeasurementDto>(environment.rooturl + AppConstants.GENERAL_MEASUREMENTS_API_URL + '/latest', { withCredentials:true });
+    return this.httpClient.get<GeneralMeasurementDto>(environment.rootUrl + AppConstants.GENERAL_MEASUREMENTS_API_URL + '/latest', { withCredentials:true });
   }
 
   addNewGeneralMeasurement(generalMeasurementDto: GeneralMeasurementDto): Observable<GeneralMeasurementDto> {
     console.log('generalMeasurementDto', generalMeasurementDto);
-    return this.httpClient.post<GeneralMeasurementDto>(environment.rooturl + AppConstants.GENERAL_MEASUREMENTS_API_URL, generalMeasurementDto,{ withCredentials: true });
+    return this.httpClient.post<GeneralMeasurementDto>(environment.rootUrl + AppConstants.GENERAL_MEASUREMENTS_API_URL, generalMeasurementDto,{ withCredentials: true });
   }
 
   editGeneralMeasurement(generalMeasurementId: number, generalMeasurementDto: GeneralMeasurementDto): Observable<any> {
     generalMeasurementDto.id = generalMeasurementId;
-    return this.httpClient.put<void>(environment.rooturl + AppConstants.GENERAL_MEASUREMENTS_API_URL + `/${generalMeasurementId}`, generalMeasurementDto);
+    return this.httpClient.put<void>(environment.rootUrl + AppConstants.GENERAL_MEASUREMENTS_API_URL + `/${generalMeasurementId}`, generalMeasurementDto);
   }
 
   getLatestBodyMeasurement(): Observable<BodyMeasurementDto> {
-    return this.httpClient.get<BodyMeasurementDto>(environment.rooturl + AppConstants.BODY_MEASUREMENTS_API_URL + '/latest', { withCredentials: true })
+    return this.httpClient.get<BodyMeasurementDto>(environment.rootUrl + AppConstants.BODY_MEASUREMENTS_API_URL + '/latest', { withCredentials: true })
   }
 
   addNewBodyMeasurement(bodyMeasurementDto: BodyMeasurementDto): Observable<BodyMeasurementDto> {
-    return this.httpClient.post<BodyMeasurementDto>(environment.rooturl + AppConstants.BODY_MEASUREMENTS_API_URL, bodyMeasurementDto, { withCredentials: true });
+    return this.httpClient.post<BodyMeasurementDto>(environment.rootUrl + AppConstants.BODY_MEASUREMENTS_API_URL, bodyMeasurementDto, { withCredentials: true });
   }
 
   editBodyMeasurement(bodyMeasurementId: number, bodyMeasurementDto: BodyMeasurementDto): Observable<any> {
     bodyMeasurementDto.id = bodyMeasurementId;
-    return this.httpClient.put<void>(environment.rooturl + AppConstants.BODY_MEASUREMENTS_API_URL + `/${bodyMeasurementId}`, bodyMeasurementDto);
+    return this.httpClient.put<void>(environment.rootUrl + AppConstants.BODY_MEASUREMENTS_API_URL + `/${bodyMeasurementId}`, bodyMeasurementDto);
   }
 }

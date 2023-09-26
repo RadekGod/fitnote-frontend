@@ -1,0 +1,30 @@
+{
+  "BODY": {
+    "MEASUREMENTS": {
+        "BODY_MEASUREMENTS": {
+          "PAGE_TITLES": {
+            "ADD_MEASUREMENT": "Dodaj pomiar",
+            "EDIT_MEASUREMENT": "Edytuj pomiar"
+          },
+          "SIDES": {
+            "SHORTCUTS": {
+              "LEFT": "L:",
+              "RIGHT": "P:"
+            }
+          },
+          "SECTION_TITLE": "Pomiary ciała",
+          "MEASUREMENT_DATE": "Data pomiaru:",
+          "CHEST": "Klatka piersiowa",
+          "BICEPS": "Biceps",
+          "FOREARM": "Przedramię",
+          "WAIST": "Talia",
+          "HIP": "Biodra",
+          "THIGH": "Udo",
+          "CALF": "Łydka",
+          "BUTTONS": {
+            "SAVE": "Zapisz"
+          }
+        }
+      }
+    }
+  }

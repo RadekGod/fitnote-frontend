@@ -1,6 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>{{ 'BODY.TITLES.BODY' | translate }}</ion-title>
+    <ion-title>{{ 'BODY.PAGE_TITLES.BODY' | translate }}</ion-title>
     <ion-buttons slot="end">
       <ion-button>
         <ion-icon size="large" slot="icon-only" name="calendar-outline"></ion-icon>
@@ -31,8 +31,8 @@
     <div class="section-container horizontal-center vertical-spacer-3vh">
       <div class="section-header">
         <div class="title-container">
-          <h3>{{ 'BODY.GENERAL_MEASUREMENTS.TITLE' | translate }}</h3>
-          <p *ngIf="generalMeasurement?.measurementDate">{{ 'BODY.GENERAL_MEASUREMENTS.MEASUREMENT_DATE' | translate }}
+          <h3>{{ 'BODY.MEASUREMENTS.GENERAL_MEASUREMENTS.SECTION_TITLE' | translate }}</h3>
+          <p *ngIf="generalMeasurement?.measurementDate">{{ 'BODY.MEASUREMENTS.GENERAL_MEASUREMENTS.MEASUREMENT_DATE' | translate }}
              {{ generalMeasurement?.measurementDate ? (generalMeasurement?.measurementDate | date:'dd.MM.yyyy HH:mm') : ''}}</p>
         </div>
         <div class="section-header-options">
@@ -45,40 +45,40 @@
         </div>
       </div>
 
-      <app-no-data [message]="'BODY.ERRORS.NO_MEASUREMENTS'" *ngIf="!generalMeasurement"></app-no-data>
+      <app-no-data [message]="'BODY.MEASUREMENTS.ERRORS.NO_MEASUREMENTS'" *ngIf="!generalMeasurement"></app-no-data>
 
 
       <div *ngIf="generalMeasurement" class="section-content">
         <div class="item">
-          <p>{{ 'BODY.GENERAL_MEASUREMENTS.HEIGHT' | translate }}</p>
+          <p>{{ 'BODY.MEASUREMENTS.GENERAL_MEASUREMENTS.HEIGHT' | translate }}</p>
           <div class="measurement">
             <p>{{generalMeasurement.height ? (generalMeasurement.height | number : '1.0-2') + ' ' + lengthUnitShortcut : '-' }}</p>
           </div>
         </div>
 
         <div class="item">
-          <p>{{ 'BODY.GENERAL_MEASUREMENTS.WEIGHT' | translate }}</p>
+          <p>{{ 'BODY.MEASUREMENTS.GENERAL_MEASUREMENTS.WEIGHT' | translate }}</p>
           <div class="measurement">
             <p>{{generalMeasurement.weight ? (generalMeasurement.weight | number : '1.0-2') + ' ' + weightUnitShortcut : '-' }}</p>
           </div>
         </div>
 
         <div class="item">
-          <p>{{ 'BODY.GENERAL_MEASUREMENTS.BMI' | translate }}</p>
+          <p>{{ 'BODY.MEASUREMENTS.GENERAL_MEASUREMENTS.BMI' | translate }}</p>
           <div class="measurement">
             <p>{{ generalMeasurement.bmi ? (generalMeasurement.bmi | number : '1.1-2') : '-'}}</p>
           </div>
         </div>
 
         <div class="item">
-          <p>{{ 'BODY.GENERAL_MEASUREMENTS.LEAN_MUSCLE_MASS' | translate }}</p>
+          <p>{{ 'BODY.MEASUREMENTS.GENERAL_MEASUREMENTS.LEAN_MUSCLE_MASS' | translate }}</p>
           <div class="measurement">
             <p>{{generalMeasurement.muscleContent ? generalMeasurement.muscleContent + ' %' : '-' }}</p>
           </div>
         </div>
 
         <div class="item">
-          <p>{{ 'BODY.GENERAL_MEASUREMENTS.BODY_FAT' | translate }}</p>
+          <p>{{ 'BODY.MEASUREMENTS.GENERAL_MEASUREMENTS.BODY_FAT' | translate }}</p>
           <div class="measurement">
             <p>{{generalMeasurement.bodyFat ? generalMeasurement.bodyFat + ' %' : '-' }}</p>
           </div>
@@ -89,8 +89,8 @@
     <div class="section-container horizontal-center vertical-spacer-3vh">
       <div class="section-header">
         <div class="title-container">
-          <h3>{{ 'BODY.BODY_MEASUREMENTS.TITLE' | translate }}</h3>
-          <p *ngIf="bodyMeasurement?.measurementDate">{{ 'BODY.BODY_MEASUREMENTS.MEASUREMENT_DATE' | translate }}
+          <h3>{{ 'BODY.MEASUREMENTS.BODY_MEASUREMENTS.SECTION_TITLE' | translate }}</h3>
+          <p *ngIf="bodyMeasurement?.measurementDate">{{ 'BODY.MEASUREMENTS.BODY_MEASUREMENTS.MEASUREMENT_DATE' | translate }}
             {{ bodyMeasurement?.measurementDate ? (bodyMeasurement?.measurementDate | date:'dd.MM.yyyy HH:mm') : ''}}</p>
         </div>
         <div class="section-header-options">
@@ -103,67 +103,67 @@
         </div>
       </div>
 
-      <app-no-data [message]="'BODY.ERRORS.NO_MEASUREMENTS'" *ngIf="!bodyMeasurement"></app-no-data>
+      <app-no-data [message]="'BODY.MEASUREMENTS.ERRORS.NO_MEASUREMENTS'" *ngIf="!bodyMeasurement"></app-no-data>
 
       <div *ngIf="bodyMeasurement" class="section-content">
         <div class="item">
-          <p>{{ 'BODY.BODY_MEASUREMENTS.CHEST' | translate }}</p>
+          <p>{{ 'BODY.MEASUREMENTS.BODY_MEASUREMENTS.CHEST' | translate }}</p>
           <div class="measurement">
             <p>{{bodyMeasurement.chest ? (bodyMeasurement.chest | number : '1.0-2') + ' ' + lengthUnitShortcut : '-' }}</p>
           </div>
         </div>
 
         <div class="item">
-          <p>{{ 'BODY.BODY_MEASUREMENTS.BICEPS' | translate }}</p>
+          <p>{{ 'BODY.MEASUREMENTS.BODY_MEASUREMENTS.BICEPS' | translate }}</p>
           <div class="measurement">
             <p>
-              {{ 'BODY.BODY_MEASUREMENTS.SIDES.SHORTCUTS.LEFT' | translate }}
+              {{ 'BODY.MEASUREMENTS.BODY_MEASUREMENTS.SIDES.SHORTCUTS.LEFT' | translate }}
               {{bodyMeasurement.bicepsLeft ? (bodyMeasurement.bicepsLeft | number : '1.0-2') + ' ' + lengthUnitShortcut : '-'}}</p>
-            <p>{{ 'BODY.BODY_MEASUREMENTS.SIDES.SHORTCUTS.RIGHT' | translate }}
+            <p>{{ 'BODY.MEASUREMENTS.BODY_MEASUREMENTS.SIDES.SHORTCUTS.RIGHT' | translate }}
               {{bodyMeasurement.bicepsRight ? (bodyMeasurement.bicepsRight | number : '1.0-2') + ' ' + lengthUnitShortcut : '-'}}</p>
           </div>
         </div>
 
         <div class="item">
-          <p>{{ 'BODY.BODY_MEASUREMENTS.FOREARM' | translate }}</p>
+          <p>{{ 'BODY.MEASUREMENTS.BODY_MEASUREMENTS.FOREARM' | translate }}</p>
           <div class="measurement">
-            <p>{{ 'BODY.BODY_MEASUREMENTS.SIDES.SHORTCUTS.LEFT' | translate }}
+            <p>{{ 'BODY.MEASUREMENTS.BODY_MEASUREMENTS.SIDES.SHORTCUTS.LEFT' | translate }}
               {{bodyMeasurement.forearmLeft ? (bodyMeasurement.forearmLeft | number : '1.0-2') + ' ' + lengthUnitShortcut : '-'}}</p>
-            <p>{{ 'BODY.BODY_MEASUREMENTS.SIDES.SHORTCUTS.RIGHT' | translate }}
+            <p>{{ 'BODY.MEASUREMENTS.BODY_MEASUREMENTS.SIDES.SHORTCUTS.RIGHT' | translate }}
               {{bodyMeasurement.forearmRight ? (bodyMeasurement.forearmRight | number : '1.0-2') + ' ' + lengthUnitShortcut : '-'}}</p>
           </div>
         </div>
 
         <div class="item">
-          <p>{{ 'BODY.BODY_MEASUREMENTS.WAIST' | translate }}</p>
+          <p>{{ 'BODY.MEASUREMENTS.BODY_MEASUREMENTS.WAIST' | translate }}</p>
           <div class="measurement">
             <p>{{bodyMeasurement.waist ? (bodyMeasurement.waist | number : '1.0-2') + ' ' + lengthUnitShortcut : '-'}}</p>
           </div>
         </div>
 
         <div class="item">
-          <p>{{ 'BODY.BODY_MEASUREMENTS.HIP' | translate }}</p>
+          <p>{{ 'BODY.MEASUREMENTS.BODY_MEASUREMENTS.HIP' | translate }}</p>
           <div class="measurement">
             <p>{{bodyMeasurement.hip ? (bodyMeasurement.hip | number : '1.0-2') + ' ' + lengthUnitShortcut : '-'}}</p>
           </div>
         </div>
 
         <div class="item">
-          <p>{{ 'BODY.BODY_MEASUREMENTS.THIGH' | translate }}</p>
+          <p>{{ 'BODY.MEASUREMENTS.BODY_MEASUREMENTS.THIGH' | translate }}</p>
           <div class="measurement">
-            <p>{{ 'BODY.BODY_MEASUREMENTS.SIDES.SHORTCUTS.LEFT' | translate }}
+            <p>{{ 'BODY.MEASUREMENTS.BODY_MEASUREMENTS.SIDES.SHORTCUTS.LEFT' | translate }}
               {{bodyMeasurement.thighLeft ? (bodyMeasurement.thighLeft | number : '1.0-2') + ' ' + lengthUnitShortcut : '-'}}</p>
-            <p>{{ 'BODY.BODY_MEASUREMENTS.SIDES.SHORTCUTS.RIGHT' | translate }}
+            <p>{{ 'BODY.MEASUREMENTS.BODY_MEASUREMENTS.SIDES.SHORTCUTS.RIGHT' | translate }}
               {{bodyMeasurement.thighRight ? (bodyMeasurement.thighRight | number : '1.0-2') + ' ' + lengthUnitShortcut : '-'}}</p>
           </div>
         </div>
 
         <div class="item">
-          <p>{{ 'BODY.BODY_MEASUREMENTS.CALF' | translate }}</p>
+          <p>{{ 'BODY.MEASUREMENTS.BODY_MEASUREMENTS.CALF' | translate }}</p>
           <div class="measurement">
-            <p>{{ 'BODY.BODY_MEASUREMENTS.SIDES.SHORTCUTS.LEFT' | translate }}
+            <p>{{ 'BODY.MEASUREMENTS.BODY_MEASUREMENTS.SIDES.SHORTCUTS.LEFT' | translate }}
               {{bodyMeasurement.calfLeft ? (bodyMeasurement.calfLeft | number : '1.0-2') + ' ' + lengthUnitShortcut : '-'}}</p>
-            <p>{{ 'BODY.BODY_MEASUREMENTS.SIDES.SHORTCUTS.RIGHT' | translate }}
+            <p>{{ 'BODY.MEASUREMENTS.BODY_MEASUREMENTS.SIDES.SHORTCUTS.RIGHT' | translate }}
               {{bodyMeasurement.calfRight ? (bodyMeasurement.calfRight | number : '1.0-2') + ' ' + lengthUnitShortcut : '-'}}</p>
           </div>
         </div>
