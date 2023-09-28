@@ -14,7 +14,8 @@ import {User} from "../../../commons/models/user.model";
 })
 export class BodyPage implements OnInit {
 
-  segmentValue: string = 'measurements';
+  // segmentValue: string = 'measurements';
+  segmentValue: string = 'photoGallery';
   bodyMeasurement: BodyMeasurementDto | null = null;
   generalMeasurement: GeneralMeasurementDto | null = null;
   private generalMeasurementSubscription!: Subscription;

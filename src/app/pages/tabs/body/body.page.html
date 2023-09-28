@@ -32,11 +32,13 @@
       <div class="section-header">
         <div class="title-container">
           <h3>{{ 'BODY.MEASUREMENTS.GENERAL_MEASUREMENTS.SECTION_TITLE' | translate }}</h3>
-          <p *ngIf="generalMeasurement?.measurementDate">{{ 'BODY.MEASUREMENTS.GENERAL_MEASUREMENTS.MEASUREMENT_DATE' | translate }}
-             {{ generalMeasurement?.measurementDate ? (generalMeasurement?.measurementDate | date:'dd.MM.yyyy HH:mm') : ''}}</p>
+          <p
+            *ngIf="generalMeasurement?.measurementDate">{{ 'BODY.MEASUREMENTS.GENERAL_MEASUREMENTS.MEASUREMENT_DATE' | translate }}
+            {{ generalMeasurement?.measurementDate ? (generalMeasurement?.measurementDate | date:'dd.MM.yyyy HH:mm') : ''}}</p>
         </div>
         <div class="section-header-options">
-          <button *ngIf="generalMeasurement" [routerLink]="['/', 'tabs', 'body', 'edit-general-measurement', generalMeasurement.id]">
+          <button *ngIf="generalMeasurement"
+                  [routerLink]="['/', 'tabs', 'body', 'edit-general-measurement', generalMeasurement.id]">
             <ion-icon slot="icon-only" name="create-outline"></ion-icon>
           </button>
           <button [routerLink]="['/', 'tabs', 'body', 'add-general-measurement']">
@@ -90,11 +92,13 @@
       <div class="section-header">
         <div class="title-container">
           <h3>{{ 'BODY.MEASUREMENTS.BODY_MEASUREMENTS.SECTION_TITLE' | translate }}</h3>
-          <p *ngIf="bodyMeasurement?.measurementDate">{{ 'BODY.MEASUREMENTS.BODY_MEASUREMENTS.MEASUREMENT_DATE' | translate }}
+          <p
+            *ngIf="bodyMeasurement?.measurementDate">{{ 'BODY.MEASUREMENTS.BODY_MEASUREMENTS.MEASUREMENT_DATE' | translate }}
             {{ bodyMeasurement?.measurementDate ? (bodyMeasurement?.measurementDate | date:'dd.MM.yyyy HH:mm') : ''}}</p>
         </div>
         <div class="section-header-options">
-          <button *ngIf="bodyMeasurement" [routerLink]="['/', 'tabs', 'body', 'edit-body-measurement', bodyMeasurement.id]">
+          <button *ngIf="bodyMeasurement"
+                  [routerLink]="['/', 'tabs', 'body', 'edit-body-measurement', bodyMeasurement.id]">
             <ion-icon slot="icon-only" name="create-outline"></ion-icon>
           </button>
           <button [routerLink]="['/', 'tabs', 'body', 'add-body-measurement']">
@@ -172,6 +176,77 @@
   </div>
 
 
-  <div *ngIf="segmentValue === 'photoGallery'" class="measurements-container">
+  <div *ngIf="segmentValue === 'photoGallery'" class="photo-gallery-container vertical-spacer-1vh horizontal-center">
+    <div class="images-group-container">
+      <h3>Sierpień 2023</h3>
+      <div class="images-container">
+        <div class="images-row-container">
+          <div class="image-container">
+            <ion-thumbnail>
+              <img alt="Silhouette of mountains"
+                   src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/51ce2b54933123.596f84ed7befe.gif"/>
+            </ion-thumbnail>
+          </div>
+          <div class="image-container">
+            <ion-thumbnail>
+              <img alt="Silhouette of mountains"
+                   src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/51ce2b54933123.596f84ed7befe.gif"/>
+            </ion-thumbnail>
+          </div>
+          <div class="image-container">
+            <ion-thumbnail>
+              <img alt="Silhouette of mountains"
+                   src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/51ce2b54933123.596f84ed7befe.gif"/>
+            </ion-thumbnail>
+          </div>
+          <div class="image-container">
+            <ion-thumbnail>
+              <img alt="Silhouette of mountains"
+                   src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/51ce2b54933123.596f84ed7befe.gif"/>
+            </ion-thumbnail>
+          </div>
+        </div>
+          <div class="images-row-container">
+          <div class="image-container">
+            <ion-thumbnail>
+              <img alt="Silhouette of mountains"
+                   src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/51ce2b54933123.596f84ed7befe.gif"/>
+            </ion-thumbnail>
+          </div>
+          <div class="image-container">
+            <ion-thumbnail>
+              <img alt="Silhouette of mountains"
+                   src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/51ce2b54933123.596f84ed7befe.gif"/>
+            </ion-thumbnail>
+          </div>
+            <div class="image-container">
+              <ion-thumbnail>
+                <img alt="Silhouette of mountains"
+                     src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/51ce2b54933123.596f84ed7befe.gif"/>
+              </ion-thumbnail>
+            </div>
+            <div class="image-container">
+              <ion-thumbnail>
+                <img alt="Silhouette of mountains"
+                     src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/51ce2b54933123.596f84ed7befe.gif"/>
+              </ion-thumbnail>
+            </div>
+          </div>
+        <div class="images-row-container">
+          <div class="image-container">
+            <ion-thumbnail>
+              <img alt="Silhouette of mountains"
+                   src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/51ce2b54933123.596f84ed7befe.gif"/>
+            </ion-thumbnail>
+          </div>
+          <div class="image-container">
+            <ion-thumbnail>
+              <img alt="Silhouette of mountains"
+                   src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/51ce2b54933123.596f84ed7befe.gif"/>
+            </ion-thumbnail>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </ion-content>
