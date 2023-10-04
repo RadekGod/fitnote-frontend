@@ -15,12 +15,10 @@
 
 <ion-content [fullscreen]="true">
 
-  <div class="button-container vertical-spacer-3vh horizontal-center"
-       [routerLink]="['/', 'tabs', 'more', 'exercise-groups']">
-    <button class="button button-outline" type="submit">
+  <div class="button-container vertical-spacer-3vh horizontal-center">
+    <button class="button button-fill" type="submit">
       <div class="button-content-container horizontal-center">
-        <ion-icon name="add-outline"></ion-icon>
-        <p>Dodaj ćwiczenie</p>
+        <p>Rozpocznij trening</p>
       </div>
     </button>
   </div>
@@ -137,15 +135,18 @@
         </div>
       </div>
     </ion-reorder-group>
+
+    <div class="button-container vertical-spacer-3vh horizontal-center"
+         [routerLink]="['/', 'tabs', 'more', 'exercise-groups']">
+      <button class="button button-outline" type="submit">
+        <div class="button-content-container horizontal-center">
+          <ion-icon name="add-outline"></ion-icon>
+          <p>Dodaj ćwiczenie</p>
+        </div>
+      </button>
+    </div>
   </div>
 
-  <div class="button-container vertical-spacer-3vh horizontal-center">
-    <button class="button button-fill" type="submit">
-      <div class="button-content-container horizontal-center">
-        <p>Rozpocznij trening</p>
-      </div>
-    </button>
+  <div class="vertical-spacer-3vh">
   </div>
-
-  <div class="vertical-spacer-1vh"></div>
 </ion-content>

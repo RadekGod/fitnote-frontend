@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {FormBuilder, FormGroup} from "@angular/forms";
-import {BodyService} from "../body.service";
+import {BodyService} from "../../body.service";
 import {DatePipe, DecimalPipe} from "@angular/common";
 import {Subscription} from "rxjs";
-import {BodyMeasurementDto} from "../model/body-measurement-dto.model";
-import {MeasurementUnitsService} from "../../../../commons/services/mesurement-units/measurement-units.service";
+import {BodyMeasurementDto} from "../../model/body-measurement-dto.model";
+import {MeasurementUnitsService} from "../../../../../commons/services/mesurement-units/measurement-units.service";
 
 @Component({
   selector: 'app-edit-body-measurement',

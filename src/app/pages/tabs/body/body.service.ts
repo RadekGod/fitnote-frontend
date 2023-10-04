@@ -5,6 +5,7 @@ import {Observable, Subject} from "rxjs";
 import {BodyMeasurementDto} from "./model/body-measurement-dto.model";
 import {GeneralMeasurementDto} from "./model/general-measurement-dto.model";
 import {AppConstants} from "../../../configuration/app.constants";
+import {GalleryPhotoDto} from "./model/gallery-photo.model";
 
 @Injectable({
   providedIn: 'root'
@@ -51,5 +52,24 @@ export class BodyService {
   editBodyMeasurement(bodyMeasurementId: number, bodyMeasurementDto: BodyMeasurementDto): Observable<any> {
     bodyMeasurementDto.id = bodyMeasurementId;
     return this.httpClient.put<void>(environment.rootUrl + AppConstants.BODY_MEASUREMENTS_API_URL + `/${bodyMeasurementId}`, bodyMeasurementDto);
+  }
+
+
+
+
+
+
+
+
+
+  addGalleryPhoto(formData: FormData): Observable<GalleryPhotoDto>  {
+    // console.log('Formularz do wysłania', formData.get('file'));
+    console.log('Formularz do wysłania', formData);
+    return this.httpClient.post<GalleryPhotoDto>(environment.rootUrl + AppConstants.PHOTO_GALLERY_API_URL, formData,{ withCredentials: true });
+  }
+
+  getAllGalleryPhotos(): Observable<GalleryPhotoDto[]> {
+    // console.log('Formularz do wysłania', formData.get('file'));
+    return this.httpClient.get<GalleryPhotoDto[]>(environment.rootUrl + AppConstants.PHOTO_GALLERY_API_URL,{ withCredentials: true });
   }
 }

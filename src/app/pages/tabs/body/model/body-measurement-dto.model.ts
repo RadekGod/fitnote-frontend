@@ -1,5 +1,5 @@
-import {LengthUnit} from "../../../../commons/models/length-units";
-import {WeightUnit} from "../../../../commons/models/weight-units";
+import {LengthUnit} from "../../../../commons/enums/length-units.enum";
+import {WeightUnit} from "../../../../commons/enums/weight-units.enum";
 
 export interface BodyMeasurementDto {
   id: number,

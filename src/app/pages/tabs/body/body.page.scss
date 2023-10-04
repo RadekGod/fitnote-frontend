@@ -2,11 +2,6 @@
   color: var(--ion-color-secondary);
   width: 90%;
 
-  .images-group-container {
-    h3 {
-
-    }
-
     .images-container {
       display: flex;
       flex-direction: column;
@@ -25,6 +20,38 @@
           }
         }
       }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.photo-gallery-container {
+  table {
+    td {
+      width: 22.5%;
+      padding: 1%;
+
+      ion-thumbnail {
+        width: 21vw;
+        height: 10vh;
+      }
+    }
+
+    td:first-child {
+      padding-left: 0;
+    }
+
+    td:last-child {
+      padding-right: 0;
     }
   }
 }

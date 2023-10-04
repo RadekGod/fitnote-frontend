@@ -9,19 +9,14 @@
 
 <ion-content [fullscreen]="true">
   <div class="custom-exercise-form-container vertical-spacer-2vh horizontal-center">
-    <div class="image-input-container">
+    <div class="image-input-container" (click)="selectImage()">
       <ion-icon name="camera-outline"></ion-icon>
     </div>
-
-
-
-
-
   </div>
 
 
 
-  <div class="form-container vertical-spacer-5vh">
+  <div class="form-container vertical-spacer-5vh horizontal-center">
     <form (ngSubmit)="validateAndSendMeasurementForm(addCustomExerciseForm)"
           [formGroup]="addCustomExerciseForm">
 
@@ -31,28 +26,64 @@
           <label for="exerciseName" class="input-label">{{ 'Nazwa ćwiczenia' | translate }}</label>
         </div>
 
-        <ion-select aria-label="Fruit" color="secondary" placeholder="Select all fruits that apply" formControlName="exerciseType" multiple="true">
-          <ion-select-option color="secondary" value="apples">Apples</ion-select-option>
-          <ion-select-option value="oranges">Oranges</ion-select-option>
-          <ion-select-option value="bananas">Bananas</ion-select-option>
+        <div class="vertical-spacer-3vh"></div>
+
+        <div class="input-container horizontal-center">
+          <input type="text" id="exerciseInstruction" formControlName="exerciseInstruction" placeholder="&nbsp;">
+          <label for="exerciseInstruction" class="input-label">{{ 'Instrukcja' | translate }}</label>
+        </div>
+
+        <ion-select  class="horizontal-center" label="Rodzaj ćwiczenia" [interfaceOptions]="exerciseTypeOptions" formControlName="exerciseType">
+          <ion-select-option *ngFor="let exerciseType of exerciseTypes | keyvalue" [value]="exerciseType.value">{{exerciseType.value}}</ion-select-option>
+          <!--          <ion-select-option value="FREE_WEIGHT"><p>Siłowe</p></ion-select-option>-->
+<!--          <ion-select-option value="oranges">Oranges</ion-select-option>-->
+<!--          <ion-select-option value="oranges">Oranges</ion-select-option>-->
+<!--          <ion-select-option value="oranges">Cardio (Czas)</ion-select-option>-->
+<!--          <ion-select-option value="bananas">Cardio (Odległość)</ion-select-option>-->
         </ion-select>
 
-<!--        <div class="input-container horizontal-center">-->
-<!--          <input type="text" id="exerciseName" formControlName="exerciseName" placeholder="&nbsp;">-->
-<!--          <label for="exerciseName" class="input-label">{{ 'Nazwa ćwiczenia' | translate }}</label>-->
-<!--        </div>-->
+        <div class="horizontal-spacer horizontal-center"></div>
+
+        <ion-select class="horizontal-center" label="Grupy ćwiczenia" [interfaceOptions]="exerciseGroupOptions" formControlName="exerciseGroup" multiple="true" >
+          <ion-select-option *ngFor="let exerciseGroup of exerciseGroups | keyvalue" [value]="exerciseGroup.value">{{exerciseGroup.value}}</ion-select-option>
+        </ion-select>
+
+        <div class="horizontal-spacer horizontal-center"></div>
+
+        <ion-select  class="horizontal-center" label="Główne mięśnie" [interfaceOptions]="mainMusclesOptions" formControlName="mainMuscleGroups" multiple="true" >
+          <ion-select-option *ngFor="let muscle of muscles | keyvalue" [value]="muscle.value">{{muscle.value}}</ion-select-option>
+        </ion-select>
+
+        <div class="horizontal-spacer horizontal-center"></div>
+
+        <ion-select  class="horizontal-center" label="Wspierające mięśnie" [interfaceOptions]="supportiveMusclesOptions" formControlName="supportiveMuscleGroups" multiple="true" >
+          <ion-select-option *ngFor="let muscle of muscles | keyvalue" [value]="muscle.value">{{muscle.value}}</ion-select-option>
+        </ion-select>
+
+        <div class="horizontal-spacer horizontal-center"></div>
+
+<!--        <ion-select  class="horizontal-center" label="Sprzęt" [interfaceOptions]="exerciseEquipmentOptions" placeholder="" formControlName="exerciseEquipment" multiple="true" >-->
+<!--          <ion-select-option value="apples"><p>Hantle</p></ion-select-option>-->
+<!--          <ion-select-option value="oranges">Sztanga prosta</ion-select-option>-->
+<!--          <ion-select-option value="bananas">Sztanga łamana</ion-select-option>-->
+<!--        </ion-select>-->
+
+<!--        <div class="horizontal-spacer horizontal-center"></div>-->
+
       </div>
 
       <div class="button-container vertical-spacer-3vh horizontal-center">
         <button class="button button-fill" type="submit">
           <div class="button-content-container horizontal-center">
-            <p>Zapisz</p>
+            <ion-icon name="checkmark-outline"></ion-icon>
+            <p>{{ 'Zapisz' | translate }}</p>
           </div>
         </button>
       </div>
     </form>
   </div>
 
+  <div class="vertical-spacer-3vh"></div>
 
 
 </ion-content>

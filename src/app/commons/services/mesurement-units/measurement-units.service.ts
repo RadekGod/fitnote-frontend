@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
-import {LengthUnit} from "../../models/length-units";
-import {WeightUnit} from "../../models/weight-units";
+import {LengthUnit} from "../../enums/length-units.enum";
+import {WeightUnit} from "../../enums/weight-units.enum";
 import {UserService} from "../user/user.service";
 import {User} from "../../models/user.model";
 import {Subject, Subscription} from "rxjs";

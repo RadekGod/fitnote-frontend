@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {Router} from "@angular/router";
-import {BodyService} from "../body.service";
+import {BodyService} from "../../body.service";
 import {DatePipe, DecimalPipe} from "@angular/common";
 import {Subscription} from "rxjs";
-import {MeasurementUnitsService} from "../../../../commons/services/mesurement-units/measurement-units.service";
-import {GeneralMeasurementDto} from "../model/general-measurement-dto.model";
+import {MeasurementUnitsService} from "../../../../../commons/services/mesurement-units/measurement-units.service";
+import {GeneralMeasurementDto} from "../../model/general-measurement-dto.model";
 
 @Component({
   selector: 'app-add-general-measurements',

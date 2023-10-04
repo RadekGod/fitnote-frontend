@@ -177,76 +177,109 @@
 
 
   <div *ngIf="segmentValue === 'photoGallery'" class="photo-gallery-container vertical-spacer-1vh horizontal-center">
-    <div class="images-group-container">
-      <h3>Sierpień 2023</h3>
-      <div class="images-container">
-        <div class="images-row-container">
-          <div class="image-container">
-            <ion-thumbnail>
-              <img alt="Silhouette of mountains"
-                   src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/51ce2b54933123.596f84ed7befe.gif"/>
-            </ion-thumbnail>
-          </div>
-          <div class="image-container">
-            <ion-thumbnail>
-              <img alt="Silhouette of mountains"
-                   src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/51ce2b54933123.596f84ed7befe.gif"/>
-            </ion-thumbnail>
-          </div>
-          <div class="image-container">
-            <ion-thumbnail>
-              <img alt="Silhouette of mountains"
-                   src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/51ce2b54933123.596f84ed7befe.gif"/>
-            </ion-thumbnail>
-          </div>
-          <div class="image-container">
-            <ion-thumbnail>
-              <img alt="Silhouette of mountains"
-                   src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/51ce2b54933123.596f84ed7befe.gif"/>
-            </ion-thumbnail>
-          </div>
+    <div class="button-container vertical-spacer-3vh horizontal-center"
+         [routerLink]="['/', 'tabs', 'body', 'add-photo']">
+      <button class="button button-fill" type="submit">
+        <div class="button-content-container horizontal-center">
+          <ion-icon name="add-outline"></ion-icon>
+          <p>{{ 'Dodaj zdjęcie' | translate }}</p>
         </div>
-          <div class="images-row-container">
-          <div class="image-container">
-            <ion-thumbnail>
-              <img alt="Silhouette of mountains"
-                   src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/51ce2b54933123.596f84ed7befe.gif"/>
-            </ion-thumbnail>
-          </div>
-          <div class="image-container">
-            <ion-thumbnail>
-              <img alt="Silhouette of mountains"
-                   src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/51ce2b54933123.596f84ed7befe.gif"/>
-            </ion-thumbnail>
-          </div>
-            <div class="image-container">
-              <ion-thumbnail>
-                <img alt="Silhouette of mountains"
-                     src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/51ce2b54933123.596f84ed7befe.gif"/>
-              </ion-thumbnail>
-            </div>
-            <div class="image-container">
-              <ion-thumbnail>
-                <img alt="Silhouette of mountains"
-                     src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/51ce2b54933123.596f84ed7befe.gif"/>
-              </ion-thumbnail>
-            </div>
-          </div>
-        <div class="images-row-container">
-          <div class="image-container">
-            <ion-thumbnail>
-              <img alt="Silhouette of mountains"
-                   src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/51ce2b54933123.596f84ed7befe.gif"/>
-            </ion-thumbnail>
-          </div>
-          <div class="image-container">
-            <ion-thumbnail>
-              <img alt="Silhouette of mountains"
-                   src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/51ce2b54933123.596f84ed7befe.gif"/>
-            </ion-thumbnail>
-          </div>
+      </button>
+    </div>
+    <div class="images-container vertical-spacer-3vh">
+      <div class="images-row-container">
+        <div class="image-container">
+          <ion-thumbnail>
+            <img alt="Silhouette of mountains"
+                 src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/51ce2b54933123.596f84ed7befe.gif"/>
+          </ion-thumbnail>
+        </div>
+        <div class="image-container">
+          <ion-thumbnail>
+            <img alt="Silhouette of mountains"
+                 src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/51ce2b54933123.596f84ed7befe.gif"/>
+          </ion-thumbnail>
+        </div>
+        <div class="image-container">
+          <ion-thumbnail>
+            <img alt="Silhouette of mountains"
+                 src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/51ce2b54933123.596f84ed7befe.gif"/>
+          </ion-thumbnail>
+        </div>
+        <div class="image-container">
+          <ion-thumbnail>
+            <img alt="Silhouette of mountains"
+                 src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/51ce2b54933123.596f84ed7befe.gif"/>
+          </ion-thumbnail>
+        </div>
+      </div>
+      <div class="images-row-container">
+        <div class="image-container">
+          <ion-thumbnail>
+            <img alt="Silhouette of mountains"
+                 src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/51ce2b54933123.596f84ed7befe.gif"/>
+          </ion-thumbnail>
+        </div>
+        <div class="image-container">
+          <ion-thumbnail>
+            <img alt="Silhouette of mountains"
+                 src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/51ce2b54933123.596f84ed7befe.gif"/>
+          </ion-thumbnail>
+        </div>
+        <div class="image-container">
+          <ion-thumbnail>
+            <img alt="Silhouette of mountains"
+                 src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/51ce2b54933123.596f84ed7befe.gif"/>
+          </ion-thumbnail>
+        </div>
+        <div class="image-container">
+          <ion-thumbnail>
+            <img alt="Silhouette of mountains"
+                 src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/51ce2b54933123.596f84ed7befe.gif"/>
+          </ion-thumbnail>
+        </div>
+      </div>
+      <div class="images-row-container" *ngFor="let file of images">
+        <div class="image-container">
+          <ion-thumbnail>
+            <img alt="Silhouette of mountains"
+                 [src]="file"/>
+          </ion-thumbnail>
         </div>
       </div>
     </div>
+
+
+    <table>
+<!--      <ng-container *ngFor="let imageRow of images">-->
+                <tr  *ngFor="let imageRow of images">
+<!--        <tr>-->
+          <td *ngFor="let image of imageRow.images">
+            <ion-thumbnail>
+              <img alt="Silhouette of mountains"
+                   [src]="image"/>
+            </ion-thumbnail>
+          </td>
+<!--          <td>-->
+<!--            <ion-thumbnail>-->
+<!--              <img alt="Silhouette of mountains"-->
+<!--                   src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/51ce2b54933123.596f84ed7befe.gif"/>-->
+<!--            </ion-thumbnail>-->
+<!--          </td>-->
+<!--          <td>-->
+<!--            <ion-thumbnail>-->
+<!--              <img alt="Silhouette of mountains"-->
+<!--                   src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/51ce2b54933123.596f84ed7befe.gif"/>-->
+<!--            </ion-thumbnail>-->
+<!--          </td>-->
+<!--          <td>-->
+<!--            <ion-thumbnail>-->
+<!--              <img alt="Silhouette of mountains"-->
+<!--                   src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/51ce2b54933123.596f84ed7befe.gif"/>-->
+<!--            </ion-thumbnail>-->
+<!--          </td>-->
+        </tr>
+<!--        </ng-container>-->
+    </table>
   </div>
 </ion-content>

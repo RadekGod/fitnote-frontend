@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  rootUrl : 'http://localhost:8080'
+  rootUrl: 'http://localhost:8080',
+  imageDir: 'stored-images'
 };
 
 /*

@@ -29,8 +29,13 @@ export class LoginPage implements OnInit {
   validateUser(loginForm: FormGroup) {
     console.log(loginForm);
       // this.router.navigate(['tabs', 'body']);
+    // this.router.navigate(['tabs', 'training-plans']);
     //TODO przeanalizować  i poprawić sposob zapisywania userDetails
+
     this.loginService.loginUser(loginForm.value);
+
+
+
       // .subscribe(() => {
       // let userDetails: User;
       // window.sessionStorage.setItem("Authorization", responseData.headers.get('Authorization')!);

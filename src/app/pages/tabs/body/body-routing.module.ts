@@ -10,19 +10,27 @@ const routes: Routes = [
   },
   {
     path: 'add-general-measurement',
-    loadChildren: () => import('./add-general-measurement/add-general-measurement.module').then(m => m.AddGeneralMeasurementPageModule)
+    loadChildren: () => import('./measurements/add-general-measurement/add-general-measurement.module').then(m => m.AddGeneralMeasurementPageModule)
   },
   {
     path: 'edit-general-measurement/:id',
-    loadChildren: () => import('./edit-general-measurements/edit-general-measurement.module').then(m => m.EditGeneralMeasurementPageModule)
+    loadChildren: () => import('./measurements/edit-general-measurements/edit-general-measurement.module').then(m => m.EditGeneralMeasurementPageModule)
   },
   {
     path: 'add-body-measurement',
-    loadChildren: () => import('./add-body-measurement/add-body-measurement.module').then( m => m.AddBodyMeasurementPageModule)
+    loadChildren: () => import('./measurements/add-body-measurement/add-body-measurement.module').then(m => m.AddBodyMeasurementPageModule)
   },
   {
     path: 'edit-body-measurement/:id',
-    loadChildren: () => import('./edit-body-measurement/edit-body-measurement.module').then( m => m.EditBodyMeasurementPageModule)
+    loadChildren: () => import('./measurements/edit-body-measurement/edit-body-measurement.module').then(m => m.EditBodyMeasurementPageModule)
+  },
+  {
+    path: 'add-photo',
+    loadChildren: () => import('./photo-gallery/add-photo/add-photo.module').then(m => m.AddPhotoPageModule)
+  },
+  {
+    path: 'photo-details',
+    loadChildren: () => import('./photo-gallery/photo-details/photo-details.module').then(m => m.PhotoDetailsPageModule)
   }
 ];
 

@@ -1,0 +1,53 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/body"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ 'Dodaj zdjęcie' | translate }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon size="large" name="ellipsis-vertical"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+<!--  <div class="custom-exercise-form-container vertical-spacer-2vh horizontal-center">-->
+    <div class="image-input-container vertical-spacer-2vh horizontal-center" (click)="selectImageToUpload()">
+      <ion-icon *ngIf="!imageToDisplay"  name="camera-outline"></ion-icon>
+      <img *ngIf="imageToDisplay" [src]="imageToDisplay">
+    </div>
+<!--  </div>-->
+
+
+  <div class="form-container vertical-spacer-5vh horizontal-center">
+    <form (ngSubmit)="temp(addPhotoForm)"
+          [formGroup]="addPhotoForm">
+
+      <div class="form-inputs-container horizontal-center">
+
+        <div class="vertical-spacer-3vh"></div>
+
+        <div class="input-container horizontal-center">
+          <input type="text" id="note" formControlName="note" placeholder="&nbsp;">
+          <label for="note" class="input-label">{{ 'Komentarz' | translate }}</label>
+        </div>
+
+      </div>
+
+      <div class="button-container vertical-spacer-3vh horizontal-center">
+        <button class="button button-fill" type="submit">
+          <div class="button-content-container horizontal-center">
+            <ion-icon name="checkmark-outline"></ion-icon>
+            <p>{{ 'Zapisz' | translate }}</p>
+          </div>
+        </button>
+      </div>
+    </form>
+  </div>
+</ion-content>
+
+
+
+(click)="selectImageToUpload()
