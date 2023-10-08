@@ -13,27 +13,21 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-<!--  <div class="custom-exercise-form-container vertical-spacer-2vh horizontal-center">-->
     <div class="image-input-container vertical-spacer-2vh horizontal-center" (click)="selectImageToUpload()">
       <ion-icon *ngIf="!imageToDisplay"  name="camera-outline"></ion-icon>
       <img *ngIf="imageToDisplay" [src]="imageToDisplay">
     </div>
-<!--  </div>-->
-
 
   <div class="form-container vertical-spacer-5vh horizontal-center">
-    <form (ngSubmit)="temp(addPhotoForm)"
-          [formGroup]="addPhotoForm">
+    <form (ngSubmit)="addGalleryPhoto()"
+          [formGroup]="addBodyPhotoForm">
 
       <div class="form-inputs-container horizontal-center">
-
         <div class="vertical-spacer-3vh"></div>
-
         <div class="input-container horizontal-center">
           <input type="text" id="note" formControlName="note" placeholder="&nbsp;">
           <label for="note" class="input-label">{{ 'Komentarz' | translate }}</label>
         </div>
-
       </div>
 
       <div class="button-container vertical-spacer-3vh horizontal-center">
@@ -47,7 +41,3 @@
     </form>
   </div>
 </ion-content>
-
-
-
-(click)="selectImageToUpload()

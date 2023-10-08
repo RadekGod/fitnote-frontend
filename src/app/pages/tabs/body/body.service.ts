@@ -18,6 +18,7 @@ export class BodyService {
 
   public generalMeasurementChange = new Subject<void>();
   public bodyMeasurementChange = new Subject<void>();
+  public galleryPhotoChange = new Subject<void>();
 
   notifyAboutGeneralMeasurementChange(): void {
     this.generalMeasurementChange.next();
@@ -25,6 +26,10 @@ export class BodyService {
 
   notifyAboutBodyMeasurementChange(): void {
     this.bodyMeasurementChange.next();
+  }
+
+  notifyAboutGalleryPhotoChange(): void {
+    this.galleryPhotoChange.next();
   }
 
   getLatestGeneralMeasurement(): Observable<GeneralMeasurementDto> {
@@ -69,7 +74,10 @@ export class BodyService {
   }
 
   getAllGalleryPhotos(): Observable<GalleryPhotoDto[]> {
-    // console.log('Formularz do wysłania', formData.get('file'));
     return this.httpClient.get<GalleryPhotoDto[]>(environment.rootUrl + AppConstants.PHOTO_GALLERY_API_URL,{ withCredentials: true });
+  }
+
+  getLatestGalleryPhoto(): Observable<GalleryPhotoDto> {
+    return this.httpClient.get<GalleryPhotoDto>(environment.rootUrl + AppConstants.PHOTO_GALLERY_API_URL + '/latest',{ withCredentials: true });
   }
 }

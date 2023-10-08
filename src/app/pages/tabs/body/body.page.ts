@@ -16,9 +16,15 @@ import {environment} from "../../../../environments/environment";
 import {GalleryPhotoDto} from "./model/gallery-photo.model";
 import {images} from "ionicons/icons";
 import * as stream from "stream";
+import {LocalImage} from "../../../commons/models/application-image-model";
+import {ApplicationFile} from "../../../commons/models/application-file.model";
+import {ImageService} from "../../../commons/services/file/image.service";
 
-class ImageRow {
-  images: string[] = [];
+
+interface GalleryPhotoImage {
+  id: number,
+  note: string,
+  image: LocalImage
 }
 
 @Component({
@@ -35,18 +41,20 @@ export class BodyPage implements OnInit {
   private generalMeasurementSubscription!: Subscription;
   private bodyMeasurementSubscription!: Subscription;
   private measurementUnitsSubscription!: Subscription;
+  private galleryPhotosSubscription!: Subscription;
   lengthUnitShortcut!: string;
   weightUnitShortcut!: string;
 
 
-
   // images: LocalFile[] = [];
-  images: ImageRow[] =  [];
+  // images: ImageRow[] =  [];
+  images: GalleryPhotoImage[] = [];
 
 
   constructor(private bodyService: BodyService,
               private userService: UserService,
               private measurementUnitsService: MeasurementUnitsService,
+              private imageService: ImageService,
               private platform: Platform, private loadingCtrl: LoadingController) {
   }
 
@@ -55,33 +63,12 @@ export class BodyPage implements OnInit {
     this.initializeMeasurementUnitsShortcuts();
     this.initializeGeneralMeasurements();
     this.initializeBodyMeasurements();
+    this.initializePhotoGallery();
 
-    this.loadImages();
-    await this.loadFiles();
+    // await this.loadFiles();
   }
 
-  loadImages() {
-    this.bodyService.getAllGalleryPhotos().subscribe((response: GalleryPhotoDto[]) => {
-      console.log('pobrane zdjęcia z galerii: ', response);
-      const numberOfImagesPerRow: number = 4;
-      let currentImageNumberInRow: number = 0;
-      let imageRow: ImageRow = new ImageRow();
-      let imagesInRow: string[] = [];
-      for( let i = 0; i < response.length; i++) {
-        imageRow.images.push('data:image/jpg;base64,' + response[i].applicationFile.data);
-        currentImageNumberInRow ++;
-        if (currentImageNumberInRow === numberOfImagesPerRow || i === response.length - 1) {
-          this.images.push(imageRow);
-          imageRow = new ImageRow();
-          currentImageNumberInRow = 0;
-        } else {
 
-        }
-      }
-
-      console.log('Images po zapełnieniu: ', this.images);
-    });
-  }
 
   initializeMeasurementUnitsShortcuts() {
     this.getMeasurementUnitsShortcuts();
@@ -105,6 +92,12 @@ export class BodyPage implements OnInit {
     });
   }
 
+  fetchLatestGeneralMeasurement() {
+    this.bodyService.getLatestGeneralMeasurement().subscribe(response => {
+      this.generalMeasurement = response;
+    });
+  }
+
   initializeBodyMeasurements() {
     this.fetchLatestBodyMeasurement();
     this.bodyMeasurementSubscription = this.listenForBodyMeasurementChange();
@@ -122,9 +115,47 @@ export class BodyPage implements OnInit {
     });
   }
 
-  fetchLatestGeneralMeasurement() {
-    this.bodyService.getLatestGeneralMeasurement().subscribe(response => {
-      this.generalMeasurement = response;
+  initializePhotoGallery() {
+    this.fetchAllGalleryPhotos();
+    this.galleryPhotosSubscription = this.listenForGalleryPhotoChange();
+  }
+
+  listenForGalleryPhotoChange() {
+    return this.bodyService.galleryPhotoChange.subscribe(() => {
+      this.fetchLatestGalleryPhoto();
+    });
+  }
+
+  fetchAllGalleryPhotos() {
+    this.bodyService.getAllGalleryPhotos().subscribe(async (responseDto: GalleryPhotoDto[]) => {
+      console.log('pobrane zdjęcia z galerii: ', responseDto);
+
+      for (const response of responseDto) {
+        let image = await this.imageService.loadImageFromDevice(response.applicationFile);
+
+        this.images.push({
+          id: response.id,
+          note: response.note,
+          image: image
+        } as GalleryPhotoImage);
+      }
+      console.log('Images po zapełnieniu: ', this.images);
+    });
+  }
+
+  fetchLatestGalleryPhoto() {
+    this.bodyService.getLatestGalleryPhoto().subscribe(async (responseDto: GalleryPhotoDto) => {
+      console.log('pobrane zdjęcie z galerii: ', responseDto);
+
+        let image = await this.imageService.loadImageFromDevice(responseDto.applicationFile);
+
+        this.images.unshift({
+          id: responseDto.id,
+          note: responseDto.note,
+          image: image
+        } as GalleryPhotoImage);
+
+      console.log('Images po zapełnieniu: ', this.images);
     });
   }
 
@@ -138,22 +169,10 @@ export class BodyPage implements OnInit {
   }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
   async initializeImageDirectoryIfNotExists() {
     try {
       let ret = await Filesystem.mkdir({
-        path: environment.imageDir,
+        path: environment.photoGalleryDirectory,
         directory: Directory.Data,
         recursive: false,
       });
@@ -162,51 +181,4 @@ export class BodyPage implements OnInit {
       console.log("Unable to make directory", e);
     }
   }
-
-  async loadFiles() {
-    this.images = [];
-
-    const loading = await this.loadingCtrl.create({
-      message: 'loading data..'
-    });
-
-    Filesystem.readdir({
-      directory: Directory.Data,
-      path: environment.imageDir
-    }).then(result => {
-      console.log('HERE: ', result);
-      this.loadFileData(result.files);
-    }, async err => {
-      console.log('err:', err);
-      await Filesystem.mkdir({
-        directory: Directory.Data,
-        path: environment.imageDir
-      });
-    }).then(() => {
-      loading.dismiss();
-    });
-  }
-
-  async loadFileData(fileNames: FileInfo[]) {
-    for (let f of fileNames) {
-      const filePath = `${environment.imageDir}/${f.name}`;
-
-      const readFile = await Filesystem.readFile({
-        directory: Directory.Data,
-        path: filePath
-      });
-
-      // this.images.push({
-      //   name: f.name,
-      //   path: filePath,
-      //   data: `data:image/jpeg;base64,${readFile.data}`
-      // })
-      console.log('READ: ', readFile);
-    }
-
-
-  }
-
-
-
 }
