@@ -29,7 +29,7 @@ const routes: Routes = [
     loadChildren: () => import('./photo-gallery/add-photo/add-photo.module').then(m => m.AddPhotoPageModule)
   },
   {
-    path: 'photo-details',
+    path: 'photo-details/:id',
     loadChildren: () => import('./photo-gallery/photo-details/photo-details.module').then(m => m.PhotoDetailsPageModule)
   }
 ];

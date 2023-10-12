@@ -1,15 +1,13 @@
 import {Component, OnInit} from '@angular/core';
-import {Directory, FileInfo, Filesystem} from "@capacitor/filesystem";
-import {Camera, CameraResultType, CameraSource, Photo} from "@capacitor/camera";
-import {decode} from "base64-arraybuffer";
-import {environment} from "../../../../../../environments/environment";
+import {Photo} from "@capacitor/camera";
 import {LoadingController, Platform} from "@ionic/angular";
 import {LocalFile} from "../../../../../commons/models/local-file.model";
 import {BodyService} from "../../body.service";
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {FormBuilder} from "@angular/forms";
 import {Router} from "@angular/router";
-import {IMAGE_FORMAT_PREFIX, ImageService} from "../../../../../commons/services/file/image.service";
-import {image} from "ionicons/icons";
+import {ImageService} from "../../../../../commons/services/file/image.service";
+import {IMAGE_FORMAT_PREFIX} from "../../../../../commons/constants/constants";
+import {environment} from "../../../../../../environments/environment";
 
 @Component({
   selector: 'app-add-photo',
@@ -46,7 +44,7 @@ export class AddPhotoPage implements OnInit {
         type: 'application/json'
       }));
       this.bodyService.addGalleryPhoto(formData).subscribe(async () => {
-        await this.imageService.saveImageOnDevice(this.image, fileName);
+        await this.imageService.saveImageOnDevice(this.image, environment.photoGalleryDirectory, fileName);
         this.bodyService.notifyAboutGalleryPhotoChange();
         await this.router.navigate(['tabs', 'body']);
       });

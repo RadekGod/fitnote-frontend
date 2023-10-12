@@ -3,19 +3,14 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/tabs/body"></ion-back-button>
     </ion-buttons>
-    <ion-title>{{ 'Dodaj zdjęcie' | translate }}</ion-title>
-    <ion-buttons slot="end">
-      <ion-button>
-        <ion-icon size="large" name="ellipsis-vertical"></ion-icon>
-      </ion-button>
-    </ion-buttons>
+    <ion-title>{{ 'BODY.PHOTO_GALLERY.PAGE_TITLES.ADD_PHOTO' | translate }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
     <div class="image-input-container vertical-spacer-2vh horizontal-center" (click)="selectImageToUpload()">
       <ion-icon *ngIf="!imageToDisplay"  name="camera-outline"></ion-icon>
-      <img *ngIf="imageToDisplay" [src]="imageToDisplay">
+      <img *ngIf="imageToDisplay" [src]="imageToDisplay" alt="photo to be added">
     </div>
 
   <div class="form-container vertical-spacer-5vh horizontal-center">
@@ -26,7 +21,7 @@
         <div class="vertical-spacer-3vh"></div>
         <div class="input-container horizontal-center">
           <input type="text" id="note" formControlName="note" placeholder="&nbsp;">
-          <label for="note" class="input-label">{{ 'Komentarz' | translate }}</label>
+          <label for="note" class="input-label">{{ 'BODY.PHOTO_GALLERY.COMMENT' | translate }}</label>
         </div>
       </div>
 
@@ -34,7 +29,7 @@
         <button class="button button-fill" type="submit">
           <div class="button-content-container horizontal-center">
             <ion-icon name="checkmark-outline"></ion-icon>
-            <p>{{ 'Zapisz' | translate }}</p>
+            <p>{{ 'BODY.PHOTO_GALLERY.BUTTONS.SAVE' | translate }}</p>
           </div>
         </button>
       </div>

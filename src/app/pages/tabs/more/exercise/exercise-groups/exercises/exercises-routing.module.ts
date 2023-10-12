@@ -9,11 +9,7 @@ const routes: Routes = [
     component: ExercisesPage
   },
   {
-    path: 'add-custom-exercise',
-    loadChildren: () => import('../add-custom-exercise/add-custom-exercise.module').then(m => m.AddCustomExercisePageModule)
-  },
-  {
-    path: 'exercise',
+    path: 'exercise/:id',
     loadChildren: () => import('./exercise-info/exercise-info.module').then(m => m.ExerciseInfoPageModule)
   }
 ];

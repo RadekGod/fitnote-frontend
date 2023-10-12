@@ -14,7 +14,6 @@ export class RegisterService {
   }
 
   registerUser(registerForm: CreateUser) {
-    console.log('registerForm: ', registerForm);
     // window.sessionStorage.setItem("userDetails",JSON.stringify(registerForm));
     return this.httpClient.post(environment.rootUrl + AppConstants.REGISTER_API_URL, registerForm, { observe: 'response' });
   }

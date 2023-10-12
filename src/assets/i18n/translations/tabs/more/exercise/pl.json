@@ -1,0 +1,36 @@
+{
+  "EXERCISE": {
+    "BUTTONS": {
+      "ADD_EXERCISE": "Dodaj własne ćwiczenie",
+      "SAVE": "Zapisz"
+    },
+    "EXERCISE_GROUPS": {
+      "PAGE_TITLES": {
+        "CHOOSE_EXERCISE_GROUP": "Wybierz grupę ćwiczeń"
+      }
+    },
+    "ADD_CUSTOM_EXERCISE": {
+      "PAGE_TITLES": {
+        "ADD_CUSTOM_EXERCISE": "Stwórz własne ćwiczenie"
+      },
+
+      "ALERTS": {
+        "EXERCISE_TYPE": {
+          "HEADER": "Rodzaj ćwiczenia",
+          "SUBHEADER": "Wybierz rodzaj cwiczenia"
+        }
+      },
+      "EXERCISE_NAME": "Nazwa ćwiczenia",
+      "INSTRUCTION": "Instrukcja",
+      "EXERCISE_TYPE": "Rodzaj ćwiczenia",
+      "EXERCISE_GROUPS": "Grupy ćwiczenia",
+      "MAIN_MUSCLES": "Główne mięśnie",
+      "SUPPORTIVE_MUSCLES": "Wspierające mięśnie"
+    },
+    "EXERCISES": {
+      "PAGE_TITLES": {
+        "CHOOSE_EXERCISE": "Wybierz ćwiczenie"
+      }
+    }
+  }
+}

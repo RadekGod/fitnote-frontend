@@ -3,132 +3,32 @@
     <ion-buttons slot="start">
       <ion-back-button [defaultHref]="previousUrl"></ion-back-button>
     </ion-buttons>
-    <ion-title>{{ 'Wybierz grupę ćwiczeń' }}</ion-title>
+    <ion-title>{{ 'EXERCISE.EXERCISE_GROUPS.PAGE_TITLES.CHOOSE_EXERCISE_GROUP' | translate }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 
 <ion-content [fullscreen]="true">
 
-  <div class="simple-items-container vertical-spacer-3vh">
-        <div class="simple-item-container horizontal-center"
-             [routerLink]="['/', 'tabs', 'more', 'exercise-groups', 'exercises']">
-          <div class="thumbnail-container">
-            <ion-thumbnail>
-              <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg"/>
-            </ion-thumbnail>
-          </div>
-          <div class="title-container">
-            <h3>Klatka piersiowa</h3>
-          </div>
-        </div>
-
-    <div class="simple-item-container horizontal-center">
+  <div *ngFor="let exerciseCategoryGroup of exerciseCategoryGroups" class="simple-items-container vertical-spacer-3vh">
+    <div class="simple-item-container horizontal-center"
+         [routerLink]="['/', 'tabs', 'more', 'exercise-groups', 'exercises', exerciseCategoryGroup.queryParam]">
       <div class="thumbnail-container">
         <ion-thumbnail>
-          <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg"/>
+          <img alt="Silhouette of mountains" [src]="exerciseCategoryGroup.categoryImage"/>
         </ion-thumbnail>
       </div>
       <div class="title-container">
-        <h3>Barki</h3>
+        <h3>{{ ('EXERCISE_GROUPS.' + exerciseCategoryGroup.categoryName) | translate }}</h3>
       </div>
     </div>
-
-    <div class="simple-item-container horizontal-center">
-      <div class="thumbnail-container">
-        <ion-thumbnail>
-          <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg"/>
-        </ion-thumbnail>
-      </div>
-      <div class="title-container">
-        <h3>Plecy - dół</h3>
-      </div>
-    </div>
-
-    <div class="simple-item-container horizontal-center">
-      <div class="thumbnail-container">
-        <ion-thumbnail>
-          <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg"/>
-        </ion-thumbnail>
-      </div>
-      <div class="title-container">
-        <h3>Plecy - góra</h3>
-      </div>
-    </div>
-
-    <div class="simple-item-container horizontal-center">
-      <div class="thumbnail-container">
-        <ion-thumbnail>
-          <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg"/>
-        </ion-thumbnail>
-      </div>
-      <div class="title-container">
-        <h3>Biceps</h3>
-      </div>
-    </div>
-
-    <div class="simple-item-container horizontal-center">
-      <div class="thumbnail-container">
-        <ion-thumbnail>
-          <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg"/>
-        </ion-thumbnail>
-      </div>
-      <div class="title-container">
-        <h3>Triceps</h3>
-      </div>
-    </div>
-
-    <div class="simple-item-container horizontal-center">
-      <div class="thumbnail-container">
-        <ion-thumbnail>
-          <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg"/>
-        </ion-thumbnail>
-      </div>
-      <div class="title-container">
-        <h3>Przedramiona</h3>
-      </div>
-    </div>
-
-    <div class="simple-item-container horizontal-center">
-      <div class="thumbnail-container">
-        <ion-thumbnail>
-          <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg"/>
-        </ion-thumbnail>
-      </div>
-      <div class="title-container">
-        <h3>Brzuch</h3>
-      </div>
-    </div>
-
-    <div class="simple-item-container horizontal-center">
-      <div class="thumbnail-container">
-        <ion-thumbnail>
-          <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg"/>
-        </ion-thumbnail>
-      </div>
-      <div class="title-container">
-        <h3>Nogi</h3>
-      </div>
-    </div>
-
-    <div class="simple-item-container horizontal-center">
-      <div class="thumbnail-container">
-        <ion-thumbnail>
-          <img alt="Silhouette of mountains" ngSrc="https://ionicframework.com/docs/img/demos/thumbnail.svg" height="48" width="48"/>
-        </ion-thumbnail>
-      </div>
-      <div class="title-container">
-        <h3>Własne</h3>
-      </div>
-    </div>
-
   </div>
 
   <div class="button-container vertical-spacer-3vh horizontal-center"
        [routerLink]="['/', 'tabs', 'more', 'exercise-groups', 'add-custom-exercise']">
     <button class="button button-fill" type="submit">
       <div class="button-content-container horizontal-center">
-        <p>Dodaj własne ćwiczenie</p>
+        <p>{{'EXERCISE.BUTTONS.ADD_EXERCISE' | translate }}</p>
       </div>
     </button>
   </div>

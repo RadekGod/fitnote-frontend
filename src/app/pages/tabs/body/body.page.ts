@@ -13,19 +13,15 @@ import {addWarning} from "@angular-devkit/build-angular/src/utils/webpack-diagno
 import {ThisReceiver} from "@angular/compiler";
 import {decode} from "base64-arraybuffer";
 import {environment} from "../../../../environments/environment";
-import {GalleryPhotoDto} from "./model/gallery-photo.model";
+import {GalleryPhotoDto} from "./model/gallery-photo-dto.model";
 import {images} from "ionicons/icons";
 import * as stream from "stream";
-import {LocalImage} from "../../../commons/models/application-image-model";
+import {LocalImage} from "../../../commons/models/local-image.model";
 import {ApplicationFile} from "../../../commons/models/application-file.model";
 import {ImageService} from "../../../commons/services/file/image.service";
+import {GalleryPhotoImage} from "../../../commons/models/gallery-photo-image.model";
 
 
-interface GalleryPhotoImage {
-  id: number,
-  note: string,
-  image: LocalImage
-}
 
 @Component({
   selector: 'app-body',
@@ -34,8 +30,7 @@ interface GalleryPhotoImage {
 })
 export class BodyPage implements OnInit {
 
-  // segmentValue: string = 'measurements';
-  segmentValue: string = 'photoGallery';
+  segmentValue: string = 'measurements';
   bodyMeasurement: BodyMeasurementDto | null = null;
   generalMeasurement: GeneralMeasurementDto | null = null;
   private generalMeasurementSubscription!: Subscription;
@@ -46,16 +41,13 @@ export class BodyPage implements OnInit {
   weightUnitShortcut!: string;
 
 
-  // images: LocalFile[] = [];
-  // images: ImageRow[] =  [];
   images: GalleryPhotoImage[] = [];
 
 
   constructor(private bodyService: BodyService,
               private userService: UserService,
               private measurementUnitsService: MeasurementUnitsService,
-              private imageService: ImageService,
-              private platform: Platform, private loadingCtrl: LoadingController) {
+              private imageService: ImageService) {
   }
 
   async ngOnInit() {
@@ -64,8 +56,6 @@ export class BodyPage implements OnInit {
     this.initializeGeneralMeasurements();
     this.initializeBodyMeasurements();
     this.initializePhotoGallery();
-
-    // await this.loadFiles();
   }
 
 
@@ -128,10 +118,8 @@ export class BodyPage implements OnInit {
 
   fetchAllGalleryPhotos() {
     this.bodyService.getAllGalleryPhotos().subscribe(async (responseDto: GalleryPhotoDto[]) => {
-      console.log('pobrane zdjęcia z galerii: ', responseDto);
-
       for (const response of responseDto) {
-        let image = await this.imageService.loadImageFromDevice(response.applicationFile);
+        let image = await this.imageService.loadImageFromDevice(environment.photoGalleryDirectory, response.applicationFile);
 
         this.images.push({
           id: response.id,
@@ -139,23 +127,18 @@ export class BodyPage implements OnInit {
           image: image
         } as GalleryPhotoImage);
       }
-      console.log('Images po zapełnieniu: ', this.images);
     });
   }
 
   fetchLatestGalleryPhoto() {
     this.bodyService.getLatestGalleryPhoto().subscribe(async (responseDto: GalleryPhotoDto) => {
-      console.log('pobrane zdjęcie z galerii: ', responseDto);
-
-        let image = await this.imageService.loadImageFromDevice(responseDto.applicationFile);
+        let image = await this.imageService.loadImageFromDevice(environment.photoGalleryDirectory, responseDto.applicationFile);
 
         this.images.unshift({
           id: responseDto.id,
           note: responseDto.note,
           image: image
         } as GalleryPhotoImage);
-
-      console.log('Images po zapełnieniu: ', this.images);
     });
   }
 
@@ -176,9 +159,8 @@ export class BodyPage implements OnInit {
         directory: Directory.Data,
         recursive: false,
       });
-      console.log("folder ", ret);
     } catch (e) {
-      console.log("Unable to make directory", e);
+      console.log("Unable to make directory");
     }
   }
 }

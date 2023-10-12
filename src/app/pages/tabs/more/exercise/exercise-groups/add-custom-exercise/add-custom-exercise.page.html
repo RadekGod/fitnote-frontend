@@ -1,62 +1,57 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
+<!--      <ion-back-button [defaultHref]="previousUrl ? previousUrl : '/tabs/more/exercise-groups/exercises'"></ion-back-button>-->
       <ion-back-button [defaultHref]="previousUrl"></ion-back-button>
     </ion-buttons>
-    <ion-title>{{ 'Stwórz ćwiczenie' }}</ion-title>
+    <ion-title>{{ 'EXERCISE.ADD_CUSTOM_EXERCISE.PAGE_TITLES.ADD_CUSTOM_EXERCISE' | translate}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <div class="custom-exercise-form-container vertical-spacer-2vh horizontal-center">
-    <div class="image-input-container" (click)="selectImage()">
-      <ion-icon name="camera-outline"></ion-icon>
+  <div class="image-input-container vertical-spacer-2vh horizontal-center" (click)="selectImageToUpload()">
+      <ion-icon *ngIf="!imageToDisplay" name="camera-outline"></ion-icon>
+      <img *ngIf="imageToDisplay" [src]="imageToDisplay">
     </div>
-  </div>
 
 
 
   <div class="form-container vertical-spacer-5vh horizontal-center">
-    <form (ngSubmit)="validateAndSendMeasurementForm(addCustomExerciseForm)"
+    <form (ngSubmit)="validateAndAddCustomExercise(addCustomExerciseForm)"
           [formGroup]="addCustomExerciseForm">
 
       <div class="form-inputs-container horizontal-center">
         <div class="input-container horizontal-center">
-          <input type="text" id="exerciseName" formControlName="exerciseName" placeholder="&nbsp;">
-          <label for="exerciseName" class="input-label">{{ 'Nazwa ćwiczenia' | translate }}</label>
+          <input type="text" id="exerciseName" formControlName="name" placeholder="&nbsp;">
+          <label for="exerciseName" class="input-label">{{ 'EXERCISE.ADD_CUSTOM_EXERCISE.EXERCISE_NAME' | translate }}</label>
         </div>
 
         <div class="vertical-spacer-3vh"></div>
 
         <div class="input-container horizontal-center">
-          <input type="text" id="exerciseInstruction" formControlName="exerciseInstruction" placeholder="&nbsp;">
-          <label for="exerciseInstruction" class="input-label">{{ 'Instrukcja' | translate }}</label>
+          <input type="text" id="exerciseInstruction" formControlName="description" placeholder="&nbsp;">
+          <label for="exerciseInstruction" class="input-label">{{ 'EXERCISE.ADD_CUSTOM_EXERCISE.INSTRUCTION' | translate }}</label>
         </div>
 
-        <ion-select  class="horizontal-center" label="Rodzaj ćwiczenia" [interfaceOptions]="exerciseTypeOptions" formControlName="exerciseType">
-          <ion-select-option *ngFor="let exerciseType of exerciseTypes | keyvalue" [value]="exerciseType.value">{{exerciseType.value}}</ion-select-option>
-          <!--          <ion-select-option value="FREE_WEIGHT"><p>Siłowe</p></ion-select-option>-->
-<!--          <ion-select-option value="oranges">Oranges</ion-select-option>-->
-<!--          <ion-select-option value="oranges">Oranges</ion-select-option>-->
-<!--          <ion-select-option value="oranges">Cardio (Czas)</ion-select-option>-->
-<!--          <ion-select-option value="bananas">Cardio (Odległość)</ion-select-option>-->
+        <ion-select  class="horizontal-center" label="{{ 'EXERCISE.ADD_CUSTOM_EXERCISE.EXERCISE_TYPE' | translate }}" [interfaceOptions]="exerciseTypeOptions" formControlName="exerciseType">
+          <ion-select-option *ngFor="let exerciseType of exerciseTypes | keyvalue" [value]="exerciseType.value">{{('EXERCISE_TYPES.' + exerciseType.value) | translate }}</ion-select-option>
         </ion-select>
 
         <div class="horizontal-spacer horizontal-center"></div>
 
-        <ion-select class="horizontal-center" label="Grupy ćwiczenia" [interfaceOptions]="exerciseGroupOptions" formControlName="exerciseGroup" multiple="true" >
-          <ion-select-option *ngFor="let exerciseGroup of exerciseGroups | keyvalue" [value]="exerciseGroup.value">{{exerciseGroup.value}}</ion-select-option>
+        <ion-select class="horizontal-center" label="{{ 'EXERCISE.ADD_CUSTOM_EXERCISE.EXERCISE_GROUPS' | translate }}" [interfaceOptions]="exerciseGroupOptions" formControlName="exerciseCategoryGroups" multiple="true" >
+          <ion-select-option *ngFor="let exerciseGroup of exerciseCategoryGroups | keyvalue" [value]="exerciseGroup.value">{{('EXERCISE_GROUPS.' + exerciseGroup.value) | translate }}</ion-select-option>
         </ion-select>
 
         <div class="horizontal-spacer horizontal-center"></div>
 
-        <ion-select  class="horizontal-center" label="Główne mięśnie" [interfaceOptions]="mainMusclesOptions" formControlName="mainMuscleGroups" multiple="true" >
+        <ion-select  class="horizontal-center" label="{{ 'EXERCISE.ADD_CUSTOM_EXERCISE.MAIN_MUSCLES' | translate }}" [interfaceOptions]="mainMusclesOptions" formControlName="mainMuscles" multiple="true" >
           <ion-select-option *ngFor="let muscle of muscles | keyvalue" [value]="muscle.value">{{muscle.value}}</ion-select-option>
         </ion-select>
 
         <div class="horizontal-spacer horizontal-center"></div>
 
-        <ion-select  class="horizontal-center" label="Wspierające mięśnie" [interfaceOptions]="supportiveMusclesOptions" formControlName="supportiveMuscleGroups" multiple="true" >
+        <ion-select  class="horizontal-center" label="{{ 'EXERCISE.ADD_CUSTOM_EXERCISE.SUPPORTIVE_MUSCLES' | translate }}" [interfaceOptions]="supportiveMusclesOptions" formControlName="supportiveMuscles" multiple="true" >
           <ion-select-option *ngFor="let muscle of muscles | keyvalue" [value]="muscle.value">{{muscle.value}}</ion-select-option>
         </ion-select>
 
@@ -76,7 +71,7 @@
         <button class="button button-fill" type="submit">
           <div class="button-content-container horizontal-center">
             <ion-icon name="checkmark-outline"></ion-icon>
-            <p>{{ 'Zapisz' | translate }}</p>
+            <p>{{ 'EXERCISE.BUTTONS.SAVE' | translate}}</p>
           </div>
         </button>
       </div>

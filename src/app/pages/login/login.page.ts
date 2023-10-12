@@ -27,7 +27,6 @@ export class LoginPage implements OnInit {
   }
 
   validateUser(loginForm: FormGroup) {
-    console.log(loginForm);
       // this.router.navigate(['tabs', 'body']);
     // this.router.navigate(['tabs', 'training-plans']);
     //TODO przeanalizować  i poprawić sposob zapisywania userDetails

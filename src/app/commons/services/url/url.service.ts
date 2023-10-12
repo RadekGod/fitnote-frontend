@@ -15,11 +15,9 @@ export class UrlService {
 
   setPreviousUrl(previousUrl: string) {
     this.previousUrl.next(previousUrl);
-    console.log('previousUrl', this.previousUrl.getValue());
   }
 
   setCurrentUrl(currentUrl: string) {
     this.currentUrl.next(currentUrl);
-    console.log('currentUrl', this.currentUrl.getValue());
   }
 }

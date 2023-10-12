@@ -1,0 +1,24 @@
+ion-header ion-toolbar ion-title {
+  padding-left: 1rem;
+  font-size: 2.4rem;
+}
+
+.content-container {
+  color: var(--ion-color-secondary);
+  width: 95%;
+
+  .image-container {
+    width: auto;
+  }
+
+  .note-container {
+    font-size: 1.6rem;
+    h3 {
+      font-size: 2rem;
+    }
+
+    p {
+
+    }
+  }
+}

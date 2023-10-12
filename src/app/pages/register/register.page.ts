@@ -26,8 +26,6 @@ export class RegisterPage implements OnInit {
   }
 
   registerUser(registerForm: FormGroup) {
-    console.log(registerForm);
-
     this.registerService.registerUser(registerForm.value).subscribe(responseData => {
       console.log('responseData', responseData);
       // window.sessionStorage.setItem("Authorization", responseData.headers.get('Authorization')!);

@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
 import {ItemReorderEventDetail} from "@ionic/angular";
+import {TrainingPlanDto} from "./model/training-plan-dto.model";
+import {Subscription} from "rxjs";
+import {TrainingPlanService} from "./training-plan.service";
 
 @Component({
   selector: 'app-training-plans',
@@ -9,12 +12,34 @@ import {ItemReorderEventDetail} from "@ionic/angular";
 })
 export class TrainingPlansPage implements OnInit {
 
-  constructor(private router : Router) {
+  trainingPlans!: TrainingPlanDto[];
+  private trainingPlansSubscription!: Subscription;
+
+  constructor(private router : Router,
+              private trainingPlanService: TrainingPlanService) {
   }
 
   ngOnInit(): void {
+    this.initializeTrainingPlans();
   }
 
+  initializeTrainingPlans() {
+    this.fetchTrainingPlans();
+    this.trainingPlansSubscription = this.listenForTrainingPlansChange();
+  }
+
+  listenForTrainingPlansChange() {
+    return this.trainingPlanService.trainingPlanChange.subscribe(() => {
+      this.fetchTrainingPlans();
+    });
+  }
+
+  fetchTrainingPlans() {
+    this.trainingPlanService.getAllTrainingPlans().subscribe(response => {
+      console.log(response);
+      this.trainingPlans = response;
+    });
+  }
   handleReorder(ev: CustomEvent<ItemReorderEventDetail>) {
     // The `from` and `to` properties contain the index of the item
     // when the drag started and ended, respectively

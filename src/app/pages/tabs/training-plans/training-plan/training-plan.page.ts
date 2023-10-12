@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
 import {ItemReorderEventDetail} from "@ionic/angular";
+import {Subscription} from "rxjs";
+import {TrainingPlanService} from "../training-plan.service";
+import {GeneralMeasurementDto} from "../../body/model/general-measurement-dto.model";
+import {TrainingPlanDto} from "../model/training-plan-dto.model";
 
 @Component({
   selector: 'app-training-plan',
@@ -9,11 +13,33 @@ import {ItemReorderEventDetail} from "@ionic/angular";
 })
 export class TrainingPlanPage implements OnInit {
 
+  trainingPlans!: TrainingPlanDto[];
+  private trainingPlansSubscription!: Subscription;
 
-  constructor(private router : Router) {
+  constructor(private router : Router,
+              private trainingPlanService: TrainingPlanService) {
   }
 
   ngOnInit(): void {
+    this.initializeTrainingPlans();
+  }
+
+  initializeTrainingPlans() {
+    this.fetchTrainingPlans();
+    this.trainingPlansSubscription = this.listenForTrainingPlansChange();
+  }
+
+  listenForTrainingPlansChange() {
+    return this.trainingPlanService.trainingPlanChange.subscribe(() => {
+      this.fetchTrainingPlans();
+    });
+  }
+
+  fetchTrainingPlans() {
+    this.trainingPlanService.getAllTrainingPlans().subscribe(response => {
+      console.log(response);
+      this.trainingPlans = response;
+    });
   }
 
   handleReorder(ev: CustomEvent<ItemReorderEventDetail>) {
@@ -26,5 +52,8 @@ export class TrainingPlanPage implements OnInit {
     // by the reorder group
     ev.detail.complete();
   }
+
+
+
 
 }

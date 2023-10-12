@@ -4,10 +4,10 @@ import {decode} from "base64-arraybuffer";
 import {Platform} from "@ionic/angular";
 import {Directory, FileInfo, Filesystem, ReaddirResult} from "@capacitor/filesystem";
 import {environment} from "../../../../environments/environment";
-import {LocalImage} from "../../models/application-image-model";
+import {LocalImage} from "../../models/local-image.model";
 import {ApplicationFile} from "../../models/application-file.model";
 
-export const IMAGE_FORMAT_PREFIX = 'data:image/jpg;base64,';
+
 
 @Injectable({
   providedIn: 'root'
@@ -43,16 +43,13 @@ export class ImageService {
     });
   }
 
-  async saveImageOnDevice(image: Photo, fileName: string) {
+  async saveImageOnDevice(image: Photo, directory: string, fileName: string) {
     const base64Data = image.base64String!;
-    console.log(base64Data);
-    const savedFile = await Filesystem.writeFile({
+    await Filesystem.writeFile({
       directory: Directory.Data,
-      path: `${environment.photoGalleryDirectory}/${fileName}`,
+      path: `${directory}/${fileName}`,
       data: base64Data
     });
-    console.log('saved:', savedFile);
-    // await this.loadFiles();
   }
 
 
@@ -111,21 +108,19 @@ export class ImageService {
     return images;
   }
 
-  async loadImageFromDevice(applicationFile: ApplicationFile): Promise<LocalImage> {
-    let image: LocalImage;
-    const filePath = `${environment.photoGalleryDirectory}/${applicationFile.fileName}`;
+  async loadImageFromDevice(directory: string, applicationFile: ApplicationFile): Promise<LocalImage> {
+    const filePath = `${directory}/${applicationFile.fileName}`;
     const readFile = await Filesystem.readFile({
       directory: Directory.Data,
       path: filePath
     });
 
-    image = {
+    return {
       id: applicationFile.id,
       fileName: applicationFile.fileName,
       path: filePath,
       creationDate: applicationFile.creationDate,
       data: `data:image/jpeg;base64,${readFile.data}`
-    }
-    return image;
+    } as LocalImage;
   }
 }

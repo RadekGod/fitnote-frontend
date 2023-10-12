@@ -13,13 +13,13 @@ const routes: Routes = [
     loadChildren: () => import('./add-custom-exercise/add-custom-exercise.module').then(m => m.AddCustomExercisePageModule)
   },
   {
-    path: 'exercises',
+    path: 'exercises/:category',
     loadChildren: () => import('./exercises/exercises.module').then(m => m.ExercisesPageModule)
   }
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
+  exports: [RouterModule]
 })
 export class ExerciseGroupsPageRoutingModule {}

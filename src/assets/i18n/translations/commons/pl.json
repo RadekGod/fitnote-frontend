@@ -1,0 +1,28 @@
+{
+  "EXERCISE_TYPES": {
+    "CARDIO_TIME": "Kardio (Czas)",
+    "CARDIO_DISTANCE": "kardio (Dystans)",
+    "BODY_WEIGHT_REPEATS": "Masa ciała (Powtórzenia)",
+    "BODY_WEIGHT_TIME": "Masa ciała (Czas)",
+    "WEIGHT_TRAINING": "Trening siłowy"
+  },
+
+  "EXERCISE_GROUPS": {
+    "CHEST": "Klatka piersiowa",
+    "SHOULDERS":"Barki",
+    "BICEPS":"Biceps",
+    "TRICEPS": "Triceps",
+    "FOREARMS": "Przedramiona",
+    "UPPER_BACK": "Plecy - góra",
+    "LOWER_BACK":"Plecy - dół",
+    "ABS": "Brzuch",
+    "GLUTES":"Pośladki",
+    "THIGH_FRONT": "Uda - przód",
+    "THIGH_BACK": "Uda - tył",
+    "CALVES": "Łydki",
+    "CARDIO": "Kardio",
+    "CUSTOM":"Własne",
+    "FAVOURITE": "Ulubione"
+  }
+}
+

@@ -7,14 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { ExercisesPageRoutingModule } from './exercises-routing.module';
 
 import { ExercisesPage } from './exercises.page';
+import {TranslateModule} from "@ngx-translate/core";
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    ExercisesPageRoutingModule
-  ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        IonicModule,
+        ExercisesPageRoutingModule,
+        TranslateModule
+    ],
   declarations: [ExercisesPage]
 })
 export class ExercisesPageModule {}

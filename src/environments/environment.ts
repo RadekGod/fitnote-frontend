@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   rootUrl: 'http://localhost:8080',
-  photoGalleryDirectory: 'photo-gallery'
+  photoGalleryDirectory: 'photo-gallery',
+  customExercisesDirectory: 'custom-exercises',
 };
 
 /*

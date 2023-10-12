@@ -1,13 +1,27 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>photo-details</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/body"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ 'BODY.PHOTO_GALLERY.PAGE_TITLES.PHOTO_DETAILS' | translate }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">photo-details</ion-title>
-    </ion-toolbar>
-  </ion-header>
+
+  <div class="content-container vertical-spacer-2vh horizontal-center">
+    <div class="image-container">
+      <ion-img *ngIf="image" [src]="image!.image.data" alt="Gallery image"></ion-img>
+    </div>
+
+    <div class="creation-date-container vertical-spacer-2vh">
+      <h3>{{ 'BODY.PHOTO_GALLERY.CREATION_DATE' | translate }}: {{ image?.image?.creationDate | date: 'dd.MM.yyyy'}} </h3>
+    </div>
+
+    <div class="note-container vertical-spacer-2vh">
+      <h3>{{ 'BODY.PHOTO_GALLERY.COMMENT' | translate }}</h3>
+      {{ image?.note}}
+    </div>
+  </div>
+
 </ion-content>

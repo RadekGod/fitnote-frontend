@@ -14,29 +14,3 @@ ion-header ion-toolbar ion-title {
     width: 90%;
   }
 }
-
-  .image-input-container {
-    width: 90%;
-    text-align: center;
-    background-color: #3A3030;
-    ion-icon {
-      color: var(--ion-color-secondary);
-      height: 30vh;
-      font-size: 30vh;
-    }
-
-    img {
-      height: 100%;
-      //width: 100%;
-    }
-  }
-
-  h3 {
-    font-size: 2rem;
-    margin: 0.5rem 0;
-  }
-
-.horizontal-spacer {
-  width: 90%;
-  border-bottom: 1px solid rgba(#d8d8d8, 0.7);
-}

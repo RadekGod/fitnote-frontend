@@ -1,16 +1,21 @@
 import {Component, OnInit} from '@angular/core';
 import {UrlService} from "../../../../../../commons/services/url/url.service";
 import {Router} from "@angular/router";
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {BodyMeasurementDto} from "../../../../body/model/body-measurement-dto.model";
 import {ExerciseType} from "../../../../../../commons/enums/exercise-types.enum";
 import {Muscles} from "../../../../../../commons/enums/muscles.enum";
-import {ExerciseGroups} from "../../../../../../commons/enums/exercise-categories.enum";
+import {ExerciseCategoryGroups} from "../../../../../../commons/enums/exercise-category-groups.enum";
 import {Camera, CameraResultType, CameraSource, GalleryPhoto, Photo} from "@capacitor/camera";
 import {Directory, Filesystem} from "@capacitor/filesystem";
 import {Platform} from "@ionic/angular";
 import {addWarning} from "@angular-devkit/build-angular/src/utils/webpack-diagnostics";
 import {LocalFile} from "../../../../../../commons/models/local-file.model";
+import {IMAGE_FORMAT_PREFIX} from "../../../../../../commons/constants/constants";
+import {ImageService} from "../../../../../../commons/services/file/image.service";
+import {ExerciseService} from "../../exercise.service";
+import {TranslateService} from "@ngx-translate/core";
+import {environment} from "../../../../../../../environments/environment";
 
 const IMAGE_DIR = 'stored-images';
 
@@ -20,6 +25,24 @@ interface AlertOptions {
   message?: string;
 }
 
+enum AddExerciseCategoryGroups {
+
+  CHEST = 'CHEST',
+  SHOULDERS = 'SHOULDERS',
+  BICEPS = 'BICEPS',
+  TRICEPS = 'TRICEPS',
+  FOREARMS = 'FOREARMS',
+  UPPER_BACK = 'UPPER_BACK',
+  LOWER_BACK = 'LOWER_BACK',
+  ABS = 'ABS',
+  GLUTES = 'GLUTES',
+  THIGH_FRONT = 'THIGH_FRONT',
+  THIGH_BACK = 'THIGH_BACK',
+  CALVES = 'CALVES',
+  CARDIO = 'CARDIO',
+  FAVOURITE = 'FAVOURITE'
+}
+
 @Component({
   selector: 'app-add-custom-exercise',
   templateUrl: './add-custom-exercise.page.html',
@@ -27,49 +50,46 @@ interface AlertOptions {
 })
 export class AddCustomExercisePage implements OnInit {
 
+  image!: Photo;
+  imageToDisplay = '';
   previousUrl: string = '';
   exerciseTypes = ExerciseType;
   muscles = Muscles;
-  exerciseGroups = ExerciseGroups;
+  exerciseCategoryGroups = AddExerciseCategoryGroups;
 
 
   images: LocalFile[] = [];
 
 
   exerciseTypeOptions: AlertOptions = {
-    header: 'Rodzaj ćwiczenia',
-    subHeader: 'Wybierz rodzaj ćwiczenia'
+    header: this.translate.instant('EXERCISE.ADD_CUSTOM_EXERCISE.ALERTS.EXERCISE_TYPE.HEADER'),
+    subHeader: this.translate.instant('EXERCISE.ADD_CUSTOM_EXERCISE.ALERTS.EXERCISE_TYPE.SUBHEADER')
   };
 
   exerciseGroupOptions: AlertOptions = {
-    header: 'Grupy ćwiczenia',
-    subHeader: 'Wybierz grupy ćwiczenia'
+    header: this.translate.instant('EXERCISE.ADD_CUSTOM_EXERCISE.ALERTS.EXERCISE_GROUPS.HEADER'),
+    subHeader: this.translate.instant('EXERCISE.ADD_CUSTOM_EXERCISE.ALERTS.EXERCISE_GROUPS.SUBHEADER')
   }
 
   mainMusclesOptions: AlertOptions = {
-    header: 'Główne grupy mięśni',
-    subHeader: 'Wybierz główne grupy mięśni'
+    header: this.translate.instant('EXERCISE.ADD_CUSTOM_EXERCISE.ALERTS.MAIN_MUSCLES.HEADER'),
+    subHeader: this.translate.instant('EXERCISE.ADD_CUSTOM_EXERCISE.ALERTS.MAIN_MUSCLES.SUBHEADER')
   };
 
   supportiveMusclesOptions: AlertOptions = {
-    header: 'Wspierające grupy mięśni',
-    subHeader: 'Wybierz wspierające grupy mięśni'
+    header: this.translate.instant('EXERCISE.ADD_CUSTOM_EXERCISE.ALERTS.SUPPORTIVE_MUSCLES.HEADER'),
+    subHeader: this.translate.instant('EXERCISE.ADD_CUSTOM_EXERCISE.ALERTS.SUPPORTIVE_MUSCLES.SUBHEADER')
   };
-
-  exerciseEquipmentOptions: AlertOptions = {
-    header: 'Sprzęt',
-    subHeader: 'Wybierz sprzęt potrzebny do wykonania ćwiczenia'
-  };
-
 
 
   constructor(private urlService: UrlService, private router: Router,
               private formBuilder: FormBuilder,
-              private platform: Platform) {
+              private translate: TranslateService,
+              private imageService: ImageService,
+              private exerciseService: ExerciseService) {
   }
 
   ngOnInit() {
-    console.log(this.exerciseTypes);
     this.urlService.previousUrl$
       .subscribe((previousUrl: string) => {
         this.previousUrl = previousUrl;
@@ -83,79 +103,44 @@ export class AddCustomExercisePage implements OnInit {
   }
 
   addCustomExerciseForm = this.formBuilder.group({
-    exerciseName: [''],
-    exerciseInstruction: [''],
-    exerciseGroup: [''],
-    exerciseType: [''],
-    mainMuscleGroups: [''],
-    supportiveMuscleGroups: ['']
-    // exerciseEquipment: [''],
+    name: ['', Validators.required],
+    description: [''],
+    exerciseType: ['', Validators.required],
+    exerciseCategoryGroups: [['']],
+    mainMuscles: [['']],
+    supportiveMuscles: [['']]
   });
 
-  validateAndSendMeasurementForm(addCustomExerciseForm: FormGroup) {
-    console.log(addCustomExerciseForm);
-    let bodyMeasurement: BodyMeasurementDto = addCustomExerciseForm.value;
-    // this.bodyService.addNewBodyMeasurement(bodyMeasurement).subscribe(responseData => {
-    //   this.bodyService.notifyAboutBodyMeasurementChange();
-    //   this.router.navigate(['tabs', 'body']);
-    // });
-  }
+  validateAndAddCustomExercise(addCustomExerciseForm: FormGroup) {
+    if (this.addCustomExerciseForm.valid) {
 
-  log() {
-    console.log(this.addCustomExerciseForm.value);
-  }
+      const formData: FormData = new FormData();
+      if (this.image) {
+        const fileName = new Date().getTime() + '.jpeg';
+        formData.append('image', this.imageService.convertBase64ImageToBlob(this.image), fileName);
 
-  async loadFileData(fileNames: string[]) {
-
-  }
-
-  async selectImage() {
-    const image = await Camera.getPhoto({
-      quality: 90,
-      allowEditing: false,
-      resultType: CameraResultType.Uri,
-      source: CameraSource.Photos
-    });
-    console.log(image);
-    if (image) {
-      this.saveImage(image);
+        formData.append('exerciseData', new Blob([JSON.stringify(addCustomExerciseForm.value)], {
+          type: 'application/json'
+        }));
+        this.exerciseService.addCustomExercise(formData).subscribe(async () => {
+          await this.imageService.saveImageOnDevice(this.image, environment.customExercisesDirectory, fileName);
+          this.exerciseService.notifyAboutExercisesChange();
+          await this.router.navigate(this.previousUrl ? this.previousUrl.split('/') : ['tabs', 'training-plans']);
+        });
+      } else {
+        formData.append('exerciseData', new Blob([JSON.stringify(addCustomExerciseForm.value)], {
+          type: 'application/json'
+        }));
+        this.exerciseService.addCustomExercise(formData).subscribe(async () => {
+          this.exerciseService.notifyAboutExercisesChange();
+          await this.router.navigate(this.previousUrl ? this.previousUrl.split('/') : ['tabs', 'training-plans']);
+        });
+      }
     }
   }
 
-  async saveImage(photo: Photo) {
-
-    const base64Data = await this.readAsBase64(photo);
-    console.log(base64Data);
-    const fileName = new Date().getTime() + '.jpeg';
-    const savedFile = await Filesystem.writeFile({
-      directory: Directory.Data,
-      path: `${IMAGE_DIR}/${fileName}`,
-      data: base64Data
-    });
-    console.log('saved:', savedFile);
-    this.loadFiles();
+  async selectImageToUpload() {
+    this.image = await this.imageService.selectImageFromDiskOrTakePhoto();
+    this.imageToDisplay = IMAGE_FORMAT_PREFIX + this.image.base64String;
   }
-
-  async readAsBase64(photo: Photo) {
-    if (this.platform.is('hybrid')) {
-      const file = await Filesystem.readFile({
-        path: photo.path!
-      });
-      return file.data;
-    } else {
-      const response = await fetch(photo.webPath!);
-      const blob = await response.blob();
-      return await this.convertBlobToBase64(blob) as string;
-    }
-  }
-
-  convertBlobToBase64 = (blob: Blob) => new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onerror = reject;
-    reader.onload = () => {
-      resolve(reader.result);
-    };
-    reader.readAsDataURL(blob);
-});
-
 }
