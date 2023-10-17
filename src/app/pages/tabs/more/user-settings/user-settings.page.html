@@ -3,26 +3,68 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/tabs/more"></ion-back-button>
     </ion-buttons>
-    <ion-title>{{'MORE.SETTINGS' | translate}}</ion-title>
+    <ion-title>{{'MORE.SETTINGS.PAGE_TITLES.SETTINGS' | translate}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
 
-  <div class="button-container vertical-spacer-5vh horizontal-center">
-    <button (click)="changeLanguage(Language.PL)" class="button button-fill" type="submit">
-      <div class="button-content-container horizontal-center">
-        <p>Polski</p>
+
+  <div class="content-container horizontal-center">
+    <h3>{{ 'MORE.SETTINGS.SETTINGS_TITLES.APPLICATION_LANGUAGE' | translate }}</h3>
+    <div class="language-icons-container horizontal-center">
+      <div *ngFor="let language of languageOptions" (click)="changeLanguage(language.name)"
+           class="language-icon-container">
+        <ion-thumbnail>
+          <img alt="Silhouette of mountains"
+               [src]="language.image"/>
+        </ion-thumbnail>
       </div>
-    </button>
+    </div>
+
+    <div class="horizontal-spacer vertical-spacer-3vh horizontal-center"></div>
+
+    <div class="form-container vertical-spacer-3vh horizontal-center">
+      <form (ngSubmit)="validateAndUpdateMeasurementUnits(updateMeasurementUnitsForm)"
+            [formGroup]="updateMeasurementUnitsForm">
+
+        <div class="form-inputs-container horizontal-center">
+          <h3>{{ 'MORE.SETTINGS.SETTINGS_TITLES.MEASUREMENT_UNITS' | translate }}</h3>
+          <div class="measurement-unit-select-container">
+            <ion-select class="horizontal-center" label="{{ 'MORE.SETTINGS.LENGTH_UNITS.LABEL' | translate }}"
+                        [interfaceOptions]="lengthUnitOptions" formControlName="lengthUnit">
+              <ion-select-option *ngFor="let lengthUnit of lengthUnits | keyvalue"
+                                 [value]="lengthUnit.value">{{('MORE.SETTINGS.LENGTH_UNITS.' + lengthUnit.value) | translate }}</ion-select-option>
+            </ion-select>
+          </div>
+
+          <div class="measurement-unit-select-container">
+            <ion-select class="horizontal-center" label="{{ 'MORE.SETTINGS.WEIGHT_UNITS.LABEL' | translate }}"
+                        [interfaceOptions]="weightUnitOptions" formControlName="weightUnit">
+              <ion-select-option *ngFor="let weightUnit of weightUnits | keyvalue"
+                                 [value]="weightUnit.value">{{('MORE.SETTINGS.WEIGHT_UNITS.' + weightUnit.value) | translate }}</ion-select-option>
+            </ion-select>
+          </div>
+        </div>
+        <div class="button-container vertical-spacer-3vh horizontal-center">
+          <button class="button button-fill" type="submit">
+            <div class="button-content-container horizontal-center">
+              <ion-icon name="checkmark-outline"></ion-icon>
+              <p>{{ 'EXERCISE.BUTTONS.SAVE' | translate}}</p>
+            </div>
+          </button>
+        </div>
+      </form>
+    </div>
+
   </div>
 
-  <div class="button-container vertical-spacer-5vh horizontal-center">
-    <button (click)="changeLanguage(Language.EN)" class="button button-fill" type="submit">
-      <div class="button-content-container horizontal-center">
-        <p>Angielski</p>
-      </div>
-    </button>
-  </div>
+  <!--  <div class="button-container vertical-spacer-5vh horizontal-center">-->
+  <!--    <button (click)="changeLanguage(Language.PL)" class="button button-fill" type="submit">-->
+  <!--      <div class="button-content-container horizontal-center">-->
+  <!--        <p>Polski</p>-->
+  <!--      </div>-->
+  <!--    </button>-->
+  <!--  </div>-->
 
 </ion-content>

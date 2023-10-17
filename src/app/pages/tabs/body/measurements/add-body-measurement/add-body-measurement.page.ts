@@ -39,10 +39,14 @@ export class AddBodyMeasurementPage implements OnInit {
   }
 
   ngOnInit() {
+    this.fetchLatestBodyMeasurement();
+    this.initializeMeasurementUnitsShortcuts();
+  }
+
+  fetchLatestBodyMeasurement() {
     this.bodyService.getLatestBodyMeasurement().subscribe(response => {
       this.fillFormFields(response)
     });
-    this.initializeMeasurementUnitsShortcuts();
   }
 
   private fillFormFields(bodyMeasurementDto: BodyMeasurementDto) {
@@ -69,6 +73,7 @@ export class AddBodyMeasurementPage implements OnInit {
   listenForMeasurementUnitChange() {
     return this.measurementUnitsService.measurementUnitsChange.subscribe(() => {
       this.getMeasurementUnitsShortcuts();
+      this.fetchLatestBodyMeasurement();
     });
   }
 

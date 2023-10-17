@@ -94,12 +94,6 @@ export class AddCustomExercisePage implements OnInit {
       .subscribe((previousUrl: string) => {
         this.previousUrl = previousUrl;
       });
-
-    this.loadFiles();
-  }
-
-  async loadFiles() {
-
   }
 
   addCustomExerciseForm = this.formBuilder.group({

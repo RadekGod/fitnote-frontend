@@ -32,10 +32,14 @@ export class EditGeneralMeasurementPage implements OnInit {
   }
 
   ngOnInit() {
+    this.fetchLatestGeneralMeasurement();
+    this.initializeMeasurementUnitsShortcuts();
+  }
+
+  fetchLatestGeneralMeasurement() {
     this.bodyService.getLatestGeneralMeasurement().subscribe(response => {
       this.fillFormFields(response);
     });
-    this.initializeMeasurementUnitsShortcuts();
   }
 
   private fillFormFields(generalMeasurementDto: GeneralMeasurementDto) {
@@ -55,6 +59,7 @@ export class EditGeneralMeasurementPage implements OnInit {
   listenForMeasurementUnitChange() {
     return this.measurementUnitsService.measurementUnitsChange.subscribe(() => {
       this.getMeasurementUnitsShortcuts();
+      this.fetchLatestGeneralMeasurement();
     });
   }
 

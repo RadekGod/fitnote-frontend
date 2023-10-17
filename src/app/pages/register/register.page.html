@@ -63,5 +63,14 @@
       </div>
     </button>
   </div>
+
+  <div class="language-icons-container vertical-spacer-5vh horizontal-center">
+    <div *ngFor="let language of languageOptions" (click)="changeLanguage(language.name)" class="language-icon-container">
+      <ion-thumbnail>
+        <img alt="Silhouette of mountains"
+             [src]="language.image"/>
+      </ion-thumbnail>
+    </div>
+  </div>
 </ion-content>
 

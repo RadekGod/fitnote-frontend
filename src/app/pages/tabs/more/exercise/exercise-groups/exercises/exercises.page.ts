@@ -9,6 +9,7 @@ import {LocalImage} from "../../../../../../commons/models/local-image.model";
 import {Exercise} from "../../../../../../commons/models/exercise.model";
 import {ImageService} from "../../../../../../commons/services/file/image.service";
 import {environment} from "../../../../../../../environments/environment";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-exercises',
@@ -20,6 +21,7 @@ export class ExercisesPage implements OnInit {
   previousUrl: string = '';
   category!: string;
   exercises: Exercise[] = [];
+  private bodyMeasurementSubscription!: Subscription;
 
 
   constructor(private activatedRoute: ActivatedRoute,
@@ -37,8 +39,16 @@ export class ExercisesPage implements OnInit {
     this.previousUrl.split('/').pop();
     this.category = this.activatedRoute.snapshot.params['category'];
 
+    this.initializeExercises();
+  }
+
+  initializeExercises() {
+    this.fetchAllExercisesFromCategory();
+    this.bodyMeasurementSubscription = this.listenForExerciseChange();
+  }
+
+  fetchAllExercisesFromCategory() {
     this.exerciseService.getAllExercisesFromCategory(this.category).subscribe(async response => {
-      console.log(response);
       for (const responseEntry of response) {
         this.exercises.push({
           ...responseEntry,
@@ -46,7 +56,13 @@ export class ExercisesPage implements OnInit {
         })
       }
       console.log(this.exercises);
-    })
+    });
+  }
+
+  listenForExerciseChange() {
+    return this.exerciseService.exercisesChange.subscribe(() => {
+      this.fetchAllExercisesFromCategory();
+    });
   }
 
   // loadImagesForExercises() {

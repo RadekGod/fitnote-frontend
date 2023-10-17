@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/tabs/training-plans/training-plan/exercise-groups"></ion-back-button>
+      <ion-back-button defaultHref="/tabs/more/exercise-groups"></ion-back-button>
     </ion-buttons>
     <ion-title>{{ 'EXERCISE.EXERCISES.PAGE_TITLES.CHOOSE_EXERCISE' | translate }}</ion-title>
   </ion-toolbar>
@@ -14,7 +14,7 @@
          [routerLink]="['/', 'tabs', 'more', 'exercise-groups', 'exercises', category, 'exercise', exercise.id]">
       <div class="thumbnail-container">
         <ion-thumbnail>
-          <img alt="Silhouette of mountains" [src]="exercise.image?.data"/>
+          <img alt="Silhouette of mountains" [src]="exercise.image ? exercise.image.data : 'https://www.fabrykasily.pl/upload/gallery/2019/03/id_20907_1552923804_1260x840.jpg'"/>
         </ion-thumbnail>
       </div>
       <div class="title-container">

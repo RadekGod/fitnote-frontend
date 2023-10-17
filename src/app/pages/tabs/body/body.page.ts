@@ -5,22 +5,11 @@ import {GeneralMeasurementDto} from "./model/general-measurement-dto.model";
 import {Subscription} from "rxjs";
 import {UserService} from "../../../commons/services/user/user.service";
 import {MeasurementUnitsService} from "../../../commons/services/mesurement-units/measurement-units.service";
-import {LocalFile} from "../../../commons/models/local-file.model";
-import {LoadingController, Platform} from "@ionic/angular";
-import {Camera, CameraResultType, CameraSource, Photo} from "@capacitor/camera";
-import {Directory, FileInfo, Filesystem} from "@capacitor/filesystem";
-import {addWarning} from "@angular-devkit/build-angular/src/utils/webpack-diagnostics";
-import {ThisReceiver} from "@angular/compiler";
-import {decode} from "base64-arraybuffer";
+import {Directory, Filesystem} from "@capacitor/filesystem";
 import {environment} from "../../../../environments/environment";
 import {GalleryPhotoDto} from "./model/gallery-photo-dto.model";
-import {images} from "ionicons/icons";
-import * as stream from "stream";
-import {LocalImage} from "../../../commons/models/local-image.model";
-import {ApplicationFile} from "../../../commons/models/application-file.model";
 import {ImageService} from "../../../commons/services/file/image.service";
 import {GalleryPhotoImage} from "../../../commons/models/gallery-photo-image.model";
-
 
 
 @Component({
@@ -68,6 +57,8 @@ export class BodyPage implements OnInit {
   listenForMeasurementUnitChange() {
     return this.measurementUnitsService.measurementUnitsChange.subscribe(() => {
       this.getMeasurementUnitsShortcuts();
+      this.fetchLatestGeneralMeasurement();
+      this.fetchLatestBodyMeasurement();
     });
   }
 

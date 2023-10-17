@@ -3,6 +3,8 @@ import {User} from "../../commons/models/user.model";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {RegisterService} from "./register.service";
+import {TranslationConfiguration} from "../../configuration/translations/translation-configuration";
+import {Language} from "../../configuration/translations/language";
 
 @Component({
   selector: 'app-register',
@@ -11,13 +13,16 @@ import {RegisterService} from "./register.service";
 })
 export class RegisterPage implements OnInit {
 
+  languageOptions = this.translationConfiguration.languageOptions;
+
   registerForm = this.formBuilder.group({
     email: ['', Validators.email],
     password: ['', Validators.required],
     repeatPassword: ['', Validators.required],
   });
 
-  constructor(private registerService: RegisterService, private router: Router, private formBuilder: FormBuilder) {
+  constructor(private registerService: RegisterService, private router: Router, private formBuilder: FormBuilder,
+              private translationConfiguration: TranslationConfiguration) {
 
   }
 
@@ -36,7 +41,10 @@ export class RegisterPage implements OnInit {
       // window.sessionStorage.setItem("XSRF-TOKEN", xsrf);
       // this.router.navigate(['tabs', 'plans']);
     });
+  }
 
+  changeLanguage(language: string) {
+    this.translationConfiguration.changeLanguage(language as Language);
   }
 
 }

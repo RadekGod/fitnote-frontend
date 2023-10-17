@@ -1,5 +1,31 @@
 {
   "MORE": {
-    "SETTINGS": "Ustawienia"
+    "SETTINGS": {
+      "PAGE_TITLES": {
+        "SETTINGS": "Ustawienia"
+      },
+      "SETTINGS_TITLES": {
+        "APPLICATION_LANGUAGE": "Język aplikacji",
+        "MEASUREMENT_UNITS": "Jednostki miary"
+      },
+      "LENGTH_UNITS": {
+        "ALERTS": {
+          "HEADER": "Jednostka długości",
+          "SUBHEADER": "Wybierz jednostkę długości"
+        },
+        "LABEL": "Jednostka długości",
+        "CENTIMETER": "Centymetry",
+        "INCH": "Cale"
+      },
+      "WEIGHT_UNITS": {
+        "ALERTS": {
+          "HEADER": "Jednostka wagi",
+          "SUBHEADER": "Wybierz jendostkę wagi"
+        },
+        "LABEL": "Jednostka wagi",
+        "KILOGRAM": "Kilogramy",
+        "POUND": "Funty"
+      }
+    }
   }
 }
