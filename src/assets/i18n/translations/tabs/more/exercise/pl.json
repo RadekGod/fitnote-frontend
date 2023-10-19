@@ -11,13 +11,25 @@
     },
     "ADD_CUSTOM_EXERCISE": {
       "PAGE_TITLES": {
-        "ADD_CUSTOM_EXERCISE": "Stwórz własne ćwiczenie"
+        "ADD_CUSTOM_EXERCISE": "Stwórz ćwiczenie",
+        "EDIT_CUSTOM_EXERCISE": "Edytuj ćwiczenie"
       },
-
       "ALERTS": {
         "EXERCISE_TYPE": {
           "HEADER": "Rodzaj ćwiczenia",
           "SUBHEADER": "Wybierz rodzaj cwiczenia"
+        },
+        "EXERCISE_GROUPS": {
+          "HEADER": "Grupy ćwiczenia",
+          "SUBHEADER": "Wybierz Grupy ćwiczenia"
+        },
+        "MAIN_MUSCLES": {
+          "HEADER": "Główne mięśnie",
+          "SUBHEADER": "Wybierz główne mięśnie"
+        },
+        "SUPPORTIVE_MUSCLES": {
+          "HEADER": "Wspierające mięśnie",
+          "SUBHEADER": "Wybierz wspierające mięśnie"
         }
       },
       "EXERCISE_NAME": "Nazwa ćwiczenia",
@@ -27,10 +39,15 @@
       "MAIN_MUSCLES": "Główne mięśnie",
       "SUPPORTIVE_MUSCLES": "Wspierające mięśnie"
     },
-    "EXERCISES": {
+    "EDIT_CUSTOM_EXERCISE": {
       "PAGE_TITLES": {
-        "CHOOSE_EXERCISE": "Wybierz ćwiczenie"
+        "EDIT_CUSTOM_EXERCISE": "Edytuj ćwiczenie"
+      }
+    },
+      "EXERCISES": {
+        "PAGE_TITLES": {
+          "CHOOSE_EXERCISE": "Wybierz ćwiczenie"
+        }
       }
     }
   }
-}

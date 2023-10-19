@@ -15,7 +15,12 @@ const routes: Routes = [
   {
     path: 'exercises/:category',
     loadChildren: () => import('./exercises/exercises.module').then(m => m.ExercisesPageModule)
+  },
+  {
+    path: 'edit-custom-exercise/:id',
+    loadChildren: () => import('./edit-custom-exercise/edit-custom-exercise.module').then( m => m.EditCustomExercisePageModule)
   }
+
 ];
 
 @NgModule({

@@ -1,39 +1,27 @@
 import {Component, OnInit} from '@angular/core';
-import {UrlService} from "../../../../../../commons/services/url/url.service";
-import {Router} from "@angular/router";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {BodyMeasurementDto} from "../../../../body/model/body-measurement-dto.model";
+import {Photo} from "@capacitor/camera";
 import {ExerciseType} from "../../../../../../commons/enums/exercise-types.enum";
 import {Muscles} from "../../../../../../commons/enums/muscles.enum";
-import {ExerciseCategoryGroups} from "../../../../../../commons/enums/exercise-category-groups.enum";
-import {Camera, CameraResultType, CameraSource, GalleryPhoto, Photo} from "@capacitor/camera";
-import {Directory, Filesystem} from "@capacitor/filesystem";
-import {Platform} from "@ionic/angular";
-import {addWarning} from "@angular-devkit/build-angular/src/utils/webpack-diagnostics";
 import {LocalFile} from "../../../../../../commons/models/local-file.model";
-import {IMAGE_FORMAT_PREFIX} from "../../../../../../commons/constants/constants";
+import {UrlService} from "../../../../../../commons/services/url/url.service";
+import {ActivatedRoute, Router} from "@angular/router";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {TranslateService} from "@ngx-translate/core";
 import {ImageService} from "../../../../../../commons/services/file/image.service";
 import {ExerciseService} from "../../exercise.service";
-import {TranslateService} from "@ngx-translate/core";
 import {environment} from "../../../../../../../environments/environment";
+import {IMAGE_FORMAT_PREFIX} from "../../../../../../commons/constants/constants";
+import {AlertOptions} from "@ionic/angular";
 import {CreateExerciseCategoryGroups} from "../../../../../../commons/enums/create-exercise-category-groups.enum";
-
-const IMAGE_DIR = 'stored-images';
-
-interface AlertOptions {
-  header: string;
-  subHeader: string;
-  message?: string;
-}
-
-
+import {ExerciseDto} from "../../../../training-plans/model/exercise-dto.model";
 
 @Component({
-  selector: 'app-add-custom-exercise',
-  templateUrl: './add-custom-exercise.page.html',
-  styleUrls: ['./add-custom-exercise.page.scss'],
+  selector: 'app-edit-custom-exercise',
+  templateUrl: './edit-custom-exercise.page.html',
+  styleUrls: ['./edit-custom-exercise.page.scss',
+    '../add-custom-exercise/add-custom-exercise.page.scss']
 })
-export class AddCustomExercisePage implements OnInit {
+export class EditCustomExercisePage implements OnInit {
 
   image!: Photo;
   imageToDisplay = '';
@@ -41,7 +29,8 @@ export class AddCustomExercisePage implements OnInit {
   exerciseTypes = ExerciseType;
   muscles = Muscles;
   exerciseCategoryGroups = CreateExerciseCategoryGroups;
-
+  exerciseId = Number(this.route.snapshot.paramMap.get('id'));
+  exercise!: ExerciseDto;
 
   images: LocalFile[] = [];
 
@@ -67,8 +56,18 @@ export class AddCustomExercisePage implements OnInit {
   };
 
 
+  editCustomExerciseForm = this.formBuilder.group({
+    name: ['', Validators.required],
+    description: [''],
+    exerciseType: ['', Validators.required],
+    exerciseCategoryGroups: [['']],
+    mainMuscles: [['']],
+    supportiveMuscles: [['']]
+  });
+
   constructor(private urlService: UrlService, private router: Router,
               private formBuilder: FormBuilder,
+              private route: ActivatedRoute,
               private translate: TranslateService,
               private imageService: ImageService,
               private exerciseService: ExerciseService) {
@@ -79,19 +78,36 @@ export class AddCustomExercisePage implements OnInit {
       .subscribe((previousUrl: string) => {
         this.previousUrl = previousUrl;
       });
+    this.fetchExercise();
   }
 
-  addCustomExerciseForm = this.formBuilder.group({
-    name: ['', Validators.required],
-    description: [''],
-    exerciseType: ['', Validators.required],
-    exerciseCategoryGroups: [['']],
-    mainMuscles: [['']],
-    supportiveMuscles: [['']]
-  });
+//TODO: dokończyć edycję ćwiczenia
+  fetchExercise() {
+    this.exerciseService.getExercise(this.exerciseId).subscribe(async response => {
+      this.exercise = response;
+      this.fillFormFields(response);
+      let localImage = response.applicationFile ? await this.imageService.loadImageFromDevice(environment.customExercisesDirectory, response.applicationFile) : undefined
+      this.image = {format: IMAGE_FORMAT_PREFIX, saved: true, base64String: localImage?.data};
+      this.imageToDisplay = this.image.base64String!;
+    });
+  }
 
-  validateAndAddCustomExercise(addCustomExerciseForm: FormGroup) {
-    if (this.addCustomExerciseForm.valid) {
+  private fillFormFields(exerciseDto: ExerciseDto) {
+    const categoryGroups = exerciseDto?.exerciseCategoryGroups
+      .filter(category => category.categoryName !== 'CUSTOM')
+      .map(category => category.categoryName);
+    this.editCustomExerciseForm.patchValue({
+      name: exerciseDto?.name ?? '',
+      description: exerciseDto?.description ?? '',
+      exerciseType: exerciseDto?.exerciseType ?? '',
+      exerciseCategoryGroups: categoryGroups,
+      mainMuscles: exerciseDto.mainMuscles ?? [''],
+      supportiveMuscles: exerciseDto.supportiveMuscles ?? ['']
+    });
+  }
+
+  validateAndEditCustomExercise(addCustomExerciseForm: FormGroup) {
+    if (this.editCustomExerciseForm.valid) {
 
       const formData: FormData = new FormData();
       if (this.image) {
@@ -101,7 +117,12 @@ export class AddCustomExercisePage implements OnInit {
         formData.append('exerciseData', new Blob([JSON.stringify(addCustomExerciseForm.value)], {
           type: 'application/json'
         }));
-        this.exerciseService.addCustomExercise(formData).subscribe(async () => {
+        this.exerciseService.editCustomExercise(this.exerciseId, formData).subscribe(async () => {
+          try {
+            await this.imageService.deleteImageFromDevice(environment.customExercisesDirectory, this.exercise.applicationFile.fileName);
+          } catch (e) {
+            console.log(e);
+          }
           await this.imageService.saveImageOnDevice(this.image, environment.customExercisesDirectory, fileName);
           this.exerciseService.notifyAboutExercisesChange();
           await this.router.navigate(this.previousUrl ? this.previousUrl.split('/') : ['tabs', 'training-plans']);
@@ -110,7 +131,7 @@ export class AddCustomExercisePage implements OnInit {
         formData.append('exerciseData', new Blob([JSON.stringify(addCustomExerciseForm.value)], {
           type: 'application/json'
         }));
-        this.exerciseService.addCustomExercise(formData).subscribe(async () => {
+        this.exerciseService.editCustomExercise(this.exerciseId, formData).subscribe(async () => {
           this.exerciseService.notifyAboutExercisesChange();
           await this.router.navigate(this.previousUrl ? this.previousUrl.split('/') : ['tabs', 'training-plans']);
         });
@@ -122,4 +143,5 @@ export class AddCustomExercisePage implements OnInit {
     this.image = await this.imageService.selectImageFromDiskOrTakePhoto();
     this.imageToDisplay = IMAGE_FORMAT_PREFIX + this.image.base64String;
   }
+
 }

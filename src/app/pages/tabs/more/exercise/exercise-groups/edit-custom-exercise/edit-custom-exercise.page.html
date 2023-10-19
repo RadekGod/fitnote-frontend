@@ -1,24 +1,24 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
-<!--      <ion-back-button [defaultHref]="previousUrl ? previousUrl : '/tabs/more/exercise-groups/exercises'"></ion-back-button>-->
+      <!--      <ion-back-button [defaultHref]="previousUrl ? previousUrl : '/tabs/more/exercise-groups/exercises'"></ion-back-button>-->
       <ion-back-button [defaultHref]="previousUrl"></ion-back-button>
     </ion-buttons>
-    <ion-title>{{ 'EXERCISE.ADD_CUSTOM_EXERCISE.PAGE_TITLES.ADD_CUSTOM_EXERCISE' | translate}}</ion-title>
+    <ion-title>{{ 'EXERCISE.EDIT_CUSTOM_EXERCISE.PAGE_TITLES.EDIT_CUSTOM_EXERCISE' | translate}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <div class="image-input-container vertical-spacer-2vh horizontal-center" (click)="selectImageToUpload()">
-      <ion-icon *ngIf="!imageToDisplay" name="camera-outline"></ion-icon>
-      <img *ngIf="imageToDisplay" [src]="imageToDisplay">
-    </div>
+    <ion-icon *ngIf="!imageToDisplay" name="camera-outline"></ion-icon>
+    <img *ngIf="imageToDisplay" [src]="imageToDisplay">
+  </div>
 
 
 
   <div class="form-container vertical-spacer-5vh horizontal-center">
-    <form (ngSubmit)="validateAndAddCustomExercise(addCustomExerciseForm)"
-          [formGroup]="addCustomExerciseForm">
+    <form (ngSubmit)="validateAndEditCustomExercise(editCustomExerciseForm)"
+          [formGroup]="editCustomExerciseForm">
 
       <div class="form-inputs-container horizontal-center">
         <div class="input-container horizontal-center">

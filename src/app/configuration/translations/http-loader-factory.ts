@@ -10,11 +10,7 @@ export function httpLoaderFactory(http: HttpBackend) {
     './assets/i18n/translations/tabs/',
     './assets/i18n/translations/tabs/body/',
     './assets/i18n/translations/tabs/more/settings/',
-    './assets/i18n/translations/tabs/more/exercise/',
-
-
-
-
+    './assets/i18n/translations/tabs/more/exercise/'
     ]
   );
 }

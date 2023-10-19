@@ -35,10 +35,10 @@ export class LoginPage implements OnInit {
 
   validateUser(loginForm: FormGroup) {
       // this.router.navigate(['tabs', 'body']);
-    this.router.navigate(['tabs', 'training-plans']);
+    // this.router.navigate(['tabs', 'training-plans']);
     //TODO przeanalizować  i poprawić sposob zapisywania userDetails
 
-    // this.loginService.loginUser(loginForm.value);
+    this.loginService.loginUser(loginForm.value);
 
 
 

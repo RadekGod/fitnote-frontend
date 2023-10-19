@@ -26,6 +26,13 @@
   },
 
   "MUSCLES": {
-
+    "PECTORALIS_MAJOR":  "Pectoralis major",
+    "PECTORALIS_MINOR": "Pectoralis minor",
+    "TRICEPS":  "Triceps",
+    "BICEPS": "Biceps",
+    "DELTOID":  "Deltoid",
+    "TERES_MAJOR": "Teres major",
+    "LATISSIMUS_DORSI":  "Latissimus dorsi",
+    "SERRATUS_ANTERIOR": "serratus anterior"
   }
 }

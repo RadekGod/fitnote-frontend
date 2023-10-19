@@ -19,11 +19,13 @@ import {UserService} from "../../../../commons/services/user/user.service";
 export class UserSettingsPage implements OnInit {
 
   lengthUnitOptions: AlertOptions = {
-
+    header: this.translate.instant('MORE.SETTINGS.LENGTH_UNITS.ALERTS.HEADER'),
+    subHeader: this.translate.instant('MORE.SETTINGS.LENGTH_UNITS.ALERTS.SUBHEADER')
   };
 
   weightUnitOptions: AlertOptions = {
-
+    header: this.translate.instant('MORE.SETTINGS.WEIGHT_UNITS.ALERTS.HEADER'),
+    subHeader: this.translate.instant('MORE.SETTINGS.WEIGHT_UNITS.ALERTS.SUBHEADER')
   }
 
   userData: User = this.userService.getUserDetailsFromSession();

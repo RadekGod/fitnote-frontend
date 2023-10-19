@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {ExerciseService} from "../../exercise.service";
 import {UrlService} from "../../../../../../commons/services/url/url.service";
 import {ExerciseDto} from "../../../../training-plans/model/exercise-dto.model";
@@ -27,6 +27,7 @@ export class ExercisesPage implements OnInit {
   constructor(private activatedRoute: ActivatedRoute,
               private exerciseService: ExerciseService,
               private urlService: UrlService,
+              private router: Router,
               private imageService: ImageService) {
   }
 
@@ -36,7 +37,7 @@ export class ExercisesPage implements OnInit {
         this.previousUrl = previousUrl;
       });
 
-    this.previousUrl.split('/').pop();
+    // this.previousUrl.split('/').pop();
     this.category = this.activatedRoute.snapshot.params['category'];
 
     this.initializeExercises();
@@ -48,12 +49,13 @@ export class ExercisesPage implements OnInit {
   }
 
   fetchAllExercisesFromCategory() {
+    this.exercises = [];
     this.exerciseService.getAllExercisesFromCategory(this.category).subscribe(async response => {
       for (const responseEntry of response) {
         this.exercises.push({
           ...responseEntry,
           image: responseEntry.applicationFile ? await this.imageService.loadImageFromDevice(environment.customExercisesDirectory, responseEntry.applicationFile) : undefined
-        })
+        });
       }
       console.log(this.exercises);
     });
@@ -63,6 +65,11 @@ export class ExercisesPage implements OnInit {
     return this.exerciseService.exercisesChange.subscribe(() => {
       this.fetchAllExercisesFromCategory();
     });
+  }
+
+  editExercise(exerciseId: number) {
+    this.router.navigate(['tabs', 'more', 'exercise-groups', 'edit-custom-exercise', exerciseId]);
+    console.log('test');
   }
 
   // loadImagesForExercises() {

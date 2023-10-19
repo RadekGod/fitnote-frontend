@@ -25,12 +25,16 @@ export class ExerciseService {
     return this.httpClient.get<ExerciseDto[]>(environment.rootUrl + AppConstants.EXERCISES_CATEGORIES_API_URL, {params: {category: category},  withCredentials:true });
   }
 
-  // getExercise(category: string): Observable<any> {
-  //   return this.httpClient.get<any>(environment.rootUrl + AppConstants.EXERCISES_API_URL, {params: {category: category},  withCredentials:true });
-  // }
+  getExercise(exerciseId: number): Observable<ExerciseDto> {
+    return this.httpClient.get<ExerciseDto>(environment.rootUrl + AppConstants.EXERCISES_API_URL + '/exercise', {params: {id: exerciseId},  withCredentials:true });
+  }
 
   addCustomExercise(formData: FormData)  {
     return this.httpClient.post(environment.rootUrl + AppConstants.EXERCISES_API_URL, formData,{ withCredentials: true });
+  }
+
+  editCustomExercise(exerciseId: number, formData: FormData)  {
+    return this.httpClient.put(environment.rootUrl + AppConstants.EXERCISES_API_URL, formData,{params: {id: exerciseId}, withCredentials: true });
   }
 
 }

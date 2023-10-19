@@ -11,6 +11,47 @@ ion-header ion-toolbar ion-title {
   }
 }
 
-ion-searchbar {
+.menu-toggle {
+  position: relative;
+}
+
+.expandable-menu-container {
+  padding: 0.5rem 0;
+  position: absolute;
+  display: flex;
+  gap: 1rem;
+  z-index: 2;
+  align-items: center;
+  border-radius: 0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6rem;
+  font-size: 1.8rem;
+  flex-direction: column;
+  background-color: var(--ion-color-secondary);
+
+
+}
+
+ion-list {
+  width: 90%;
+}
+
+ion-item::part(native) {
   color: var(--ion-color-secondary);
+  //border-color: #fff;
+  //border-style: dashed;
+  //border-width: 2px;
+  border: 1px solid var(--ion-color-secondary);
+  border-radius: 2rem;
+  gap: 1rem;
+}
+
+h3 {
+  font-size: 2rem;
+}
+
+ion-avatar {
+  width: 4.8rem;
+  height: 4.8rem;
 }

@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Camera, CameraResultType, CameraSource, Photo} from "@capacitor/camera";
 import {decode} from "base64-arraybuffer";
 import {Platform} from "@ionic/angular";
-import {Directory, FileInfo, Filesystem, ReaddirResult} from "@capacitor/filesystem";
+import {DeleteFileOptions, Directory, FileInfo, Filesystem, ReaddirResult} from "@capacitor/filesystem";
 import {environment} from "../../../../environments/environment";
 import {LocalImage} from "../../models/local-image.model";
 import {ApplicationFile} from "../../models/application-file.model";
@@ -51,6 +51,8 @@ export class ImageService {
       data: base64Data
     });
   }
+
+
 
 
   async loadImagesDirectoryFromDevice(): Promise<LocalImage[]> {
@@ -122,5 +124,13 @@ export class ImageService {
       creationDate: applicationFile.creationDate,
       data: `data:image/jpeg;base64,${readFile.data}`
     } as LocalImage;
+  }
+
+  async deleteImageFromDevice(directory: string, fileName: string): Promise<void> {
+    const filePath = `${directory}/${fileName}`;
+    await Filesystem.deleteFile({
+      directory: Directory.Data,
+      path: filePath
+    });
   }
 }
