@@ -32,7 +32,7 @@
         }
       },
       "EXERCISE_NAME": "Exercise name",
-      "INSTRUCTION": "Instruction",
+      "DESCRIPTION": "Description",
       "EXERCISE_TYPE": "Exercise type",
       "EXERCISE_GROUPS": "Exercise groups",
       "MAIN_MUSCLES": "Main muscles",

@@ -37,4 +37,8 @@ export class ExerciseService {
     return this.httpClient.put(environment.rootUrl + AppConstants.EXERCISES_API_URL, formData,{params: {id: exerciseId}, withCredentials: true });
   }
 
+  deleteCustomExercise(exerciseId: number)  {
+    return this.httpClient.delete(environment.rootUrl + AppConstants.EXERCISES_API_URL + '/exercise',{params: {id: exerciseId}, withCredentials: true });
+  }
+
 }

@@ -8,40 +8,6 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-
-  <div *ngFor="let exercise of exercises" class="simple-items-container vertical-spacer-3vh">
-    <div class="simple-item-container horizontal-center"
-         [routerLink]="['/', 'tabs', 'more', 'exercise-groups', 'exercises', category, 'exercise', exercise.id]">
-      <div class="thumbnail-container">
-        <ion-thumbnail>
-          <img alt="Silhouette of mountains"
-               [src]="exercise.image ? exercise.image.data : 'https://www.fabrykasily.pl/upload/gallery/2019/03/id_20907_1552923804_1260x840.jpg'"/>
-        </ion-thumbnail>
-      </div>
-      <div class="title-container">
-        <h3>{{exercise.name}}</h3>
-      </div>
-
-      <div *ngIf="exercise.custom" class="simple-item-options">
-        <div class="menu-toggle">
-          <button>
-            <ion-icon name="ellipsis-vertical"></ion-icon>
-          </button>
-<!--          <div class="expandable-menu-container">-->
-<!--            <div class="menu-item" [routerLink]="['/', 'tabs', 'body', 'add-general-measurement']">-->
-<!--              Edytuj-->
-<!--            </div>-->
-<!--            <div class="horizontal-spacer"></div>-->
-
-<!--            <div class="menu-item">-->
-<!--              Usuń-->
-<!--            </div>-->
-<!--          </div>-->
-        </div>
-      </div>
-    </div>
-  </div>
-
   <ion-list class="vertical-spacer-3vh horizontal-center">
     <ion-item-sliding *ngFor="let exercise of exercises" class="simple-item-container horizontal-center vertical-spacer-1vh">
     <ion-item [routerLink]="['/', 'tabs', 'more', 'exercise-groups', 'exercises', category, 'exercise', exercise.id]">
@@ -59,7 +25,7 @@
         <ion-icon slot="icon-only" name="create-outline" (click)="editExercise(exercise.id)"></ion-icon>
         </ion-item-option>
         <ion-item-option color="danger">
-          <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+          <ion-icon slot="icon-only" name="trash-outline" (click)="deleteExercise(exercise)"></ion-icon>
         </ion-item-option>
       </ion-item-options>
     </ion-item-sliding>
@@ -73,5 +39,6 @@
       </div>
     </button>
   </div>
+  <div class="vertical-spacer-3vh"></div>
 
 </ion-content>

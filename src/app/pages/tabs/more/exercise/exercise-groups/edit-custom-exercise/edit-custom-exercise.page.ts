@@ -118,10 +118,12 @@ export class EditCustomExercisePage implements OnInit {
           type: 'application/json'
         }));
         this.exerciseService.editCustomExercise(this.exerciseId, formData).subscribe(async () => {
-          try {
-            await this.imageService.deleteImageFromDevice(environment.customExercisesDirectory, this.exercise.applicationFile.fileName);
-          } catch (e) {
-            console.log(e);
+          if (this.exercise.applicationFile) {
+            try {
+              await this.imageService.deleteImageFromDevice(environment.customExercisesDirectory, this.exercise.applicationFile.fileName);
+            } catch (e) {
+              console.log(e);
+            }
           }
           await this.imageService.saveImageOnDevice(this.image, environment.customExercisesDirectory, fileName);
           this.exerciseService.notifyAboutExercisesChange();

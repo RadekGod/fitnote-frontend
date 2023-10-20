@@ -44,14 +44,17 @@
 .alert-head {
   .alert-title {
     color: var(--ion-color-secondary) !important;
+    font-size: 2.5rem !important;
   }
 
   .alert-sub-title {
     color: var(--ion-color-secondary) !important;
+    font-size: 2rem !important;
   }
 
   .alert-message {
     color: var(--ion-color-secondary-shade) !important;
+    font-size: 2rem !important;
   }
 }
 
@@ -71,6 +74,7 @@ button {
 
   .alert-checkbox-label {
     color: var(--ion-color-secondary-shade) !important;
+    font-size: 1.6rem !important;
   }
 }
 
@@ -81,15 +85,16 @@ button[aria-checked=true] {
 
   .alert-checkbox-label {
     color: var(--ion-color-secondary) !important;
+    font-size: 1.6rem !important;
   }
 }
 
 
 
 
-
 .alert-radio-label {
   color: var(--ion-color-secondary) !important;
+  font-size: 1.6rem !important;
 }
 
 button {
@@ -99,6 +104,7 @@ button {
 
   .alert-radio-label {
     color: var(--ion-color-secondary-shade) !important;
+    font-size: 1.6rem !important;
   }
 }
 
@@ -111,9 +117,11 @@ button[aria-checked=true] {
 
   .alert-radio-label {
     color: var(--ion-color-secondary) !important;
+    font-size: 1.6rem !important;
   }
 }
 
 .alert-button {
   color: var(--ion-color-secondary) !important;
+  font-size: 1.8rem !important;
 }

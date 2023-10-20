@@ -33,7 +33,7 @@
         }
       },
       "EXERCISE_NAME": "Nazwa ćwiczenia",
-      "INSTRUCTION": "Instrukcja",
+      "DESCRIPTION": "Opis",
       "EXERCISE_TYPE": "Rodzaj ćwiczenia",
       "EXERCISE_GROUPS": "Grupy ćwiczenia",
       "MAIN_MUSCLES": "Główne mięśnie",
