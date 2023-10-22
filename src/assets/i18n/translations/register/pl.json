@@ -1,0 +1,23 @@
+{
+  "REGISTER": {
+    "TITLE": {
+      "CREATE_ACCOUNT": "Załóż konto",
+      "IN_APPLICATION": "w aplikacji"
+    },
+    "INPUTS": {
+      "LABEL": {
+        "E-MAIL": "E-mail",
+        "PASSWORD": "Hasło",
+        "REPEAT_PASSWORD": "Powtórz hasło"
+      }
+    },
+    "BUTTONS": {
+      "LOGIN": "Zaloguj się",
+      "REGISTER": "Zarejestruj się"
+    },
+    "PARAGRAPHS": {
+      "OTHER_LOGIN_OPTIONS": "lub kontynuuj za pomocą",
+      "ACCOUNT_ALREADY_CREATED": "Masz już konto?"
+    }
+  }
+}

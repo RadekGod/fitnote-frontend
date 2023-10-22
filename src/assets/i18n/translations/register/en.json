@@ -1,0 +1,23 @@
+{
+  "REGISTER": {
+    "TITLE": {
+      "CREATE_ACCOUNT": "Create an ",
+      "IN_APPLICATION": "account in app"
+    },
+    "INPUTS": {
+      "LABEL": {
+        "E-MAIL": "E-mail",
+        "PASSWORD": "Password",
+        "REPEAT_PASSWORD": "Repeat password"
+      }
+    },
+    "BUTTONS": {
+      "LOGIN": "Log in",
+      "REGISTER": "Sign up"
+    },
+    "PARAGRAPHS": {
+      "OTHER_LOGIN_OPTIONS": "or continue with",
+      "ACCOUNT_ALREADY_CREATED": "Already have an account?"
+    }
+  }
+}

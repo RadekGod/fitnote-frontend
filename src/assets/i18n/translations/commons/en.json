@@ -1,0 +1,47 @@
+{
+  "WEEK_DAYS": {
+    "MONDAY": "Monday",
+    "TUESDAY":"Tuesday",
+    "WEDNESDAY": "Wednesday",
+    "THURSDAY":"Thursday",
+    "FRIDAY": "Friday",
+    "SATURDAY":"Saturday",
+    "SUNDAY": "Sunday"
+  },
+  "EXERCISE_TYPES": {
+    "CARDIO_TIME": "Cardio (Time)",
+    "CARDIO_DISTANCE": "Cardio (Distance)",
+    "BODY_WEIGHT_REPEATS": "Body weight (Repeats)",
+    "BODY_WEIGHT_TIME": "Body weight (Time)",
+    "WEIGHT_TRAINING": "Weight training"
+  },
+
+  "EXERCISE_GROUPS": {
+    "CHEST": "Chest",
+    "SHOULDERS":"Shoulders",
+    "BICEPS":"Biceps",
+    "TRICEPS": "Triceps",
+    "FOREARMS": "Forearms",
+    "UPPER_BACK": "Upper back",
+    "LOWER_BACK":"Lower back",
+    "ABS": "ABS",
+    "GLUTES":"Glutes",
+    "THIGH_FRONT": "Thigh - front",
+    "THIGH_BACK": "Thigh - back",
+    "CALVES": "Calves",
+    "CARDIO": "Cardio",
+    "CUSTOM":"Custom",
+    "FAVOURITE": "Favourite"
+  },
+
+  "MUSCLES": {
+    "PECTORALIS_MAJOR":  "Pectoralis major",
+    "PECTORALIS_MINOR": "Pectoralis minor",
+    "TRICEPS":  "Triceps",
+    "BICEPS": "Biceps",
+    "DELTOID":  "Deltoid",
+    "TERES_MAJOR": "Teres major",
+    "LATISSIMUS_DORSI":  "Latissimus dorsi",
+    "SERRATUS_ANTERIOR": "serratus anterior"
+  }
+}

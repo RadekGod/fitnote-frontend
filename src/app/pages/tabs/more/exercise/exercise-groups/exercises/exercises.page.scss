@@ -1,0 +1,39 @@
+ion-header ion-toolbar ion-title {
+  padding-left: 1rem;
+}
+
+.button-container {
+  width: 32rem;
+  height: 8rem;
+
+  .button-content-container {
+    font-size: 2rem;
+  }
+}
+
+ion-list {
+  width: 90%;
+  background-color: var(--ion-color-primary);
+
+  ion-item-sliding {
+    border-radius: 2rem;
+    border: 1px solid var(--ion-color-secondary);
+
+    ion-item::part(native) {
+      color: var(--ion-color-secondary);
+      border-radius: 2rem;
+    }
+  }
+}
+
+h3 {
+  font-size: 2rem;
+}
+
+ion-avatar {
+  width: 5.4rem;
+  height: 5.4rem;
+}
+
+
+

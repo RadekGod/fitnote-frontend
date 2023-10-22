@@ -1,0 +1,23 @@
+ion-tabs {
+  width: 100vw;
+}
+
+ion-tab-bar {
+  --background: var(--ion-color-primary);
+  box-shadow: 0 0 1.5px 0 var(--ion-color-secondary);
+  height: 8vh;
+  //--border: var(--ion-color-secondary);
+}
+
+ion-tab-button {
+  --color: var(--ion-color-secondary);
+  --color-selected: var(--ion-color-tertiary);
+}
+
+ion-icon {
+  font-size: 35px;
+}
+
+ion-label {
+  font-size: 16px;
+}

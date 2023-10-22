@@ -1,0 +1,31 @@
+{
+  "MORE": {
+    "SETTINGS": {
+      "PAGE_TITLES": {
+        "SETTINGS": "Settings"
+      },
+      "SETTINGS_TITLES": {
+        "APPLICATION_LANGUAGE": "Application language",
+        "MEASUREMENT_UNITS": "Measurement units"
+      },
+      "LENGTH_UNITS": {
+        "ALERTS": {
+          "HEADER": "Length unit",
+          "SUBHEADER": "Choose length unit"
+        },
+        "LABEL": "Length unit",
+        "CENTIMETER": "Centimeters",
+        "INCH": "Inches"
+      },
+      "WEIGHT_UNITS": {
+        "ALERTS": {
+          "HEADER": "Weight unit",
+          "SUBHEADER": "Choose weight unit"
+        },
+        "LABEL": "Weight unit",
+        "KILOGRAM": "Kilograms",
+        "POUND": "Pounds"
+      }
+    }
+  }
+}

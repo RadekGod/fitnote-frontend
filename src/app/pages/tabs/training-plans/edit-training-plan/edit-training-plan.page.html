@@ -1,0 +1,45 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/training-plans"></ion-back-button>
+    </ion-buttons>
+    <ion-title
+      class="padding-left-small">{{ 'ADD_TRAINING_PLAN.PAGE_TITLES.ADD_TRAINING_PLAN' | translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="form-container vertical-spacer-5vh horizontal-center">
+    <form (ngSubmit)="validateAndUpdateTrainingPlan(editTrainingPlanForm)"
+          [formGroup]="editTrainingPlanForm">
+
+      <div class="form-inputs-container horizontal-center">
+        <div class="input-container horizontal-center">
+          <input type="text" id="trainingPlanName" formControlName="name" placeholder="&nbsp;">
+          <label for="trainingPlanName"
+                 class="input-label">{{ 'ADD_TRAINING_PLAN.TRAINING_PLAN_NAME' | translate }}</label>
+        </div>
+
+        <div class="vertical-spacer-3vh"></div>
+
+        <ion-select class="horizontal-center"
+                    label="{{ 'ADD_TRAINING_PLAN.TRAINING_DAYS' | translate }}"
+                    [interfaceOptions]="trainingDaysOptions" formControlName="trainingDays" multiple="true">
+          <ion-select-option *ngFor="let trainingDay of trainingDays | keyvalue: originalOrder"
+                             [value]="trainingDay.value">{{('WEEK_DAYS.' + trainingDay.value) | translate }}</ion-select-option>
+        </ion-select>
+
+        <div class="horizontal-spacer horizontal-center"></div>
+      </div>
+
+      <div class="button-container vertical-spacer-3vh horizontal-center">
+        <button class="button button-fill" type="submit">
+          <div class="button-content-container horizontal-center">
+            <ion-icon name="checkmark-outline"></ion-icon>
+            <p>{{ 'EXERCISE.BUTTONS.SAVE' | translate}}</p>
+          </div>
+        </button>
+      </div>
+    </form>
+  </div>
+</ion-content>

@@ -1,0 +1,68 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button [defaultHref]="previousUrl ? previousUrl : '/tabs/more/exercise-groups'"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ exercise?.name }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="true">
+  <ion-toolbar>
+    <ion-segment value="description">
+      <ion-segment-button (click)="changeSegmentValue('description')" value="description">
+        <ion-label>{{ 'Opis' | translate }}</ion-label>
+      </ion-segment-button>
+
+      <ion-segment-button (click)="changeSegmentValue('history')" value="history">
+        <ion-label>{{ 'Historia' | translate }}</ion-label>
+      </ion-segment-button>
+
+      <ion-segment-button (click)="changeSegmentValue('statistics')" value="statistics">
+        <ion-label>{{ 'Statystyki' | translate }}</ion-label>
+      </ion-segment-button>
+
+      <ion-segment-button (click)="changeSegmentValue('charts')" value="charts">
+        <ion-label>{{ 'Wykresy' | translate }}</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+
+
+  <div *ngIf="segmentValue === 'description'" class="description-container vertical-spacer-2vh horizontal-center">
+    <div class="image-container">
+      <img [src]="exercise?.image ? exercise?.image?.data : 'https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/a93c82108677535.5fc3684e78f67.gif'" alt="Temp">
+    </div>
+
+    <div class="instruction-container vertical-spacer-2vh">
+      <h3>Opis</h3>
+      {{ exercise?.description }}
+    </div>
+
+    <div class="engaged-muscles-container vertical-spacer-1vh">
+      <h3>Zaangażowane mięśnie</h3>
+      {{ exercise?.mainMuscles }}
+      {{ exercise?.supportiveMuscles }}
+    </div>
+    <div class="exercise-categories-container vertical-spacer-1vh">
+      <h3>Grupa ćwiczeń</h3>
+        {{ exerciseCategories }}
+
+    </div>
+  </div>
+
+  <div *ngIf="segmentValue === 'history'" class="measurements-container">
+    Historia
+  </div>
+
+  <div *ngIf="segmentValue === 'statistics'" class="measurements-container">
+    Statystyki
+  </div>
+
+  <div *ngIf="segmentValue === 'charts'" class="measurements-container">
+    Wykresy
+  </div>
+
+  <div class="vertical-spacer-1vh"></div>
+</ion-content>

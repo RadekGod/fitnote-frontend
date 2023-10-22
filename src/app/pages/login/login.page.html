@@ -1,0 +1,72 @@
+<ion-content [fullscreen]="true">
+  <ion-row class="vertical-spacer-10vh">
+    <p class="login-title vertical-spacer-10vh horizontal-center">
+      {{ 'LOGIN.TITLE.HELLO' | translate }} <br>
+      {{ 'LOGIN.TITLE.SIGN_IN' | translate }} <br>
+      {{ 'LOGIN.TITLE.APPLICATION' | translate }}
+    </p>
+  </ion-row>
+  <div class="form-container vertical-spacer-5vh">
+    <form (ngSubmit)="validateUser(loginForm)" [formGroup]="loginForm">
+
+      <div class="form-inputs-container horizontal-center">
+        <div class="input-container horizontal-center">
+          <input type="email" id="email" formControlName="email" placeholder="&nbsp;">
+          <label for="email" class="input-label">{{ 'LOGIN.INPUTS.LABEL.E-MAIL' | translate }}</label>
+        </div>
+
+        <div class="input-container horizontal-center">
+          <input type="password" id="password" formControlName="password" placeholder="&nbsp;">
+          <label for="password" class="input-label">{{ 'LOGIN.INPUTS.LABEL.PASSWORD' | translate }}</label>
+        </div>
+      </div>
+
+      <div class="button-container vertical-spacer-3vh horizontal-center">
+        <button class="button button-fill" type="submit">
+          <div class="button-content-container horizontal-center">
+            <p>{{ 'LOGIN.BUTTONS.LOGIN' | translate }}</p>
+          </div>
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <ion-row class="vertical-spacer-3vh">
+    <p class="normal-text">{{ 'LOGIN.PARAGRAPHS.OTHER_LOGIN_OPTIONS' | translate }}</p>
+  </ion-row>
+
+  <div class="login-options-container vertical-spacer-1vh horizontal-center">
+    <button class="button-small button-fill">
+      <ion-icon name="logo-google"></ion-icon>
+    </button>
+    <button class="button-small button-fill">
+      <ion-icon name="logo-twitter"></ion-icon>
+    </button>
+    <button class="button-small button-fill">
+      <ion-icon name="logo-facebook"></ion-icon>
+    </button>
+  </div>
+
+  <ion-row class="vertical-spacer-3vh">
+    <p class="normal-text">{{ 'LOGIN.PARAGRAPHS.NO_ACCOUNT' | translate }}</p>
+  </ion-row>
+
+  <div class="button-container vertical-spacer-1vh horizontal-center">
+    <button class="button button-outline" [routerLink]="['/', 'register']">
+      <div class="button-content-container horizontal-center">
+        <p>{{ 'LOGIN.BUTTONS.REGISTER' | translate }}</p>
+      </div>
+    </button>
+  </div>
+
+  <div class="language-icons-container vertical-spacer-5vh horizontal-center">
+    <div *ngFor="let language of languageOptions" (click)="changeLanguage(language.name)" class="language-icon-container">
+      <ion-thumbnail>
+        <img alt="Silhouette of mountains"
+             [src]="language.image"/>
+      </ion-thumbnail>
+    </div>
+  </div>
+
+</ion-content>
+
