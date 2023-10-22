@@ -6,6 +6,5 @@ export interface TrainingPlanDto {
   id: number,
   name: string,
   trainingDays: WeekDay[],
-  note: string,
-  trainingPlanExercises: TrainingPlanExerciseDto[],
+  trainingPlanExercises: TrainingPlanExerciseDto[]
 }

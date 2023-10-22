@@ -81,7 +81,6 @@ export class EditCustomExercisePage implements OnInit {
     this.fetchExercise();
   }
 
-//TODO: dokończyć edycję ćwiczenia
   fetchExercise() {
     this.exerciseService.getExercise(this.exerciseId).subscribe(async response => {
       this.exercise = response;
@@ -108,16 +107,12 @@ export class EditCustomExercisePage implements OnInit {
 
   validateAndEditCustomExercise(addCustomExerciseForm: FormGroup) {
     if (this.editCustomExerciseForm.valid) {
-
       const formData: FormData = new FormData();
       if (this.image) {
         const fileName = new Date().getTime() + '.jpeg';
         formData.append('image', this.imageService.convertBase64ImageToBlob(this.image), fileName);
 
-        formData.append('exerciseData', new Blob([JSON.stringify(addCustomExerciseForm.value)], {
-          type: 'application/json'
-        }));
-        this.exerciseService.editCustomExercise(this.exerciseId, formData).subscribe(async () => {
+        this.exerciseService.editCustomExercise(this.exerciseId, addCustomExerciseForm, formData).subscribe(async () => {
           if (this.exercise.applicationFile) {
             try {
               await this.imageService.deleteImageFromDevice(environment.customExercisesDirectory, this.exercise.applicationFile.fileName);
@@ -130,10 +125,7 @@ export class EditCustomExercisePage implements OnInit {
           await this.router.navigate(this.previousUrl ? this.previousUrl.split('/') : ['tabs', 'training-plans']);
         });
       } else {
-        formData.append('exerciseData', new Blob([JSON.stringify(addCustomExerciseForm.value)], {
-          type: 'application/json'
-        }));
-        this.exerciseService.editCustomExercise(this.exerciseId, formData).subscribe(async () => {
+        this.exerciseService.editCustomExercise(this.exerciseId, addCustomExerciseForm, formData).subscribe(async () => {
           this.exerciseService.notifyAboutExercisesChange();
           await this.router.navigate(this.previousUrl ? this.previousUrl.split('/') : ['tabs', 'training-plans']);
         });
@@ -145,5 +137,4 @@ export class EditCustomExercisePage implements OnInit {
     this.image = await this.imageService.selectImageFromDiskOrTakePhoto();
     this.imageToDisplay = IMAGE_FORMAT_PREFIX + this.image.base64String;
   }
-
 }

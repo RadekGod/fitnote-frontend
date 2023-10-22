@@ -8,6 +8,7 @@ import { TrainingPlansPageRoutingModule } from './training-plans-routing.module'
 
 import { TrainingPlansPage } from './training-plans.page';
 import {TranslateModule} from "@ngx-translate/core";
+import {BodyPageModule} from "../body/body.module";
 
 @NgModule({
     imports: [
@@ -15,7 +16,8 @@ import {TranslateModule} from "@ngx-translate/core";
         FormsModule,
         IonicModule,
         TrainingPlansPageRoutingModule,
-        TranslateModule
+        TranslateModule,
+        BodyPageModule
     ],
   declarations: [TrainingPlansPage]
 })

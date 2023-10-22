@@ -27,7 +27,6 @@ interface AlertOptions {
 }
 
 
-
 @Component({
   selector: 'app-add-custom-exercise',
   templateUrl: './add-custom-exercise.page.html',
@@ -98,19 +97,13 @@ export class AddCustomExercisePage implements OnInit {
         const fileName = new Date().getTime() + '.jpeg';
         formData.append('image', this.imageService.convertBase64ImageToBlob(this.image), fileName);
 
-        formData.append('exerciseData', new Blob([JSON.stringify(addCustomExerciseForm.value)], {
-          type: 'application/json'
-        }));
-        this.exerciseService.addCustomExercise(formData).subscribe(async () => {
+        this.exerciseService.addCustomExercise(addCustomExerciseForm, formData).subscribe(async () => {
           await this.imageService.saveImageOnDevice(this.image, environment.customExercisesDirectory, fileName);
           this.exerciseService.notifyAboutExercisesChange();
           await this.router.navigate(this.previousUrl ? this.previousUrl.split('/') : ['tabs', 'training-plans']);
         });
       } else {
-        formData.append('exerciseData', new Blob([JSON.stringify(addCustomExerciseForm.value)], {
-          type: 'application/json'
-        }));
-        this.exerciseService.addCustomExercise(formData).subscribe(async () => {
+        this.exerciseService.addCustomExercise(addCustomExerciseForm, formData).subscribe(async () => {
           this.exerciseService.notifyAboutExercisesChange();
           await this.router.navigate(this.previousUrl ? this.previousUrl.split('/') : ['tabs', 'training-plans']);
         });

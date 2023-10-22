@@ -1,44 +1,64 @@
-import { Component, OnInit } from '@angular/core';
-import {Router} from "@angular/router";
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from "@angular/router";
 import {ItemReorderEventDetail} from "@ionic/angular";
 import {Subscription} from "rxjs";
 import {TrainingPlanService} from "../training-plan.service";
-import {GeneralMeasurementDto} from "../../body/model/general-measurement-dto.model";
 import {TrainingPlanDto} from "../model/training-plan-dto.model";
+import {TrainingPlanExerciseDto} from "../model/training-plan-exercise-dto.model";
+import {ExerciseDto} from "../model/exercise-dto.model";
+import {environment} from "../../../../../environments/environment";
+import {ImageService} from "../../../../commons/services/file/image.service";
 
 @Component({
   selector: 'app-training-plan',
   templateUrl: './training-plan.page.html',
   styleUrls: ['./training-plan.page.scss'],
 })
-export class TrainingPlanPage implements OnInit {
+export class TrainingPlanPage implements OnInit, OnDestroy {
 
-  trainingPlans!: TrainingPlanDto[];
+  trainingPlan!: TrainingPlanDto;
+  trainingPlanId = Number(this.route.snapshot.paramMap.get('id'));
   private trainingPlansSubscription!: Subscription;
 
-  constructor(private router : Router,
+  constructor(private router: Router,
+              private route: ActivatedRoute,
+              private imageService: ImageService,
               private trainingPlanService: TrainingPlanService) {
   }
 
   ngOnInit(): void {
-    this.initializeTrainingPlans();
+    this.initializeTrainingPlan();
   }
 
-  initializeTrainingPlans() {
-    this.fetchTrainingPlans();
+  initializeTrainingPlan() {
+    this.fetchTrainingPlan();
     this.trainingPlansSubscription = this.listenForTrainingPlansChange();
   }
 
   listenForTrainingPlansChange() {
     return this.trainingPlanService.trainingPlanChange.subscribe(() => {
-      this.fetchTrainingPlans();
+      this.fetchTrainingPlan();
     });
   }
 
-  fetchTrainingPlans() {
-    this.trainingPlanService.getAllTrainingPlans().subscribe(response => {
-      console.log(response);
-      this.trainingPlans = response;
+  fetchTrainingPlan() {
+    this.trainingPlanService.getTrainingPlan(this.trainingPlanId).subscribe(response => {
+      let trainingPlanExercises: TrainingPlanExerciseDto[] = [];
+      response.trainingPlanExercises.forEach(async trainingPlanExercise => {
+        trainingPlanExercises.push({
+          ...trainingPlanExercise,
+          exercise: {
+            ...trainingPlanExercise.exercise,
+            image: trainingPlanExercise.exercise.applicationFile
+              ? await this.imageService.loadImageFromDevice(environment.customExercisesDirectory, trainingPlanExercise.exercise.applicationFile)
+              : undefined
+          }
+        });
+      });
+      this.trainingPlan = {
+        ...response,
+        trainingPlanExercises: trainingPlanExercises
+      };
     });
   }
 
@@ -53,7 +73,15 @@ export class TrainingPlanPage implements OnInit {
     ev.detail.complete();
   }
 
+  deleteExerciseFromTrainingPlan(exercise: TrainingPlanExerciseDto) {
+    this.trainingPlanService.deleteExerciseFromTrainingPlan(this.trainingPlanId, exercise.id).subscribe(response => {
+      this.trainingPlanService.notifyAboutTrainingPlanChange();
+    });
+  }
 
 
+  ngOnDestroy() {
+    this.trainingPlansSubscription.unsubscribe();
+  }
 
 }

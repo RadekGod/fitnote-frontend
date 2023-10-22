@@ -9,7 +9,15 @@ const routes: Routes = [
     component: TrainingPlansPage
   },
   {
-    path: 'training-plan',
+    path: 'add-training-plan',
+    loadChildren: () => import('./add-training-plan/add-training-plan.module').then( m => m.AddTrainingPlanPageModule)
+  },
+  {
+    path: 'edit-training-plan/:id',
+    loadChildren: () => import('./edit-training-plan/edit-training-plan.module').then( m => m.EditTrainingPlanPageModule)
+  },
+  {
+    path: ':id',
     loadChildren: () => import('./training-plan/training-plan.module').then( m => m.TrainingPlanPageModule)
   }
 ];

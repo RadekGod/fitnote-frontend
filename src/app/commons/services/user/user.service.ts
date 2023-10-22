@@ -16,7 +16,7 @@ export class UserService {
   constructor(private httpClient: HttpClient) { }
 
   saveUserDetailsInSession(userDetails: User) {
-    window.sessionStorage.setItem("userDetails", JSON.stringify(userDetails));
+    window.sessionStorage.setItem('userDetails', JSON.stringify(userDetails));
     this.notifyAboutUserDetailsChange();
   }
 
@@ -28,9 +28,8 @@ export class UserService {
     return JSON.parse(window.sessionStorage.getItem('userDetails')!) as User;
   }
   deleteUserDetailsAndJWTFromSession() {
-    window.sessionStorage.setItem("userDetails","");
-    window.sessionStorage.setItem("Authorization","");
-    // this.notifyAboutUserDetailsChange();
+    window.sessionStorage.setItem('userDetails', '');
+    window.sessionStorage.setItem('Authorization', '');
   }
 
   updateUser(userSettings: UserSettings) {

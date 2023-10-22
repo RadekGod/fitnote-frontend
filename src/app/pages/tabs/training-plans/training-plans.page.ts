@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
-import {ItemReorderEventDetail} from "@ionic/angular";
 import {TrainingPlanDto} from "./model/training-plan-dto.model";
 import {Subscription} from "rxjs";
 import {TrainingPlanService} from "./training-plan.service";
@@ -12,7 +11,7 @@ import {TrainingPlanService} from "./training-plan.service";
 })
 export class TrainingPlansPage implements OnInit {
 
-  trainingPlans!: TrainingPlanDto[];
+  trainingPlans: TrainingPlanDto[] = [];
   private trainingPlansSubscription!: Subscription;
 
   constructor(private router : Router,
@@ -40,15 +39,17 @@ export class TrainingPlansPage implements OnInit {
       this.trainingPlans = response;
     });
   }
-  handleReorder(ev: CustomEvent<ItemReorderEventDetail>) {
-    // The `from` and `to` properties contain the index of the item
-    // when the drag started and ended, respectively
-    console.log('Dragged from index', ev.detail.from, 'to', ev.detail.to);
 
-    // Finish the reorder and position the item in the DOM based on
-    // where the gesture ended. This method can also be called directly
-    // by the reorder group
-    ev.detail.complete();
+  async deleteTrainingPlan(trainingPlan: TrainingPlanDto) {
+    this.trainingPlanService.deleteTrainingPlan(trainingPlan.id).subscribe(response => {
+      this.trainingPlanService.notifyAboutTrainingPlanChange();
+    });
+  }
+
+  async editTrainingPlan(trainingPlan: TrainingPlanDto) {
+    // this.trainingPlanService.deleteTrainingPlan(trainingPlan.id).subscribe(response => {
+    //   this.trainingPlanService.notifyAboutTrainingPlanChange();
+    // });
   }
 
 

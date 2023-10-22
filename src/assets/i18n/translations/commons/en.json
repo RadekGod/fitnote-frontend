@@ -1,4 +1,13 @@
 {
+  "WEEK_DAYS": {
+    "MONDAY": "Monday",
+    "TUESDAY":"Tuesday",
+    "WEDNESDAY": "Wednesday",
+    "THURSDAY":"Thursday",
+    "FRIDAY": "Friday",
+    "SATURDAY":"Saturday",
+    "SUNDAY": "Sunday"
+  },
   "EXERCISE_TYPES": {
     "CARDIO_TIME": "Cardio (Time)",
     "CARDIO_DISTANCE": "Cardio (Distance)",

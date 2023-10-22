@@ -6,6 +6,6 @@ import {ApplicationFile} from "../../../../commons/models/application-file.model
 
 
 export interface ExerciseCategoryGroupDto {
-  id: number,
+  id?: number,
   categoryName: ExerciseCategoryGroups,
 }

@@ -17,7 +17,7 @@ export class ExercisesPage implements OnInit {
   previousUrl: string = '';
   category!: string;
   exercises: Exercise[] = [];
-  private bodyMeasurementSubscription!: Subscription;
+  private exercisesSubscription!: Subscription;
 
 
   constructor(private activatedRoute: ActivatedRoute,
@@ -38,7 +38,7 @@ export class ExercisesPage implements OnInit {
 
   initializeExercises() {
     this.fetchAllExercisesFromCategory();
-    this.bodyMeasurementSubscription = this.listenForExerciseChange();
+    this.exercisesSubscription = this.listenForExerciseChange();
   }
 
   fetchAllExercisesFromCategory() {
@@ -60,16 +60,13 @@ export class ExercisesPage implements OnInit {
     });
   }
 
-  async editExercise(exerciseId: number) {
-    await this.router.navigate(['tabs', 'more', 'exercise-groups', 'edit-custom-exercise', exerciseId]);
-  }
 
   async deleteExercise(exercise: Exercise) {
     this.exerciseService.deleteCustomExercise(exercise.id).subscribe(response => {
       if (exercise.image) {
         this.imageService.deleteImageFromDevice(environment.customExercisesDirectory, exercise.image.fileName);
-        this.exerciseService.notifyAboutExercisesChange();
       }
+      this.exerciseService.notifyAboutExercisesChange();
     });
   }
 }
