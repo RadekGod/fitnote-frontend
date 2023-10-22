@@ -7,13 +7,23 @@ import { IonicModule } from '@ionic/angular';
 import { TabsPageRoutingModule } from './tabs-routing.module';
 
 import { TabsPage } from './tabs.page';
+import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
+import {httpLoaderFactory} from "../../configuration/translations/http-loader-factory";
+import {HttpBackend} from "@angular/common/http";
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    TabsPageRoutingModule
+    TabsPageRoutingModule,
+    TranslateModule.forChild({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: httpLoaderFactory,
+        deps: [HttpBackend]
+      }
+    })
   ],
   declarations: [TabsPage]
 })

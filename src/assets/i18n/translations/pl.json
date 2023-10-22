@@ -1,0 +1,12 @@
+{
+  "TRAINING_PLANS": {
+    "TITLES": {
+      "TRAINING_PLANS": "Plany treningowe",
+      "ADD_MEASUREMENT": "Dodaj pomiar",
+      "EDIT_MEASUREMENT": "Edytuj pomiar"
+    },
+    "BUTTONS": {
+      "SAVE": "Zapisz"
+    }
+  }
+}

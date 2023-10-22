@@ -24,3 +24,104 @@
 @import "@ionic/angular/css/text-alignment.css";
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
+
+/* Local CSS files*/
+@import "theme/general";
+@import "theme/ion-elements/ion-header";
+@import "theme/ion-elements/ion-segment";
+@import "theme/ion-elements/ion-card";
+@import "theme/ion-elements/ion-toolbar";
+
+@import "theme/elements/button";
+@import "theme/elements/text-input";
+@import "theme/elements/section";
+@import "theme/elements/date-input";
+@import "theme/elements/simple-item";
+@import "theme/elements/image-input";
+@import "theme/elements/language-selector";
+
+
+.alert-head {
+  .alert-title {
+    color: var(--ion-color-secondary) !important;
+    font-size: 2.5rem !important;
+  }
+
+  .alert-sub-title {
+    color: var(--ion-color-secondary) !important;
+    font-size: 2rem !important;
+  }
+
+  .alert-message {
+    color: var(--ion-color-secondary-shade) !important;
+    font-size: 2rem !important;
+  }
+}
+
+
+//.select-wrapper {
+//  color: var(--ion-color-secondary) !important;
+//}
+
+
+
+
+
+button {
+  .alert-checkbox-icon {
+    border-color: var(--ion-color-secondary-shade) !important;
+  }
+
+  .alert-checkbox-label {
+    color: var(--ion-color-secondary-shade) !important;
+    font-size: 1.6rem !important;
+  }
+}
+
+button[aria-checked=true] {
+  .alert-checkbox-icon {
+    border-color: var(--ion-color-secondary) !important;
+  }
+
+  .alert-checkbox-label {
+    color: var(--ion-color-secondary) !important;
+    font-size: 1.6rem !important;
+  }
+}
+
+
+
+
+.alert-radio-label {
+  color: var(--ion-color-secondary) !important;
+  font-size: 1.6rem !important;
+}
+
+button {
+  .alert-radio-icon {
+    border-color: var(--ion-color-secondary-shade) !important;
+  }
+
+  .alert-radio-label {
+    color: var(--ion-color-secondary-shade) !important;
+    font-size: 1.6rem !important;
+  }
+}
+
+button[aria-checked=true] {
+  .alert-radio-icon {
+    .alert-radio-inner {
+      background-color: var(--ion-color-secondary) !important;
+    }
+  }
+
+  .alert-radio-label {
+    color: var(--ion-color-secondary) !important;
+    font-size: 1.6rem !important;
+  }
+}
+
+.alert-button {
+  color: var(--ion-color-secondary) !important;
+  font-size: 1.8rem !important;
+}

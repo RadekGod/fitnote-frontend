@@ -1,0 +1,16 @@
+ion-header ion-toolbar ion-title {
+  padding-left: 1rem;
+}
+
+.button-container {
+  width: 32rem;
+  height: 8rem;
+
+  .button-content-container {
+    font-size: 2rem;
+  }
+}
+
+ion-searchbar {
+  color: var(--ion-color-secondary);
+}

@@ -1,0 +1,14 @@
+.image-input-container {
+  width: 90%;
+  text-align: center;
+  background-color: #3A3030;
+  ion-icon {
+    color: var(--ion-color-secondary);
+    height: 30vh;
+    font-size: 30vh;
+  }
+
+  img {
+    height: 100%;
+  }
+}

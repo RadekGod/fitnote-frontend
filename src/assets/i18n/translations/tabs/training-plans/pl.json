@@ -1,0 +1,52 @@
+{
+  "TRAINING_PLANS": {
+    "PAGE_TITLES": {
+      "TRAINING_PLANS": "Plany treningowe"
+    },
+    "ERRORS": {
+      "NO_TRAINING_PLANS": "Brak zpaisanych planów treningowych"
+    },
+    "BUTTONS": {
+      "BEGIN_TRAINING": "Rozpocznij trening"
+    },
+    "TRAINING_DAYS": "Dni treningowe",
+    "NUMBER_OF_EXERCISES": "Liczba ćwiczeń"
+  },
+  "TRAINING_PLAN": {
+    "ERRORS": {
+      "NO_TRAINING_EXERCISES": "Brak zpaisanych ćwiczeń w planie treningowym"
+    },
+    "BUTTONS": {
+      "ADD_EXERCISE": "Dodaj ćwiczenie",
+      "BEGIN_TRAINING": "Rozpocznij trening"
+    },
+    "REPEATS": "Powtórzenia",
+    "WEIGHT": "Obciążenie"
+  },
+  "ADD_TRAINING_PLAN": {
+    "PAGE_TITLES": {
+      "ADD_TRAINING_PLAN": "Dodaj plan treningowy"
+    },
+    "TRAINING_PLAN_NAME": "Nazwa planu treningowego",
+    "TRAINING_DAYS": "Dni treningowe",
+    "ALERTS": {
+      "TRAINING_DAYS": {
+        "HEADER": "Dni treningowe",
+        "SUBHEADER": "Wybierz dni treningowe"
+      }
+    }
+  },
+  "EDIT_TRAINING_PLAN": {
+    "PAGE_TITLES": {
+      "EDIT_TRAINING_PLAN": "Edytuj plan treningowy"
+    },
+    "TRAINING_PLAN_NAME": "Nazwa planu treningowego",
+    "TRAINING_DAYS": "Dni treningowe",
+    "ALERTS": {
+      "TRAINING_DAYS": {
+        "HEADER": "Dni treningowe",
+        "SUBHEADER": "Wybierz dni treningowe"
+      }
+    }
+  }
+}

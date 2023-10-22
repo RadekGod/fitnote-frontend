@@ -1,0 +1,37 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button [defaultHref]="previousUrl"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ 'EXERCISE.EXERCISE_GROUPS.PAGE_TITLES.CHOOSE_EXERCISE_GROUP' | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="true">
+
+  <div *ngFor="let exerciseCategoryGroup of exerciseCategoryGroups" class="simple-items-container vertical-spacer-3vh">
+    <div class="simple-item-container horizontal-center"
+         [routerLink]="['/', 'tabs', 'more', 'exercise-groups', 'exercises', exerciseCategoryGroup.queryParam]">
+      <div class="thumbnail-container">
+        <ion-thumbnail>
+          <img alt="Silhouette of mountains" [src]="exerciseCategoryGroup.categoryImage"/>
+        </ion-thumbnail>
+      </div>
+      <div class="title-container">
+        <h3>{{ ('EXERCISE_GROUPS.' + exerciseCategoryGroup.categoryName) | translate }}</h3>
+      </div>
+    </div>
+  </div>
+
+  <div class="button-container vertical-spacer-3vh horizontal-center"
+       [routerLink]="['/', 'tabs', 'more', 'exercise-groups', 'add-custom-exercise']">
+    <button class="button button-fill" type="submit">
+      <div class="button-content-container horizontal-center">
+        <p>{{'EXERCISE.BUTTONS.ADD_EXERCISE' | translate }}</p>
+      </div>
+    </button>
+  </div>
+
+  <div class="vertical-spacer-3vh"></div>
+</ion-content>

@@ -1,0 +1,16 @@
+ion-header ion-toolbar ion-title {
+  padding-left: 1rem;
+}
+
+.form-container {
+  width: 90%;
+
+  .form-inputs-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .input-container {
+    width: 90%;
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "BODY": {
+    "PAGE_TITLES": {
+      "BODY": "Ciało"
+    },
+    "SEGMENT_BUTTONS": {
+      "MEASUREMENTS": "Pomiary",
+      "PHOTO_GALLERY": "Fotogaleria"
+    },
+    "MEASUREMENTS": {
+      "ERRORS": {
+        "NO_MEASUREMENTS": "Brak zapisanych pomiarów"
+      },
+      "BODY_MEASUREMENTS": {
+        "PAGE_TITLES": {
+          "ADD_MEASUREMENT": "Dodaj pomiar",
+          "EDIT_MEASUREMENT": "Edytuj pomiar"
+        },
+        "SIDES": {
+          "SHORTCUTS": {
+            "LEFT": "L:",
+            "RIGHT": "P:"
+          }
+        },
+        "SECTION_TITLE": "Pomiary ciała",
+        "MEASUREMENT_DATE": "Data pomiaru:",
+        "CHEST": "Klatka piersiowa",
+        "BICEPS": "Biceps",
+        "FOREARM": "Przedramię",
+        "WAIST": "Talia",
+        "HIP": "Biodra",
+        "THIGH": "Udo",
+        "CALF": "Łydka",
+        "BUTTONS": {
+          "SAVE": "Zapisz"
+        }
+      },
+      "GENERAL_MEASUREMENTS": {
+        "PAGE_TITLES": {
+          "ADD_MEASUREMENT": "Dodaj pomiar",
+          "EDIT_MEASUREMENT": "Edytuj pomiar"
+        },
+        "SECTION_TITLE": "Dane ogólne",
+        "MEASUREMENT_DATE": "Data pomiaru:",
+        "HEIGHT": "Wzrost",
+        "WEIGHT": "Waga",
+        "BMI": "BMI",
+        "LEAN_MUSCLE_MASS": "Masa mięśni",
+        "BODY_FAT": "Tkanka tłuszczowa",
+        "BUTTONS": {
+          "SAVE": "Zapisz"
+        }
+      }
+    },
+    "PHOTO_GALLERY": {
+      "PAGE_TITLES": {
+        "ADD_PHOTO": "Dodaj zdjęcie",
+        "EDIT_PHOTO": "Edytuj zdjęcie",
+        "PHOTO_DETAILS": "Szczegóły zdjęcia"
+      },
+      "ERRORS": {
+        "NO_MEASUREMENTS": "Brak zapisanych pomiarów"
+      },
+      "BUTTONS": {
+        "ADD_PHOTO": "Dodaj zdjęcie",
+        "SAVE": "Zapisz"
+      },
+      "COMMENT": "Komentarz",
+      "CREATION_DATE": "Data utworzenia"
+    }
+  }
+}

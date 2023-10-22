@@ -1,0 +1,12 @@
+.date-input-container {
+  display: flex;
+  align-items: center;
+  width: auto;
+  input {
+    border: none;
+    background-color: var(--ion-color-secondary);
+    color: var(--ion-color-primary);
+    font-size: 1.6rem;
+    font-weight: 500;
+  }
+}

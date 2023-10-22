@@ -1,0 +1,52 @@
+{
+  "TRAINING_PLANS": {
+    "PAGE_TITLES": {
+      "TRAINING_PLANS": "Training plans"
+    },
+    "ERRORS": {
+      "NO_TRAINING_PLANS": "No training plans found"
+    },
+    "BUTTONS": {
+      "BEGIN_TRAINING": "Begin training"
+    },
+    "TRAINING_DAYS": "Training days",
+    "NUMBER_OF_EXERCISES": "Number of exercises"
+  },
+  "TRAINING_PLAN": {
+    "ERRORS": {
+      "NO_TRAINING_EXERCISES": "No exercises added to training plan"
+    },
+    "BUTTONS": {
+      "ADD_EXERCISE": "Add exercise",
+      "BEGIN_TRAINING": "Begin training"
+    },
+    "REPEATS": "Repeats",
+    "WEIGHT": "Weight"
+  },
+  "ADD_TRAINING_PLAN": {
+    "PAGE_TITLES": {
+      "ADD_TRAINING_PLAN": "Add training plan"
+    },
+    "TRAINING_PLAN_NAME": "Training plan name",
+    "TRAINING_DAYS": "Training days",
+    "ALERTS": {
+      "TRAINING_DAYS": {
+        "HEADER": "Training days",
+        "SUBHEADER": "Select training days"
+      }
+    }
+  },
+  "EDIT_TRAINING_PLAN": {
+    "PAGE_TITLES": {
+      "EDIT_TRAINING_PLAN": "Edit training plan"
+    },
+    "TRAINING_PLAN_NAME": "Training plan name",
+    "TRAINING_DAYS": "Training days",
+    "ALERTS": {
+      "TRAINING_DAYS": {
+        "HEADER": "Training days",
+        "SUBHEADER": "Select training days"
+      }
+    }
+  }
+}

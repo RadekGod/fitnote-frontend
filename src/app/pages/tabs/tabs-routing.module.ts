@@ -1,12 +1,12 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 
-import { TabsPage } from './tabs.page';
+import {TabsPage} from './tabs.page';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/tabs/plans',
+    redirectTo: '/tabs/training-plans',
     pathMatch: 'full'
   },
   {
@@ -23,18 +23,25 @@ const routes: Routes = [
       },
       {
         path: 'history',
+        // canMatch: [userRoleGuard([FitNoteUserRole.ADMIN])],
         loadChildren: () => import('./history/history.module').then( m => m.HistoryPageModule)
       },
       {
-        path: 'plans',
-        loadChildren: () => import('./plans/plans.module').then( m => m.PlansPageModule)
+        path: 'training-plans',
+        loadChildren: () => import('./training-plans/training-plans.module').then(m => m.TrainingPlansPageModule)
       },
       {
         path: 'statistics',
         loadChildren: () => import('./statistics/statistics.module').then( m => m.StatisticsPageModule)
+      },
+      {
+        path: 'more',
+        loadChildren: () => import('./more/more.module').then( m => m.MorePageModule)
       }
     ]
-  }
+  },
+
+
 ];
 
 @NgModule({

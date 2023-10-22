@@ -1,0 +1,72 @@
+{
+  "BODY": {
+    "PAGE_TITLES": {
+      "BODY": "Body"
+    },
+    "SEGMENT_BUTTONS": {
+      "MEASUREMENTS": "Measurements",
+      "PHOTO_GALLERY": "Photo gallery"
+    },
+    "MEASUREMENTS": {
+      "ERRORS": {
+        "NO_MEASUREMENTS": "No measurements found"
+      },
+      "BODY_MEASUREMENTS": {
+        "PAGE_TITLES": {
+          "ADD_MEASUREMENT": "Add measurement",
+          "EDIT_MEASUREMENT": "Edit measurement"
+        },
+        "SIDES": {
+          "SHORTCUTS": {
+            "LEFT": "L:",
+            "RIGHT": "R:"
+          }
+        },
+        "SECTION_TITLE": "Body measurements",
+        "MEASUREMENT_DATE": "Measured on:",
+        "CHEST": "Chest",
+        "BICEPS": "Biceps",
+        "FOREARM": "Forearm",
+        "WAIST": "Waist",
+        "HIP": "Hip",
+        "THIGH": "Thigh",
+        "CALF": "Calf",
+        "BUTTONS": {
+          "SAVE": "Save"
+        }
+      },
+      "GENERAL_MEASUREMENTS": {
+        "PAGE_TITLES": {
+          "ADD_MEASUREMENT": "Add measurement",
+          "EDIT_MEASUREMENT": "Edit measurement"
+        },
+        "SECTION_TITLE": "General data",
+        "MEASUREMENT_DATE": "Measured on:",
+        "HEIGHT": "Height",
+        "WEIGHT": "Weight",
+        "BMI": "BMI",
+        "LEAN_MUSCLE_MASS": "Lean muscle mass",
+        "BODY_FAT": "Body fat",
+        "BUTTONS": {
+          "SAVE": "Save"
+        }
+      }
+    },
+    "PHOTO_GALLERY": {
+      "PAGE_TITLES": {
+        "ADD_PHOTO": "Add photo",
+        "EDIT_PHOTO": "Edit photo",
+        "PHOTO_DETAILS": "Photo details"
+      },
+      "ERRORS": {
+        "NO_MEASUREMENTS": "No images found"
+      },
+      "BUTTONS": {
+        "ADD_PHOTO": "Add photo",
+        "SAVE": "Save"
+      },
+      "COMMENT": "Comment",
+      "CREATION_DATE": "Creation date"
+    }
+  }
+}

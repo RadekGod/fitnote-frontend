@@ -1,0 +1,23 @@
+.form-container {
+  width: 90%;
+
+  .form-inputs-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .input-container {
+    width: 90%;
+  }
+}
+
+ion-select {
+  font-size: 1.6rem;
+  color: #F6F6F6 !important;
+  width: 90%;
+  --highlight-color-valid: var(--ion-color-tertiary) !important;
+}
+
+.horizontal-spacer {
+  width: 90%;
+}
