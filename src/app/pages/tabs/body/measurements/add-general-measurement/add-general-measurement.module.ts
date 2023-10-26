@@ -6,7 +6,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { AddGeneralMeasurementPageRoutingModule } from './add-general-measurement-routing.module';
 
-import { AddGeneralMeasurementPage } from './add-general-measurement-page.component';
+import { AddGeneralMeasurementPage } from './add-general-measurement-page';
 import {TranslateModule} from "@ngx-translate/core";
 
 @NgModule({

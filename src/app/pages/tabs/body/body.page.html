@@ -54,7 +54,7 @@
         <div class="item">
           <p>{{ 'BODY.MEASUREMENTS.GENERAL_MEASUREMENTS.HEIGHT' | translate }}</p>
           <div class="measurement">
-            <p>{{generalMeasurement.height ? (generalMeasurement.height | number : '1.0-2') + ' ' + lengthUnitShortcut : '-' }}</p>
+            <p>{{generalMeasurement.height ? (generalMeasurement.height | number : '1.0-2' | removeComma) + ' ' + lengthUnitShortcut : '-' }}</p>
           </div>
         </div>
 

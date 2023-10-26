@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { AddGeneralMeasurementPage } from './add-general-measurement-page.component';
+import { AddGeneralMeasurementPage } from './add-general-measurement-page';
 
 const routes: Routes = [
   {

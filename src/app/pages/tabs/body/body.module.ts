@@ -9,6 +9,7 @@ import { BodyPageRoutingModule } from './body-routing.module';
 import { BodyPage } from './body.page';
 import {NoDataComponent} from "../../../components/no-data/no-data.component";
 import {TranslateModule} from "@ngx-translate/core";
+import {RemoveCommaPipe} from "../../../commons/pipes/remove-comma.pipe";
 
 @NgModule({
   imports: [
@@ -18,12 +19,13 @@ import {TranslateModule} from "@ngx-translate/core";
     BodyPageRoutingModule,
     TranslateModule
   ],
-  declarations: [BodyPage, NoDataComponent],
+  declarations: [BodyPage, NoDataComponent, RemoveCommaPipe],
   exports: [
     NoDataComponent
   ],
   providers: [
-    DecimalPipe
+    DecimalPipe,
+    RemoveCommaPipe
   ]
 })
 export class BodyPageModule {}

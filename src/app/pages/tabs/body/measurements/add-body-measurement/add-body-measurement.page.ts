@@ -6,6 +6,7 @@ import {DatePipe, DecimalPipe} from "@angular/common";
 import {BodyMeasurementDto} from "../../model/body-measurement-dto.model";
 import {Subscription} from "rxjs";
 import {MeasurementUnitsService} from "../../../../../commons/services/mesurement-units/measurement-units.service";
+import {RemoveCommaPipe} from "../../../../../commons/pipes/remove-comma.pipe";
 
 @Component({
   selector: 'app-add-body-measurement',
@@ -34,6 +35,7 @@ export class AddBodyMeasurementPage implements OnInit {
 
   constructor( private router: Router, private formBuilder: FormBuilder,
                private bodyService: BodyService, private datePipe: DatePipe,
+               private removeCommaPipe: RemoveCommaPipe,
                private measurementUnitsService: MeasurementUnitsService,
                private decimalPipe: DecimalPipe) {
   }
@@ -51,17 +53,17 @@ export class AddBodyMeasurementPage implements OnInit {
 
   private fillFormFields(bodyMeasurementDto: BodyMeasurementDto) {
     this.addBodyMeasurementsForm.patchValue({
-      chest: this.decimalPipe.transform(bodyMeasurementDto?.chest?.toString(), '1.0-2') ?? '',
-      bicepsLeft: this.decimalPipe.transform(bodyMeasurementDto?.bicepsLeft?.toString(), '1.0-2') ?? '',
-      bicepsRight: this.decimalPipe.transform(bodyMeasurementDto?.bicepsRight?.toString(), '1.0-2') ?? '',
-      forearmLeft: this.decimalPipe.transform(bodyMeasurementDto?.forearmLeft?.toString(), '1.0-2') ?? '',
-      forearmRight: this.decimalPipe.transform(bodyMeasurementDto?.forearmRight?.toString(), '1.0-2') ?? '',
-      waist: this.decimalPipe.transform(bodyMeasurementDto?.waist?.toString(), '1.0-2') ?? '',
-      hip: this.decimalPipe.transform(bodyMeasurementDto?.hip?.toString(), '1.0-2') ?? '',
-      thighLeft: this.decimalPipe.transform(bodyMeasurementDto?.thighLeft?.toString(), '1.0-2') ?? '',
-      thighRight: this.decimalPipe.transform(bodyMeasurementDto?.thighRight?.toString(), '1.0-2') ?? '',
-      calfLeft: this.decimalPipe.transform(bodyMeasurementDto?.calfLeft?.toString(), '1.0-2') ?? '',
-      calfRight: this.decimalPipe.transform(bodyMeasurementDto?.calfRight?.toString(), '1.0-2') ?? ''
+      chest: this.removeCommaPipe.transform(this.decimalPipe.transform(bodyMeasurementDto?.chest?.toString(), '1.0-2') ?? ''),
+      bicepsLeft: this.removeCommaPipe.transform(this.decimalPipe.transform(bodyMeasurementDto?.bicepsLeft?.toString(), '1.0-2') ?? ''),
+      bicepsRight: this.removeCommaPipe.transform(this.decimalPipe.transform(bodyMeasurementDto?.bicepsRight?.toString(), '1.0-2') ?? ''),
+      forearmLeft: this.removeCommaPipe.transform(this.decimalPipe.transform(bodyMeasurementDto?.forearmLeft?.toString(), '1.0-2') ?? ''),
+      forearmRight: this.removeCommaPipe.transform(this.decimalPipe.transform(bodyMeasurementDto?.forearmRight?.toString(), '1.0-2') ?? ''),
+      waist: this.removeCommaPipe.transform(this.decimalPipe.transform(bodyMeasurementDto?.waist?.toString(), '1.0-2') ?? ''),
+      hip: this.removeCommaPipe.transform(this.decimalPipe.transform(bodyMeasurementDto?.hip?.toString(), '1.0-2') ?? ''),
+      thighLeft: this.removeCommaPipe.transform(this.decimalPipe.transform(bodyMeasurementDto?.thighLeft?.toString(), '1.0-2') ?? ''),
+      thighRight: this.removeCommaPipe.transform(this.decimalPipe.transform(bodyMeasurementDto?.thighRight?.toString(), '1.0-2') ?? ''),
+      calfLeft: this.removeCommaPipe.transform(this.decimalPipe.transform(bodyMeasurementDto?.calfLeft?.toString(), '1.0-2') ?? ''),
+      calfRight: this.removeCommaPipe.transform(this.decimalPipe.transform(bodyMeasurementDto?.calfRight?.toString(), '1.0-2') ?? '')
     });
   }
 
