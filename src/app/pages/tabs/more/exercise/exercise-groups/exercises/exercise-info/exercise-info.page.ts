@@ -33,7 +33,7 @@ export class ExerciseInfoPage implements OnInit {
   }
 
   fetchExercise() {
-    let exerciseId: number = Number(this.route.snapshot.paramMap.get('id'));
+    let exerciseId: number = Number(this.route.snapshot.paramMap.get('exerciseId'));
     this.exerciseService.getExercise(exerciseId).subscribe(async response => {
       console.log(response);
       this.exercise = {

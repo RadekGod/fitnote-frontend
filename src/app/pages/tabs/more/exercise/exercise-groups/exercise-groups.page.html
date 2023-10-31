@@ -12,7 +12,9 @@
 
   <div *ngFor="let exerciseCategoryGroup of exerciseCategoryGroups" class="simple-items-container vertical-spacer-3vh">
     <div class="simple-item-container horizontal-center"
-         [routerLink]="['/', 'tabs', 'more', 'exercise-groups', 'exercises', exerciseCategoryGroup.queryParam]">
+         [routerLink]=" trainingPlanId
+         ? ['/', 'tabs', 'training-plans', trainingPlanId, 'exercises', exerciseCategoryGroup.queryParam]
+         : ['/', 'tabs', 'more', 'exercise-groups', 'exercises', exerciseCategoryGroup.queryParam]">
       <div class="thumbnail-container">
         <ion-thumbnail>
           <img alt="Silhouette of mountains" [src]="exerciseCategoryGroup.categoryImage"/>

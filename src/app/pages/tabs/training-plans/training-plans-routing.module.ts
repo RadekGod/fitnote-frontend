@@ -13,11 +13,11 @@ const routes: Routes = [
     loadChildren: () => import('./add-training-plan/add-training-plan.module').then( m => m.AddTrainingPlanPageModule)
   },
   {
-    path: 'edit-training-plan/:id',
+    path: 'edit-training-plan/:trainingPlanId',
     loadChildren: () => import('./edit-training-plan/edit-training-plan.module').then( m => m.EditTrainingPlanPageModule)
   },
   {
-    path: ':id',
+    path: ':trainingPlanId',
     loadChildren: () => import('./training-plan/training-plan.module').then( m => m.TrainingPlanPageModule)
   }
 ];

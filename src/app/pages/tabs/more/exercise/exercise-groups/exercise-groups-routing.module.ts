@@ -13,11 +13,15 @@ const routes: Routes = [
     loadChildren: () => import('./add-custom-exercise/add-custom-exercise.module').then(m => m.AddCustomExercisePageModule)
   },
   {
+    path: 'exercise/:exerciseId',
+    loadChildren: () => import('./exercises/exercise-info/exercise-info.module').then(m => m.ExerciseInfoPageModule)
+  },
+  {
     path: 'exercises/:category',
     loadChildren: () => import('./exercises/exercises.module').then(m => m.ExercisesPageModule)
   },
   {
-    path: 'edit-custom-exercise/:id',
+    path: 'edit-custom-exercise/:exerciseId',
     loadChildren: () => import('./edit-custom-exercise/edit-custom-exercise.module').then( m => m.EditCustomExercisePageModule)
   }
 

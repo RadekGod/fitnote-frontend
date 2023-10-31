@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {UrlService} from "../../../../../commons/services/url/url.service";
 import {ExerciseCategoryGroups} from "../../../../../commons/enums/exercise-category-groups.enum";
+import {ActivatedRoute} from "@angular/router";
 
 interface ExerciseCategoryGroup {
   categoryName: ExerciseCategoryGroups,
@@ -94,8 +95,9 @@ export class ExerciseGroupsPage implements OnInit {
   ];
 
   previousUrl: string = '';
-
-  constructor(private urlService: UrlService) {
+  trainingPlanId = Number(this.route.snapshot.paramMap.get('trainingPlanId'));
+  constructor(private urlService: UrlService,
+              private route: ActivatedRoute) {
   }
 
   ngOnInit() {

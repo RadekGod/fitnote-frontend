@@ -29,7 +29,7 @@ export class EditCustomExercisePage implements OnInit {
   exerciseTypes = ExerciseType;
   muscles = Muscles;
   exerciseCategoryGroups = CreateExerciseCategoryGroups;
-  exerciseId = Number(this.route.snapshot.paramMap.get('id'));
+  exerciseId = Number(this.route.snapshot.paramMap.get('exerciseId'));
   exercise!: ExerciseDto;
 
   images: LocalFile[] = [];
@@ -65,7 +65,8 @@ export class EditCustomExercisePage implements OnInit {
     supportiveMuscles: [['']]
   });
 
-  constructor(private urlService: UrlService, private router: Router,
+  constructor(private urlService: UrlService,
+              private router: Router,
               private formBuilder: FormBuilder,
               private route: ActivatedRoute,
               private translate: TranslateService,

@@ -17,7 +17,7 @@ import {ImageService} from "../../../../commons/services/file/image.service";
 export class TrainingPlanPage implements OnInit, OnDestroy {
 
   trainingPlan!: TrainingPlanDto;
-  trainingPlanId = Number(this.route.snapshot.paramMap.get('id'));
+  trainingPlanId = Number(this.route.snapshot.paramMap.get('trainingPlanId'));
   private trainingPlansSubscription!: Subscription;
 
   constructor(private router: Router,
@@ -32,10 +32,10 @@ export class TrainingPlanPage implements OnInit, OnDestroy {
 
   initializeTrainingPlan() {
     this.fetchTrainingPlan();
-    this.trainingPlansSubscription = this.listenForTrainingPlansChange();
+    this.trainingPlansSubscription = this.listenForTrainingPlanChange();
   }
 
-  listenForTrainingPlansChange() {
+  listenForTrainingPlanChange() {
     return this.trainingPlanService.trainingPlanChange.subscribe(() => {
       this.fetchTrainingPlan();
     });
@@ -59,6 +59,7 @@ export class TrainingPlanPage implements OnInit, OnDestroy {
         ...response,
         trainingPlanExercises: trainingPlanExercises
       };
+      console.log(this.trainingPlan);
     });
   }
 

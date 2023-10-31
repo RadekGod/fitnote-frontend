@@ -9,13 +9,27 @@ const routes: Routes = [
     component: TrainingPlanPage
   },
   {
+    path: 'exercises/:category',
+    loadChildren: () => import('../../more/exercise/exercise-groups/exercises/exercises.module').then(m => m.ExercisesPageModule)
+  },
+  {
     path: 'exercise-groups',
-    loadChildren: () => import('./exercise/exercise-groups/exercise-groups.module').then(m => m.ExerciseGroupsPageModule)
+    loadChildren: () => import('../../more/exercise/exercise-groups/exercise-groups.module').then(m => m.ExerciseGroupsPageModule)
   },
   {
     path: 'add-exercise',
     loadChildren: () => import('./exercise/add-exercise/add-exercise.module').then(m => m.AddExercisePageModule)
+  },
+  {
+    path: 'add-exercise-to-training-plan/:exerciseId',
+    loadChildren: () => import('./add-exercise-to-training-plan/add-exercise-to-training-plan.module').then( m => m.AddExerciseToTrainingPlanPageModule)
+  },
+  {
+    path: 'edit-exercise-in-training-plan/:trainingPlanExerciseId',
+    loadChildren: () => import('./edit-training-plan-exercise/edit-training-plan-exercise.module').then(m => m.EditExerciseInTrainingPlanPageModule)
   }
+
+
 ];
 
 @NgModule({

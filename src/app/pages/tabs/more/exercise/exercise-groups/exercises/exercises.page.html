@@ -1,7 +1,8 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/tabs/more/exercise-groups"></ion-back-button>
+      <ion-back-button [defaultHref]="trainingPlanId ? '/tabs/training-plans/' + trainingPlanId + '/exercise-groups'
+       : '/tabs/more/exercise-groups'"></ion-back-button>
     </ion-buttons>
     <ion-title>{{ 'EXERCISE.EXERCISES.PAGE_TITLES.CHOOSE_EXERCISE' | translate }}</ion-title>
   </ion-toolbar>
@@ -9,20 +10,24 @@
 
 <ion-content [fullscreen]="true">
   <ion-list class="vertical-spacer-3vh horizontal-center">
-    <ion-item-sliding *ngFor="let exercise of exercises" class="simple-item-container horizontal-center vertical-spacer-1vh">
-    <ion-item [routerLink]="['/', 'tabs', 'more', 'exercise-groups', 'exercises', category, 'exercise', exercise.id]">
+    <ion-item-sliding *ngFor="let exercise of exercises"
+                      class="simple-item-container horizontal-center vertical-spacer-1vh">
+      <ion-item [routerLink]=" trainingPlanId
+    ? ['/', 'tabs', 'training-plans', trainingPlanId, 'add-exercise-to-training-plan', exercise.id]
+    : ['/', 'tabs', 'more', 'exercise-groups', 'exercises', category, 'exercise', exercise.id]">
         <ion-avatar>
           <img alt="Silhouette of mountains"
                [src]="exercise.image ? exercise.image.data : 'https://www.fabrykasily.pl/upload/gallery/2019/03/id_20907_1552923804_1260x840.jpg'"/>
         </ion-avatar>
-      <ion-label class="ion-text-wrap ion-padding-start">
-        <h3>{{exercise.name}}</h3>
-      </ion-label>
-      <ion-icon *ngIf="exercise.custom" slot="end" color="secondary" name="bulb-outline"></ion-icon>
-    </ion-item>
+        <ion-label class="ion-text-wrap ion-padding-start">
+          <h3>{{exercise.name}}</h3>
+        </ion-label>
+        <ion-icon *ngIf="exercise.custom" slot="end" color="secondary" name="bulb-outline"></ion-icon>
+      </ion-item>
       <ion-item-options *ngIf="exercise.custom" side="end">
-        <ion-item-option color="success" [routerLink]="['/', 'tabs', 'more', 'exercise-groups', 'edit-custom-exercise', exercise.id]">
-        <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+        <ion-item-option color="success"
+                         [routerLink]="['/', 'tabs', 'more', 'exercise-groups', 'edit-custom-exercise', exercise.id]">
+          <ion-icon slot="icon-only" name="create-outline"></ion-icon>
         </ion-item-option>
         <ion-item-option color="danger" (click)="deleteExercise(exercise)">
           <ion-icon slot="icon-only" name="trash-outline"></ion-icon>

@@ -34,6 +34,9 @@
         "HEADER": "Dni treningowe",
         "SUBHEADER": "Wybierz dni treningowe"
       }
+    },
+    "BUTTONS": {
+      "SAVE": "Zapisz"
     }
   },
   "EDIT_TRAINING_PLAN": {
@@ -47,6 +50,22 @@
         "HEADER": "Dni treningowe",
         "SUBHEADER": "Wybierz dni treningowe"
       }
+    },
+    "BUTTONS": {
+      "SAVE": "Zapisz"
+    }
+  },
+  "ADD_TRAINING_PLAN_EXERCISE": {
+    "PAGE_TITLES": {
+      "ADD_TRAINING_PLAN_EXERCISE": "Podaj parametry ćwiczenia"
+    },
+    "ADD_NOTE": "Dodaj notatkę",
+    "SETS": "Serie",
+    "SET": "Seria",
+    "WEIGHT": "Obciążenie",
+    "REPEATS": "Powtórzenia",
+    "BUTTONS": {
+      "SAVE": "Zapisz"
     }
   }
 }

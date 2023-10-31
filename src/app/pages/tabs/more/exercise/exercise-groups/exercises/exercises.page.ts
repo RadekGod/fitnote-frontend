@@ -18,12 +18,14 @@ export class ExercisesPage implements OnInit {
   category!: string;
   exercises: Exercise[] = [];
   private exercisesSubscription!: Subscription;
+  trainingPlanId = Number(this.route.snapshot.paramMap.get('trainingPlanId'));
 
 
   constructor(private activatedRoute: ActivatedRoute,
               private exerciseService: ExerciseService,
               private urlService: UrlService,
               private router: Router,
+              private route: ActivatedRoute,
               private imageService: ImageService) {
   }
 

@@ -34,6 +34,9 @@
         "HEADER": "Training days",
         "SUBHEADER": "Select training days"
       }
+    },
+    "BUTTONS": {
+      "SAVE": "Save"
     }
   },
   "EDIT_TRAINING_PLAN": {
@@ -47,6 +50,22 @@
         "HEADER": "Training days",
         "SUBHEADER": "Select training days"
       }
+    },
+    "BUTTONS": {
+      "SAVE": "Save"
+    }
+  },
+  "ADD_TRAINING_PLAN_EXERCISE": {
+    "PAGE_TITLES": {
+      "ADD_TRAINING_PLAN_EXERCISE": "Set exercise parameters"
+    },
+    "ADD_NOTE": "Add note",
+    "SETS": "Sets",
+    "SET": "Set",
+    "WEIGHT": "Weight",
+    "REPEATS": "Repeats",
+    "BUTTONS": {
+      "SAVE": "Save"
     }
   }
 }

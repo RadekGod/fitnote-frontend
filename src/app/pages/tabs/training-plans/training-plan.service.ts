@@ -52,4 +52,16 @@ export class TrainingPlanService {
   getAllExercisesFromTrainingPlan(trainingPlanId: number): Observable<TrainingPlanExerciseDto[]> {
     return this.httpClient.get<TrainingPlanExerciseDto[]>(environment.rootUrl + AppConstants.TRAINING_PLANS_API_URL + `/${trainingPlanId}/exercises`, { withCredentials:true });
   }
+
+  getTrainingPlanExercise(trainingPlanId: number, trainingPlanExerciseId: number): Observable<TrainingPlanExerciseDto> {
+    return this.httpClient.get<TrainingPlanExerciseDto>(environment.rootUrl + AppConstants.TRAINING_PLANS_API_URL + `/${trainingPlanId}/exercises/${trainingPlanExerciseId}`, { withCredentials:true });
+  }
+
+  addExerciseToTrainingPlan(trainingPlanId: number, exerciseId: number, trainingPlanDto: TrainingPlanExerciseDto) {
+    return this.httpClient.post(environment.rootUrl + AppConstants.TRAINING_PLANS_API_URL + `/${trainingPlanId}/exercises/${exerciseId}`, trainingPlanDto,{ withCredentials:true });
+  }
+
+  updateTrainingPlanExercise(trainingPlanId: number, trainingPlanExerciseId: number, trainingPlanDto: TrainingPlanExerciseDto) {
+    return this.httpClient.put(environment.rootUrl + AppConstants.TRAINING_PLANS_API_URL + `/${trainingPlanId}/exercises/${trainingPlanExerciseId}`, trainingPlanDto,{ withCredentials:true });
+  }
 }

@@ -1,0 +1,13 @@
+.temp-container {
+  display: flex;
+  width: 90%;
+  flex-direction: column;
+  height: 20vh;
+  //max-height: 32vh;
+  overflow: scroll;
+  gap: 1rem;
+  .temp-item {
+    min-height: 15vh;
+    background-color: #ffffff;
+  }
+}

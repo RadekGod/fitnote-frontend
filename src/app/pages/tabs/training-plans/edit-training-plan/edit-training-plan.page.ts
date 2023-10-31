@@ -19,7 +19,7 @@ import {IMAGE_FORMAT_PREFIX} from "../../../../commons/constants/constants";
 export class EditTrainingPlanPage implements OnInit {
 
   trainingDays = WeekDay;
-  trainingPlanId = Number(this.route.snapshot.paramMap.get('id'));
+  trainingPlanId = Number(this.route.snapshot.paramMap.get('trainingPlanId'));
   trainingDaysOptions: AlertOptions = {
     header: this.translate.instant('ADD_TRAINING_PLAN.ALERTS.TRAINING_DAYS.HEADER'),
     subHeader: this.translate.instant('ADD_TRAINING_PLAN.ALERTS.TRAINING_DAYS.SUBHEADER')

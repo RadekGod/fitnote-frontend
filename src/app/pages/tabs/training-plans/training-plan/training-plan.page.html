@@ -28,7 +28,7 @@
     <ion-list class="vertical-spacer-3vh horizontal-center">
       <ion-item-sliding *ngFor="let trainingPlanExercise of trainingPlan?.trainingPlanExercises"
                         class="simple-item-container horizontal-center vertical-spacer-1vh">
-        <ion-item [routerLink]="['/', 'tabs', 'training-plans', trainingPlan.id]">
+        <ion-item [routerLink]="['/', 'tabs', 'training-plans', trainingPlan.id, 'edit-exercise-in-training-plan', trainingPlanExercise.id]">
           <ion-avatar>
             <img alt="Silhouette of mountains"
                  [src]="trainingPlanExercise.exercise.image ? trainingPlanExercise.exercise.image.data : 'https://www.fabrykasily.pl/upload/gallery/2019/03/id_20907_1552923804_1260x840.jpg'"/>
@@ -37,14 +37,12 @@
             <h3>{{trainingPlanExercise.exercise.name}}</h3>
             <h4>{{'TRAINING_PLAN.REPEATS' | translate}}:
               <ng-container
-                *ngFor="let exerciseSet of trainingPlanExercise.exerciseSets; let last = last">{{exerciseSet.repeats}}
-                <span *ngIf="!last">/</span>
+                *ngFor="let exerciseSet of trainingPlanExercise.exerciseSets; let last = last">{{exerciseSet.repeats}}<span *ngIf="!last">/</span>
               </ng-container>
             </h4>
             <h4>{{'TRAINING_PLAN.WEIGHT' | translate}}:
               <ng-container
-                *ngFor="let exerciseSet of trainingPlanExercise.exerciseSets; let last = last">{{exerciseSet.weight}}
-                <span *ngIf="!last">/</span>
+                *ngFor="let exerciseSet of trainingPlanExercise.exerciseSets; let last = last">{{exerciseSet.weight}}<span *ngIf="!last">/</span>
               </ng-container>
             </h4>
           </ion-label>
@@ -62,7 +60,7 @@
     </ion-list>
 
     <div class="button-container vertical-spacer-3vh horizontal-center"
-         [routerLink]="['/', 'tabs', 'more', 'exercise-groups']">
+         [routerLink]="['/', 'tabs', 'training-plans', trainingPlanId, 'exercise-groups']">
       <button class="button button-outline" type="submit">
         <div class="button-content-container horizontal-center">
           <ion-icon name="add-outline"></ion-icon>
