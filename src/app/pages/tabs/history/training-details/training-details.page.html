@@ -1,0 +1,74 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/training-plans"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="padding-left-small">{{ 'Trening Details' }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-icon size="large" slot="icon-only" name="ellipsis-vertical"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="true">
+
+
+
+
+  <div class="training-details-container horizontal-center vertical-spacer-2vh">
+    <div class="training-summary-container">
+      <div class="training-header">
+        <h2>{{training?.name}}</h2>
+        <h4>{{training?.startTime | date:'dd.MM.yyyy hh:mm a'}}</h4>
+      </div>
+
+      <div class="training-statistics-container">
+        <div class="training-statistics-row">
+          <div class="training-statistics-item">
+            <ion-icon name="time-outline"></ion-icon>
+            <div class="text-container">
+              <span class="statistic-label">Czas trwania</span>
+              <span class="statistic-value">28</span>
+            </div>
+          </div>
+
+          <div class="training-statistics-item">
+            <ion-icon name="time-outline"></ion-icon>
+            <div class="text-container">
+              <span class="statistic-label">Czas trwania</span>
+              <span class="statistic-value">28</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+    <ion-list class="vertical-spacer-3vh horizontal-center">
+      <ion-item-sliding *ngFor="let trainingExercises of training?.trainingExercises"
+                        class="simple-item-container horizontal-center vertical-spacer-1vh">
+        <ion-item [routerLink]="['/', 'tabs', 'history', trainingExercises?.id]">
+          <!--          <ion-avatar>-->
+          <!--            <img alt="Silhouette of mountains"-->
+          <!--                 [src]="trainingPlanExercise.exercise.image ? trainingPlanExercise.exercise.image.data : 'https://www.fabrykasily.pl/upload/gallery/2019/03/id_20907_1552923804_1260x840.jpg'"/>-->
+          <!--          </ion-avatar>-->
+          <ion-label class="ion-text-wrap ion-padding-start">
+            <h3>{{trainingExercises?.exercise?.name}}</h3>
+
+          </ion-label>
+        </ion-item>
+        <ion-item-options side="end">
+          <ion-item-option color="danger">
+            <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+          </ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+  </div>
+
+
+
+  <div class="vertical-spacer-3vh"></div>
+</ion-content>

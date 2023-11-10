@@ -10,6 +10,7 @@ export const  AppConstants = {
   PHOTO_GALLERY_API_URL : '/photo-gallery',
   EXERCISES_API_URL : '/exercises',
   EXERCISES_CATEGORIES_API_URL : '/exercises/categories',
-  TRAINING_PLANS_API_URL : '/training-plans'
+  TRAINING_PLANS_API_URL : '/training-plans',
+  TRAININGS_API_URL : '/trainings'
 
 }

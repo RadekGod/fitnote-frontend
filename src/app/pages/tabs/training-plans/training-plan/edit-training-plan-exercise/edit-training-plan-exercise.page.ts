@@ -19,8 +19,8 @@ interface ExerciseSetFormGroup {
 
 @Component({
   selector: 'app-edit-exercise-in-training-plan',
-  templateUrl: './edit-training-plan-exercise-page.component.html',
-  styleUrls: ['./edit-training-plan-exercise-page.component.scss'],
+  templateUrl: './edit-training-plan-exercise.page.html',
+  styleUrls: ['./edit-training-plan-exercise.page.scss'],
 })
 export class EditTrainingPlanExercisePage implements OnInit {
   trainingPlanId = Number(this.route.snapshot.paramMap.get('trainingPlanId'));
@@ -90,7 +90,6 @@ export class EditTrainingPlanExercisePage implements OnInit {
       }));
     });
     this.setsCount = this.exerciseSets.length;
-
   }
 
   validateAndUpdateTrainingPlanExercise(editTrainingPlanExerciseForm: FormGroup) {
@@ -99,6 +98,7 @@ export class EditTrainingPlanExercisePage implements OnInit {
 
       let trainingPlanExerciseToSend = this.trainingPlanExercise!;
       trainingPlanExerciseToSend.exerciseSets = editTrainingPlanExerciseForm.get('exerciseSets')?.value;
+      trainingPlanExerciseToSend.note = editTrainingPlanExerciseForm.get('note')?.value;
       console.log('Test: ',trainingPlanExerciseToSend);
       this.trainingPlanService.updateTrainingPlanExercise(this.trainingPlanId, this.trainingPlanExerciseId, trainingPlanExerciseToSend).subscribe(async () => {
         this.trainingPlanService.notifyAboutTrainingPlanChange();

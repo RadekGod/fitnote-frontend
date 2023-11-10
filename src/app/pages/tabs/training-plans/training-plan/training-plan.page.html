@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/tabs/training-plans"></ion-back-button>
     </ion-buttons>
-    <ion-title>{{ trainingPlan ? trainingPlan.name : '' }}</ion-title>
+    <ion-title class="padding-left-small">{{ trainingPlan ? trainingPlan.name : '' }}</ion-title>
     <ion-buttons slot="end">
       <ion-icon size="large" slot="icon-only" name="ellipsis-vertical"></ion-icon>
     </ion-buttons>
@@ -14,7 +14,8 @@
 <ion-content [fullscreen]="true">
 
   <div *ngIf="trainingPlan?.trainingPlanExercises?.length !== 0"
-       class="button-container vertical-spacer-3vh horizontal-center">
+       class="button-container vertical-spacer-3vh horizontal-center"
+       [routerLink]="['/', 'tabs', 'training-plans', trainingPlanId, 'training']">
     <button class="button button-fill" type="submit">
       <div class="button-content-container horizontal-center">
         <p>{{'TRAINING_PLAN.BUTTONS.BEGIN_TRAINING' | translate}}</p>

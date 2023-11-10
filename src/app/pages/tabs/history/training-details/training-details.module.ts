@@ -4,10 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { HistoryPageRoutingModule } from './history-routing.module';
+import { TrainingDetailsPageRoutingModule } from './training-details-routing.module';
 
-import { HistoryPage } from './history.page';
-import {BodyPageModule} from "../body/body.module";
+import { TrainingDetailsPage } from './training-details.page';
 import {TranslateModule} from "@ngx-translate/core";
 
 @NgModule({
@@ -15,10 +14,9 @@ import {TranslateModule} from "@ngx-translate/core";
         CommonModule,
         FormsModule,
         IonicModule,
-        HistoryPageRoutingModule,
-        BodyPageModule,
+        TrainingDetailsPageRoutingModule,
         TranslateModule
     ],
-  declarations: [HistoryPage]
+  declarations: [TrainingDetailsPage]
 })
-export class HistoryPageModule {}
+export class TrainingDetailsPageModule {}

@@ -1,0 +1,119 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/training-plans"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="padding-left-small">{{ 'Trening ' + (trainingPlan ? trainingPlan.name : '') }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-icon size="large" slot="icon-only" name="ellipsis-vertical"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <div *ngIf="trainingPlan" class="content-container horizontal-center vertical-spacer-2vh">
+        <h3>{{currentTrainingPlanExercise.exercise.name}}
+          <ion-icon name="information-circle-outline"
+                    [routerLink]="['/', 'tabs', 'more', 'exercise-groups', 'exercise', currentTrainingPlanExercise.exercise?.id]"></ion-icon>
+        </h3>
+
+        <ion-thumbnail>
+          <img alt="Silhouette of mountains"
+               [src]="currentTrainingPlanExercise.exercise?.image ? currentTrainingPlanExercise.exercise?.image?.data : 'https://www.fabrykasily.pl/upload/gallery/2019/03/id_20907_1552923804_1260x840.jpg'"/>
+        </ion-thumbnail>
+
+    <div class="form-container vertical-spacer-2vh horizontal-center">
+      <form (ngSubmit)="validateAndSaveTraining(trainingForm)"
+            [formGroup]="trainingForm">
+
+        <div formArrayName="exercises">
+          <div *ngFor="let exercise of getExercises().controls; let i = index" [formGroupName]="i">
+            <div *ngIf="i === currentExerciseIndex" class="form-inputs-container">
+              <div class="input-container">
+                <input type="text" id="note" formControlName="note" placeholder="{{ 'ADD_TRAINING_PLAN_EXERCISE.ADD_NOTE' | translate }}">
+              </div>
+
+              <div class="vertical-spacer-1vh"></div>
+
+              <div class="small-inputs-container horizontal-center">
+                <div class="sets-input-container">
+                  <div class="sets-value-container">{{ 'ADD_TRAINING_PLAN_EXERCISE.SETS' | translate }}
+                    : {{setsCount}}</div>
+                  <ion-icon name="remove-outline" (click)="removeSet()"></ion-icon>
+                  <ion-icon name="add-outline" (click)="addSet()"></ion-icon>
+                </div>
+              </div>
+
+
+              <div class="sets-container vertical-spacer-1vh" formArrayName="exerciseSets">
+                <div class="set-container"
+                     *ngFor="let exerciseSet of getExerciseSets(currentExerciseIndex).controls; let j = index"
+                     [formGroupName]="j">
+                  <div class="set-header">
+                    <h3>{{ 'ADD_TRAINING_PLAN_EXERCISE.SET' | translate }} {{j + 1}}.</h3>
+                  </div>
+
+                  <div class="set-inputs-container">
+                    <div class="set-input-container">
+                      <label for="weight" class="input-label">{{ 'ADD_TRAINING_PLAN_EXERCISE.WEIGHT' | translate }}
+                        {{'(' + weightUnitShortcut + ')'}}</label>
+                      <input type="number" id="weight" formControlName="weight" placeholder="&nbsp;">
+                      <ion-icon name="remove-outline" (click)="subtractWeight(j)"></ion-icon>
+                      <ion-icon name="add-outline" (click)="addWeight(j)"></ion-icon>
+                    </div>
+                    <div class="set-input-container">
+                      <label for="repeats"
+                             class="input-label">{{ 'ADD_TRAINING_PLAN_EXERCISE.REPEATS' | translate }}</label>
+                      <input type="number" id="repeats" formControlName="repeats" placeholder="&nbsp;">
+                      <ion-icon name="remove-outline" (click)="subtractRepeat(j)"></ion-icon>
+                      <ion-icon name="add-outline" (click)="addRepeat(j)"></ion-icon>
+                    </div>
+                  </div>
+
+                  <div class="set-completed-checkbox">
+                    <ion-checkbox formControlName="completed"></ion-checkbox>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="navigation-buttons-container vertical-spacer-3vh">
+          <div class="navigation-button horizontal-center" (click)="previousExercise()">
+            <button class="button button-fill" type="button">
+              <div class="button-content-container horizontal-center">
+                <ion-icon name="chevron-back-outline"></ion-icon>
+              </div>
+            </button>
+          </div>
+
+          <div class="finish-button">
+            <button class="button button-outline" type="submit">
+              <div class="button-content-container">
+                <ion-icon name="flag-outline"></ion-icon>
+                <p>{{ 'Zakończ' | translate}}</p>
+              </div>
+            </button>
+          </div>
+
+          <div class="navigation-button horizontal-center" (click)="nextExercise()">
+            <button class="button button-fill" type="button">
+              <div class="button-content-container horizontal-center">
+                <ion-icon name="chevron-forward-outline"></ion-icon>
+              </div>
+            </button>
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+
+
+
+  <div class="vertical-spacer-3vh">
+  </div>
+</ion-content>

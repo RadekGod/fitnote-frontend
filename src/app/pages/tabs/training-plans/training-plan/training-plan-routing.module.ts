@@ -27,7 +27,11 @@ const routes: Routes = [
   {
     path: 'edit-exercise-in-training-plan/:trainingPlanExerciseId',
     loadChildren: () => import('./edit-training-plan-exercise/edit-training-plan-exercise.module').then(m => m.EditExerciseInTrainingPlanPageModule)
+  },  {
+    path: 'training',
+    loadChildren: () => import('./training/training.module').then( m => m.TrainingPageModule)
   }
+
 
 
 ];

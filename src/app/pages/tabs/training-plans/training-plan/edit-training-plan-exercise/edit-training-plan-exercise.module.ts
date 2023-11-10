@@ -6,7 +6,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { EditExerciseInTrainingPlanPageRoutingModule } from './edit-training-plan-exercise-routing.module';
 
-import { EditTrainingPlanExercisePage } from './edit-training-plan-exercise-page.component';
+import { EditTrainingPlanExercisePage } from './edit-training-plan-exercise.page';
 import {TranslateModule} from "@ngx-translate/core";
 
 @NgModule({

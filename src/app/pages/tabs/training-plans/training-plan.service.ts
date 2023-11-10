@@ -14,7 +14,6 @@ import {FormGroup} from "@angular/forms";
 export class TrainingPlanService {
 
   public trainingPlanChange = new Subject<void>();
-  trainingPlans: GeneralMeasurementDto | null = null;
 
   constructor(private httpClient: HttpClient) { }
 

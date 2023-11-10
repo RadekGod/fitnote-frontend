@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: HistoryPage
+  },
+  {
+    path: ':trainingId',
+    loadChildren: () => import('./training-details/training-details.module').then( m => m.TrainingDetailsPageModule)
   }
 ];
 
