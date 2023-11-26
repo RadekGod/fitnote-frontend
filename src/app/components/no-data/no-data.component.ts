@@ -5,7 +5,7 @@ import {Component, Input, OnInit} from '@angular/core';
   templateUrl: './no-data.component.html',
   styleUrls: ['./no-data.component.scss'],
 })
-export class NoDataComponent  implements OnInit {
+export class NoDataComponent implements OnInit {
 
   @Input() message!: string;
 

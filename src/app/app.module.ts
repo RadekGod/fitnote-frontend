@@ -41,7 +41,7 @@ import {RemoveCommaPipe} from "./commons/pipes/remove-comma.pipe";
       multi: true
     }, AuthActivateRouteGuard
   ],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
 export class AppModule {
 }

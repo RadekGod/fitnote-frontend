@@ -10,6 +10,9 @@ import { BodyPage } from './body.page';
 import {NoDataComponent} from "../../../components/no-data/no-data.component";
 import {TranslateModule} from "@ngx-translate/core";
 import {RemoveCommaPipe} from "../../../commons/pipes/remove-comma.pipe";
+import {AppModule} from "../../../app.module";
+import {PipesModule} from "../../../commons/pipes/pipes-module";
+import {NoDataComponentModule} from "../../../components/no-data/no-data-module";
 
 @NgModule({
   imports: [
@@ -17,15 +20,14 @@ import {RemoveCommaPipe} from "../../../commons/pipes/remove-comma.pipe";
     FormsModule,
     IonicModule,
     BodyPageRoutingModule,
-    TranslateModule
+    TranslateModule,
+    PipesModule,
+    NoDataComponentModule,
+
   ],
-  declarations: [BodyPage, NoDataComponent, RemoveCommaPipe],
-  exports: [
-    NoDataComponent
-  ],
+  declarations: [BodyPage],
   providers: [
-    DecimalPipe,
-    RemoveCommaPipe
+    DecimalPipe
   ]
 })
 export class BodyPageModule {}

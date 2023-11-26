@@ -9,16 +9,18 @@ import { TrainingPlansPageRoutingModule } from './training-plans-routing.module'
 import { TrainingPlansPage } from './training-plans.page';
 import {TranslateModule} from "@ngx-translate/core";
 import {BodyPageModule} from "../body/body.module";
+import {NoDataComponentModule} from "../../../components/no-data/no-data-module";
 
 @NgModule({
-    imports: [
-        CommonModule,
-        FormsModule,
-        IonicModule,
-        TrainingPlansPageRoutingModule,
-        TranslateModule,
-        BodyPageModule
-    ],
+  imports: [
+    CommonModule,
+    FormsModule,
+    IonicModule,
+    TrainingPlansPageRoutingModule,
+    TranslateModule,
+    BodyPageModule,
+    NoDataComponentModule
+  ],
   declarations: [TrainingPlansPage]
 })
 export class TrainingPlansPageModule {}

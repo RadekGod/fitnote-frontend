@@ -9,16 +9,18 @@ import { HistoryPageRoutingModule } from './history-routing.module';
 import { HistoryPage } from './history.page';
 import {BodyPageModule} from "../body/body.module";
 import {TranslateModule} from "@ngx-translate/core";
+import {NoDataComponentModule} from "../../../components/no-data/no-data-module";
 
 @NgModule({
-    imports: [
-        CommonModule,
-        FormsModule,
-        IonicModule,
-        HistoryPageRoutingModule,
-        BodyPageModule,
-        TranslateModule
-    ],
+  imports: [
+    CommonModule,
+    FormsModule,
+    IonicModule,
+    HistoryPageRoutingModule,
+    BodyPageModule,
+    TranslateModule,
+    NoDataComponentModule
+  ],
   declarations: [HistoryPage]
 })
 export class HistoryPageModule {}

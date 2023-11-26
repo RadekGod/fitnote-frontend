@@ -1,7 +1,10 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import {Injectable, Pipe, PipeTransform} from '@angular/core';
 
 @Pipe({
   name: 'removeComma'
+})
+@Injectable({
+  providedIn: 'root'
 })
 export class RemoveCommaPipe implements PipeTransform {
 
