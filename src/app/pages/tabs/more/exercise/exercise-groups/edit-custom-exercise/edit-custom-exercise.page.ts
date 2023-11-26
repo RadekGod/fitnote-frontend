@@ -76,11 +76,15 @@ export class EditCustomExercisePage implements OnInit {
   }
 
   ngOnInit() {
+    this.getPreviousUrl();
+    this.fetchExercise();
+  }
+
+  getPreviousUrl() {
     this.urlService.previousUrl$
       .subscribe((previousUrl: string) => {
         this.previousUrl = previousUrl;
       });
-    this.fetchExercise();
   }
 
   fetchExercise() {

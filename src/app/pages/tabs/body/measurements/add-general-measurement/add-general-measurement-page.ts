@@ -8,6 +8,7 @@ import {MeasurementUnitsService} from "../../../../../commons/services/mesuremen
 import {GeneralMeasurementDto} from "../../model/general-measurement-dto.model";
 import {RemoveCommaPipe} from "../../../../../commons/pipes/remove-comma.pipe";
 import {ToastService} from "../../../../../commons/services/toast/toast.service";
+import {UrlService} from "../../../../../commons/services/url/url.service";
 
 @Component({
   selector: 'app-add-general-measurements',
@@ -19,6 +20,7 @@ export class AddGeneralMeasurementPage implements OnInit {
   private measurementUnitsSubscription!: Subscription;
   lengthUnitShortcut!: string;
   weightUnitShortcut!: string;
+  previousUrl: string = '';
 
   addGeneralMeasurementForm = this.formBuilder.group({
     weight: [''],
@@ -28,7 +30,8 @@ export class AddGeneralMeasurementPage implements OnInit {
     measurementDate: [this.datePipe.transform(Date.now(), 'yyyy-MM-ddTHH:mm'), Validators.required]
   });
 
-  constructor(private router: Router, private formBuilder: FormBuilder, private bodyService: BodyService,
+  constructor(private urlService: UrlService,
+              private router: Router, private formBuilder: FormBuilder, private bodyService: BodyService,
               private datePipe: DatePipe, private measurementUnitsService: MeasurementUnitsService,
               private removeCommaPipe: RemoveCommaPipe,
               private toastService: ToastService,
@@ -36,8 +39,16 @@ export class AddGeneralMeasurementPage implements OnInit {
   }
 
   ngOnInit() {
+    this.getPreviousUrl();
     this.fetchLatestGeneralMeasurement();
     this.initializeMeasurementUnitsShortcuts();
+  }
+
+  getPreviousUrl() {
+    this.urlService.previousUrl$
+      .subscribe((previousUrl: string) => {
+        this.previousUrl = previousUrl;
+      });
   }
 
   fetchLatestGeneralMeasurement() {
@@ -80,7 +91,7 @@ export class AddGeneralMeasurementPage implements OnInit {
       this.bodyService.addNewGeneralMeasurement(generalMeasurement).subscribe(async responseData => {
         this.bodyService.notifyAboutGeneralMeasurementChange();
         await this.toastService.presentToast('success', 'TOAST_MESSAGES.MEASUREMENT_ADD_SUCCESS');
-        await this.router.navigate(['tabs', 'body']);
+        await this.router.navigate(this.previousUrl ? this.previousUrl.split('/') : ['tabs', 'body']);
       }, async () => {
         await this.toastService.presentToast('error', 'TOAST_MESSAGES.MEASUREMENT_ADD_ERROR');
       });

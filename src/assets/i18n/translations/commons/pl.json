@@ -51,6 +51,8 @@
     "MEASUREMENT_ADD_ERROR": "Błąd podczas dodawania pomiaru",
     "MEASUREMENT_UPDATE_SUCCESS": "Pomiar został zaktualizowany pomyślnie",
     "MEASUREMENT_UPDATE_ERROR": "Błąd podczas aktualizacji pomiaru",
+    "MEASUREMENT_DELETE_SUCCESS": "Pomiar został usunięty pomyślnie",
+    "MEASUREMENT_DELETE_ERROR": "Błąd podczas usuwania pomiaru",
     "EXERCISE_ADD_SUCCESS": "Ćwiczenie dodane pomyślnie",
     "EXERCISE_ADD_ERROR": "Błąd podczas dodawania ćwiczenia",
     "EXERCISE_UPDATE_SUCCESS": "Ćwiczenie zostało zaktualizowane pomyślnie",

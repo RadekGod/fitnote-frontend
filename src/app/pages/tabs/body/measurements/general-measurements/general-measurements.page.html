@@ -1,13 +1,78 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>general-measurements</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/body"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="padding-left-small">{{ 'BODY.MEASUREMENTS.GENERAL_MEASUREMENTS.PAGE_TITLES.GENERAL_MEASUREMENTS_HISTORY' | translate }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button [routerLink]="['/', 'tabs', 'body', 'add-general-measurement']">
+        <ion-icon size="large" name="add-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">general-measurements</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ng-container *ngFor="let generalMeasurement of generalMeasurements">
+  <div class="section-container horizontal-center vertical-spacer-3vh">
+    <div class="section-header">
+      <div class="title-container">
+        <h3>{{ 'BODY.MEASUREMENTS.GENERAL_MEASUREMENTS.SECTION_TITLE' | translate }}</h3>
+        <p
+          *ngIf="generalMeasurement?.measurementDate">{{ 'BODY.MEASUREMENTS.GENERAL_MEASUREMENTS.MEASUREMENT_DATE' | translate }}
+          {{ generalMeasurement?.measurementDate ? (generalMeasurement?.measurementDate | date:'dd.MM.yyyy HH:mm') : ''}}</p>
+      </div>
+      <div class="section-header-options">
+        <button *ngIf="generalMeasurement"
+                (click)="deleteGeneralMeasurement(generalMeasurement.id)">
+          <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+        </button>
+        <button *ngIf="generalMeasurement"
+                [routerLink]="['/', 'tabs', 'body', 'edit-general-measurement', generalMeasurement.id]">
+          <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+        </button>
+      </div>
+    </div>
+
+    <app-no-data [message]="'BODY.MEASUREMENTS.ERRORS.NO_MEASUREMENTS'" *ngIf="!generalMeasurement"></app-no-data>
+
+
+    <div *ngIf="generalMeasurement" class="section-content">
+      <div class="item">
+        <p>{{ 'BODY.MEASUREMENTS.GENERAL_MEASUREMENTS.HEIGHT' | translate }}</p>
+        <div class="measurement">
+          <p>{{generalMeasurement.height ? (generalMeasurement.height | number : '1.0-2' | removeComma) + ' ' + lengthUnitShortcut : '-' }}</p>
+        </div>
+      </div>
+
+      <div class="item">
+        <p>{{ 'BODY.MEASUREMENTS.GENERAL_MEASUREMENTS.WEIGHT' | translate }}</p>
+        <div class="measurement">
+          <p>{{generalMeasurement.weight ? (generalMeasurement.weight | number : '1.0-2') + ' ' + weightUnitShortcut : '-' }}</p>
+        </div>
+      </div>
+
+      <div class="item">
+        <p>{{ 'BODY.MEASUREMENTS.GENERAL_MEASUREMENTS.BMI' | translate }}</p>
+        <div class="measurement">
+          <p>{{ generalMeasurement.bmi ? (generalMeasurement.bmi | number : '1.1-2') : '-'}}</p>
+        </div>
+      </div>
+
+      <div class="item">
+        <p>{{ 'BODY.MEASUREMENTS.GENERAL_MEASUREMENTS.LEAN_MUSCLE_MASS' | translate }}</p>
+        <div class="measurement">
+          <p>{{generalMeasurement.muscleContent ? generalMeasurement.muscleContent + ' %' : '-' }}</p>
+        </div>
+      </div>
+
+      <div class="item">
+        <p>{{ 'BODY.MEASUREMENTS.GENERAL_MEASUREMENTS.BODY_FAT' | translate }}</p>
+        <div class="measurement">
+          <p>{{generalMeasurement.bodyFat ? generalMeasurement.bodyFat + ' %' : '-' }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  </ng-container>
 </ion-content>

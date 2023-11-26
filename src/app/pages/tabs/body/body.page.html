@@ -20,20 +20,21 @@
 
   <div *ngIf="segmentValue === 'measurements'" class="measurements-container">
 
-    <div class="section-container horizontal-center vertical-spacer-3vh">
+    <div class="section-container horizontal-center vertical-spacer-3vh"
+         [routerLink]="['/', 'tabs', 'body', 'general-measurements']">
       <div class="section-header">
         <div class="title-container">
           <h3>{{ 'BODY.MEASUREMENTS.GENERAL_MEASUREMENTS.SECTION_TITLE' | translate }}</h3>
-          <p
-            *ngIf="generalMeasurement?.measurementDate">{{ 'BODY.MEASUREMENTS.GENERAL_MEASUREMENTS.MEASUREMENT_DATE' | translate }}
+          <p *ngIf="generalMeasurement?.measurementDate">{{ 'BODY.MEASUREMENTS.GENERAL_MEASUREMENTS.MEASUREMENT_DATE' | translate }}
             {{ generalMeasurement?.measurementDate ? (generalMeasurement?.measurementDate | date:'dd.MM.yyyy HH:mm') : ''}}</p>
         </div>
         <div class="section-header-options">
           <button *ngIf="generalMeasurement"
-                  [routerLink]="['/', 'tabs', 'body', 'edit-general-measurement', generalMeasurement.id]">
+                  (click)="navigateToEditGeneralMeasurement(generalMeasurement.id, $event)">
             <ion-icon slot="icon-only" name="create-outline"></ion-icon>
           </button>
-          <button [routerLink]="['/', 'tabs', 'body', 'add-general-measurement']">
+          <button
+            (click)="navigateToAddGeneralMeasurement($event)">
             <ion-icon slot="icon-only" name="add-outline"></ion-icon>
           </button>
         </div>
@@ -80,7 +81,7 @@
       </div>
     </div>
 
-    <div class="section-container horizontal-center vertical-spacer-3vh">
+    <div class="section-container horizontal-center vertical-spacer-3vh" [routerLink]="['/', 'tabs', 'body', 'body-measurements']">
       <div class="section-header">
         <div class="title-container">
           <h3>{{ 'BODY.MEASUREMENTS.BODY_MEASUREMENTS.SECTION_TITLE' | translate }}</h3>
@@ -90,10 +91,10 @@
         </div>
         <div class="section-header-options">
           <button *ngIf="bodyMeasurement"
-                  [routerLink]="['/', 'tabs', 'body', 'edit-body-measurement', bodyMeasurement.id]">
+                  (click)="navigateToEditBodyMeasurement(bodyMeasurement.id, $event)">
             <ion-icon slot="icon-only" name="create-outline"></ion-icon>
           </button>
-          <button [routerLink]="['/', 'tabs', 'body', 'add-body-measurement']">
+          <button (click)="navigateToAddBodyMeasurement($event)">
             <ion-icon slot="icon-only" name="add-outline"></ion-icon>
           </button>
         </div>

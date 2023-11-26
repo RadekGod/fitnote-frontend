@@ -34,6 +34,10 @@ const routes: Routes = [
   },  {
     path: 'general-measurements',
     loadChildren: () => import('./measurements/general-measurements/general-measurements.module').then( m => m.GeneralMeasurementsPageModule)
+  },
+  {
+    path: 'body-measurements',
+    loadChildren: () => import('./measurements/body-measurements/body-measurements.module').then( m => m.BodyMeasurementsPageModule)
   }
 
 ];

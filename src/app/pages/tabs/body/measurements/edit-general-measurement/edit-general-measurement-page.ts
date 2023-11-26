@@ -8,6 +8,7 @@ import {Subscription} from "rxjs";
 import {MeasurementUnitsService} from "../../../../../commons/services/mesurement-units/measurement-units.service";
 import {RemoveCommaPipe} from "../../../../../commons/pipes/remove-comma.pipe";
 import {ToastService} from "../../../../../commons/services/toast/toast.service";
+import {UrlService} from "../../../../../commons/services/url/url.service";
 
 @Component({
   selector: 'app-edit-general-measurements',
@@ -19,6 +20,7 @@ export class EditGeneralMeasurementPage implements OnInit {
   private measurementUnitsSubscription!: Subscription;
   lengthUnitShortcut!: string;
   weightUnitShortcut!: string;
+  previousUrl: string = '';
 
   editGeneralMeasurementForm = this.formBuilder.group({
     weight: [''],
@@ -28,16 +30,25 @@ export class EditGeneralMeasurementPage implements OnInit {
     measurementDate: [this.datePipe.transform(Date.now(), 'yyyy-MM-ddTHH:mm'), Validators.required]
   });
 
-  constructor( private router: Router, private formBuilder: FormBuilder, private bodyService: BodyService,
-               private datePipe: DatePipe, private route: ActivatedRoute,
-               private removeCommaPipe: RemoveCommaPipe,
-               private toastService: ToastService,
-               private measurementUnitsService: MeasurementUnitsService, private decimalPipe: DecimalPipe) {
+  constructor(private urlService: UrlService,
+              private router: Router, private formBuilder: FormBuilder, private bodyService: BodyService,
+              private datePipe: DatePipe, private route: ActivatedRoute,
+              private removeCommaPipe: RemoveCommaPipe,
+              private toastService: ToastService,
+              private measurementUnitsService: MeasurementUnitsService, private decimalPipe: DecimalPipe) {
   }
 
   ngOnInit() {
+    this.getPreviousUrl();
     this.fetchLatestGeneralMeasurement();
     this.initializeMeasurementUnitsShortcuts();
+  }
+
+  getPreviousUrl() {
+    this.urlService.previousUrl$
+      .subscribe((previousUrl: string) => {
+        this.previousUrl = previousUrl;
+      });
   }
 
   fetchLatestGeneralMeasurement() {
@@ -55,6 +66,7 @@ export class EditGeneralMeasurementPage implements OnInit {
       measurementDate: this.datePipe.transform(generalMeasurementDto?.measurementDate, 'yyyy-MM-ddTHH:mm')
     });
   }
+
   initializeMeasurementUnitsShortcuts() {
     this.getMeasurementUnitsShortcuts();
     this.measurementUnitsSubscription = this.listenForMeasurementUnitChange();
@@ -81,7 +93,7 @@ export class EditGeneralMeasurementPage implements OnInit {
       this.bodyService.editGeneralMeasurement(generalMeasurementId, generalMeasurement).subscribe(async responseData => {
         this.bodyService.notifyAboutGeneralMeasurementChange();
         await this.toastService.presentToast('success', 'TOAST_MESSAGES.MEASUREMENT_UPDATE_SUCCESS');
-        await this.router.navigate(['tabs', 'body']);
+        await this.router.navigate(this.previousUrl ? this.previousUrl.split('/') : ['tabs', 'body']);
       }, async () => {
         await this.toastService.presentToast('error', 'TOAST_MESSAGES.MEASUREMENT_UPDATE_ERROR');
       });

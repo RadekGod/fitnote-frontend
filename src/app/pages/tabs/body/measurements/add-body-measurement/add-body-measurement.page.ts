@@ -8,6 +8,7 @@ import {Subscription} from "rxjs";
 import {MeasurementUnitsService} from "../../../../../commons/services/mesurement-units/measurement-units.service";
 import {RemoveCommaPipe} from "../../../../../commons/pipes/remove-comma.pipe";
 import {ToastService} from "../../../../../commons/services/toast/toast.service";
+import {UrlService} from "../../../../../commons/services/url/url.service";
 
 @Component({
   selector: 'app-add-body-measurement',
@@ -18,6 +19,7 @@ export class AddBodyMeasurementPage implements OnInit {
 
   private measurementUnitsSubscription!: Subscription;
   lengthUnitShortcut!: string;
+  previousUrl: string = '';
 
   addBodyMeasurementsForm = this.formBuilder.group({
     chest: [''],
@@ -37,14 +39,23 @@ export class AddBodyMeasurementPage implements OnInit {
   constructor(private router: Router, private formBuilder: FormBuilder,
               private bodyService: BodyService, private datePipe: DatePipe,
               private removeCommaPipe: RemoveCommaPipe,
+              private urlService: UrlService,
               private measurementUnitsService: MeasurementUnitsService,
               private toastService: ToastService,
               private decimalPipe: DecimalPipe) {
   }
 
   ngOnInit() {
+    this.getPreviousUrl();
     this.fetchLatestBodyMeasurement();
     this.initializeMeasurementUnitsShortcuts();
+  }
+
+  getPreviousUrl() {
+    this.urlService.previousUrl$
+      .subscribe((previousUrl: string) => {
+        this.previousUrl = previousUrl;
+      });
   }
 
   fetchLatestBodyMeasurement() {
@@ -92,7 +103,7 @@ export class AddBodyMeasurementPage implements OnInit {
       this.bodyService.addNewBodyMeasurement(bodyMeasurement).subscribe(async responseData => {
         this.bodyService.notifyAboutBodyMeasurementChange();
         await this.toastService.presentToast('success', 'TOAST_MESSAGES.MEASUREMENT_ADD_SUCCESS');
-        await this.router.navigate(['tabs', 'body']);
+        await this.router.navigate(this.previousUrl ? this.previousUrl.split('/') : ['tabs', 'body']);
       }, async () => {
         await this.toastService.presentToast('error', 'TOAST_MESSAGES.MEASUREMENT_ADD_ERROR');
       });

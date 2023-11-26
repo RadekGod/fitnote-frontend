@@ -8,6 +8,7 @@ import {BodyMeasurementDto} from "../../model/body-measurement-dto.model";
 import {MeasurementUnitsService} from "../../../../../commons/services/mesurement-units/measurement-units.service";
 import {RemoveCommaPipe} from "../../../../../commons/pipes/remove-comma.pipe";
 import {ToastService} from "../../../../../commons/services/toast/toast.service";
+import {UrlService} from "../../../../../commons/services/url/url.service";
 
 @Component({
   selector: 'app-edit-body-measurement',
@@ -18,6 +19,7 @@ export class EditBodyMeasurementPage implements OnInit {
 
   private measurementUnitsSubscription!: Subscription;
   lengthUnitShortcut!: string;
+  previousUrl: string = '';
 
   editBodyMeasurementForm = this.formBuilder.group({
     chest: [''],
@@ -38,12 +40,20 @@ export class EditBodyMeasurementPage implements OnInit {
                private datePipe: DatePipe, private route: ActivatedRoute, private decimalPipe: DecimalPipe,
                private removeCommaPipe: RemoveCommaPipe,
                private toastService: ToastService,
+               private urlService: UrlService,
                private measurementUnitsService: MeasurementUnitsService) {
   }
 
   ngOnInit() {
     this.fetchLatestBodyMeasurement();
     this.initializeMeasurementUnitsShortcuts();
+  }
+
+  getPreviousUrl() {
+    this.urlService.previousUrl$
+      .subscribe((previousUrl: string) => {
+        this.previousUrl = previousUrl;
+      });
   }
 
   fetchLatestBodyMeasurement() {
@@ -93,7 +103,7 @@ export class EditBodyMeasurementPage implements OnInit {
       this.bodyService.editBodyMeasurement(bodyMeasurementId, bodyMeasurement).subscribe(async responseData => {
         this.bodyService.notifyAboutBodyMeasurementChange();
         await this.toastService.presentToast('success', 'TOAST_MESSAGES.MEASUREMENT_UPDATE_SUCCESS');
-        await this.router.navigate(['tabs', 'body']);
+        await this.router.navigate(this.previousUrl ? this.previousUrl.split('/') : ['tabs', 'body']);
       }, async () => {
         await this.toastService.presentToast('error', 'TOAST_MESSAGES.MEASUREMENT_UPDATE_ERROR');
       });

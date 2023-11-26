@@ -10,6 +10,7 @@ import {environment} from "../../../../environments/environment";
 import {GalleryPhotoDto} from "./model/gallery-photo-dto.model";
 import {ImageService} from "../../../commons/services/file/image.service";
 import {GalleryPhotoImage} from "../../../commons/models/gallery-photo-image.model";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -36,7 +37,8 @@ export class BodyPage implements OnInit {
   constructor(private bodyService: BodyService,
               private userService: UserService,
               private measurementUnitsService: MeasurementUnitsService,
-              private imageService: ImageService) {
+              private imageService: ImageService,
+              private router: Router) {
   }
 
   async ngOnInit() {
@@ -153,5 +155,25 @@ export class BodyPage implements OnInit {
     } catch (e) {
       console.log("Unable to make directory");
     }
+  }
+
+  async navigateToEditGeneralMeasurement(generalMeasurementId: number, event: Event) {
+    event.stopPropagation();
+    await this.router.navigate(['/', 'tabs', 'body', 'edit-general-measurement', generalMeasurementId]);
+  }
+
+  async navigateToAddGeneralMeasurement(event: Event) {
+    event.stopPropagation();
+    await this.router.navigate(['/', 'tabs', 'body', 'add-general-measurement']);
+  }
+
+  async navigateToEditBodyMeasurement(bodyMeasurementId: number, event: Event) {
+    event.stopPropagation();
+    await this.router.navigate(['/', 'tabs', 'body', 'edit-body-measurement', bodyMeasurementId]);
+  }
+
+  async navigateToAddBodyMeasurement(event: Event) {
+    event.stopPropagation();
+    await this.router.navigate(['/', 'tabs', 'body', 'add-body-measurement']);
   }
 }

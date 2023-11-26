@@ -11,7 +11,6 @@ import {XhrInterceptor} from "./commons/interceptors/app.request.interceptor";
 import {AuthActivateRouteGuard} from "./commons/services/auth/fit-note-auth-guard.service";
 import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
 import {httpLoaderFactory} from "./configuration/translations/http-loader-factory";
-import {RemoveCommaPipe} from "./commons/pipes/remove-comma.pipe";
 
 @NgModule({
   declarations: [AppComponent],

@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/tabs/body"></ion-back-button>
+      <ion-back-button [defaultHref]="previousUrl ? previousUrl : '/tabs/body'"></ion-back-button>
     </ion-buttons>
     <ion-title class="padding-left-small">{{ 'BODY.MEASUREMENTS.BODY_MEASUREMENTS.PAGE_TITLES.ADD_MEASUREMENT' | translate }}</ion-title>
     <ion-buttons slot="end">

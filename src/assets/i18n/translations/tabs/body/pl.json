@@ -15,7 +15,8 @@
       "BODY_MEASUREMENTS": {
         "PAGE_TITLES": {
           "ADD_MEASUREMENT": "Dodaj pomiar",
-          "EDIT_MEASUREMENT": "Edytuj pomiar"
+          "EDIT_MEASUREMENT": "Edytuj pomiar",
+          "BODY_MEASUREMENTS_HISTORY": "Historia pomiarów"
         },
         "SIDES": {
           "SHORTCUTS": {
@@ -39,7 +40,8 @@
       "GENERAL_MEASUREMENTS": {
         "PAGE_TITLES": {
           "ADD_MEASUREMENT": "Dodaj pomiar",
-          "EDIT_MEASUREMENT": "Edytuj pomiar"
+          "EDIT_MEASUREMENT": "Edytuj pomiar",
+          "GENERAL_MEASUREMENTS_HISTORY": "Historia pomiarów"
         },
         "SECTION_TITLE": "Dane ogólne",
         "MEASUREMENT_DATE": "Data pomiaru:",

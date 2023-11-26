@@ -32,6 +32,10 @@ export class BodyService {
     this.galleryPhotoChange.next();
   }
 
+  getAllGeneralMeasurements(): Observable<GeneralMeasurementDto[]> {
+    return this.httpClient.get<GeneralMeasurementDto[]>(environment.rootUrl + AppConstants.GENERAL_MEASUREMENTS_API_URL, { withCredentials:true });
+  }
+
   getLatestGeneralMeasurement(): Observable<GeneralMeasurementDto> {
     return this.httpClient.get<GeneralMeasurementDto>(environment.rootUrl + AppConstants.GENERAL_MEASUREMENTS_API_URL + '/latest', { withCredentials:true });
   }
@@ -45,6 +49,14 @@ export class BodyService {
     return this.httpClient.put<void>(environment.rootUrl + AppConstants.GENERAL_MEASUREMENTS_API_URL + `/${generalMeasurementId}`, generalMeasurementDto);
   }
 
+  deleteGeneralMeasurement(generalMeasurementId: number): Observable<any> {
+    return this.httpClient.delete<void>(environment.rootUrl + AppConstants.GENERAL_MEASUREMENTS_API_URL + `/${generalMeasurementId}`);
+  }
+
+  getAllBodyMeasurements(): Observable<BodyMeasurementDto[]> {
+    return this.httpClient.get<BodyMeasurementDto[]>(environment.rootUrl + AppConstants.BODY_MEASUREMENTS_API_URL, { withCredentials:true });
+  }
+
   getLatestBodyMeasurement(): Observable<BodyMeasurementDto> {
     return this.httpClient.get<BodyMeasurementDto>(environment.rootUrl + AppConstants.BODY_MEASUREMENTS_API_URL + '/latest', { withCredentials: true })
   }
@@ -56,6 +68,10 @@ export class BodyService {
   editBodyMeasurement(bodyMeasurementId: number, bodyMeasurementDto: BodyMeasurementDto): Observable<any> {
     bodyMeasurementDto.id = bodyMeasurementId;
     return this.httpClient.put<void>(environment.rootUrl + AppConstants.BODY_MEASUREMENTS_API_URL + `/${bodyMeasurementId}`, bodyMeasurementDto);
+  }
+
+  deleteBodyMeasurement(bodyMeasurementId: number): Observable<any> {
+    return this.httpClient.delete<void>(environment.rootUrl + AppConstants.BODY_MEASUREMENTS_API_URL + `/${bodyMeasurementId}`);
   }
 
   addGalleryPhoto(formData: FormData)  {
