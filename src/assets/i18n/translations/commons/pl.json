@@ -41,6 +41,44 @@
     "TERES_MAJOR": "Obły większy",
     "LATISSIMUS_DORSI": "Najszerszy grzbietu",
     "SERRATUS_ANTERIOR": "Zębaty przedni"
+  },
+  "TOAST_MESSAGES": {
+    "USER_SETTINGS_UPDATE_SUCCESS": "Ustawienia zostały zaktualizowane pomyślnie",
+    "USER_SETTINGS_UPDATE_ERROR": "Błąd podczas aktualizacji ustawień",
+    "PHOTO_ADD_SUCCESS": "Zdjęcie zostało dodane pomyślnie",
+    "PHOTO_ADD_ERROR": "Błąd podczas dodawania zdjęcia",
+    "MEASUREMENT_ADD_SUCCESS": "Pomiar został dodany pomyślnie",
+    "MEASUREMENT_ADD_ERROR": "Błąd podczas dodawania pomiaru",
+    "MEASUREMENT_UPDATE_SUCCESS": "Pomiar został zaktualizowany pomyślnie",
+    "MEASUREMENT_UPDATE_ERROR": "Błąd podczas aktualizacji pomiaru",
+    "EXERCISE_ADD_SUCCESS": "Ćwiczenie dodane pomyślnie",
+    "EXERCISE_ADD_ERROR": "Błąd podczas dodawania ćwiczenia",
+    "EXERCISE_UPDATE_SUCCESS": "Ćwiczenie zostało zaktualizowane pomyślnie",
+    "EXERCISE_UPDATE_ERROR": "Błąd podczas aktualizacji ćwiczenia",
+    "EXERCISE_DELETE_SUCCESS": "Ćwiczenie usunięte pomyślnie",
+    "EXERCISE_DELETE_ERROR": "Błąd podczas usuwania ćwiczenia",
+    "TRAINING_PLAN_ADD_SUCCESS": "Plan treningowy dodany pomyślnie",
+    "TRAINING_PLAN_ADD_ERROR": "Błąd podczas dodawania planu treningowego",
+    "TRAINING_PLAN_UPDATE_SUCCESS": "Plan treningowy został zaktualizowany pomyślnie",
+    "TRAINING_PLAN_UPDATE_ERROR": "Błąd podczas aktualizacji planu treningowego",
+    "TRAINING_PLAN_DELETE_SUCCESS": "Plan treningowy usunięty pomyślnie",
+    "TRAINING_PLAN_DELETE_ERROR": "Błąd podczas usuwania planu treningowego",
+    "TRAINING_PLAN_EXERCISE_ADD_SUCCESS": "Ćwiczenie zostało dodane do planu treningowego",
+    "TRAINING_PLAN_EXERCISE_ADD_ERROR": "Błąd podczas dodawania ćwiczenia do planu treningowego",
+    "TRAINING_PLAN_EXERCISE_UPDATE_SUCCESS": "Plan treningowy został zaktualizowany pomyślnie",
+    "TRAINING_PLAN_EXERCISE_UPDATE_ERROR": "Błąd podczas aktualizacji planu treningowego",
+    "TRAINING_PLAN_EXERCISE_DELETE_SUCCESS": "Ćwiczenie zostało pomyślnie usunięte z planu treningowego",
+    "TRAINING_PLAN_EXERCISE_DELETE_ERROR": "Błąd podczas usuwania ćwiczenia z planu treningowego",
+    "TRAINING_ADD_SUCCESS": "Trening zakończony pomyślnie",
+    "TRAINING_ADD_ERROR": "Błąd podczas dodawania treningu",
+    "TRAINING_DELETE_SUCCESS": "Trening usunięty pomyślnie",
+    "TRAINING_DELETE_ERROR": "Błąd podczas usuwania treningu"
+  },
+  "FORM_ERRORS": {
+    "PASSWORDS_DO_NOT_MATCH": "Hasła nie są jednakowe",
+    "INCORRECT_EMAIL": "Niepoprawny adres e-mail",
+    "REQUIRED_FIELD": "To pole jest wymagane",
+    "INCORRECT_DATA": "Wprowadzono nieprawidłowe dane"
   }
 }
 

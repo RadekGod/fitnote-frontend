@@ -9,7 +9,8 @@
     },
     "MEASUREMENTS": {
       "ERRORS": {
-        "NO_MEASUREMENTS": "No measurements found"
+        "NO_MEASUREMENTS": "No measurements found",
+        "MEASUREMENT_DATE_REQUIRED": "Please specify measurement date"
       },
       "BODY_MEASUREMENTS": {
         "PAGE_TITLES": {
@@ -59,7 +60,8 @@
         "PHOTO_DETAILS": "Photo details"
       },
       "ERRORS": {
-        "NO_MEASUREMENTS": "No images found"
+        "NO_MEASUREMENTS": "No images found",
+        "NO_IMAGE_SELECTED": "Please select image to upload"
       },
       "BUTTONS": {
         "ADD_PHOTO": "Add photo",

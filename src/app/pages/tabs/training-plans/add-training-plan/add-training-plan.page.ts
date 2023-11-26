@@ -1,17 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import {ExerciseType} from "../../../../commons/enums/exercise-types.enum";
-import {Muscles} from "../../../../commons/enums/muscles.enum";
-import {CreateExerciseCategoryGroups} from "../../../../commons/enums/create-exercise-category-groups.enum";
+import {Component, OnInit} from '@angular/core';
 import {AlertOptions} from "@ionic/angular";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {ActivatedRoute, Route, Router} from "@angular/router";
+import {Router} from "@angular/router";
 import {TranslateService} from "@ngx-translate/core";
-import {environment} from "../../../../../environments/environment";
 import {TrainingPlanService} from "../training-plan.service";
 import {WeekDay} from "../../../../commons/enums/week-days.enum";
-import {GeneralMeasurementDto} from "../../body/model/general-measurement-dto.model";
 import {TrainingPlanDto} from "../model/training-plan-dto.model";
 import {KeyValue} from "@angular/common";
+import {ToastService} from "../../../../commons/services/toast/toast.service";
 
 @Component({
   selector: 'app-add-training-plan',
@@ -35,6 +31,7 @@ export class AddTrainingPlanPage implements OnInit {
     private formBuilder: FormBuilder,
     private translate: TranslateService,
     private router: Router,
+    private toastService: ToastService,
     private trainingPlanService: TrainingPlanService
   ) { }
 
@@ -47,6 +44,9 @@ export class AddTrainingPlanPage implements OnInit {
         this.trainingPlanService.createTrainingPlan(trainingPlan).subscribe(async () => {
           this.trainingPlanService.notifyAboutTrainingPlanChange();
           await this.router.navigate(['tabs', 'training-plans']);
+          await this.toastService.presentToast('success', 'TOAST_MESSAGES.TRAINING_PLAN_ADD_SUCCESS');
+        }, async () => {
+          await this.toastService.presentToast('error', 'TOAST_MESSAGES.TRAINING_PLAN_ADD_ERROR');
         });
     }
   }

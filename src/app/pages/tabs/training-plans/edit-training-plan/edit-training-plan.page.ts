@@ -10,6 +10,7 @@ import {KeyValue} from "@angular/common";
 import {ExerciseDto} from "../model/exercise-dto.model";
 import {environment} from "../../../../../environments/environment";
 import {IMAGE_FORMAT_PREFIX} from "../../../../commons/constants/constants";
+import {ToastService} from "../../../../commons/services/toast/toast.service";
 
 @Component({
   selector: 'app-edit-training-plan',
@@ -35,6 +36,7 @@ export class EditTrainingPlanPage implements OnInit {
     private translate: TranslateService,
     private router: Router,
     private route: ActivatedRoute,
+    private toastService: ToastService,
     private trainingPlanService: TrainingPlanService
   ) { }
 
@@ -61,6 +63,9 @@ export class EditTrainingPlanPage implements OnInit {
       this.trainingPlanService.updateTrainingPlan(this.trainingPlanId, trainingPlan).subscribe(async () => {
         this.trainingPlanService.notifyAboutTrainingPlanChange();
         await this.router.navigate(['tabs', 'training-plans']);
+        await this.toastService.presentToast('success', 'TOAST_MESSAGES.TRAINING_PLAN_UPDATE_SUCCESS');
+      }, async () => {
+        await this.toastService.presentToast('error', 'TOAST_MESSAGES.TRAINING_PLAN_UPDATE_ERROR');
       });
     }
   }

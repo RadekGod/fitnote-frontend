@@ -14,13 +14,15 @@ import {TranslationConfiguration} from "../../configuration/translations/transla
 })
 export class LoginPage implements OnInit {
 
+  incorrectFormData: boolean = false;
   languageOptions = this.translationConfiguration.languageOptions;
   loginForm = this.formBuilder.group({
-    email: ['', Validators.email],
+    email: ['', [Validators.email, Validators.required]],
     password: ['', Validators.required],
   });
 
   constructor(private loginService: LoginService,
+              private userService: UserService,
               private router: Router, private formBuilder: FormBuilder,
               private translationConfiguration: TranslationConfiguration) {
   }
@@ -34,25 +36,25 @@ export class LoginPage implements OnInit {
   }
 
   validateUser(loginForm: FormGroup) {
-      // this.router.navigate(['tabs', 'body']);
+    // this.router.navigate(['tabs', 'body']);
     // this.router.navigate(['tabs', 'training-plans']);
     //TODO przeanalizować  i poprawić sposob zapisywania userDetails
 
-    this.loginService.loginUser(loginForm.value);
+    if (loginForm.valid) {
+      this.loginService.loginUser(loginForm.value).subscribe((response) => {
+          this.incorrectFormData = false;
 
+          window.sessionStorage.setItem('Authorization', response.headers.get('Authorization')!);
 
-
-      // .subscribe(() => {
-      // let userDetails: User;
-      // window.sessionStorage.setItem("Authorization", responseData.headers.get('Authorization')!);
-      //
-      //
-      // userDetails = <User>responseData.body;
-      // userDetails.authenticated = true;
-      // this.userService.saveUserDetailsInSession(userDetails);
-
-      // window.sessionStorage.setItem("userDetails", JSON.stringify(userDetails));
-      // this.router.navigate(['tabs', 'plans']);
-    // });
+          let userDetails: User;
+          userDetails = <User>response.body;
+          userDetails.authenticated = true;
+          this.userService.saveUserDetailsInSession(userDetails);
+          this.router.navigate(['tabs', 'training-plans']);
+        },
+        (error) => {
+          this.incorrectFormData = true;
+        });
+    }
   }
 }

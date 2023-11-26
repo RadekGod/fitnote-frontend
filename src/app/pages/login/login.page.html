@@ -13,15 +13,37 @@
         <div class="input-container horizontal-center">
           <input type="email" id="email" formControlName="email" placeholder="&nbsp;">
           <label for="email" class="input-label">{{ 'LOGIN.INPUTS.LABEL.E-MAIL' | translate }}</label>
+          <div
+            *ngIf="loginForm.get('email')!.invalid && (loginForm.get('email')!.dirty || loginForm.get('email')!.touched)"
+            class="input-error-container">
+          <span *ngIf="loginForm.get('email')!.hasError('email')">
+            {{ 'FORM_ERRORS.INCORRECT_EMAIL' | translate }}
+          </span>
+            <span *ngIf="loginForm.get('email')!.hasError('required')">
+            {{ 'FORM_ERRORS.REQUIRED_FIELD' | translate }}
+          </span>
+          </div>
         </div>
 
         <div class="input-container horizontal-center">
           <input type="password" id="password" formControlName="password" placeholder="&nbsp;">
           <label for="password" class="input-label">{{ 'LOGIN.INPUTS.LABEL.PASSWORD' | translate }}</label>
+          <div *ngIf="loginForm.get('password')!.invalid && (loginForm.get('password')!.dirty || loginForm.get('password')!.touched)"
+            class="input-error-container horizontal-center">
+            <span *ngIf="loginForm.get('password')!.hasError('required')">
+              {{ 'FORM_ERRORS.REQUIRED_FIELD' | translate }}
+            </span>
+          </div>
         </div>
       </div>
 
-      <div class="button-container vertical-spacer-3vh horizontal-center">
+      <div class="form-error-container vertical-spacer-2vh horizontal-center">
+        <span *ngIf="incorrectFormData">
+          {{ 'FORM_ERRORS.INCORRECT_DATA' | translate }}
+        </span>
+      </div>
+
+      <div class="button-container vertical-spacer-2vh horizontal-center">
         <button class="button button-fill" type="submit">
           <div class="button-content-container horizontal-center">
             <p>{{ 'LOGIN.BUTTONS.LOGIN' | translate }}</p>
@@ -60,7 +82,8 @@
   </div>
 
   <div class="language-icons-container vertical-spacer-5vh horizontal-center">
-    <div *ngFor="let language of languageOptions" (click)="changeLanguage(language.name)" class="language-icon-container">
+    <div *ngFor="let language of languageOptions" (click)="changeLanguage(language.name)"
+         class="language-icon-container">
       <ion-thumbnail>
         <img alt="Silhouette of mountains"
              [src]="language.image"/>

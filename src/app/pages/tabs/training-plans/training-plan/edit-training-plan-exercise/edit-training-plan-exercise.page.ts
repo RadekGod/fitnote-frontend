@@ -1,21 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import {Exercise} from "../../../../../commons/models/exercise.model";
-import {retry, Subscription} from "rxjs";
-import {FormArray, FormBuilder, FormGroup} from "@angular/forms";
+import {Component, OnInit} from '@angular/core';
+import {Subscription} from "rxjs";
+import {FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {UrlService} from "../../../../../commons/services/url/url.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {ExerciseService} from "../../../more/exercise/exercise.service";
 import {TrainingPlanService} from "../../training-plan.service";
 import {MeasurementUnitsService} from "../../../../../commons/services/mesurement-units/measurement-units.service";
 import {ImageService} from "../../../../../commons/services/file/image.service";
 import {environment} from "../../../../../../environments/environment";
 import {TrainingPlanExerciseDto} from "../../model/training-plan-exercise-dto.model";
-import {BodyMeasurementDto} from "../../../body/model/body-measurement-dto.model";
-
-interface ExerciseSetFormGroup {
-  weight: number,
-  repeats: number
-}
+import {ToastService} from "../../../../../commons/services/toast/toast.service";
 
 @Component({
   selector: 'app-edit-exercise-in-training-plan',
@@ -35,8 +28,8 @@ export class EditTrainingPlanExercisePage implements OnInit {
   editTrainingPlanExerciseForm = this.formBuilder.group({
     note: [''],
     exerciseSets: this.formBuilder.array([this.formBuilder.group({
-      weight: [10],
-      repeats: [1]
+      weight: [10, Validators.required],
+      repeats: [1, Validators.required]
     })])
   });
 
@@ -49,6 +42,7 @@ export class EditTrainingPlanExercisePage implements OnInit {
               private route: ActivatedRoute,
               private router: Router,
               private trainingPlanService: TrainingPlanService,
+              private toastService: ToastService,
               private measurementUnitsService: MeasurementUnitsService,
               private imageService: ImageService) {
   }
@@ -103,6 +97,9 @@ export class EditTrainingPlanExercisePage implements OnInit {
       this.trainingPlanService.updateTrainingPlanExercise(this.trainingPlanId, this.trainingPlanExerciseId, trainingPlanExerciseToSend).subscribe(async () => {
         this.trainingPlanService.notifyAboutTrainingPlanChange();
         await this.router.navigate(['tabs', 'training-plans', this.trainingPlanId]);
+        await this.toastService.presentToast('success', 'TOAST_MESSAGES.TRAINING_PLAN_EXERCISE_UPDATE_SUCCESS');
+      }, async () => {
+        await this.toastService.presentToast('error', 'TOAST_MESSAGES.TRAINING_PLAN_EXERCISE_UPDATE_ERROR');
       });
     }
   }

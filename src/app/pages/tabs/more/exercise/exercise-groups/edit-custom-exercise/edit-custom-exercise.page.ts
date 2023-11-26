@@ -14,6 +14,7 @@ import {IMAGE_FORMAT_PREFIX} from "../../../../../../commons/constants/constants
 import {AlertOptions} from "@ionic/angular";
 import {CreateExerciseCategoryGroups} from "../../../../../../commons/enums/create-exercise-category-groups.enum";
 import {ExerciseDto} from "../../../../training-plans/model/exercise-dto.model";
+import {ToastService} from "../../../../../../commons/services/toast/toast.service";
 
 @Component({
   selector: 'app-edit-custom-exercise',
@@ -23,16 +24,15 @@ import {ExerciseDto} from "../../../../training-plans/model/exercise-dto.model";
 })
 export class EditCustomExercisePage implements OnInit {
 
-  image!: Photo;
-  imageToDisplay = '';
+  image: Photo | null = null;
+  imageToDisplay: string = '';
   previousUrl: string = '';
   exerciseTypes = ExerciseType;
   muscles = Muscles;
   exerciseCategoryGroups = CreateExerciseCategoryGroups;
   exerciseId = Number(this.route.snapshot.paramMap.get('exerciseId'));
   exercise!: ExerciseDto;
-
-  images: LocalFile[] = [];
+  formFailedValidation: boolean = false;
 
 
   exerciseTypeOptions: AlertOptions = {
@@ -71,6 +71,7 @@ export class EditCustomExercisePage implements OnInit {
               private route: ActivatedRoute,
               private translate: TranslateService,
               private imageService: ImageService,
+              private toastService: ToastService,
               private exerciseService: ExerciseService) {
   }
 
@@ -86,9 +87,12 @@ export class EditCustomExercisePage implements OnInit {
     this.exerciseService.getExercise(this.exerciseId).subscribe(async response => {
       this.exercise = response;
       this.fillFormFields(response);
-      let localImage = response.applicationFile ? await this.imageService.loadImageFromDevice(environment.customExercisesDirectory, response.applicationFile) : undefined
-      this.image = {format: IMAGE_FORMAT_PREFIX, saved: true, base64String: localImage?.data};
-      this.imageToDisplay = this.image.base64String!;
+      console.log('response', response);
+      if (response.applicationFile) {
+        let localImage = await this.imageService.loadImageFromDevice(environment.customExercisesDirectory, response.applicationFile);
+        this.image = {format: IMAGE_FORMAT_PREFIX, saved: true, base64String: localImage?.data};
+        this.imageToDisplay = this.image.base64String!;
+      }
     });
   }
 
@@ -106,14 +110,16 @@ export class EditCustomExercisePage implements OnInit {
     });
   }
 
-  validateAndEditCustomExercise(addCustomExerciseForm: FormGroup) {
+  validateAndEditCustomExercise(editCustomExerciseForm: FormGroup) {
+    console.log('this.image:', this.image);
     if (this.editCustomExerciseForm.valid) {
+      this.formFailedValidation = false;
       const formData: FormData = new FormData();
-      if (this.image) {
+      if (this.image && this.image != null) {
         const fileName = new Date().getTime() + '.jpeg';
         formData.append('image', this.imageService.convertBase64ImageToBlob(this.image), fileName);
 
-        this.exerciseService.editCustomExercise(this.exerciseId, addCustomExerciseForm, formData).subscribe(async () => {
+        this.exerciseService.editCustomExercise(this.exerciseId, editCustomExerciseForm, formData).subscribe(async () => {
           if (this.exercise.applicationFile) {
             try {
               await this.imageService.deleteImageFromDevice(environment.customExercisesDirectory, this.exercise.applicationFile.fileName);
@@ -121,16 +127,24 @@ export class EditCustomExercisePage implements OnInit {
               console.log(e);
             }
           }
-          await this.imageService.saveImageOnDevice(this.image, environment.customExercisesDirectory, fileName);
+          await this.imageService.saveImageOnDevice(this.image!, environment.customExercisesDirectory, fileName);
           this.exerciseService.notifyAboutExercisesChange();
+          await this.toastService.presentToast('success', 'TOAST_MESSAGES.EXERCISE_UPDATE_SUCCESS');
           await this.router.navigate(this.previousUrl ? this.previousUrl.split('/') : ['tabs', 'training-plans']);
+        }, async () => {
+          await this.toastService.presentToast('error', 'TOAST_MESSAGES.EXERCISE_UPDATE_ERROR');
         });
       } else {
-        this.exerciseService.editCustomExercise(this.exerciseId, addCustomExerciseForm, formData).subscribe(async () => {
+        this.exerciseService.editCustomExercise(this.exerciseId, editCustomExerciseForm, formData).subscribe(async () => {
           this.exerciseService.notifyAboutExercisesChange();
+          await this.toastService.presentToast('success', 'TOAST_MESSAGES.EXERCISE_UPDATE_SUCCESS');
           await this.router.navigate(this.previousUrl ? this.previousUrl.split('/') : ['tabs', 'training-plans']);
+        }, async () => {
+          await this.toastService.presentToast('error', 'TOAST_MESSAGES.EXERCISE_UPDATE_ERROR');
         });
       }
+    } else {
+      this.formFailedValidation = true;
     }
   }
 

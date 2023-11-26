@@ -8,6 +8,7 @@ import {TrainingPlanExerciseDto} from "../model/training-plan-exercise-dto.model
 import {ExerciseDto} from "../model/exercise-dto.model";
 import {environment} from "../../../../../environments/environment";
 import {ImageService} from "../../../../commons/services/file/image.service";
+import {ToastService} from "../../../../commons/services/toast/toast.service";
 
 @Component({
   selector: 'app-training-plan',
@@ -20,7 +21,7 @@ export class TrainingPlanPage implements OnInit, OnDestroy {
   trainingPlanId = Number(this.route.snapshot.paramMap.get('trainingPlanId'));
   private trainingPlansSubscription!: Subscription;
 
-  constructor(private router: Router,
+  constructor(private toastService: ToastService,
               private route: ActivatedRoute,
               private imageService: ImageService,
               private trainingPlanService: TrainingPlanService) {
@@ -63,20 +64,12 @@ export class TrainingPlanPage implements OnInit, OnDestroy {
     });
   }
 
-  handleReorder(ev: CustomEvent<ItemReorderEventDetail>) {
-    // The `from` and `to` properties contain the index of the item
-    // when the drag started and ended, respectively
-    console.log('Dragged from index', ev.detail.from, 'to', ev.detail.to);
-
-    // Finish the reorder and position the item in the DOM based on
-    // where the gesture ended. This method can also be called directly
-    // by the reorder group
-    ev.detail.complete();
-  }
-
   deleteExerciseFromTrainingPlan(exercise: TrainingPlanExerciseDto) {
-    this.trainingPlanService.deleteExerciseFromTrainingPlan(this.trainingPlanId, exercise.id).subscribe(response => {
+    this.trainingPlanService.deleteExerciseFromTrainingPlan(this.trainingPlanId, exercise.id).subscribe(async response => {
       this.trainingPlanService.notifyAboutTrainingPlanChange();
+      await this.toastService.presentToast('success', 'TOAST_MESSAGES.TRAINING_PLAN_EXERCISE_DELETE_SUCCESS');
+    }, async () => {
+      await this.toastService.presentToast('error', 'TOAST_MESSAGES.TRAINING_PLAN_EXERCISE_DELETE_ERROR');
     });
   }
 

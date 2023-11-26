@@ -17,6 +17,7 @@ import {ExerciseService} from "../../exercise.service";
 import {TranslateService} from "@ngx-translate/core";
 import {environment} from "../../../../../../../environments/environment";
 import {CreateExerciseCategoryGroups} from "../../../../../../commons/enums/create-exercise-category-groups.enum";
+import {ToastService} from "../../../../../../commons/services/toast/toast.service";
 
 const IMAGE_DIR = 'stored-images';
 
@@ -34,15 +35,13 @@ interface AlertOptions {
 })
 export class AddCustomExercisePage implements OnInit {
 
-  image!: Photo;
-  imageToDisplay = '';
+  image: Photo | null = null;
+  imageToDisplay: string = '';
   previousUrl: string = '';
   exerciseTypes = ExerciseType;
   muscles = Muscles;
   exerciseCategoryGroups = CreateExerciseCategoryGroups;
-
-
-  images: LocalFile[] = [];
+  formFailedValidation: boolean = false;
 
 
   exerciseTypeOptions: AlertOptions = {
@@ -70,6 +69,7 @@ export class AddCustomExercisePage implements OnInit {
               private formBuilder: FormBuilder,
               private translate: TranslateService,
               private imageService: ImageService,
+              private toastService: ToastService,
               private exerciseService: ExerciseService) {
   }
 
@@ -91,28 +91,53 @@ export class AddCustomExercisePage implements OnInit {
 
   validateAndAddCustomExercise(addCustomExerciseForm: FormGroup) {
     if (this.addCustomExerciseForm.valid) {
-
+      this.formFailedValidation = false;
       const formData: FormData = new FormData();
       if (this.image) {
         const fileName = new Date().getTime() + '.jpeg';
         formData.append('image', this.imageService.convertBase64ImageToBlob(this.image), fileName);
 
         this.exerciseService.addCustomExercise(addCustomExerciseForm, formData).subscribe(async () => {
-          await this.imageService.saveImageOnDevice(this.image, environment.customExercisesDirectory, fileName);
+          await this.imageService.saveImageOnDevice(this.image!, environment.customExercisesDirectory, fileName);
           this.exerciseService.notifyAboutExercisesChange();
+          await this.toastService.presentToast('success', 'TOAST_MESSAGES.EXERCISE_ADD_SUCCESS');
           await this.router.navigate(this.previousUrl ? this.previousUrl.split('/') : ['tabs', 'training-plans']);
+          this.clearExerciseFormData();
+        }, async () => {
+          await this.toastService.presentToast('error', 'TOAST_MESSAGES.EXERCISE_ADD_ERROR');
         });
       } else {
         this.exerciseService.addCustomExercise(addCustomExerciseForm, formData).subscribe(async () => {
           this.exerciseService.notifyAboutExercisesChange();
+          await this.toastService.presentToast('success', 'TOAST_MESSAGES.EXERCISE_ADD_SUCCESS');
           await this.router.navigate(this.previousUrl ? this.previousUrl.split('/') : ['tabs', 'training-plans']);
+          this.clearExerciseFormData();
+        }, async () => {
+          await this.toastService.presentToast('error', 'TOAST_MESSAGES.EXERCISE_ADD_ERROR');
         });
       }
+    } else {
+      this.formFailedValidation = true;
     }
   }
 
   async selectImageToUpload() {
     this.image = await this.imageService.selectImageFromDiskOrTakePhoto();
     this.imageToDisplay = IMAGE_FORMAT_PREFIX + this.image.base64String;
+  }
+
+  clearExerciseFormData() {
+    this.image = null;
+    this.imageToDisplay = '';
+    this.addCustomExerciseForm.patchValue({
+      name: '',
+      description: '',
+      exerciseType: '',
+      exerciseCategoryGroups: [''],
+      mainMuscles: [''],
+      supportiveMuscles: ['']
+    });
+    this.addCustomExerciseForm.markAsPristine();
+    this.addCustomExerciseForm.markAsUntouched();
   }
 }

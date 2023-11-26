@@ -6,6 +6,7 @@ import {Exercise} from "../../../../../../commons/models/exercise.model";
 import {ImageService} from "../../../../../../commons/services/file/image.service";
 import {environment} from "../../../../../../../environments/environment";
 import {Subscription} from "rxjs";
+import {ToastService} from "../../../../../../commons/services/toast/toast.service";
 
 @Component({
   selector: 'app-exercises',
@@ -26,6 +27,7 @@ export class ExercisesPage implements OnInit {
               private urlService: UrlService,
               private router: Router,
               private route: ActivatedRoute,
+              private toastService: ToastService,
               private imageService: ImageService) {
   }
 
@@ -64,11 +66,14 @@ export class ExercisesPage implements OnInit {
 
 
   async deleteExercise(exercise: Exercise) {
-    this.exerciseService.deleteCustomExercise(exercise.id).subscribe(response => {
+    this.exerciseService.deleteCustomExercise(exercise.id).subscribe(async response => {
       if (exercise.image) {
-        this.imageService.deleteImageFromDevice(environment.customExercisesDirectory, exercise.image.fileName);
+        await this.imageService.deleteImageFromDevice(environment.customExercisesDirectory, exercise.image.fileName);
       }
       this.exerciseService.notifyAboutExercisesChange();
+      await this.toastService.presentToast('success', 'TOAST_MESSAGES.EXERCISE_DELETE_SUCCESS');
+    }, async () => {
+      await this.toastService.presentToast('error', 'TOAST_MESSAGES.EXERCISE_DELETE_ERROR');
     });
   }
 }

@@ -3,6 +3,7 @@ import {Router} from "@angular/router";
 import {TrainingPlanDto} from "./model/training-plan-dto.model";
 import {Subscription} from "rxjs";
 import {TrainingPlanService} from "./training-plan.service";
+import {ToastService} from "../../../commons/services/toast/toast.service";
 
 @Component({
   selector: 'app-training-plans',
@@ -14,8 +15,8 @@ export class TrainingPlansPage implements OnInit {
   trainingPlans: TrainingPlanDto[] = [];
   private trainingPlansSubscription!: Subscription;
 
-  constructor(private router : Router,
-              private trainingPlanService: TrainingPlanService) {
+  constructor(private trainingPlanService: TrainingPlanService,
+              private toastService: ToastService) {
   }
 
   ngOnInit(): void {
@@ -41,16 +42,11 @@ export class TrainingPlansPage implements OnInit {
   }
 
   async deleteTrainingPlan(trainingPlan: TrainingPlanDto) {
-    this.trainingPlanService.deleteTrainingPlan(trainingPlan.id).subscribe(response => {
+    this.trainingPlanService.deleteTrainingPlan(trainingPlan.id).subscribe(async response => {
       this.trainingPlanService.notifyAboutTrainingPlanChange();
+      await this.toastService.presentToast('success', 'TOAST_MESSAGES.TRAINING_PLAN_DELETE_SUCCESS');
+    }, async () => {
+      await this.toastService.presentToast('error', 'TOAST_MESSAGES.TRAINING_PLAN_DELETE_ERROR');
     });
   }
-
-  async editTrainingPlan(trainingPlan: TrainingPlanDto) {
-    // this.trainingPlanService.deleteTrainingPlan(trainingPlan.id).subscribe(response => {
-    //   this.trainingPlanService.notifyAboutTrainingPlanChange();
-    // });
-  }
-
-
 }

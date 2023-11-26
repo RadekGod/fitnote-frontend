@@ -11,22 +11,12 @@ import {AppConstants} from "../../configuration/app.constants";
 })
 export class LoginService {
 
-  constructor(private http: HttpClient, private router: Router,
-              private userService: UserService) {
+  constructor(private http: HttpClient, private router: Router) {
 
   }
 
   loginUser(loginForm: User) {
     window.sessionStorage.setItem('userDetails',JSON.stringify(loginForm));
-    return this.http.get<User>(environment.rootUrl + AppConstants.LOGIN_API_URL, { observe: 'response', withCredentials: true })
-      .subscribe(responseData => {
-        window.sessionStorage.setItem('Authorization', responseData.headers.get('Authorization')!);
-
-        let userDetails: User;
-        userDetails = <User>responseData.body;
-        userDetails.authenticated = true;
-        this.userService.saveUserDetailsInSession(userDetails);
-        this.router.navigate(['tabs', 'training-plans']);
-      });
+    return this.http.get<User>(environment.rootUrl + AppConstants.LOGIN_API_URL, { observe: 'response', withCredentials: true });
   }
 }

@@ -10,6 +10,7 @@ import {LengthUnit} from "../../../../commons/enums/length-units.enum";
 import {WeightUnit} from "../../../../commons/enums/weight-units.enum";
 import {User} from "../../../../commons/models/user.model";
 import {UserService} from "../../../../commons/services/user/user.service";
+import {ToastService} from "../../../../commons/services/toast/toast.service";
 
 @Component({
   selector: 'app-user-settings',
@@ -41,6 +42,7 @@ export class UserSettingsPage implements OnInit {
   constructor(private translationConfiguration: TranslationConfiguration,
               private formBuilder: FormBuilder,
               private userService: UserService,
+              private toastService: ToastService,
               private translate: TranslateService) {
   }
 
@@ -77,8 +79,11 @@ export class UserSettingsPage implements OnInit {
     this.userData.userSettings.weightUnit !== updateMeasurementUnitsForm.value['weightUnit']) {
       this.userData.userSettings.lengthUnit = updateMeasurementUnitsForm.value['lengthUnit'];
       this.userData.userSettings.weightUnit = updateMeasurementUnitsForm.value['weightUnit'];
-      this.userService.updateUser(this.userData.userSettings).subscribe(() => {
+      this.userService.updateUser(this.userData.userSettings).subscribe(async () => {
         this.userService.saveUserDetailsInSession(this.userData);
+        await this.toastService.presentToast('success', 'TOAST_MESSAGES.USER_SETTINGS_UPDATE_SUCCESS');
+      }, async () => {
+        await this.toastService.presentToast('error', 'TOAST_MESSAGES.USER_SETTINGS_UPDATE_ERROR');
       });
     }
   }

@@ -9,7 +9,8 @@
     },
     "MEASUREMENTS": {
       "ERRORS": {
-        "NO_MEASUREMENTS": "Brak zapisanych pomiarów"
+        "NO_MEASUREMENTS": "Brak zapisanych pomiarów",
+        "MEASUREMENT_DATE_REQUIRED": "Proszę podać datę pomiaru"
       },
       "BODY_MEASUREMENTS": {
         "PAGE_TITLES": {
@@ -59,7 +60,8 @@
         "PHOTO_DETAILS": "Szczegóły zdjęcia"
       },
       "ERRORS": {
-        "NO_MEASUREMENTS": "Brak zapisanych pomiarów"
+        "NO_MEASUREMENTS": "Brak zapisanych pomiarów",
+        "NO_IMAGE_SELECTED": "Proszę wybrać zdjęcie"
       },
       "BUTTONS": {
         "ADD_PHOTO": "Dodaj zdjęcie",

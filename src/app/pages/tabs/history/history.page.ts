@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {UserService} from "../../../commons/services/user/user.service";
 import {TrainingPlanDto} from "../training-plans/model/training-plan-dto.model";
@@ -7,6 +7,7 @@ import {TrainingService} from "../training-plans/training-plan/training.service"
 import {TrainingPlanExerciseDto} from "../training-plans/model/training-plan-exercise-dto.model";
 import {environment} from "../../../../environments/environment";
 import {Subscription} from "rxjs";
+import {ToastService} from "../../../commons/services/toast/toast.service";
 
 @Component({
   selector: 'app-history',
@@ -17,7 +18,8 @@ export class HistoryPage implements OnInit {
 
   trainings!: TrainingDto[];
   private trainingsSubscription!: Subscription;
-  constructor(private router : Router, private userService: UserService,
+
+  constructor(private toastService: ToastService,
               private trainingService: TrainingService) {
   }
 
@@ -25,11 +27,8 @@ export class HistoryPage implements OnInit {
     this.initializeTrainings();
   }
 
-  calculateTrainingDuration(training: TrainingDto) {
-    let startTime = new Date(training.startTime!).getTime();
-    let finishTime = new Date(training.finishTime!).getTime();
-    let timeDifferenceInMinutes = Math.floor((finishTime - startTime) / (1000 * 60));
-    return Math.floor(timeDifferenceInMinutes / 60) + 'h ' + (timeDifferenceInMinutes % 60) + 'min';
+  getTrainingDuration(training: TrainingDto) {
+    return this.trainingService.calculateTrainingDuration(training);
   }
 
   initializeTrainings() {
@@ -46,6 +45,15 @@ export class HistoryPage implements OnInit {
   fetchTrainings() {
     this.trainingService.getAllTrainings().subscribe(response => {
       this.trainings = response;
+    });
+  }
+
+  deleteTraining(trainingId: number) {
+    this.trainingService.deleteTraining(trainingId).subscribe(async () => {
+      this.trainingService.notifyAboutTrainingsChange();
+      await this.toastService.presentToast('success', 'TOAST_MESSAGES.TRAINING_DELETE_SUCCESS');
+    }, async () => {
+      await this.toastService.presentToast('error', 'TOAST_MESSAGES.TRAINING_DELETE_ERROR');
     });
   }
 

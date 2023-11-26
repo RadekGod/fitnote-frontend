@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/tabs/training-plans"></ion-back-button>
     </ion-buttons>
-    <ion-title class="padding-left-small">{{ 'Trening Details' }}</ion-title>
+    <ion-title class="padding-left-small">{{ 'HISTORY.TRAINING_DETAILS.PAGE_TITLES.TRAINING_DETAILS' | translate }}</ion-title>
     <ion-buttons slot="end">
       <ion-icon size="large" slot="icon-only" name="ellipsis-vertical"></ion-icon>
     </ion-buttons>
@@ -14,60 +14,114 @@
 <ion-content [fullscreen]="true">
 
 
-
-
   <div class="training-details-container horizontal-center vertical-spacer-2vh">
     <div class="training-summary-container">
-      <div class="training-header">
-        <h2>{{training?.name}}</h2>
-        <h4>{{training?.startTime | date:'dd.MM.yyyy hh:mm a'}}</h4>
-      </div>
+      <div class="training-description-container">
+        <div class="training-header horizontal-center">
+          <h2>{{training?.name}}</h2>
+          <h4>{{training?.startTime | date:'dd.MM.yyyy hh:mm a'}}</h4>
+        </div>
 
-      <div class="training-statistics-container">
-        <div class="training-statistics-row">
-          <div class="training-statistics-item">
-            <ion-icon name="time-outline"></ion-icon>
-            <div class="text-container">
-              <span class="statistic-label">Czas trwania</span>
-              <span class="statistic-value">28</span>
+        <div class="training-statistics-container horizontal-center">
+          <div class="training-statistics-row">
+            <div class="training-statistics-item">
+              <ion-icon name="time-outline"></ion-icon>
+              <div class="text-container">
+                <span class="statistic-label">{{ 'HISTORY.TRAINING_DETAILS.SUMMARY.DURATION' | translate }}</span>
+                <span class="statistic-value">{{trainingDuration}}</span>
+              </div>
+            </div>
+
+            <div class="training-statistics-item">
+              <ion-icon name="accessibility-outline"></ion-icon>
+              <div class="text-container">
+                <span class="statistic-label">{{ 'HISTORY.TRAINING_DETAILS.SUMMARY.EXERCISES_PERFORMED' | translate }}</span>
+                <span class="statistic-value">{{performedExercises}}</span>
+              </div>
             </div>
           </div>
 
-          <div class="training-statistics-item">
-            <ion-icon name="time-outline"></ion-icon>
-            <div class="text-container">
-              <span class="statistic-label">Czas trwania</span>
-              <span class="statistic-value">28</span>
+          <div class="training-statistics-row">
+            <div class="training-statistics-item">
+              <ion-icon name="aperture-outline"></ion-icon>
+              <div class="text-container">
+                <span class="statistic-label">{{ 'HISTORY.TRAINING_DETAILS.SUMMARY.SETS_PERFORMED' | translate }}</span>
+                <span class="statistic-value">{{performedSets}}</span>
+              </div>
+            </div>
+
+            <div class="training-statistics-item">
+              <ion-icon name="refresh-outline"></ion-icon>
+              <div class="text-container">
+                <span class="statistic-label">{{ 'HISTORY.TRAINING_DETAILS.SUMMARY.REPEATS_PERFORMED' | translate }}</span>
+                <span class="statistic-value">{{performedRepeats}}</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="training-statistics-row">
+            <div class="training-statistics-item">
+              <ion-icon name="barbell-outline"></ion-icon>
+              <div class="text-container">
+                <span class="statistic-label">{{ 'HISTORY.TRAINING_DETAILS.SUMMARY.MAX_WEIGHT' | translate }}</span>
+                <span class="statistic-value">{{maxWeight}}</span>
+              </div>
+            </div>
+
+            <div class="training-statistics-item">
+              <ion-icon name="barbell-outline"></ion-icon>
+              <div class="text-container">
+                <span class="statistic-label">{{ 'HISTORY.TRAINING_DETAILS.SUMMARY.TOTAL_WEIGHT' | translate }}</span>
+                <span class="statistic-value">{{totalWeight}}</span>
+              </div>
             </div>
           </div>
         </div>
       </div>
+      <div class="involved-muscles-container horizontal-center vertical-spacer-1vh">
+        <span class="involved-muscles-label">{{ 'HISTORY.TRAINING_DETAILS.ENGAGED_MUSCLES' | translate }}</span>
+        <div class="involved-muscles-values">
+          <ng-container
+            *ngFor="let muscle of musclesEngagedInTraining; let last = last">{{'MUSCLES.' + muscle | translate}}<span
+            *ngIf="!last">, </span>
+          </ng-container>
+        </div>
 
+
+      </div>
     </div>
 
+    <div class="training-exercises vertical-spacer-3vh">
+      <h2>{{ 'HISTORY.TRAINING_DETAILS.EXERCISES_LIST.TITLE' | translate }}</h2>
 
-    <ion-list class="vertical-spacer-3vh horizontal-center">
-      <ion-item-sliding *ngFor="let trainingExercises of training?.trainingExercises"
-                        class="simple-item-container horizontal-center vertical-spacer-1vh">
-        <ion-item [routerLink]="['/', 'tabs', 'history', trainingExercises?.id]">
-          <!--          <ion-avatar>-->
-          <!--            <img alt="Silhouette of mountains"-->
-          <!--                 [src]="trainingPlanExercise.exercise.image ? trainingPlanExercise.exercise.image.data : 'https://www.fabrykasily.pl/upload/gallery/2019/03/id_20907_1552923804_1260x840.jpg'"/>-->
-          <!--          </ion-avatar>-->
-          <ion-label class="ion-text-wrap ion-padding-start">
-            <h3>{{trainingExercises?.exercise?.name}}</h3>
+      <div *ngFor="let trainingExercise of training?.trainingExercises"
+        class="section-container horizontal-center vertical-spacer-3vh">
+                <div class="section-header">
+          <ion-avatar>
+            <img alt="Silhouette of mountains"
+                 [src]="trainingExercise.exercise.image ? trainingExercise.exercise.image.data : 'https://www.fabrykasily.pl/upload/gallery/2019/03/id_20907_1552923804_1260x840.jpg'"/>
+          </ion-avatar>
+          <div class="title-container">
+            <h3>{{trainingExercise.exercise.name}}</h3>
+          </div>
+        </div>
 
-          </ion-label>
-        </ion-item>
-        <ion-item-options side="end">
-          <ion-item-option color="danger">
-            <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
-          </ion-item-option>
-        </ion-item-options>
-      </ion-item-sliding>
-    </ion-list>
+
+
+      <div class="section-content">
+        <div *ngFor="let exerciseSet of trainingExercise.exerciseSets; let index = index" class="item">
+          <p>{{ ('HISTORY.TRAINING_DETAILS.EXERCISES_LIST.SET' | translate) +' '+ (index + 1) +'.'}}</p>
+            <p>{{ ('HISTORY.TRAINING_DETAILS.EXERCISES_LIST.WEIGHT' | translate) + ':' }}
+              {{exerciseSet.weight}} {{weightUnitShortcut}}
+            </p>
+            <p>{{ ('HISTORY.TRAINING_DETAILS.EXERCISES_LIST.REPEATS' | translate) + ':' }}
+              {{exerciseSet.repeats}}
+            </p>
+        </div>
+      </div>
+    </div>
+    </div>
   </div>
-
 
 
   <div class="vertical-spacer-3vh"></div>

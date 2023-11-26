@@ -4,11 +4,12 @@ import {environment} from "../../../../../../environments/environment";
 import {ExerciseService} from "../../../more/exercise/exercise.service";
 import {Exercise} from "../../../../../commons/models/exercise.model";
 import {ImageService} from "../../../../../commons/services/file/image.service";
-import {FormArray, FormBuilder, FormGroup} from "@angular/forms";
+import {FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {TrainingPlanService} from "../../training-plan.service";
 import {UrlService} from "../../../../../commons/services/url/url.service";
 import {Subscription} from "rxjs";
 import {MeasurementUnitsService} from "../../../../../commons/services/mesurement-units/measurement-units.service";
+import {ToastService} from "../../../../../commons/services/toast/toast.service";
 
 @Component({
   selector: 'app-add-exercise-to-training-plan',
@@ -29,8 +30,8 @@ export class AddExerciseToTrainingPlanPage implements OnInit {
   addExerciseToTrainingPlanForm = this.formBuilder.group({
     note: [''],
     exerciseSets: this.formBuilder.array([this.formBuilder.group({
-      weight: [10],
-      repeats: [1]
+      weight: [10, Validators.required],
+      repeats: [1, Validators.required]
     })])
   });
 
@@ -45,6 +46,7 @@ export class AddExerciseToTrainingPlanPage implements OnInit {
               private exerciseService: ExerciseService,
               private trainingPlanService: TrainingPlanService,
               private measurementUnitsService: MeasurementUnitsService,
+              private toastService: ToastService,
               private imageService: ImageService) {
   }
 
@@ -74,6 +76,9 @@ export class AddExerciseToTrainingPlanPage implements OnInit {
       this.trainingPlanService.addExerciseToTrainingPlan(this.trainingPlanId, this.exerciseId, addExerciseToTrainingPlanForm.value).subscribe(async () => {
         this.trainingPlanService.notifyAboutTrainingPlanChange();
         await this.router.navigate(['tabs', 'training-plans', this.trainingPlanId]);
+        await this.toastService.presentToast('success', 'TOAST_MESSAGES.TRAINING_PLAN_EXERCISE_ADD_SUCCESS');
+      }, async () => {
+        await this.toastService.presentToast('error', 'TOAST_MESSAGES.TRAINING_PLAN_EXERCISE_ADD_ERROR');
       });
     }
   }

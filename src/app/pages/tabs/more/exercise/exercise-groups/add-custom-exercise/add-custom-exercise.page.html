@@ -24,6 +24,13 @@
         <div class="input-container horizontal-center">
           <input type="text" id="exerciseName" formControlName="name" placeholder="&nbsp;">
           <label for="exerciseName" class="input-label">{{ 'EXERCISE.ADD_CUSTOM_EXERCISE.EXERCISE_NAME' | translate }}</label>
+          <div
+            *ngIf="formFailedValidation || (addCustomExerciseForm.get('name')!.invalid && (addCustomExerciseForm.get('name')!.dirty || addCustomExerciseForm.get('name')!.touched))"
+            class="input-error-container">
+            <span *ngIf="addCustomExerciseForm.get('name')!.hasError('required')">
+            {{ 'FORM_ERRORS.REQUIRED_FIELD' | translate }}
+          </span>
+          </div>
         </div>
 
         <div class="vertical-spacer-3vh"></div>
@@ -37,7 +44,16 @@
           <ion-select-option *ngFor="let exerciseType of exerciseTypes | keyvalue" [value]="exerciseType.value">{{('EXERCISE_TYPES.' + exerciseType.value) | translate }}</ion-select-option>
         </ion-select>
 
-        <div class="horizontal-spacer horizontal-center"></div>
+        <div class="horizontal-spacer horizontal-center">
+          <div
+            *ngIf="formFailedValidation || (addCustomExerciseForm.get('exerciseType')!.invalid && (addCustomExerciseForm.get('exerciseType')!.dirty || addCustomExerciseForm.get('exerciseType')!.touched))"
+            class="input-error-container">
+            <span *ngIf="addCustomExerciseForm.get('exerciseType')!.hasError('required')">
+            {{ 'FORM_ERRORS.REQUIRED_FIELD' | translate }}
+          </span>
+          </div>
+        </div>
+
 
         <ion-select class="horizontal-center" label="{{ 'EXERCISE.ADD_CUSTOM_EXERCISE.EXERCISE_GROUPS' | translate }}" [interfaceOptions]="exerciseGroupOptions" formControlName="exerciseCategoryGroups" multiple="true" >
           <ion-select-option *ngFor="let exerciseGroup of exerciseCategoryGroups | keyvalue" [value]="exerciseGroup.value">{{('EXERCISE_GROUPS.' + exerciseGroup.value) | translate }}</ion-select-option>

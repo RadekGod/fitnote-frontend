@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {BodyService} from "../../body.service";
 import {DatePipe, DecimalPipe} from "@angular/common";
 import {Subscription} from "rxjs";
 import {BodyMeasurementDto} from "../../model/body-measurement-dto.model";
 import {MeasurementUnitsService} from "../../../../../commons/services/mesurement-units/measurement-units.service";
 import {RemoveCommaPipe} from "../../../../../commons/pipes/remove-comma.pipe";
+import {ToastService} from "../../../../../commons/services/toast/toast.service";
 
 @Component({
   selector: 'app-edit-body-measurement',
@@ -30,12 +31,13 @@ export class EditBodyMeasurementPage implements OnInit {
     thighRight: [''],
     calfLeft: [''],
     calfRight: [''],
-    measurementDate: [this.datePipe.transform(Date.now(), 'yyyy-MM-ddTHH:mm')]
+    measurementDate: [this.datePipe.transform(Date.now(), 'yyyy-MM-ddTHH:mm'), Validators.required]
   });
 
   constructor( private router: Router, private formBuilder: FormBuilder, private bodyService: BodyService,
                private datePipe: DatePipe, private route: ActivatedRoute, private decimalPipe: DecimalPipe,
                private removeCommaPipe: RemoveCommaPipe,
+               private toastService: ToastService,
                private measurementUnitsService: MeasurementUnitsService) {
   }
 
@@ -84,12 +86,17 @@ export class EditBodyMeasurementPage implements OnInit {
   }
 
   validateAndSendMeasurementForm(editBodyMeasurementForm: FormGroup) {
-    let bodyMeasurementId = Number(this.route.snapshot.paramMap.get('id'));
-    let bodyMeasurement: BodyMeasurementDto = editBodyMeasurementForm.value;
-    bodyMeasurement.lengthUnit = this.measurementUnitsService.lengthUnit;
-    this.bodyService.editBodyMeasurement(bodyMeasurementId, bodyMeasurement).subscribe(responseData => {
-      this.bodyService.notifyAboutBodyMeasurementChange();
-      this.router.navigate(['tabs', 'body']);
-    });
+    if (editBodyMeasurementForm.valid) {
+      let bodyMeasurementId = Number(this.route.snapshot.paramMap.get('id'));
+      let bodyMeasurement: BodyMeasurementDto = editBodyMeasurementForm.value;
+      bodyMeasurement.lengthUnit = this.measurementUnitsService.lengthUnit;
+      this.bodyService.editBodyMeasurement(bodyMeasurementId, bodyMeasurement).subscribe(async responseData => {
+        this.bodyService.notifyAboutBodyMeasurementChange();
+        await this.toastService.presentToast('success', 'TOAST_MESSAGES.MEASUREMENT_UPDATE_SUCCESS');
+        await this.router.navigate(['tabs', 'body']);
+      }, async () => {
+        await this.toastService.presentToast('error', 'TOAST_MESSAGES.MEASUREMENT_UPDATE_ERROR');
+      });
+    }
   }
 }

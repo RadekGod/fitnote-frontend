@@ -14,7 +14,7 @@ const routes: Routes = [
   },
   {
     path: 'edit-general-measurement/:id',
-    loadChildren: () => import('./measurements/edit-general-measurements/edit-general-measurement.module').then(m => m.EditGeneralMeasurementPageModule)
+    loadChildren: () => import('./measurements/edit-general-measurement/edit-general-measurement.module').then(m => m.EditGeneralMeasurementPageModule)
   },
   {
     path: 'add-body-measurement',

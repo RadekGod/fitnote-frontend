@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {TrainingPlanExerciseDto} from "../../model/training-plan-exercise-dto.model";
 import {environment} from "../../../../../../environments/environment";
 import {TrainingPlanDto} from "../../model/training-plan-dto.model";
@@ -6,13 +6,14 @@ import {from, Subscription} from "rxjs";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ImageService} from "../../../../../commons/services/file/image.service";
 import {TrainingPlanService} from "../../training-plan.service";
-import {FormArray, FormBuilder, FormGroup} from "@angular/forms";
+import {FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {MeasurementUnitsService} from "../../../../../commons/services/mesurement-units/measurement-units.service";
 import {ApplicationFile} from "../../../../../commons/models/application-file.model";
 import {TrainingDto} from "./model/training-dto.model";
 import {TrainingService} from "../training.service";
 import {TrainingExerciseDto} from "./model/training-exercise-dto.model";
 import {ExerciseSetDto} from "../../model/exercise-set-dto.model";
+import {ToastService} from "../../../../../commons/services/toast/toast.service";
 
 @Component({
   selector: 'app-training',
@@ -30,7 +31,7 @@ export class TrainingPage implements OnInit {
   private measurementUnitsSubscription!: Subscription;
 
   get currentTrainingPlanExercise() {
-      return this.trainingPlan.trainingPlanExercises[this.currentExerciseIndex];
+    return this.trainingPlan.trainingPlanExercises[this.currentExerciseIndex];
   }
 
 
@@ -41,17 +42,16 @@ export class TrainingPage implements OnInit {
         weight: [10],
         repeats: [1],
         completed: [false]
-      })])
+      }), Validators.required])
     })])
   });
-
 
 
   getExercises(): FormArray {
     return this.trainingForm?.get('exercises') as FormArray;
   }
 
-   getExerciseDetails(exerciseNumber: number): FormArray {
+  getExerciseDetails(exerciseNumber: number): FormArray {
     return this.getExercises().at(exerciseNumber) as FormArray;
   }
 
@@ -65,6 +65,7 @@ export class TrainingPage implements OnInit {
               private imageService: ImageService,
               private measurementUnitsService: MeasurementUnitsService,
               private trainingPlanService: TrainingPlanService,
+              private toastService: ToastService,
               private trainingService: TrainingService) {
   }
 
@@ -117,7 +118,7 @@ export class TrainingPage implements OnInit {
       console.log('trainingPlanExercises', trainingPlanExercises);
       console.log('this.trainingPlan', this.trainingPlan);
       this.fillFormFields(this.trainingPlan);
-      });
+    });
   }
 
   private fillFormFields(trainingPlanDto: TrainingPlanDto) {
@@ -135,8 +136,8 @@ export class TrainingPage implements OnInit {
       this.getExerciseSets(index).clear();
       trainingPlanExercise.exerciseSets.forEach(exerciseSet => {
         this.getExerciseSets(index).push(this.formBuilder.group({
-              weight: [exerciseSet.weight],
-              repeats: [exerciseSet.repeats],
+          weight: [exerciseSet.weight],
+          repeats: [exerciseSet.repeats],
           completed: [false]
         }));
       });
@@ -151,11 +152,16 @@ export class TrainingPage implements OnInit {
 
       let trainingExercises: TrainingExerciseDto[] = [];
 
-      this.trainingPlan.trainingPlanExercises.forEach((trainingPlanExercise, index)=> {
-        trainingExercises.push({
-          ...trainingPlanExercise,
-          exerciseSets: this.getExerciseSets(index).value as ExerciseSetDto[]
-        });
+      this.trainingPlan.trainingPlanExercises.forEach((trainingPlanExercise, index) => {
+        let exerciseSets = this.getExerciseSets(index).value as ExerciseSetDto[];
+        // exerciseSets = exerciseSets.filter(exerciseSet => exerciseSet.completed);
+        console.log(exerciseSets);
+        if (exerciseSets.some(exerciseSet => exerciseSet.completed)) {
+          trainingExercises.push({
+            ...trainingPlanExercise,
+            exerciseSets: exerciseSets.filter(exerciseSet => exerciseSet.completed)
+          });
+        }
       });
 
       let trainingToSend: TrainingDto = {
@@ -165,10 +171,14 @@ export class TrainingPage implements OnInit {
         finishTime: new Date(Date.now())
       };
 
-      console.log('Dto do wysłania: ',trainingToSend);
-      this.trainingService.createTraining(trainingToSend).subscribe(async () => {
+      console.log('Dto do wysłania: ', trainingToSend);
+      this.trainingService.createTraining(trainingToSend).subscribe(async (trainingId) => {
         this.trainingService.notifyAboutTrainingsChange();
-        await this.router.navigate(['tabs', 'training-plans', this.trainingPlanId]);
+        await this.router.navigate(['tabs', 'history', trainingId]);
+        await this.toastService.presentToast('success', 'TOAST_MESSAGES.TRAINING_ADD_SUCCESS');
+
+      }, async () => {
+        await this.toastService.presentToast('error', 'TOAST_MESSAGES.TRAINING_ADD_ERROR');
       });
     }
   }
@@ -183,6 +193,7 @@ export class TrainingPage implements OnInit {
       this.getExerciseSets(this.currentExerciseIndex).removeAt(this.setsCount);
     }
   }
+
   addSet() {
     this.setsCount++;
     this.getExerciseSets(this.currentExerciseIndex).push(this.formBuilder.group({
@@ -194,7 +205,7 @@ export class TrainingPage implements OnInit {
 
   addRepeat(setIndex: number) {
     let currentRepeats = this.getExerciseSets(this.currentExerciseIndex).at(setIndex).get('repeats')?.value;
-    this.getExerciseSets(this.currentExerciseIndex).at(setIndex).get('repeats')?.patchValue( currentRepeats + 1);
+    this.getExerciseSets(this.currentExerciseIndex).at(setIndex).get('repeats')?.patchValue(currentRepeats + 1);
   }
 
   subtractRepeat(setIndex: number) {
@@ -206,7 +217,7 @@ export class TrainingPage implements OnInit {
 
   addWeight(setIndex: number) {
     let currentWeight = this.getExerciseSets(this.currentExerciseIndex).at(setIndex).get('weight')?.value;
-    this.getExerciseSets(this.currentExerciseIndex).at(setIndex).get('weight')?.patchValue( currentWeight + 1);
+    this.getExerciseSets(this.currentExerciseIndex).at(setIndex).get('weight')?.patchValue(currentWeight + 1);
   }
 
   subtractWeight(setIndex: number) {

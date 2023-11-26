@@ -1,11 +1,11 @@
 {
   "WEEK_DAYS": {
     "MONDAY": "Monday",
-    "TUESDAY":"Tuesday",
+    "TUESDAY": "Tuesday",
     "WEDNESDAY": "Wednesday",
-    "THURSDAY":"Thursday",
+    "THURSDAY": "Thursday",
     "FRIDAY": "Friday",
-    "SATURDAY":"Saturday",
+    "SATURDAY": "Saturday",
     "SUNDAY": "Sunday"
   },
   "EXERCISE_TYPES": {
@@ -15,33 +15,69 @@
     "BODY_WEIGHT_TIME": "Body weight (Time)",
     "WEIGHT_TRAINING": "Weight training"
   },
-
   "EXERCISE_GROUPS": {
     "CHEST": "Chest",
-    "SHOULDERS":"Shoulders",
-    "BICEPS":"Biceps",
+    "SHOULDERS": "Shoulders",
+    "BICEPS": "Biceps",
     "TRICEPS": "Triceps",
     "FOREARMS": "Forearms",
     "UPPER_BACK": "Upper back",
-    "LOWER_BACK":"Lower back",
+    "LOWER_BACK": "Lower back",
     "ABS": "ABS",
-    "GLUTES":"Glutes",
+    "GLUTES": "Glutes",
     "THIGH_FRONT": "Thigh - front",
     "THIGH_BACK": "Thigh - back",
     "CALVES": "Calves",
     "CARDIO": "Cardio",
-    "CUSTOM":"Custom",
+    "CUSTOM": "Custom",
     "FAVOURITE": "Favourite"
   },
-
   "MUSCLES": {
-    "PECTORALIS_MAJOR":  "Pectoralis major",
+    "PECTORALIS_MAJOR": "Pectoralis major",
     "PECTORALIS_MINOR": "Pectoralis minor",
-    "TRICEPS":  "Triceps",
+    "TRICEPS": "Triceps",
     "BICEPS": "Biceps",
-    "DELTOID":  "Deltoid",
+    "DELTOID": "Deltoid",
     "TERES_MAJOR": "Teres major",
-    "LATISSIMUS_DORSI":  "Latissimus dorsi",
+    "LATISSIMUS_DORSI": "Latissimus dorsi",
     "SERRATUS_ANTERIOR": "serratus anterior"
+  },
+  "TOAST_MESSAGES": {
+    "USER_SETTINGS_UPDATE_SUCCESS": "settings updated successfully",
+    "USER_SETTINGS_UPDATE_ERROR": "Error occurred when tried to delete settings",
+    "PHOTO_ADD_SUCCESS": "Photo added successfully",
+    "PHOTO_ADD_ERROR": "Error occurred when tried to add photo",
+    "MEASUREMENT_ADD_SUCCESS": "Measurement added successfully",
+    "MEASUREMENT_ADD_ERROR": "Error occurred when tried to add measurement",
+    "MEASUREMENT_UPDATE_SUCCESS": "Measurement updated successfully",
+    "MEASUREMENT_UPDATE_ERROR": "Error occurred when tried to update measurement",
+    "EXERCISE_ADD_SUCCESS": "Exercise added successfully",
+    "EXERCISE_ADD_ERROR": "Error occurred when tried to add exercise",
+    "EXERCISE_UPDATE_SUCCESS": "Exercise updated successfully",
+    "EXERCISE_UPDATE_ERROR": "Error occurred when tried to update exercise",
+    "EXERCISE_DELETE_SUCCESS": "Exercise deleted successfully",
+    "EXERCISE_DELETE_ERROR": "Error occurred when tried to delete exercise",
+    "TRAINING_PLAN_ADD_SUCCESS": "Training plan added successfully",
+    "TRAINING_PLAN_ADD_ERROR": "Error occurred when tried to add training plan",
+    "TRAINING_PLAN_UPDATE_SUCCESS": "Training plan updated successfully",
+    "TRAINING_PLAN_UPDATE_ERROR": "Error occurred when tried to update training plan",
+    "TRAINING_PLAN_DELETE_SUCCESS": "Training plan deleted successfully",
+    "TRAINING_PLAN_DELETE_ERROR": "Error occurred when tried to delete training plan",
+    "TRAINING_PLAN_EXERCISE_ADD_SUCCESS": "Exercise has been successfully added to the training plan",
+    "TRAINING_PLAN_EXERCISE_ADD_ERROR": "Error occurred when tried to add exercise to the training plan",
+    "TRAINING_PLAN_EXERCISE_UPDATE_SUCCESS": "Training plan updated successfully",
+    "TRAINING_PLAN_EXERCISE_UPDATE_ERROR": "Error occurred when tried to update training plan",
+    "TRAINING_PLAN_EXERCISE_DELETE_SUCCESS": "Exercise has been successfully deleted from the training plan",
+    "TRAINING_PLAN_EXERCISE_DELETE_ERROR": "Error occurred when tried to delete exercise from the training plan",
+    "TRAINING_ADD_SUCCESS": "Training finished successfully",
+    "TRAINING_ADD_ERROR": "Error occurred when tried to finish training",
+    "TRAINING_DELETE_SUCCESS": "Training deleted successfully",
+    "TRAINING_DELETE_ERROR": "Error occurred when tried to delete training"
+  },
+  "INPUT_ERRORS": {
+    "PASSWORDS_DO_NOT_MATCH": "Passwords do not match",
+    "INCORRECT_EMAIL": "Incorrect e-mail address",
+    "REQUIRED_FIELD": "This field is required",
+    "INCORRECT_DATA": "Incorrect form data"
   }
 }

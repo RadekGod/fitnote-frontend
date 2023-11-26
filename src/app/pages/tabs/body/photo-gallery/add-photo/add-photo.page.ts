@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Photo} from "@capacitor/camera";
-import {LoadingController, Platform} from "@ionic/angular";
+import {LoadingController, Platform, ToastController} from "@ionic/angular";
 import {LocalFile} from "../../../../../commons/models/local-file.model";
 import {BodyService} from "../../body.service";
 import {FormBuilder} from "@angular/forms";
@@ -8,6 +8,7 @@ import {Router} from "@angular/router";
 import {ImageService} from "../../../../../commons/services/file/image.service";
 import {IMAGE_FORMAT_PREFIX} from "../../../../../commons/constants/constants";
 import {environment} from "../../../../../../environments/environment";
+import {ToastService} from "../../../../../commons/services/toast/toast.service";
 
 @Component({
   selector: 'app-add-photo',
@@ -15,39 +16,43 @@ import {environment} from "../../../../../../environments/environment";
   styleUrls: ['./add-photo.page.scss'],
 })
 export class AddPhotoPage implements OnInit {
-
-  images: LocalFile[] = [];
-  image!: Photo;
-  imageToDisplay = '';
-
+  image: Photo | null = null;
+  imageToDisplay: string = '';
+  formImageIsNotSelected: boolean = false;
   addBodyPhotoForm = this.formBuilder.group({
     note: ['']
   });
 
-  constructor(private platform: Platform,
-              private loadingCtrl: LoadingController,
-              private bodyService: BodyService,
-              private formBuilder: FormBuilder,
-              private imageService: ImageService,
-              private router: Router) {
+  constructor(
+    private bodyService: BodyService,
+    private formBuilder: FormBuilder,
+    private imageService: ImageService,
+    private toastService: ToastService,
+    private router: Router) {
   }
 
   ngOnInit() {
   }
 
-  addGalleryPhoto() {
+  async addGalleryPhoto() {
     const formData: FormData = new FormData();
     if (this.image) {
-        const fileName = new Date().getTime() + '.jpeg';
+      const fileName = new Date().getTime() + '.jpeg';
       formData.append('image', this.imageService.convertBase64ImageToBlob(this.image), fileName);
       formData.append('photoInfo', new Blob([JSON.stringify(this.addBodyPhotoForm.value)], {
         type: 'application/json'
       }));
       this.bodyService.addGalleryPhoto(formData).subscribe(async () => {
-        await this.imageService.saveImageOnDevice(this.image, environment.photoGalleryDirectory, fileName);
+        await this.imageService.saveImageOnDevice(this.image!, environment.photoGalleryDirectory, fileName);
         this.bodyService.notifyAboutGalleryPhotoChange();
+        await this.toastService.presentToast('success', 'TOAST_MESSAGES.PHOTO_ADD_SUCCESS');
         await this.router.navigate(['tabs', 'body']);
+        this.clearPhotoFormData();
+      }, async () => {
+        await this.toastService.presentToast('error', 'TOAST_MESSAGES.PHOTO_ADD_ERROR');
       });
+    } else {
+      this.formImageIsNotSelected = true;
     }
   }
 
@@ -67,12 +72,19 @@ export class AddPhotoPage implements OnInit {
 
   async selectImageToUpload() {
     this.image = await this.imageService.selectImageFromDiskOrTakePhoto();
+    if (this.image) {
+      this.formImageIsNotSelected = false;
+    }
     this.imageToDisplay = IMAGE_FORMAT_PREFIX + this.image.base64String;
   }
 
-
-
-
+  clearPhotoFormData() {
+    this.image = null;
+    this.imageToDisplay = '';
+    this.addBodyPhotoForm.patchValue({
+      note: ''
+    });
+  }
 
 
   // async uploadFile(file: Blob) {

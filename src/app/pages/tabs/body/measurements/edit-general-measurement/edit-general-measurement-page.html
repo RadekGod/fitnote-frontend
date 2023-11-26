@@ -14,8 +14,8 @@
 
 <ion-content [fullscreen]="true">
 
-  <form (ngSubmit)="validateAndSendMeasurementForm(editGeneralMeasurementsForm)"
-        [formGroup]="editGeneralMeasurementsForm">
+  <form (ngSubmit)="validateAndSendMeasurementForm(editGeneralMeasurementForm)"
+        [formGroup]="editGeneralMeasurementForm">
     <div class="section-container horizontal-center vertical-spacer-3vh">
       <div class="section-header">
         <div class="title-container">
@@ -59,8 +59,15 @@
           </div>
         </div>
       </div>
-
     </div>
+
+    <div *ngIf="(editGeneralMeasurementForm.invalid)"
+         class="form-error-container vertical-spacer-1vh">
+            <span *ngIf="editGeneralMeasurementForm.get('measurementDate')!.hasError('required')">
+              {{ 'BODY.MEASUREMENTS.ERRORS.MEASUREMENT_DATE_REQUIRED' | translate }}
+            </span>
+    </div>
+
     <div class="button-container vertical-spacer-5vh horizontal-center">
       <button class="button button-fill" type="submit">
         <div class="button-content-container horizontal-center">

@@ -24,8 +24,8 @@ export class BodyPage implements OnInit {
   generalMeasurement: GeneralMeasurementDto | null = null;
   private generalMeasurementSubscription!: Subscription;
   private bodyMeasurementSubscription!: Subscription;
-  private measurementUnitsSubscription!: Subscription;
   private galleryPhotosSubscription!: Subscription;
+  private measurementUnitsSubscription!: Subscription;
   lengthUnitShortcut!: string;
   weightUnitShortcut!: string;
 

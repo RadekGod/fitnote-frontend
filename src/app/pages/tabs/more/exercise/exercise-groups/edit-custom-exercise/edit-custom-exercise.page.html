@@ -15,7 +15,6 @@
   </div>
 
 
-
   <div class="form-container vertical-spacer-5vh horizontal-center">
     <form (ngSubmit)="validateAndEditCustomExercise(editCustomExerciseForm)"
           [formGroup]="editCustomExerciseForm">
@@ -23,36 +22,62 @@
       <div class="form-inputs-container horizontal-center">
         <div class="input-container horizontal-center">
           <input type="text" id="exerciseName" formControlName="name" placeholder="&nbsp;">
-          <label for="exerciseName" class="input-label">{{ 'EXERCISE.ADD_CUSTOM_EXERCISE.EXERCISE_NAME' | translate }}</label>
+          <label for="exerciseName"
+                 class="input-label">{{ 'EXERCISE.ADD_CUSTOM_EXERCISE.EXERCISE_NAME' | translate }}</label>
+          <div
+            *ngIf="formFailedValidation || (editCustomExerciseForm.get('name')!.invalid && (editCustomExerciseForm.get('name')!.dirty || editCustomExerciseForm.get('name')!.touched))"
+            class="input-error-container">
+            <span *ngIf="editCustomExerciseForm.get('name')!.hasError('required')">
+            {{ 'FORM_ERRORS.REQUIRED_FIELD' | translate }}
+          </span>
+          </div>
         </div>
 
         <div class="vertical-spacer-3vh"></div>
 
         <div class="input-container horizontal-center">
           <input type="text" id="exerciseInstruction" formControlName="description" placeholder="&nbsp;">
-          <label for="exerciseInstruction" class="input-label">{{ 'EXERCISE.ADD_CUSTOM_EXERCISE.DESCRIPTION' | translate }}</label>
+          <label for="exerciseInstruction"
+                 class="input-label">{{ 'EXERCISE.ADD_CUSTOM_EXERCISE.DESCRIPTION' | translate }}</label>
         </div>
 
-        <ion-select  class="horizontal-center" label="{{ 'EXERCISE.ADD_CUSTOM_EXERCISE.EXERCISE_TYPE' | translate }}" [interfaceOptions]="exerciseTypeOptions" formControlName="exerciseType">
-          <ion-select-option *ngFor="let exerciseType of exerciseTypes | keyvalue" [value]="exerciseType.value">{{('EXERCISE_TYPES.' + exerciseType.value) | translate }}</ion-select-option>
+        <ion-select class="horizontal-center" label="{{ 'EXERCISE.ADD_CUSTOM_EXERCISE.EXERCISE_TYPE' | translate }}"
+                    [interfaceOptions]="exerciseTypeOptions" formControlName="exerciseType">
+          <ion-select-option *ngFor="let exerciseType of exerciseTypes | keyvalue"
+                             [value]="exerciseType.value">{{('EXERCISE_TYPES.' + exerciseType.value) | translate }}</ion-select-option>
+        </ion-select>
+
+        <div class="horizontal-spacer horizontal-center">
+          <div
+            *ngIf="formFailedValidation || (editCustomExerciseForm.get('exerciseType')!.invalid && (editCustomExerciseForm.get('exerciseType')!.dirty || editCustomExerciseForm.get('exerciseType')!.touched))"
+            class="input-error-container">
+            <span *ngIf="editCustomExerciseForm.get('exerciseType')!.hasError('required')">
+            {{ 'FORM_ERRORS.REQUIRED_FIELD' | translate }}
+          </span>
+          </div>
+        </div>
+
+        <ion-select class="horizontal-center" label="{{ 'EXERCISE.ADD_CUSTOM_EXERCISE.EXERCISE_GROUPS' | translate }}"
+                    [interfaceOptions]="exerciseGroupOptions" formControlName="exerciseCategoryGroups" multiple="true">
+          <ion-select-option *ngFor="let exerciseGroup of exerciseCategoryGroups | keyvalue"
+                             [value]="exerciseGroup.value">{{('EXERCISE_GROUPS.' + exerciseGroup.value) | translate }}</ion-select-option>
         </ion-select>
 
         <div class="horizontal-spacer horizontal-center"></div>
 
-        <ion-select class="horizontal-center" label="{{ 'EXERCISE.ADD_CUSTOM_EXERCISE.EXERCISE_GROUPS' | translate }}" [interfaceOptions]="exerciseGroupOptions" formControlName="exerciseCategoryGroups" multiple="true" >
-          <ion-select-option *ngFor="let exerciseGroup of exerciseCategoryGroups | keyvalue" [value]="exerciseGroup.value">{{('EXERCISE_GROUPS.' + exerciseGroup.value) | translate }}</ion-select-option>
+        <ion-select class="horizontal-center" label="{{ 'EXERCISE.ADD_CUSTOM_EXERCISE.MAIN_MUSCLES' | translate }}"
+                    [interfaceOptions]="mainMusclesOptions" formControlName="mainMuscles" multiple="true">
+          <ion-select-option *ngFor="let muscle of muscles | keyvalue"
+                             [value]="muscle.value">{{('MUSCLES.' + muscle.value) | translate }}</ion-select-option>
         </ion-select>
 
         <div class="horizontal-spacer horizontal-center"></div>
 
-        <ion-select  class="horizontal-center" label="{{ 'EXERCISE.ADD_CUSTOM_EXERCISE.MAIN_MUSCLES' | translate }}" [interfaceOptions]="mainMusclesOptions" formControlName="mainMuscles" multiple="true" >
-          <ion-select-option *ngFor="let muscle of muscles | keyvalue" [value]="muscle.value">{{('MUSCLES.' + muscle.value) | translate }}</ion-select-option>
-        </ion-select>
-
-        <div class="horizontal-spacer horizontal-center"></div>
-
-        <ion-select  class="horizontal-center" label="{{ 'EXERCISE.ADD_CUSTOM_EXERCISE.SUPPORTIVE_MUSCLES' | translate }}" [interfaceOptions]="supportiveMusclesOptions" formControlName="supportiveMuscles" multiple="true" >
-          <ion-select-option *ngFor="let muscle of muscles | keyvalue" [value]="muscle.value">{{('MUSCLES.' + muscle.value) | translate }}</ion-select-option>
+        <ion-select class="horizontal-center"
+                    label="{{ 'EXERCISE.ADD_CUSTOM_EXERCISE.SUPPORTIVE_MUSCLES' | translate }}"
+                    [interfaceOptions]="supportiveMusclesOptions" formControlName="supportiveMuscles" multiple="true">
+          <ion-select-option *ngFor="let muscle of muscles | keyvalue"
+                             [value]="muscle.value">{{('MUSCLES.' + muscle.value) | translate }}</ion-select-option>
         </ion-select>
 
         <div class="horizontal-spacer horizontal-center"></div>

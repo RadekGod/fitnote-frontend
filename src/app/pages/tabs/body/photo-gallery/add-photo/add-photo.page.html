@@ -25,6 +25,13 @@
         </div>
       </div>
 
+      <div *ngIf="formImageIsNotSelected && !this.image"
+        class="form-error-container vertical-spacer-2vh">
+            <span>
+              {{ 'BODY.PHOTO_GALLERY.ERRORS.NO_IMAGE_SELECTED' | translate }}
+            </span>
+      </div>
+
       <div class="button-container vertical-spacer-3vh horizontal-center">
         <button class="button button-fill" type="submit">
           <div class="button-content-container horizontal-center">

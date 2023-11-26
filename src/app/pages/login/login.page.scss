@@ -29,3 +29,15 @@
   flex-direction: column;
   gap: 3vh;
 }
+
+.form-error-container {
+  text-align: center;
+  color: var(--ion-color-danger);
+  font-size: 1.4rem;
+}
+
+.input-error-container {
+  margin-top: 0.5rem;
+  color: var(--ion-color-danger);
+  font-size: 1.4rem;
+}

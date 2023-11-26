@@ -1,0 +1,32 @@
+{
+  "HISTORY": {
+    "PAGE_TITLES": {
+      "HISTORY": "Trainings history"
+    },
+    "ERRORS": {
+      "NO_TRAININGS": "No trainings saved"
+    },
+    "TRAINING_DATE": "Training date",
+    "TRAINING_DETAILS": {
+      "PAGE_TITLES": {
+        "TRAINING_DETAILS": "Training details"
+      },
+      "SUMMARY": {
+        "DURATION": "Duration",
+        "EXERCISES_PERFORMED": "Exercises performed",
+        "SETS_PERFORMED": "Sets",
+        "REPEATS_PERFORMED": "Repeats",
+        "MAX_WEIGHT": "Max. weight",
+        "TOTAL_WEIGHT": "Total weight"
+      },
+
+      "ENGAGED_MUSCLES": "Engaged muscles",
+      "EXERCISES_LIST": {
+        "TITLE": "Exercises list",
+        "SET": "Set",
+        "WEIGHT": "Weight",
+        "REPEATS": "Repeats"
+      }
+    }
+  }
+}

@@ -46,7 +46,7 @@ export class BodyService {
   }
 
   getLatestBodyMeasurement(): Observable<BodyMeasurementDto> {
-    return this.httpClient.get<BodyMeasurementDto>(environment.rootUrl + AppConstants.BODY_MEASUREMENTS_API_URL + '/latest', { withCredentials: true })
+    return this.httpClient.get<BodyMeasurementDto>(environment.rootUrl + AppConstants.BODY_MEASUREMENTS_API_URL + '/99999', { withCredentials: true })
   }
 
   addNewBodyMeasurement(bodyMeasurementDto: BodyMeasurementDto): Observable<BodyMeasurementDto> {

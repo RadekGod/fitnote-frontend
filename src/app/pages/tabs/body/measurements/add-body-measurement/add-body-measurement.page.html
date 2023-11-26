@@ -85,9 +85,15 @@
           </div>
         </div>
       </div>
-
     </div>
-    <div class="button-container vertical-spacer-5vh horizontal-center">
+
+    <div *ngIf="(addBodyMeasurementsForm.invalid)"
+      class="form-error-container vertical-spacer-1vh">
+            <span *ngIf="addBodyMeasurementsForm.get('measurementDate')!.hasError('required')">
+              {{ 'BODY.MEASUREMENTS.ERRORS.MEASUREMENT_DATE_REQUIRED' | translate }}
+            </span>
+    </div>
+    <div class="button-container vertical-spacer-3vh horizontal-center">
       <button class="button button-fill" type="submit">
         <div class="button-content-container horizontal-center">
           <ion-icon name="checkmark-outline"></ion-icon>

@@ -9,54 +9,6 @@
 
 
 <ion-content [fullscreen]="true">
-
-<!--  <ion-list class="vertical-spacer-3vh horizontal-center">-->
-<!--    <ion-item-sliding class="simple-item-container horizontal-center vertical-spacer-1vh">-->
-<!--      <ion-item [routerLink]="['/', 'tabs', 'training-plans', 'training-plan']">-->
-<!--        <ion-label class="ion-text-wrap">-->
-<!--          <h3>Push</h3>-->
-<!--          <h4>Dni treningowe: Poniedziałek</h4>-->
-<!--          <h4>Liczba ćwiczeń: 5</h4>-->
-<!--        </ion-label>-->
-<!--      </ion-item>-->
-<!--      <ion-item-options side="end">-->
-<!--        <ion-item-option color="danger">-->
-<!--          <ion-icon slot="icon-only" name="trash-outline" (click)="deleteTrainingPlan(5)"></ion-icon>-->
-<!--        </ion-item-option>-->
-<!--      </ion-item-options>-->
-<!--    </ion-item-sliding>-->
-
-<!--    <ion-item-sliding class="simple-item-container horizontal-center vertical-spacer-1vh">-->
-<!--      <ion-item [routerLink]="['/', 'tabs', 'training-plans', 'training-plan']">-->
-<!--        <ion-label class="ion-text-wrap">-->
-<!--          <h3>Push</h3>-->
-<!--          <h4>Dni treningowe: Poniedziałek</h4>-->
-<!--          <h4>Liczba ćwiczeń: 5</h4>-->
-<!--        </ion-label>-->
-<!--      </ion-item>-->
-<!--      <ion-item-options side="end">-->
-<!--        <ion-item-option color="danger">-->
-<!--          <ion-icon slot="icon-only" name="trash-outline" (click)="deleteTrainingPlan(5)"></ion-icon>-->
-<!--        </ion-item-option>-->
-<!--      </ion-item-options>-->
-<!--    </ion-item-sliding>-->
-
-<!--    <ion-item-sliding class="simple-item-container horizontal-center vertical-spacer-1vh">-->
-<!--      <ion-item [routerLink]="['/', 'tabs', 'training-plans', 'training-plan']">-->
-<!--        <ion-label class="ion-text-wrap">-->
-<!--          <h3>Push</h3>-->
-<!--          <h4>Dni treningowe: Poniedziałek</h4>-->
-<!--          <h4>Liczba ćwiczeń: 5</h4>-->
-<!--        </ion-label>-->
-<!--      </ion-item>-->
-<!--      <ion-item-options side="end">-->
-<!--        <ion-item-option color="danger">-->
-<!--          <ion-icon slot="icon-only" name="trash-outline" (click)="deleteTrainingPlan(5)"></ion-icon>-->
-<!--        </ion-item-option>-->
-<!--      </ion-item-options>-->
-<!--    </ion-item-sliding>-->
-
-<!--  </ion-list>-->
   <app-no-data [message]="'TRAINING_PLANS.ERRORS.NO_TRAINING_PLANS'" *ngIf="trainingPlans.length === 0"></app-no-data>
 
   <ion-list *ngIf="trainingPlans.length !== 0" class="vertical-spacer-3vh horizontal-center">
@@ -80,14 +32,6 @@
       </ion-item-options>
     </ion-item-sliding>
   </ion-list>
-
-<!--  <div *ngIf="trainingPlans.length !== 0" class="button-container vertical-spacer-5vh horizontal-center">-->
-<!--    <button class="button button-fill" type="submit">-->
-<!--      <div class="button-content-container horizontal-center">-->
-<!--        <p>{{'TRAINING_PLANS.BUTTONS.BEGIN_TRAINING' | translate }}</p>-->
-<!--      </div>-->
-<!--    </button>-->
-<!--  </div>-->
   <div class="vertical-spacer-3vh">
   </div>
 </ion-content>
