@@ -1,0 +1,54 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/more/activities"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="padding-left-small">{{'MORE.ACTIVITY_DETAILS.PAGE_TITLES.ACTIVITY_DETAILS' | translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+    <div class="section-container horizontal-center vertical-spacer-3vh">
+      <div class="section-header">
+        <div class="title-container">
+          <h3>{{activity?.activityType?.customActivity
+            ? activity?.activityType?.name
+            : 'ACTIVITY_TYPES.' + activity?.activityType?.name | translate}}
+            {{activity?.trainingPlanName ? activity?.trainingPlanName : ''}}</h3>
+        </div>
+      </div>
+
+      <app-no-data [message]="'MORE.ACTIVITY.ACTIVITY_DETAILS.ERRORS.NO_ACTIVITY'" *ngIf="!activity"></app-no-data>
+
+
+      <div *ngIf="activity" class="section-content">
+        <div class="item">
+          <p>{{ 'MORE.ACTIVITY_DETAILS.ACTIVITY_DATE' | translate }}</p>
+          <div class="measurement">
+            <p>{{activity.activityDate | date:'dd.MM.yyyy, HH:mm' }}</p>
+          </div>
+        </div>
+
+        <div class="item">
+          <p>{{ 'MORE.ACTIVITY_DETAILS.ACTIVITY_DURATION' | translate }}</p>
+          <div class="measurement">
+            <p>{{formatActivityDuration(activity)}}</p>
+          </div>
+        </div>
+
+        <div class="item">
+          <p>{{ 'MORE.ACTIVITY_DETAILS.BURNT_CALORIES' | translate }}</p>
+          <div class="measurement">
+            <p>{{ activity.burntCalories + ' kcal' }}</p>
+          </div>
+        </div>
+
+        <div class="item" *ngIf="activity.activityType.distanceActivity">
+          <p>{{ 'MORE.ACTIVITY_DETAILS.DISTANCE_TRAVELED' | translate }}</p>
+          <div class="measurement">
+            <p>{{ formatActivityDistance(activity) }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+</ion-content>

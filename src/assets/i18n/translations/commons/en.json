@@ -42,6 +42,16 @@
     "LATISSIMUS_DORSI": "Latissimus dorsi",
     "SERRATUS_ANTERIOR": "serratus anterior"
   },
+  "ACTIVITY_TYPES": {
+    "RUNNING": "Running",
+    "SWIMMING": "Swimming",
+    "GYM_WEIGHT_TRAINING": "Gym (weight training)",
+    "GYM_CARDIO_TIME": "Gym (cardio training - time)",
+    "GYM_CARDIO_DISTANCE": "Gym (cardio training - distance)",
+    "JOGGING": "Jogging",
+    "TRAINING_PLAN": "Training plan"
+
+  },
   "TOAST_MESSAGES": {
     "USER_SETTINGS_UPDATE_SUCCESS": "settings updated successfully",
     "USER_SETTINGS_UPDATE_ERROR": "Error occurred when tried to delete settings",
@@ -72,9 +82,21 @@
     "TRAINING_ADD_SUCCESS": "Training finished successfully",
     "TRAINING_ADD_ERROR": "Error occurred when tried to finish training",
     "TRAINING_DELETE_SUCCESS": "Training deleted successfully",
-    "TRAINING_DELETE_ERROR": "Error occurred when tried to delete training"
+    "TRAINING_DELETE_ERROR": "Error occurred when tried to delete training",
+    "ACTIVITY_ADD_SUCCESS": "Activity added successfully",
+    "ACTIVITY_ADD_ERROR": "Error occurred when tried to delete activity",
+    "ACTIVITY_UPDATE_SUCCESS": "Activity updated successfully",
+    "ACTIVITY_UPDATE_ERROR": "Error occurred when tried to update activity",
+    "ACTIVITY_DELETE_SUCCESS": "Activity deleted successfully",
+    "ACTIVITY_DELETE_ERROR": "Error occurred when tried to delete activity",
+    "ACTIVITY_TYPE_ADD_SUCCESS": "Activity type added successfully",
+    "ACTIVITY_TYPE_ADD_ERROR": "Error occurred when tried to delete activity type",
+    "ACTIVITY_TYPE_UPDATE_SUCCESS": "Activity type updated successfully",
+    "ACTIVITY_TYPE_UPDATE_ERROR": "Error occurred when tried to update activity type",
+    "ACTIVITY_TYPE_DELETE_SUCCESS": "Activity type deleted successfully",
+    "ACTIVITY_TYPE_DELETE_ERROR": "Error occurred when tried to delete activity type"
   },
-  "INPUT_ERRORS": {
+  "FORM_ERRORS": {
     "PASSWORDS_DO_NOT_MATCH": "Passwords do not match",
     "INCORRECT_EMAIL": "Incorrect e-mail address",
     "REQUIRED_FIELD": "This field is required",

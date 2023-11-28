@@ -1,11 +1,11 @@
 {
   "WEEK_DAYS": {
     "MONDAY": "Poniedziałek",
-    "TUESDAY":"Wtorek",
+    "TUESDAY": "Wtorek",
     "WEDNESDAY": "Środa",
-    "THURSDAY":"Czwartek",
+    "THURSDAY": "Czwartek",
     "FRIDAY": "Piątek",
-    "SATURDAY":"Sobota",
+    "SATURDAY": "Sobota",
     "SUNDAY": "Niedziela"
   },
   "EXERCISE_TYPES": {
@@ -42,6 +42,15 @@
     "LATISSIMUS_DORSI": "Najszerszy grzbietu",
     "SERRATUS_ANTERIOR": "Zębaty przedni"
   },
+  "ACTIVITY_TYPES": {
+    "RUNNING": "Bieganie",
+    "SWIMMING": "Pływanie",
+    "GYM_WEIGHT_TRAINING": "Siłownia (trening siłowy)",
+    "GYM_CARDIO_TIME": "Siłownia (trening kardio - czas)",
+    "GYM_CARDIO_DISTANCE": "Siłownia (trening kardio - dystans)",
+    "JOGGING": "Jogging",
+    "TRAINING_PLAN": "Plan treningowy"
+  },
   "TOAST_MESSAGES": {
     "USER_SETTINGS_UPDATE_SUCCESS": "Ustawienia zostały zaktualizowane pomyślnie",
     "USER_SETTINGS_UPDATE_ERROR": "Błąd podczas aktualizacji ustawień",
@@ -74,7 +83,19 @@
     "TRAINING_ADD_SUCCESS": "Trening zakończony pomyślnie",
     "TRAINING_ADD_ERROR": "Błąd podczas dodawania treningu",
     "TRAINING_DELETE_SUCCESS": "Trening usunięty pomyślnie",
-    "TRAINING_DELETE_ERROR": "Błąd podczas usuwania treningu"
+    "TRAINING_DELETE_ERROR": "Błąd podczas usuwania treningu",
+    "ACTIVITY_ADD_SUCCESS": "Aktywność dodana pomyślnie",
+    "ACTIVITY_ADD_ERROR": "Błąd podczas dodawania aktywności",
+    "ACTIVITY_UPDATE_SUCCESS": "Aktywność zaktualizowana pomyślnie",
+    "ACTIVITY_UPDATE_ERROR": "Błąd podczas aktualizacji aktywności",
+    "ACTIVITY_DELETE_SUCCESS": "Aktywność usunięta pomyślnie",
+    "ACTIVITY_DELETE_ERROR": "Błąd podczas usuwania aktywności",
+    "ACTIVITY_TYPE_ADD_SUCCESS": "Typ Aktywności dodany pomyślnie",
+    "ACTIVITY_TYPE_ADD_ERROR": "Błąd podczas dodawania typu aktywności",
+    "ACTIVITY_TYPE_UPDATE_SUCCESS": "Typ aktywności zaktualizowany pomyślnie",
+    "ACTIVITY_TYPE_UPDATE_ERROR": "Błąd podczas aktualizacji typu aktywności",
+    "ACTIVITY_TYPE_DELETE_SUCCESS": "Typ aktywności usunięty pomyślnie",
+    "ACTIVITY_TYPE_DELETE_ERROR": "Błąd podczas usuwania typu aktywności"
   },
   "FORM_ERRORS": {
     "PASSWORDS_DO_NOT_MATCH": "Hasła nie są jednakowe",

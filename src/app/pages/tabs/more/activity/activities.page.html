@@ -1,0 +1,100 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/more"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="padding-left-small">{{'MORE.ACTIVITY.PAGE_TITLES.ACTIVITY' | translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-toolbar>
+    <ion-segment value="measurements">
+      <ion-segment-button (click)="changeSegmentValue('activityDiary')" value="measurements">
+        <ion-label>{{ 'MORE.ACTIVITY.SEGMENT_BUTTONS.ACTIVITY_DIARY' | translate }}</ion-label>
+      </ion-segment-button>
+
+      <ion-segment-button (click)="changeSegmentValue('activityTypes')" value="photo-gallery">
+        <ion-label>{{ 'MORE.ACTIVITY.SEGMENT_BUTTONS.ACTIVITY_TYPES' | translate }}</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+
+  <div *ngIf="segmentValue === 'activityDiary'" class="measurements-container">
+    <app-no-data [message]="'MORE.ACTIVITY.ACTIVITY_DIARY.ERRORS.NO_ACTIVITIES'" *ngIf="activities?.length === 0"></app-no-data>
+
+    <div class="button-container vertical-spacer-3vh horizontal-center"
+         [routerLink]="['/', 'tabs', 'more', 'activities', 'add-activity']">
+      <button class="button button-fill" type="submit">
+        <div class="button-content-container horizontal-center">
+          <ion-icon name="add-outline"></ion-icon>
+          <p>{{ 'MORE.ACTIVITY.ACTIVITY_DIARY.BUTTONS.ADD_ACTIVITY' | translate }}</p>
+        </div>
+      </button>
+    </div>
+
+    <ion-list *ngIf="activities?.length !== 0" class="vertical-spacer-1vh horizontal-center">
+      <ion-item-sliding *ngFor="let activity of activities"
+                        class="simple-item-container horizontal-center vertical-spacer-1vh">
+        <ion-item [routerLink]="['/', 'tabs', 'more', 'activities', activity.id]">
+          <ion-label class="ion-text-wrap">
+            <h3>{{activity.activityType.customActivity
+              ? activity.activityType.name
+              : 'ACTIVITY_TYPES.' + activity.activityType.name | translate}}
+              {{activity.trainingPlanName ? activity.trainingPlanName : ''}}</h3>
+            <h4>{{'MORE.ACTIVITY.ACTIVITY_DIARY.ACTIVITY_DATE' | translate }}:
+              {{ activity.activityDate | date:'dd.MM.yyyy, HH:mm' }}
+            </h4>
+            <h4>{{'MORE.ACTIVITY.ACTIVITY_DIARY.ACTIVITY_DURATION' | translate }}: {{formatActivityDuration(activity)}}</h4>
+          </ion-label>
+        </ion-item>
+        <ion-item-options side="end">
+          <ion-item-option color="success"
+                           [routerLink]="['/', 'tabs', 'more', 'activities', 'edit-activity', activity.id]">
+            <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+          </ion-item-option>
+          <ion-item-option color="danger" (click)="deleteActivity(activity)">
+            <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+          </ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+  </div>
+
+
+  <div *ngIf="segmentValue === 'activityTypes'" class="photo-gallery-container vertical-spacer-1vh horizontal-center">
+    <div class="button-container vertical-spacer-3vh horizontal-center"
+         [routerLink]="['/', 'tabs', 'more', 'activities', 'add-activity-type']">
+      <button class="button button-fill" type="submit">
+        <div class="button-content-container horizontal-center">
+          <ion-icon name="add-outline"></ion-icon>
+          <p>{{ 'MORE.ACTIVITY.ACTIVITY_TYPES.BUTTONS.ADD_ACTIVITY_TYPE' | translate }}</p>
+        </div>
+      </button>
+    </div>
+    <ion-list *ngIf="activityTypes?.length !== 0" class="vertical-spacer-1vh horizontal-center">
+      <ion-item-sliding *ngFor="let activityType of activityTypes"
+                        class="simple-item-container horizontal-center vertical-spacer-1vh">
+        <ion-item>
+          <ion-label class="ion-text-wrap">
+            <h3>{{activityType.customActivity ? activityType.name : 'ACTIVITY_TYPES.' + activityType.name | translate}}</h3>
+          </ion-label>
+          <ion-icon *ngIf="activityType.customActivity" slot="end" color="secondary" name="bulb-outline"></ion-icon>
+        </ion-item>
+        <ion-item-options *ngIf="activityType.customActivity" side="end">
+          <ion-item-option color="success"
+                           [routerLink]="['/', 'tabs', 'more', 'activities', 'edit-activity-type', activityType.id]">
+            <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+          </ion-item-option>
+          <ion-item-option color="danger" (click)="deleteActivityType(activityType)">
+            <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+          </ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+  </div>
+
+
+  <div class="vertical-spacer-3vh"></div>
+</ion-content>
+

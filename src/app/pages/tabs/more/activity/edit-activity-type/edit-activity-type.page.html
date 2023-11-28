@@ -1,0 +1,58 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/more/activities"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="padding-left-small">{{'MORE.EDIT_ACTIVITY_TYPE.PAGE_TITLES.EDIT_ACTIVITY_TYPE' | translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="form-container vertical-spacer-5vh horizontal-center">
+    <form (ngSubmit)="validateAndSendActivityTypeForm(editActivityTypeForm)"
+          [formGroup]="editActivityTypeForm">
+
+      <div class="form-inputs-container horizontal-center">
+        <div class="input-container horizontal-center">
+          <input type="text" id="name" formControlName="name" placeholder="&nbsp;">
+          <label for="name" class="input-label">{{ 'MORE.ADD_ACTIVITY_TYPE.ACTIVITY_NAME' | translate }}</label>
+          <div
+            *ngIf="editActivityTypeForm.get('name')!.invalid && (editActivityTypeForm.get('name')!.dirty || editActivityTypeForm.get('name')!.touched)"
+            class="input-error-container">
+            <span *ngIf="editActivityTypeForm.get('name')!.hasError('required')">
+            {{ 'FORM_ERRORS.REQUIRED_FIELD' | translate }}
+          </span>
+          </div>
+        </div>
+
+        <div class="distant-activity-checkbox">
+          <ion-checkbox formControlName="distanceActivity" label-placement="end">{{ 'MORE.ADD_ACTIVITY_TYPE.DISTANCE_ACTIVITY' | translate }}</ion-checkbox>
+        </div>
+
+        <div class="activity-inputs-container">
+          <div class="activity-input-content-container">
+            <div class="activity-input-container">
+              <label for="averageCaloriesBurntPerHour" class="input-label">{{ 'MORE.ADD_ACTIVITY_TYPE.AVERAGE_CALORIES_BURNT_PER_HOUR' | translate }}</label>
+              <div class="input-options-container">
+                <input type="number" id="averageCaloriesBurntPerHour" formControlName="averageCaloriesBurntPerHour" placeholder="&nbsp;">
+                <ion-icon name="remove-outline" (click)="subtractBurntCalories()"></ion-icon>
+                <ion-icon name="add-outline" (click)="addBurntCalories()"></ion-icon>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="vertical-spacer-3vh"></div>
+      </div>
+
+      <div class="button-container vertical-spacer-3vh horizontal-center">
+        <button class="button button-fill" type="submit">
+          <div class="button-content-container horizontal-center">
+            <ion-icon name="checkmark-outline"></ion-icon>
+            <p>{{ 'MORE.EDIT_ACTIVITY_TYPE.BUTTONS.SAVE' | translate}}</p>
+          </div>
+        </button>
+      </div>
+    </form>
+  </div>
+</ion-content>

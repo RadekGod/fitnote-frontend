@@ -1,0 +1,101 @@
+{
+  "MORE": {
+    "ACTIVITY": {
+      "PAGE_TITLES": {
+        "ACTIVITY": "Aktywność"
+      },
+      "SEGMENT_BUTTONS": {
+        "ACTIVITY_DIARY": "Dziennik",
+        "ACTIVITY_TYPES": "Kategorie"
+      },
+      "ACTIVITY_DIARY": {
+        "ERRORS": {
+          "NO_ACTIVITIES": "Brak zarejestrowanych aktywności"
+        },
+        "PAGE_TITLES": {
+          "ADD_ACTIVITY": "Dodaj aktywność",
+          "EDIT_ACTIVITY": "Edytuj aktywność"
+        },
+        "ACTIVITY_DATE": "Data aktywności",
+        "ACTIVITY_DURATION": "Czas trwania",
+        "BUTTONS": {
+          "ADD_ACTIVITY": "Dodaj aktywność"
+        }
+      },
+      "ACTIVITY_TYPES": {
+        "ERRORS": {
+          "NO_ACTIVITIES": "Brak zarejestrowanych aktywności"
+        },
+        "PAGE_TITLES": {
+          "ADD_ACTIVITY": "Dodaj aktywność",
+          "EDIT_ACTIVITY": "Edytuj aktywność"
+        },
+        "ACTIVITY_DATE": "Data aktywności",
+        "ACTIVITY_DURATION": "Czas trwania",
+        "BUTTONS": {
+          "ADD_ACTIVITY_TYPE": "Dodaj kategorię"
+        }
+      }
+    },
+    "ACTIVITY_DETAILS": {
+      "ERRORS": {
+        "NO_ACTIVITY": "Nie znaleziono aktynwości"
+      },
+      "PAGE_TITLES": {
+        "ACTIVITY_DETAILS": "Szczegóły aktywności"
+      },
+      "ACTIVITY_DATE": "Data aktywności",
+      "ACTIVITY_DURATION": "Czas trwania",
+      "BURNT_CALORIES": "Spalone kalorie",
+      "DISTANCE_TRAVELED": "Przebyty dystans"
+    },
+    "ADD_ACTIVITY": {
+      "PAGE_TITLES": {
+        "ADD_ACTIVITY": "Dodaj aktywność"
+      },
+      "ACTIVITY_DATE": "Data aktywności",
+      "ACTIVITY_TYPE": "Rodaj aktywności",
+      "ACTIVITY_DURATION": "Czas trwania",
+      "BURNT_CALORIES": "Spalone kalorie",
+      "DISTANCE_TRAVELED": "Przebyty dystans",
+      "BUTTONS": {
+        "SAVE": "Zapisz"
+      }
+    },
+    "EDIT_ACTIVITY": {
+      "PAGE_TITLES": {
+        "EDIT_ACTIVITY": "Edytuj aktywność"
+      },
+      "ACTIVITY_DATE": "Data aktywności",
+      "ACTIVITY_TYPE": "Rodaj aktywności",
+      "ACTIVITY_DURATION": "Czas trwania",
+      "BURNT_CALORIES": "Spalone kalorie",
+      "DISTANCE_TRAVELED": "Przebyty dystans",
+      "BUTTONS": {
+        "SAVE": "Zapisz"
+      }
+    },
+    "ADD_ACTIVITY_TYPE": {
+      "PAGE_TITLES": {
+        "ADD_ACTIVITY_TYPE": "Dodaj typ aktywności"
+      },
+      "ACTIVITY_NAME": "Nazwa aktywności",
+      "DISTANCE_ACTIVITY": "Aktywność dystansowa",
+      "AVERAGE_CALORIES_BURNT_PER_HOUR": "Średnie spalanie kalorii na godzinę",
+      "BUTTONS": {
+        "SAVE": "Zapisz"
+      }
+    },
+    "EDIT_ACTIVITY_TYPE": {
+      "PAGE_TITLES": {
+        "EDIT_ACTIVITY_TYPE": "Edytuj typ aktywności"
+      },
+      "ACTIVITY_NAME": "Nazwa aktywności",
+      "DISTANCE_ACTIVITY": "Aktywność dystansowa",
+      "AVERAGE_CALORIES_BURNT_PER_HOUR": "Średnie spalanie kalorii na godzinę",
+      "BUTTONS": {
+        "SAVE": "Zapisz"
+      }
+    }
+  }
+}

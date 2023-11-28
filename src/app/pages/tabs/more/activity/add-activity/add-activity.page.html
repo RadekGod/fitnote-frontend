@@ -1,0 +1,101 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/more/activities"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="padding-left-small">{{'MORE.ADD_ACTIVITY.PAGE_TITLES.ADD_ACTIVITY' | translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="form-container vertical-spacer-5vh horizontal-center">
+    <form (ngSubmit)="validateAndSendActivityForm(addActivityForm)"
+          [formGroup]="addActivityForm">
+
+      <div class="form-inputs-container horizontal-center">
+        <div class="activity-date-container">
+          <p>{{ 'MORE.ADD_ACTIVITY.ACTIVITY_DATE' | translate }}</p>
+          <div class="date-input-container">
+            <input class="date-input" type="datetime-local" formControlName="activityDate">
+          </div>
+        </div>
+        <div>
+          <ion-select class="horizontal-center" label="{{ 'MORE.ADD_ACTIVITY.ACTIVITY_TYPE' | translate }}"
+                      [interfaceOptions]="activityTypeOptions" formControlName="activityType">
+            <ion-select-option *ngFor="let activityType of activityTypes"
+                               [value]="activityType.id">
+              {{activityType.customActivity
+              ? activityType.name
+              : 'ACTIVITY_TYPES.' + activityType.name | translate}}</ion-select-option>
+          </ion-select>
+
+          <div class="horizontal-spacer horizontal-center">
+            <div
+              *ngIf="formFailedValidation || (addActivityForm.get('activityType')!.invalid && (addActivityForm.get('activityType')!.dirty || addActivityForm.get('activityType')!.touched))"
+              class="input-error-container">
+            <span *ngIf="addActivityForm.get('activityType')!.hasError('required')">
+            {{ 'FORM_ERRORS.REQUIRED_FIELD' | translate }}
+          </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="activity-inputs-container">
+          <div class="activity-input-content-container">
+          <div class="activity-input-container">
+            <label for="activityDurationInMinutes" class="activity-input-label">{{ 'MORE.ADD_ACTIVITY.ACTIVITY_DURATION' | translate }}
+              {{'(min)'}}</label>
+            <div class="input-options-container">
+            <input type="number" id="activityDurationInMinutes" formControlName="activityDurationInMinutes"
+                   placeholder="&nbsp;">
+              <ion-icon name="remove-outline" (click)="subtractActivityDurationInMinutes()"></ion-icon>
+              <ion-icon name="add-outline" (click)="addActivityDurationInMinutes()"></ion-icon>
+            </div>
+          </div>
+            <div
+              *ngIf="formFailedValidation || (addActivityForm.get('activityDurationInMinutes')!.invalid && (addActivityForm.get('activityDurationInMinutes')!.dirty || addActivityForm.get('activityDurationInMinutes')!.touched))"
+              class="input-error-container">
+                    <span *ngIf="addActivityForm.get('activityDurationInMinutes')!.hasError('required')">
+                    {{ 'FORM_ERRORS.REQUIRED_FIELD' | translate }}
+                  </span>
+            </div>
+          </div>
+
+          <div class="activity-input-content-container">
+          <div class="activity-input-container">
+            <label for="burntCalories" class="input-label">{{ 'MORE.ADD_ACTIVITY.BURNT_CALORIES' | translate }}</label>
+            <div class="input-options-container">
+            <input type="number" id="burntCalories" formControlName="burntCalories" placeholder="&nbsp;">
+            <ion-icon name="remove-outline" (click)="subtractBurntCalories()"></ion-icon>
+            <ion-icon name="add-outline" (click)="addBurntCalories()"></ion-icon>
+            </div>
+          </div>
+          </div>
+
+          <div *ngIf="isDistantActivity()" class="activity-input-content-container">
+          <div class="activity-input-container">
+            <label for="distanceTraveled" class="input-label">{{ 'MORE.ADD_ACTIVITY.DISTANCE_TRAVELED' | translate }}
+              {{'(m)'}}</label>
+            <div class="input-options-container">
+            <input type="number" id="distanceTraveled" formControlName="distanceTraveled" placeholder="&nbsp;">
+            <ion-icon name="remove-outline" (click)="subtractDistanceTraveled()"></ion-icon>
+            <ion-icon name="add-outline" (click)="addDistanceTraveled()"></ion-icon>
+            </div>
+          </div>
+        </div>
+        </div>
+
+        <div class="vertical-spacer-3vh"></div>
+      </div>
+
+      <div class="button-container vertical-spacer-3vh horizontal-center">
+        <button class="button button-fill" type="submit">
+          <div class="button-content-container horizontal-center">
+            <ion-icon name="checkmark-outline"></ion-icon>
+            <p>{{ 'MORE.ADD_ACTIVITY.BUTTONS.SAVE' | translate}}</p>
+          </div>
+        </button>
+      </div>
+    </form>
+  </div>
+</ion-content>
