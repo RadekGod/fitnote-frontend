@@ -20,7 +20,7 @@
     </ion-segment>
   </ion-toolbar>
 
-  <div *ngIf="segmentValue === 'activityDiary'" class="measurements-container">
+  <div *ngIf="segmentValue === 'activityDiary'">
     <app-no-data [message]="'MORE.ACTIVITY.ACTIVITY_DIARY.ERRORS.NO_ACTIVITIES'" *ngIf="activities?.length === 0"></app-no-data>
 
     <div class="button-container vertical-spacer-3vh horizontal-center"
@@ -62,7 +62,7 @@
   </div>
 
 
-  <div *ngIf="segmentValue === 'activityTypes'" class="photo-gallery-container vertical-spacer-1vh horizontal-center">
+  <div *ngIf="segmentValue === 'activityTypes'" class="vertical-spacer-1vh horizontal-center">
     <div class="button-container vertical-spacer-3vh horizontal-center"
          [routerLink]="['/', 'tabs', 'more', 'activities', 'add-activity-type']">
       <button class="button button-fill" type="submit">

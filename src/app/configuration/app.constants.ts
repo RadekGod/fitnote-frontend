@@ -13,6 +13,7 @@ export const  AppConstants = {
   TRAINING_PLANS_API_URL : '/training-plans',
   TRAININGS_API_URL : '/trainings',
   ACTIVITIES_API_URL : '/activities',
+  MEALS_API_URL : '/meals',
   ACTIVITY_TYPES_API_URL : '/activity-types'
 
 }

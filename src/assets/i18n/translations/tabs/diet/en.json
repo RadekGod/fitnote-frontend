@@ -1,0 +1,62 @@
+{
+  "DIET": {
+    "PAGE_TITLES": {
+      "DIET": "Diet"
+    },
+    "ERRORS": {
+      "NO_MEALS": "No meals saved",
+      "MEASUREMENT_DATE_REQUIRED": "Please specify meal date"
+    },
+    "BUTTONS": {
+      "ADD_MEAL": "Add meal"
+    },
+    "RECOMMENDED_CALORIES": "Recommended daily calorie intake",
+    "MEALS": {
+      "MEALS_LABEL": "Today's meals",
+      "MEAL_TIME": "Meal time",
+      "CALORIES": "Calories"
+    },
+
+    "MEAL_DETAILS": {
+      "PAGE_TITLES": {
+        "MEAL_DETAILS": "Meal details"
+      },
+      "MEAL_TIME": "Meal time",
+      "CALORIES": "Calories",
+      "CARBOHYDRATES": "Carbohydrates",
+      "PROTEINS": "Proteins",
+      "FAT": "Fat",
+      "SALT": "Salt"
+    },
+    "ADD_MEAL": {
+      "PAGE_TITLES": {
+        "ADD_MEAL": "Add meal"
+      },
+      "BUTTONS": {
+        "SAVE": "Save"
+      },
+      "MEAL_DATE": "Meal date",
+      "MEAL_NAME": "Meal name",
+      "CALORIES": "Calories",
+      "CARBOHYDRATES": "Carbohydrates",
+      "PROTEINS": "Proteins",
+      "FAT": "Fat",
+      "SALT": "Salt"
+    },
+    "EDIT_MEAL": {
+      "PAGE_TITLES": {
+        "EDIT_MEAL": "Edit meal"
+      },
+      "BUTTONS": {
+        "SAVE": "Save"
+      },
+      "MEAL_DATE": "Meal date",
+      "MEAL_NAME": "Meal name",
+      "CALORIES": "Calories",
+      "CARBOHYDRATES": "Carbohydrates",
+      "PROTEINS": "Proteins",
+      "FAT": "Fat",
+      "SALT": "Salt"
+    }
+  }
+}

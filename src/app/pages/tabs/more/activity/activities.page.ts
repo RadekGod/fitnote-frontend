@@ -44,7 +44,6 @@ export class ActivitiesPage implements OnInit {
   fetchActivities() {
     this.activityService.getAllActivities().subscribe(response => {
       this.activities = response;
-      console.log(this.activities);
     });
   }
 

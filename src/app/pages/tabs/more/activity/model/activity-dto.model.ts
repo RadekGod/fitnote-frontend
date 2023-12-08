@@ -4,7 +4,7 @@ export interface ActivityDto {
   id: number,
   activityDurationInMinutes: number,
   trainingPlanName?: string,
-  burntCalories: number,
+  burntKilocalories: number,
   distanceTraveled: number,
   activityDate: Date,
   activityType: ActivityTypeDto

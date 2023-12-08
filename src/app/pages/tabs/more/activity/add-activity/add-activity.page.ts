@@ -44,7 +44,7 @@ export class AddActivityPage implements OnInit {
     activityDate: [this.datePipe.transform(Date.now(), 'yyyy-MM-ddTHH:mm'), Validators.required],
     activityType: [null, Validators.required],
     activityDurationInMinutes: [10, Validators.required],
-    burntCalories: [0],
+    burntKilocalories: [0],
     distanceTraveled: [100],
   });
 
@@ -73,7 +73,7 @@ export class AddActivityPage implements OnInit {
       activityDate: this.datePipe.transform(Date.now(), 'yyyy-MM-ddTHH:mm'),
       activityType: null,
       activityDurationInMinutes: 10,
-      burntCalories: 0,
+      burntKilocalories: 0,
       distanceTraveled: 100
     });
     this.addActivityForm.markAsPristine();
@@ -94,17 +94,17 @@ export class AddActivityPage implements OnInit {
     }
   }
 
-  addBurntCalories() {
-    let currentBurntCalories = this.addActivityForm.get('burntCalories')?.value!;
-    this.addActivityForm.get('burntCalories')?.patchValue(currentBurntCalories + 10);
+  addBurntKilocalories() {
+    let currentBurntKilocalories = this.addActivityForm.get('burntKilocalories')?.value!;
+    this.addActivityForm.get('burntKilocalories')?.patchValue(currentBurntKilocalories + 10);
   }
 
-  subtractBurntCalories() {
-    let currentBurntCalories = this.addActivityForm.get('burntCalories')?.value!;
-    if (currentBurntCalories > 10) {
-      this.addActivityForm.get('burntCalories')?.patchValue(currentBurntCalories - 10);
-    } else if (currentBurntCalories > 0) {
-      this.addActivityForm.get('burntCalories')?.patchValue(currentBurntCalories - currentBurntCalories);
+  subtractBurntKilocalories() {
+    let currentBurntKilocalories = this.addActivityForm.get('burntKilocalories')?.value!;
+    if (currentBurntKilocalories > 10) {
+      this.addActivityForm.get('burntKilocalories')?.patchValue(currentBurntKilocalories - 10);
+    } else if (currentBurntKilocalories > 0) {
+      this.addActivityForm.get('burntKilocalories')?.patchValue(currentBurntKilocalories - currentBurntKilocalories);
     }
   }
 

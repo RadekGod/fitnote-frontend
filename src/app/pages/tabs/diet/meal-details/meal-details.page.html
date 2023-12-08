@@ -1,0 +1,62 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/diet"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="padding-left-small">{{'DIET.MEAL_DETAILS.PAGE_TITLES.MEAL_DETAILS' | translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="section-container horizontal-center vertical-spacer-3vh">
+    <div class="section-header">
+      <div class="title-container">
+        <h3>{{meal?.name}}</h3>
+      </div>
+    </div>
+
+    <div *ngIf="meal" class="section-content">
+      <div class="item">
+        <p>{{ 'DIET.MEAL_DETAILS.MEAL_TIME' | translate }}</p>
+        <div class="measurement">
+          <p>{{meal.mealDate | date:'HH:mm' }}</p>
+        </div>
+      </div>
+
+      <div class="item">
+        <p>{{ 'DIET.MEAL_DETAILS.CALORIES' | translate }}</p>
+        <div class="measurement">
+          <p>{{ meal.kilocalories + ' kcal' }}</p>
+        </div>
+      </div>
+
+      <div class="item">
+        <p>{{ 'DIET.MEAL_DETAILS.CARBOHYDRATES' | translate }}</p>
+        <div class="measurement">
+          <p>{{ meal.carbohydrates + 'g' }}</p>
+        </div>
+      </div>
+
+      <div class="item">
+        <p>{{ 'DIET.MEAL_DETAILS.PROTEINS' | translate }}</p>
+        <div class="measurement">
+          <p>{{ meal.proteins + 'g' }}</p>
+        </div>
+      </div>
+
+      <div class="item">
+        <p>{{ 'DIET.MEAL_DETAILS.FAT' | translate }}</p>
+        <div class="measurement">
+          <p>{{ meal.fat + 'g' }}</p>
+        </div>
+      </div>
+
+      <div class="item">
+        <p>{{ 'DIET.MEAL_DETAILS.SALT' | translate }}</p>
+        <div class="measurement">
+          <p>{{ meal.salt + 'g' }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

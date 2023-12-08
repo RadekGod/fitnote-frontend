@@ -30,7 +30,7 @@ export class EditActivityPage implements OnInit {
     activityDate: [this.datePipe.transform(Date.now(), 'yyyy-MM-ddTHH:mm'), Validators.required],
     activityType: [0, Validators.required],
     activityDurationInMinutes: [10, Validators.required],
-    burntCalories: [0],
+    burntKilocalories: [0],
     distanceTraveled: [100],
   });
 
@@ -67,7 +67,7 @@ export class EditActivityPage implements OnInit {
       activityType: this.activityTypes
         .findIndex(activityType => activityType.id === activityDto.activityType.id) + 1,
       activityDurationInMinutes: activityDto.activityDurationInMinutes ?? 0,
-      burntCalories: activityDto.burntCalories ?? 0,
+      burntKilocalories: activityDto.burntKilocalories ?? 0,
       distanceTraveled: activityDto.distanceTraveled ?? 0
     });
   }
@@ -98,24 +98,24 @@ export class EditActivityPage implements OnInit {
       activityDate: this.datePipe.transform(Date.now(), 'yyyy-MM-ddTHH:mm'),
       activityType: null,
       activityDurationInMinutes: 10,
-      burntCalories: 0,
+      burntKilocalories: 0,
       distanceTraveled: 100
     });
     this.editActivityForm.markAsPristine();
     this.editActivityForm.markAsUntouched();
   }
 
-  addBurntCalories() {
-    let currentBurntCalories = this.editActivityForm.get('burntCalories')?.value!;
-    this.editActivityForm.get('burntCalories')?.patchValue(currentBurntCalories + 10);
+  addBurntKilocalories() {
+    let currentBurntKilocalories = this.editActivityForm.get('burntKilocalories')?.value!;
+    this.editActivityForm.get('burntKilocalories')?.patchValue(currentBurntKilocalories + 10);
   }
 
-  subtractBurntCalories() {
-    let currentBurntCalories = this.editActivityForm.get('burntCalories')?.value!;
-    if (currentBurntCalories > 10) {
-      this.editActivityForm.get('burntCalories')?.patchValue(currentBurntCalories - 10);
-    } else if (currentBurntCalories > 0) {
-      this.editActivityForm.get('burntCalories')?.patchValue(currentBurntCalories - currentBurntCalories);
+  subtractBurntKilocalories() {
+    let currentBurntKilocalories = this.editActivityForm.get('burntKilocalories')?.value!;
+    if (currentBurntKilocalories > 10) {
+      this.editActivityForm.get('burntKilocalories')?.patchValue(currentBurntKilocalories - 10);
+    } else if (currentBurntKilocalories > 0) {
+      this.editActivityForm.get('burntKilocalories')?.patchValue(currentBurntKilocalories - currentBurntKilocalories);
     }
   }
 

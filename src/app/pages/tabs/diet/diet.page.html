@@ -1,27 +1,55 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>diet</ion-title>
+    <ion-title>{{ 'DIET.PAGE_TITLES.DIET' | translate }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-    <div class="temp-container horizontal-center vertical-spacer-5vh">
-      <div class="temp-item">
-      </div>
+  <div class="recommended-kilocalories-container horizontal-center vertical-spacer-3vh">
+      <span>
+        {{ 'DIET.RECOMMENDED_CALORIES' | translate }}: 2500
+      </span>
+  </div>
 
-      <div class="temp-item">
-      </div>
-
-      <div class="temp-item">
-      </div>
-
-      <div class="temp-item">
-      </div>
-
-      <div class="temp-item">
-      </div>
-
-      <div class="temp-item">
-      </div>
+  <div class="meals-container horizontal-center vertical-spacer-2vh">
+    <div class="button-container vertical-spacer-3vh horizontal-center"
+         [routerLink]="['/', 'tabs', 'diet', 'add-meal']">
+      <button class="button button-fill" type="submit">
+        <div class="button-content-container horizontal-center">
+          <ion-icon name="add-outline"></ion-icon>
+          <p>{{ 'DIET.BUTTONS.ADD_MEAL' | translate }}</p>
+        </div>
+      </button>
     </div>
+
+    <div class="meals-list vertical-spacer-3vh">
+      <h2>{{ 'DIET.MEALS.MEALS_LABEL' | translate }} {{'(' + consumedCalories + ' kcal)'}}</h2>
+      <app-no-data [message]="'DIET.ERRORS.NO_MEALS'" *ngIf="meals?.length === 0"></app-no-data>
+      <ion-list *ngIf="meals?.length !== 0" class="vertical-spacer-1vh horizontal-center">
+
+        <ion-item-sliding *ngFor="let meal of meals"
+                          class="simple-item-container horizontal-center vertical-spacer-1vh">
+          <ion-item [routerLink]="['/', 'tabs', 'diet', 'meals', meal.id]">
+            <ion-label class="ion-text-wrap">
+              <h3>{{meal.name}}</h3>
+              <h4>{{'DIET.MEALS.MEAL_TIME' | translate }}:
+                {{ meal.mealDate | date:'HH:mm' }}
+              </h4>
+              <h4>{{'DIET.MEALS.CALORIES' | translate}}: {{meal.kilocalories + ' kcal' }}
+              </h4>
+            </ion-label>
+          </ion-item>
+          <ion-item-options side="end">
+            <ion-item-option color="success"
+                             [routerLink]="['/', 'tabs', 'diet', 'edit-meal', meal.id]">
+              <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+            </ion-item-option>
+            <ion-item-option color="danger" (click)="deleteMeal(meal)">
+              <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+            </ion-item-option>
+          </ion-item-options>
+        </ion-item-sliding>
+      </ion-list>
+    </div>
+  </div>
 </ion-content>

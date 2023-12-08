@@ -4,10 +4,10 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { DietPageRoutingModule } from './diet-routing.module';
+import { MealDetailsPageRoutingModule } from './meal-details-routing.module';
 
-import { DietPage } from './diet.page';
-import {NoDataComponentModule} from "../../../components/no-data/no-data-module";
+import { MealDetailsPage } from './meal-details.page';
+import {NoDataComponentModule} from "../../../../components/no-data/no-data-module";
 import {TranslateModule} from "@ngx-translate/core";
 
 @NgModule({
@@ -15,10 +15,10 @@ import {TranslateModule} from "@ngx-translate/core";
         CommonModule,
         FormsModule,
         IonicModule,
-        DietPageRoutingModule,
+        MealDetailsPageRoutingModule,
         NoDataComponentModule,
         TranslateModule
     ],
-  declarations: [DietPage]
+  declarations: [MealDetailsPage]
 })
-export class DietPageModule {}
+export class MealDetailsPageModule {}

@@ -76,17 +76,17 @@ export class EditActivityTypePage implements OnInit {
     this.editActivityTypeForm.markAsUntouched();
   }
 
-  addBurntCalories() {
-    let currentBurntCalories = this.editActivityTypeForm.get('averageCaloriesBurntPerHour')?.value!;
-    this.editActivityTypeForm.get('averageCaloriesBurntPerHour')?.patchValue(currentBurntCalories + 10);
+  addBurntKilocalories() {
+    let currentBurntKilocalories = this.editActivityTypeForm.get('averageCaloriesBurntPerHour')?.value!;
+    this.editActivityTypeForm.get('averageCaloriesBurntPerHour')?.patchValue(currentBurntKilocalories + 10);
   }
 
-  subtractBurntCalories() {
-    let currentBurntCalories = this.editActivityTypeForm.get('averageCaloriesBurntPerHour')?.value!;
-    if (currentBurntCalories > 10) {
-      this.editActivityTypeForm.get('averageCaloriesBurntPerHour')?.patchValue(currentBurntCalories - 10);
-    } else if (currentBurntCalories > 0) {
-      this.editActivityTypeForm.get('averageCaloriesBurntPerHour')?.patchValue(currentBurntCalories - currentBurntCalories);
+  subtractBurntKilocalories() {
+    let currentBurntKilocalories = this.editActivityTypeForm.get('averageCaloriesBurntPerHour')?.value!;
+    if (currentBurntKilocalories > 10) {
+      this.editActivityTypeForm.get('averageCaloriesBurntPerHour')?.patchValue(currentBurntKilocalories - 10);
+    } else if (currentBurntKilocalories > 0) {
+      this.editActivityTypeForm.get('averageCaloriesBurntPerHour')?.patchValue(currentBurntKilocalories - currentBurntKilocalories);
     }
   }
 }

@@ -66,17 +66,17 @@ export class AddActivityTypePage implements OnInit {
     this.addActivityTypeForm.markAsUntouched();
   }
 
-  addBurntCalories() {
-    let currentBurntCalories = this.addActivityTypeForm.get('averageCaloriesBurntPerHour')?.value!;
-    this.addActivityTypeForm.get('averageCaloriesBurntPerHour')?.patchValue(currentBurntCalories + 10);
+  addBurntKilocalories() {
+    let currentBurntKilocalories = this.addActivityTypeForm.get('averageCaloriesBurntPerHour')?.value!;
+    this.addActivityTypeForm.get('averageCaloriesBurntPerHour')?.patchValue(currentBurntKilocalories + 10);
   }
 
-  subtractBurntCalories() {
-    let currentBurntCalories = this.addActivityTypeForm.get('averageCaloriesBurntPerHour')?.value!;
-    if (currentBurntCalories > 10) {
-      this.addActivityTypeForm.get('averageCaloriesBurntPerHour')?.patchValue(currentBurntCalories - 10);
-    } else if (currentBurntCalories > 0) {
-      this.addActivityTypeForm.get('averageCaloriesBurntPerHour')?.patchValue(currentBurntCalories - currentBurntCalories);
+  subtractBurntKilocalories() {
+    let currentBurntKilocalories = this.addActivityTypeForm.get('averageCaloriesBurntPerHour')?.value!;
+    if (currentBurntKilocalories > 10) {
+      this.addActivityTypeForm.get('averageCaloriesBurntPerHour')?.patchValue(currentBurntKilocalories - 10);
+    } else if (currentBurntKilocalories > 0) {
+      this.addActivityTypeForm.get('averageCaloriesBurntPerHour')?.patchValue(currentBurntKilocalories - currentBurntKilocalories);
     }
   }
 }

@@ -95,7 +95,13 @@
     "ACTIVITY_TYPE_UPDATE_SUCCESS": "Typ aktywności zaktualizowany pomyślnie",
     "ACTIVITY_TYPE_UPDATE_ERROR": "Błąd podczas aktualizacji typu aktywności",
     "ACTIVITY_TYPE_DELETE_SUCCESS": "Typ aktywności usunięty pomyślnie",
-    "ACTIVITY_TYPE_DELETE_ERROR": "Błąd podczas usuwania typu aktywności"
+    "ACTIVITY_TYPE_DELETE_ERROR": "Błąd podczas usuwania typu aktywności",
+    "MEAL_ADD_SUCCESS": "Posiłek dodany pomyślnie",
+    "MEAL_ADD_ERROR": "Błąd podczas dodawania posiłku",
+    "MEAL_UPDATE_SUCCESS": "Posiłek zaktualizowany pomyślnie",
+    "MEAL_UPDATE_ERROR": "Błąd podczas aktualizacji posiłku",
+    "MEAL_DELETE_SUCCESS": "Posiłek usunięty pomyślnie",
+    "MEAL_DELETE_ERROR": "Błąd podczas usuwania posiłku"
   },
   "FORM_ERRORS": {
     "PASSWORDS_DO_NOT_MATCH": "Hasła nie są jednakowe",

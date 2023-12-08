@@ -1,0 +1,62 @@
+{
+  "DIET": {
+    "PAGE_TITLES": {
+      "DIET": "Dieta"
+    },
+    "ERRORS": {
+      "NO_MEALS": "Brak zapisanych posiłków",
+      "MEASUREMENT_DATE_REQUIRED": "Proszę podać datę posiłku"
+    },
+    "BUTTONS": {
+      "ADD_MEAL": "Dodaj posiłek"
+    },
+    "RECOMMENDED_CALORIES": "Rekomendowane dzienne spożycie kalorii",
+    "MEALS": {
+      "MEALS_LABEL": "Posiłki spożyte dzisiaj",
+      "MEAL_TIME": "Czas posiłku",
+      "CALORIES": "Kalorie"
+    },
+
+    "MEAL_DETAILS": {
+      "PAGE_TITLES": {
+        "MEAL_DETAILS": "Szczegóły posiłku"
+      },
+      "MEAL_TIME": "Czas posiłku",
+      "CALORIES": "Kalorie",
+      "CARBOHYDRATES": "Węglowodany",
+      "PROTEINS": "Białko",
+      "FAT": "Tłuszcze",
+      "SALT": "Sól"
+    },
+    "ADD_MEAL": {
+      "PAGE_TITLES": {
+        "ADD_MEAL": "Dodaj posiłek"
+      },
+      "BUTTONS": {
+        "SAVE": "Zapisz"
+      },
+      "MEAL_DATE": "Data posiłku",
+      "MEAL_NAME": "Nazwa posiłku",
+      "CALORIES": "Kalorie",
+      "CARBOHYDRATES": "Węglowodany",
+      "PROTEINS": "Białko",
+      "FAT": "Tłuszcze",
+      "SALT": "Sól"
+    },
+    "EDIT_MEAL": {
+      "PAGE_TITLES": {
+        "EDIT_MEAL": "Edytuj posiłek"
+      },
+      "BUTTONS": {
+        "SAVE": "Zapisz"
+      },
+      "MEAL_DATE": "Data posiłku",
+      "MEAL_NAME": "Nazwa posiłku",
+      "CALORIES": "Kalorie",
+      "CARBOHYDRATES": "Węglowodany",
+      "PROTEINS": "Białko",
+      "FAT": "Tłuszcze",
+      "SALT": "Sól"
+    }
+  }
+}

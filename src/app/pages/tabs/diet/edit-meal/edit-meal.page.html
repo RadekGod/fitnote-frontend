@@ -1,0 +1,115 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/more/activities"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="padding-left-small">{{'DIET.EDIT_MEAL.PAGE_TITLES.EDIT_MEAL' | translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="form-container vertical-spacer-5vh horizontal-center">
+    <form (ngSubmit)="validateAndUpdateMealForm(editMealForm)"
+          [formGroup]="editMealForm">
+
+      <div class="form-inputs-container horizontal-center">
+        <div class="meal-date-container">
+          <p>{{ 'DIET.EDIT_MEAL.MEAL_DATE' | translate }}</p>
+          <div class="date-input-container">
+            <input class="date-input" type="datetime-local" formControlName="mealDate">
+          </div>
+        </div>
+
+        <div class="input-container horizontal-center">
+          <input type="text" id="exerciseName" formControlName="name" placeholder="&nbsp;">
+          <label for="exerciseName" class="input-label">{{ 'DIET.EDIT_MEAL.MEAL_NAME' | translate }}</label>
+          <div
+            *ngIf="formFailedValidation || (editMealForm.get('name')!.invalid && (editMealForm.get('name')!.dirty || editMealForm.get('name')!.touched))"
+            class="input-error-container">
+            <span *ngIf="editMealForm.get('name')!.hasError('required')">
+            {{ 'FORM_ERRORS.REQUIRED_FIELD' | translate }}
+          </span>
+          </div>
+        </div>
+
+        <div class="meal-inputs-container">
+          <div class="meal-input-content-container">
+            <div class="meal-input-container">
+              <label for="kilocalories" class="meal-input-label">{{ 'DIET.EDIT_MEAL.CALORIES' | translate }}
+                {{'(kcal)'}}</label>
+              <div class="input-options-container">
+                <input type="number" id="kilocalories" formControlName="kilocalories"
+                       placeholder="&nbsp;">
+                <ion-icon name="remove-outline" (click)="subtractKilocalories()"></ion-icon>
+                <ion-icon name="add-outline" (click)="addKilocalories()"></ion-icon>
+              </div>
+            </div>
+          </div>
+
+          <div class="meal-input-content-container">
+            <div class="meal-input-container">
+              <label for="carbohydrates" class="meal-input-label">{{ 'DIET.EDIT_MEAL.CARBOHYDRATES' | translate }}
+                {{'(g)'}}</label>
+              <div class="input-options-container">
+                <input type="number" id="carbohydrates" formControlName="carbohydrates"
+                       placeholder="&nbsp;">
+                <ion-icon name="remove-outline" (click)="subtractCarbohydrates()"></ion-icon>
+                <ion-icon name="add-outline" (click)="addCarbohydrates()"></ion-icon>
+              </div>
+            </div>
+          </div>
+
+          <div class="meal-input-content-container">
+            <div class="meal-input-container">
+              <label for="proteins" class="meal-input-label">{{ 'DIET.EDIT_MEAL.PROTEINS' | translate }}
+                {{'(g)'}}</label>
+              <div class="input-options-container">
+                <input type="number" id="proteins" formControlName="proteins"
+                       placeholder="&nbsp;">
+                <ion-icon name="remove-outline" (click)="subtractProteins()"></ion-icon>
+                <ion-icon name="add-outline" (click)="addProteins()"></ion-icon>
+              </div>
+            </div>
+          </div>
+
+          <div class="meal-input-content-container">
+            <div class="meal-input-container">
+              <label for="fat" class="meal-input-label">{{ 'DIET.EDIT_MEAL.FAT' | translate }}
+                {{'(g)'}}</label>
+              <div class="input-options-container">
+                <input type="number" id="fat" formControlName="fat"
+                       placeholder="&nbsp;">
+                <ion-icon name="remove-outline" (click)="subtractFat()"></ion-icon>
+                <ion-icon name="add-outline" (click)="addFat()"></ion-icon>
+              </div>
+            </div>
+          </div>
+
+          <div class="meal-input-content-container">
+            <div class="meal-input-container">
+              <label for="salt" class="meal-input-label">{{ 'DIET.EDIT_MEAL.SALT' | translate }}
+                {{'(g)'}}</label>
+              <div class="input-options-container">
+                <input type="number" id="salt" formControlName="salt"
+                       placeholder="&nbsp;">
+                <ion-icon name="remove-outline" (click)="subtractSalt()"></ion-icon>
+                <ion-icon name="add-outline" (click)="addSalt()"></ion-icon>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="vertical-spacer-3vh"></div>
+      </div>
+
+      <div class="button-container vertical-spacer-3vh horizontal-center">
+        <button class="button button-fill" type="submit">
+          <div class="button-content-container horizontal-center">
+            <ion-icon name="checkmark-outline"></ion-icon>
+            <p>{{ 'DIET.EDIT_MEAL.BUTTONS.SAVE' | translate}}</p>
+          </div>
+        </button>
+      </div>
+    </form>
+  </div>
+</ion-content>
