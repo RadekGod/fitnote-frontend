@@ -48,7 +48,7 @@
         "HEIGHT": "Height",
         "WEIGHT": "Weight",
         "BMI": "BMI",
-        "LEAN_MUSCLE_MASS": "Lean muscle mass",
+        "LEAN_MUSCLE_MASS": "Muscle content",
         "BODY_FAT": "Body fat",
         "BUTTONS": {
           "SAVE": "Save"

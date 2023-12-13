@@ -48,7 +48,7 @@
         "HEIGHT": "Wzrost",
         "WEIGHT": "Waga",
         "BMI": "BMI",
-        "LEAN_MUSCLE_MASS": "Masa mięśni",
+        "LEAN_MUSCLE_MASS": "Zawartość mięśni",
         "BODY_FAT": "Tkanka tłuszczowa",
         "BUTTONS": {
           "SAVE": "Zapisz"

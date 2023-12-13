@@ -1,13 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {TrainingDto} from "../../training-plans/training-plan/training/model/training-dto.model";
 import {Subscription} from "rxjs";
-import {ActivatedRoute, Router} from "@angular/router";
-import {UserService} from "../../../../commons/services/user/user.service";
+import {ActivatedRoute} from "@angular/router";
 import {TrainingService} from "../../training-plans/training-plan/training.service";
 import {Muscles} from "../../../../commons/enums/muscles.enum";
 import {MeasurementUnitsService} from "../../../../commons/services/mesurement-units/measurement-units.service";
-import {ExerciseSetDto} from "../../training-plans/model/exercise-set-dto.model";
-import {TrainingExerciseDto} from "../../training-plans/training-plan/training/model/training-exercise-dto.model";
 
 @Component({
   selector: 'app-training-details',

@@ -22,7 +22,7 @@ import {ToastService} from "../../../../../commons/services/toast/toast.service"
 })
 export class TrainingPage implements OnInit {
   trainingPlan!: TrainingPlanDto;
-  trainingStartDate: Date = new Date(Date.now());
+  trainingStartDate: Date;
   trainingPlanId = Number(this.route.snapshot.paramMap.get('trainingPlanId'));
   private trainingPlansSubscription!: Subscription;
   setsCount: number = 1;
@@ -67,6 +67,8 @@ export class TrainingPage implements OnInit {
               private trainingPlanService: TrainingPlanService,
               private toastService: ToastService,
               private trainingService: TrainingService) {
+    this.trainingStartDate = new Date(Date.now());
+    this.trainingStartDate.setHours(this.trainingStartDate.getHours() + 1);
   }
 
   ngOnInit(): void {
@@ -148,14 +150,12 @@ export class TrainingPage implements OnInit {
 
   validateAndSaveTraining(trainingForm: FormGroup) {
     if (this.trainingForm.valid) {
-      console.log(trainingForm.value);
-
       let trainingExercises: TrainingExerciseDto[] = [];
-
+      let trainingFinishDate = new Date(Date.now());
+      trainingFinishDate.setHours(trainingFinishDate.getHours() + 1);
       this.trainingPlan.trainingPlanExercises.forEach((trainingPlanExercise, index) => {
         let exerciseSets = this.getExerciseSets(index).value as ExerciseSetDto[];
         // exerciseSets = exerciseSets.filter(exerciseSet => exerciseSet.completed);
-        console.log(exerciseSets);
         if (exerciseSets.some(exerciseSet => exerciseSet.completed)) {
           trainingExercises.push({
             ...trainingPlanExercise,
@@ -168,10 +168,9 @@ export class TrainingPage implements OnInit {
         name: this.trainingPlan.name,
         trainingExercises: trainingExercises,
         startTime: this.trainingStartDate,
-        finishTime: new Date(Date.now())
+        finishTime: trainingFinishDate
       };
 
-      console.log('Dto do wysłania: ', trainingToSend);
       this.trainingService.createTraining(trainingToSend).subscribe(async (trainingId) => {
         this.trainingService.notifyAboutTrainingsChange();
         await this.router.navigate(['tabs', 'history', trainingId]);

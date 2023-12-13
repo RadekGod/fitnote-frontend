@@ -4,9 +4,6 @@
       <ion-back-button defaultHref="/tabs/training-plans"></ion-back-button>
     </ion-buttons>
     <ion-title class="padding-left-small">{{ 'HISTORY.TRAINING_DETAILS.PAGE_TITLES.TRAINING_DETAILS' | translate }}</ion-title>
-    <ion-buttons slot="end">
-      <ion-icon size="large" slot="icon-only" name="ellipsis-vertical"></ion-icon>
-    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -19,7 +16,7 @@
       <div class="training-description-container">
         <div class="training-header horizontal-center">
           <h2>{{training?.name}}</h2>
-          <h4>{{training?.startTime | date:'dd.MM.yyyy hh:mm a'}}</h4>
+          <h4>{{training?.startTime | date:'dd.MM.yyyy HH:mm'}}</h4>
         </div>
 
         <div class="training-statistics-container horizontal-center">
@@ -64,7 +61,7 @@
               <ion-icon name="barbell-outline"></ion-icon>
               <div class="text-container">
                 <span class="statistic-label">{{ 'HISTORY.TRAINING_DETAILS.SUMMARY.MAX_WEIGHT' | translate }}</span>
-                <span class="statistic-value">{{maxWeight}}</span>
+                <span class="statistic-value">{{maxWeight}} {{weightUnitShortcut}}</span>
               </div>
             </div>
 
@@ -72,7 +69,7 @@
               <ion-icon name="barbell-outline"></ion-icon>
               <div class="text-container">
                 <span class="statistic-label">{{ 'HISTORY.TRAINING_DETAILS.SUMMARY.TOTAL_WEIGHT' | translate }}</span>
-                <span class="statistic-value">{{totalWeight}}</span>
+                <span class="statistic-value">{{totalWeight}} {{weightUnitShortcut}}</span>
               </div>
             </div>
           </div>
