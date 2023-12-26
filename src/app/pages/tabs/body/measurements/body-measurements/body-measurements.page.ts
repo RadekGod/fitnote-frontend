@@ -61,7 +61,6 @@ export class BodyMeasurementsPage implements OnInit {
   getMeasurementUnitsShortcuts() {
     this.lengthUnitShortcut = this.measurementUnitsService.lengthUnitShortcut;
   }
-
   deleteBodyMeasurement(bodyMeasurementId: number) {
     this.bodyService.deleteBodyMeasurement(bodyMeasurementId).subscribe(async response => {
       this.bodyService.notifyAboutBodyMeasurementChange();

@@ -18,7 +18,7 @@ export class LoginPage implements OnInit {
   languageOptions = this.translationConfiguration.languageOptions;
   loginForm = this.formBuilder.group({
     email: ['', [Validators.email, Validators.required]],
-    password: ['', Validators.required],
+    password: ['', Validators.required]
   });
 
   constructor(private loginService: LoginService,

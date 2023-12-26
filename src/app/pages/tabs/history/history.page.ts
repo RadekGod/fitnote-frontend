@@ -1,11 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {Router} from "@angular/router";
-import {UserService} from "../../../commons/services/user/user.service";
-import {TrainingPlanDto} from "../training-plans/model/training-plan-dto.model";
 import {TrainingDto} from "../training-plans/training-plan/training/model/training-dto.model";
 import {TrainingService} from "../training-plans/training-plan/training.service";
-import {TrainingPlanExerciseDto} from "../training-plans/model/training-plan-exercise-dto.model";
-import {environment} from "../../../../environments/environment";
 import {Subscription} from "rxjs";
 import {ToastService} from "../../../commons/services/toast/toast.service";
 

@@ -32,11 +32,11 @@ export class TrainingDetailsPage implements OnInit {
   }
 
   ngOnInit() {
-    this.fetchTrainings();
+    this.fetchTraining();
     this.initializeMeasurementUnitsShortcuts();
   }
 
-  fetchTrainings() {
+  fetchTraining() {
     this.trainingService.getTraining(this.trainingId).subscribe(response => {
       this.training = response;
       this.countTrainingStatistics();
@@ -85,5 +85,4 @@ export class TrainingDetailsPage implements OnInit {
       });
     });
   }
-
 }
