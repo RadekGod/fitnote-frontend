@@ -13,8 +13,6 @@ import {environment} from "../../../../../../../environments/environment";
 import {CreateExerciseCategoryGroups} from "../../../../../../commons/enums/create-exercise-category-groups.enum";
 import {ToastService} from "../../../../../../commons/services/toast/toast.service";
 
-const IMAGE_DIR = 'stored-images';
-
 interface AlertOptions {
   header: string;
   subHeader: string;
