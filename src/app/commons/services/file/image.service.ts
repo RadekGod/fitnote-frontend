@@ -2,11 +2,10 @@ import {Injectable} from '@angular/core';
 import {Camera, CameraResultType, CameraSource, Photo} from "@capacitor/camera";
 import {decode} from "base64-arraybuffer";
 import {Platform} from "@ionic/angular";
-import {DeleteFileOptions, Directory, FileInfo, Filesystem, ReaddirResult} from "@capacitor/filesystem";
+import {Directory, FileInfo, Filesystem, ReaddirResult} from "@capacitor/filesystem";
 import {environment} from "../../../../environments/environment";
 import {LocalImage} from "../../models/local-image.model";
 import {ApplicationFile} from "../../models/application-file.model";
-
 
 
 @Injectable({
@@ -22,6 +21,7 @@ export class ImageService {
   async selectImageFromDiskOrTakePhoto(): Promise<Photo> {
     if (this.platform.is('hybrid')) {
       return await Camera.getPhoto({
+        source: CameraSource.Prompt,
         quality: 90,
         allowEditing: false,
         resultType: CameraResultType.Base64
